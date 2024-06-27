@@ -1,0 +1,20 @@
+start
+:check recieved raw signal status;
+note left 
+for acceletaion signal check raw signal accelertion status
+for rate and angular accelertion check raw signal rate staus
+end note
+if (Raw signal status is in INIT ?) then (Yes)
+  :update the X,Y,Z signal with init values \n ie, RBL_CUSTIF_IMU_ACC_RATE_INIT ;
+else (No)
+  :update the X,Y,Z signal with converted values;
+endif
+stop
+group conversion
+:calculate the float value by dividing input signal chain values by sensitivity factor ;
+note left
+:sensitivity factor for acceleration ** RBL_IMUSTDTYPES_SENSITIVITY_ACC_LSB_PER_G / RBL_CUSTIF_G_TO_MS2 ** 
+:sensitivity factor for rate ** RBL_IMUSTDTYPES_SENSITIVITY_ROT_LSB_PER_DEG ** 
+:sensitivity factor for angular acceleration ** RBL_IMUSTDTYPES_SENSITIVITY_ROT_LSB_PER_DEG ** 
+end note
+: convert the value from physical to integer using a conversion service **rbl_CustIf_Calc_Convert ** \n with help of compute methode values (scale ,offset, upper limit, and lovwer limit) for each signal\n ;

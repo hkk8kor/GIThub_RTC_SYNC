@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<DIAGNOSIS INFO="DiamantPro 4.0.257.1670" CHECK="E74B50C7BC8C2086BF8E5AD5BD756441ICAgICAgICAgICAgICAgICAgICAgIERpYW1hbnRQcm8gICAgICAgICAgICAgICAgICAgIDQuMC4yNTcuMTY3MCAgICAgICAgICAgIC04NTg2Mjk3NjM3NzA2Nzc4MTM4ICAgICAgICAgICAgICAgICAgICAgICAgQUJUWjBNOEYgICAgICAgICAgICAgICAgICAgICAgREVcS0FTNkFCVCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg">
+    <COLLECTIONS>
+     <SW_GROUPS>
+     <SW_GROUP>
+        <SHORT-NAME>SwGrp_SSA</SHORT-NAME>
+        <SW_UNIT_REF>Unit_ASW</SW_UNIT_REF>
+        <DESC>Standard Security Architecture from Vector</DESC>
+     </SW_GROUP>
+     <SW_GROUP>
+        <SHORT-NAME>SwGrp_SWCDiag</SHORT-NAME>
+        <SW_UNIT_REF>Unit_ASW</SW_UNIT_REF>
+        <DESC>Monitors SWC Diag application for memory violations</DESC>
+     </SW_GROUP>
+	 <SW_GROUP>
+        <SHORT-NAME>SwGrp_MMP</SHORT-NAME>
+        <SW_UNIT_REF>Unit_ASW</SW_UNIT_REF>
+        <DESC>Micro Mechanic Performance Sensors</DESC>
+      </SW_GROUP>
+      <SW_GROUP>
+        <SHORT-NAME>SwGrp_MMP_ASW</SHORT-NAME>
+        <SW_UNIT_REF>Unit_ASW</SW_UNIT_REF>
+        <DESC>Related to Application of Micro Mechanic Performance Sensors</DESC>
+      </SW_GROUP>
+	  <SW_GROUP>
+        <SHORT-NAME>SwGrp_MMP_NET</SHORT-NAME>
+        <SW_UNIT_REF>Unit_NET</SW_UNIT_REF>
+        <DESC>Related to Network of Micro Mechanic Performance Sensors</DESC>
+      </SW_GROUP>
+      <SW_GROUP>
+        <SHORT-NAME>SwGrp_MMP_PlaData</SHORT-NAME>
+        <SW_UNIT_REF>Unit_DCOM</SW_UNIT_REF>
+        <DESC>Plant Data for Micro Mechanic Performance Sensors </DESC>
+      </SW_GROUP>
+    </SW_GROUPS>
+    <TASKS>
+      <TASK>
+        <SHORT-NAME>Task_1ms</SHORT-NAME>
+        <DESC>1ms Task</DESC>
+        <VALUE>1</VALUE>
+      </TASK>
+    </TASKS>
+  </COLLECTIONS>
+  <PRODUCT_LINES>
+   <PRODUCT_LINE>
+    <SHORT-NAME>MMP2</SHORT-NAME>
+     <DESCRIPTION>MMP2 specific</DESCRIPTION>
+     </PRODUCT_LINE>
+   </PRODUCT_LINES>
+   <CUSTOMERS>
+     <CUSTOMER>
+       <SHORT-NAME>Cus_Ferrari</SHORT-NAME>
+       <DESC>Ferrari</DESC>
+     </CUSTOMER>
+     <CUSTOMER>
+      <SHORT-NAME>Cus_Rexroth</SHORT-NAME>
+      <DESC>Rexorth</DESC>
+    </CUSTOMER>
+   </CUSTOMERS>
+</DIAGNOSIS>

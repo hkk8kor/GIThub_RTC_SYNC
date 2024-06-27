@@ -1,0 +1,7 @@
+#ifndef TRBSYS_CACHECONTROLINTERN_H__
+#define TRBSYS_CACHECONTROLINTERN_H__
+
+extern uint32 TRBSYS_WTBufErrataHandling_cnt;
+extern uint32 TRBSYS_DisableInstructionCache_cnt;
+
+#endif

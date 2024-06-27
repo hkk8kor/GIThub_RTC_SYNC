@@ -1,0 +1,9 @@
+start
+if (Check if StbM_GetTimeBaseStatus() function is equal to E_OK) then (yes)
+if (Check if Bfx_GetBit_u8u8_u8() function of RBL_CUSTIF_GLOBAL_TIMEBASE_BflPn is set to TRUE) then (yes)
+  :Log DemConf_DemEventParameter_RBL_STBM_NO_INIT_SYNC_TIMEOUT as FAILED;
+else(no)
+  :Update Return Value as FALSE;
+endif
+endif
+stop

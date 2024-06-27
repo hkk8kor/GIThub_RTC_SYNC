@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<mappings>
+		<mapping>
+			<streamNamePattern>(?i)RBL_DAI_BR223CN.*?</streamNamePattern>
+			<config>RBL_DAI_BR223CN_VMPS_Int.xml</config>
+		</mapping>
+	</mappings>
+	<deliveries>
+		<deliver>
+			<stream>RBL_DAI_BR223CN_VMPS_Int</stream>
+			<deliverTo>
+				<stream>RBL_DAI_BR223CN_VMPS_CN_Team</stream>
+				<stream>RBL_DAI_BR223CN_VMPS_Stable</stream>
+			</deliverTo>
+		</deliver>
+	</deliveries>
+	<callOfflineTool/>
+	<testing>Testing_RBL_DAI_BR223CN_VMPS.xml</testing>
+</config>
+
+

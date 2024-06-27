@@ -1,0 +1,32 @@
+Start
+partition DidA_ExtTest_Pres_ST3{
+: Read the **RBMESG_DidA_ExtTest_Pres_ST3** signal;
+note right
+ invalid value include any other value
+ other than valid values mentioned
+end note
+note left
+ valid values are 1 and 2
+end note
+if (DIAG_Stat_ST3 PDU is received successfully without  timeout) then (Yes)
+: Validate the Received the received signal;
+if(Signal is valid ?) then (Yes) 
+: Report to dem that \n **RBL_CUSTIF_SIGNAL_INVALID_DIAG_Stat_ST3** \n dem event is PREPASSED ;
+else (No) 
+: Report to dem that \n **RBL_CUSTIF_SIGNAL_INVALID_DIAG_Stat_ST3** \n dem event is PREFAILED ; 
+: Update the DidA_ExtTest_Pres_ST3 signal with \n **I_C02_NDEF_FALSE_TRUE_ST3_SNA ** value;
+endif
+else (No)
+: Update the DidA_ExtTest_Pres_ST3 signal with \n **I_C02_NDEF_FALSE_TRUE_ST3_SNA ** value;
+endif
+}
+partition Actv_Line_Stat_ST3{
+note left
+ signal validation is not required
+ for Actv_Line_Stat_ST3 signal
+end note
+: Read the **RBMESG_Actv_Line_Stat_ST3** signal;
+}
+: Transmit the DidA_ExtTest_Pres_ST3 signal via RBMESG_rbl_CustIf_DidA_ExtTest_Pres_ST3 ;
+: Transmit the Actv_Line_Stat_ST3 signal via  RBMESG_rbl_CustIf_Actv_Line_Stat_ST3 ;
+Stop

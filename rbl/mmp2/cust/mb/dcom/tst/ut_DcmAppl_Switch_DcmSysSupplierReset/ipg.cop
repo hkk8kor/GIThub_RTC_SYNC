@@ -1,0 +1,18 @@
+#
+# Cantata Test-Level Options
+#
+# Any options set in this file will override the options set in the
+# project-level options file.
+#
+# WARNING: Do not alter this file manually.
+#
+#tool.testid=24e08884-e1aa-4469-9af3-5fef0cce95fc
+"--sa:--calc:*#*"
+   
+#User Section
+"--parse:--warning_suppress:9001"
+"--parse:--warning_suppress:10427"
+"--dont_ci:*"
+"--do_ci:DcmAppl_Switch_DcmSysSupplierReset.c"
+"--ci:--no_instr:all"
+"--ci:--instr:stmt;func;call;decn;log;#DcmAppl_Switch_DcmSysSupplierReset"

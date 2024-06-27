@@ -1,0 +1,883 @@
+//Pipeline for new build
+
+pipeline {
+
+	agent none
+
+	options {
+		preserveStashes(buildCount: 5)
+		buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '3', daysToKeepStr: '15', numToKeepStr: '')
+		timestamps()
+	}
+
+       triggers {
+          pollSCM 'H  * * * *'
+       }
+
+	environment {
+		jsonFile="NULL"
+		JENKINS_NETSHARE='//abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins'
+		RTC = credentials('sey9abt-lidar')
+	}
+
+	parameters {
+		booleanParam defaultValue: true, description: '', name: 'OfflineTooltrimble'
+booleanParam defaultValue: false, description: '', name: 'caplTestVMPSxBR223xD5onD5EDxDFT'
+booleanParam defaultValue: true, description: '', name: 'SWUTCTVMPSxBR223xD5onD5EDxDFT'
+booleanParam defaultValue: false, description: '', name: 'caplTestVMPSxBR223xD5onD5EDxUnsecure'
+booleanParam defaultValue: true, description: '', name: 'SWUTCTVMPSxBR223xD5onD5EDxUnsecure'
+booleanParam defaultValue: false, description: '', name: 'caplTestVMPSxBR223xPlantD5'
+booleanParam defaultValue: false, description: '', name: 'SWUTCTVMPSxBR223xPlantD5'
+booleanParam defaultValue: false, description: '', name: 'caplTestVMPSxBR223xPlantD5ED'
+booleanParam defaultValue: false, description: '', name: 'SWUTCTVMPSxBR223xPlantD5ED'
+booleanParam defaultValue: false, description: '', name: 'caplTestVMPSxBR223xHSM'
+booleanParam defaultValue: true, description: '', name: 'SWUTCTVMPSxBR223xHSM'
+booleanParam defaultValue: false, description: '', name: 'caplTestVMPSxBR223xD5xUnsecure'
+booleanParam defaultValue: true, description: '', name: 'SWUTCTVMPSxBR223xD5xUnsecure'
+booleanParam defaultValue: false, description: '', name: 'caplTestVMPSxBR223xD5'
+booleanParam defaultValue: true, description: '', name: 'SWUTCTVMPSxBR223xD5'
+
+	}
+
+	stages {
+		stage ('Download') {
+			agent {
+				label 'MPSP_CI'
+			}
+			steps {
+				script {
+					if (Boolean.parseBoolean(env.personalBuild)) { currentBuild.displayName = String.format('%s by %s', currentBuild.displayName, User.get(env.buildRequesterUserId).getFullName()) }
+				}
+				deleteDir()
+				lock("${env.JOB_BASE_NAME}") {
+					checkout([$class: 'RTCScm', avoidUsingToolkit: false, buildTool: '6.0.3', buildType: [buildDefinition: "${env.JOB_BASE_NAME}", customizedSnapshotName: '', value: 'buildDefinition'], credentialsId: 'sey9abt-lidar', overrideGlobal: false, serverURI: 'https://rb-alm-06-p.de.bosch.com/ccm', timeout: 480])
+				}
+			   	bat "powershell.exe //abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins/OpsLoadJenkinsScriptSources/rb.ps.scripts.dotNet/JenkinsJobsScripts/download/download.ps1"
+			}
+			post {
+				always {
+					bat "powershell.exe //abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins/OpsLoadJenkinsScriptSources/rb.ps.scripts.dotNet/JenkinsJobsScripts/CreateHTMLReport/CreateHTMLReport.ps1 -JSON_input_file //abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins/%JOB_BASE_NAME%/%BUILD_NUMBER%/download/result.json -WorkDirSubfolderName ."
+					script {
+						jsonFile = "//abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins/${env.JOB_BASE_NAME}/${env.BUILD_NUMBER}/download/result.json"
+					}
+					archiveArtifacts 'JobReport.html, Download.cmd'
+				}
+				cleanup {
+					deleteDir()
+				}
+			}
+		} // stage ('Download')
+
+		stage("Call offline tooling"){
+	agent {
+		label 'MPSP_CI'
+	}
+	
+when {
+	beforeAgent true
+	anyOf{
+		allOf {
+    expression { env.JOB_BASE_NAME ==~ /(?i)RBL_DAI_BR223_VMPS_HPNE_Team.*?/}
+    environment name: 'OfflineTooltrimble', value: 'true'
+
+}
+allOf {
+    expression { env.JOB_BASE_NAME ==~ /(?i)RBL_DAI_BR223_VMPS_int.*/}
+    environment name: 'OfflineTooltrimble', value: 'true'
+
+}
+
+	}
+}
+
+
+	steps {
+		echo 'calling ...'
+		script {
+			if (env.JOB_BASE_NAME ==~ /(?i)RBL_DAI_BR223_VMPS_HPNE_Team.*?/) {try {build job: "${env.JOB_BASE_NAME}_OfflineTool", parameters: [booleanParam(name: "ExecOfflineToolTrimble", value: true), booleanParam(name: "ExecOfflineToolQX", value: false), booleanParam(name: "Evaluation", value: false), string(name: "jsonFile", value: "${jsonFile}"), string(name: "personalBuild", value: ""), string(name: "buildRequesterUserId", value: "")], wait: false} catch (Exception e) {}}
+if (env.JOB_BASE_NAME ==~ /(?i)RBL_DAI_BR223_VMPS_int.*/) {try {build job: "${env.JOB_BASE_NAME}_OfflineTool", parameters: [booleanParam(name: "ExecOfflineToolTrimble", value: true), booleanParam(name: "ExecOfflineToolQX", value: false), booleanParam(name: "Evaluation", value: false), string(name: "jsonFile", value: "${jsonFile}"), string(name: "personalBuild", value: ""), string(name: "buildRequesterUserId", value: "")], wait: false} catch (Exception e) {}}
+
+		}
+		echo 'fire and forget ;-) '
+	}
+} // stage("Call offline tooling")
+
+
+		stage ('Build') {
+			parallel {
+				
+stage('ECU: VMPSxBR223xD5onD5EDxDFT') {
+	agent {
+		label 'MPSP_CI'
+	}
+	
+when {
+	beforeAgent true
+	allOf{
+		anyOf {
+expression { env.JOB_BASE_NAME ==~  /(?i)RBL_DAI_BR223_VMPS_(int|stable|bsw|csw|tpsw|ci).*/}
+
+}
+
+	}
+}
+
+
+	steps {
+		deleteDir()	
+		bat """
+			IF EXIST f: (subst f: /d )
+			subst f: .
+			pushd f:
+
+			powershell.exe //abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins/OpsLoadJenkinsScriptSources/rb.ps.scripts.dotNet/JenkinsJobsScripts/build/Build_Freestyle_CDGB.ps1 -Variant VMPSxBR223xD5onD5EDxDFT -PathJSONFile ${jsonFile} -JobNeedsPath //abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins/OpsLoadJenkinsScriptSources/rb.ps.scripts.dotNet/JenkinsJobsScripts/build -RunSWUTCT ${SWUTCTVMPSxBR223xD5onD5EDxDFT} 
+
+			SET RETURNERROR=%ERRORLEVEL%
+
+			popd
+			subst f: /D
+				
+			exit /b %RETURNERROR%
+		"""
+	}
+	post {
+		success {
+			archiveArtifacts "**/out/**/ApplContainer_BB*.appl.zip"
+			script {
+				try {
+					def VMPSxBR223xD5onD5EDxDFT = scanForIssues tool: groovyScript(parserId: 'VMPSCompilerID', pattern: '**/_Log_MTCOutput_*.prt')
+					publishIssues issues: [VMPSxBR223xD5onD5EDxDFT], id:'VMPSxBR223xD5onD5EDxDFT', name: 'VMPSxBR223xD5onD5EDxDFT'
+				} catch (Exception e) {}
+			}
+		}
+		cleanup {
+			deleteDir()
+		}
+	}
+} //stage('ECU: VMPSxBR223xD5onD5EDxDFT')
+
+
+stage('ECU: VMPSxBR223xD5onD5EDxUnsecure') {
+	agent {
+		label 'MPSP_CI'
+	}
+	
+when {
+	beforeAgent true
+	allOf{
+		anyOf {
+expression { env.JOB_BASE_NAME ==~  /(?i)RBL_DAI_BR223_VMPS_(int|stable|bsw|csw|tpsw|ci).*/}
+expression { env.JOB_BASE_NAME ==~  /(?i)RBL_DAI_BR223_VMPS_HPNE_Team.*?/}
+
+}
+
+	}
+}
+
+
+	steps {
+		deleteDir()	
+		bat """
+			IF EXIST f: (subst f: /d )
+			subst f: .
+			pushd f:
+
+			powershell.exe //abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins/OpsLoadJenkinsScriptSources/rb.ps.scripts.dotNet/JenkinsJobsScripts/build/Build_Freestyle_CDGB.ps1 -Variant VMPSxBR223xD5onD5EDxUnsecure -PathJSONFile ${jsonFile} -JobNeedsPath //abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins/OpsLoadJenkinsScriptSources/rb.ps.scripts.dotNet/JenkinsJobsScripts/build -RunSWUTCT ${SWUTCTVMPSxBR223xD5onD5EDxUnsecure} 
+
+			SET RETURNERROR=%ERRORLEVEL%
+
+			popd
+			subst f: /D
+				
+			exit /b %RETURNERROR%
+		"""
+	}
+	post {
+		success {
+			archiveArtifacts "**/out/**/ApplContainer_BB*.appl.zip"
+			script {
+				try {
+					def VMPSxBR223xD5onD5EDxUnsecure = scanForIssues tool: groovyScript(parserId: 'VMPSCompilerID', pattern: '**/_Log_MTCOutput_*.prt')
+					publishIssues issues: [VMPSxBR223xD5onD5EDxUnsecure], id:'VMPSxBR223xD5onD5EDxUnsecure', name: 'VMPSxBR223xD5onD5EDxUnsecure'
+				} catch (Exception e) {}
+			}
+		}
+		cleanup {
+			deleteDir()
+		}
+	}
+} //stage('ECU: VMPSxBR223xD5onD5EDxUnsecure')
+
+
+stage('ECU: VMPSxBR223xPlantD5') {
+	agent {
+		label 'MPSP_CI'
+	}
+	
+when {
+	beforeAgent true
+	allOf{
+		anyOf {
+expression { env.JOB_BASE_NAME ==~  /(?i)RBL_DAI_BR223_VMPS_Plant.*/}
+
+}
+
+	}
+}
+
+
+	steps {
+		deleteDir()	
+		bat """
+			IF EXIST f: (subst f: /d )
+			subst f: .
+			pushd f:
+
+			powershell.exe //abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins/OpsLoadJenkinsScriptSources/rb.ps.scripts.dotNet/JenkinsJobsScripts/build/Build_Freestyle_CDGB.ps1 -Variant VMPSxBR223xPlantD5 -PathJSONFile ${jsonFile} -JobNeedsPath //abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins/OpsLoadJenkinsScriptSources/rb.ps.scripts.dotNet/JenkinsJobsScripts/build -RunSWUTCT ${SWUTCTVMPSxBR223xPlantD5} 
+
+			SET RETURNERROR=%ERRORLEVEL%
+
+			popd
+			subst f: /D
+				
+			exit /b %RETURNERROR%
+		"""
+	}
+	post {
+		success {
+			archiveArtifacts "**/out/**/ApplContainer_BB*.appl.zip"
+			script {
+				try {
+					def VMPSxBR223xPlantD5 = scanForIssues tool: groovyScript(parserId: 'VMPSCompilerID', pattern: '**/_Log_MTCOutput_*.prt')
+					publishIssues issues: [VMPSxBR223xPlantD5], id:'VMPSxBR223xPlantD5', name: 'VMPSxBR223xPlantD5'
+				} catch (Exception e) {}
+			}
+		}
+		cleanup {
+			deleteDir()
+		}
+	}
+} //stage('ECU: VMPSxBR223xPlantD5')
+
+
+stage('ECU: VMPSxBR223xPlantD5ED') {
+	agent {
+		label 'MPSP_CI'
+	}
+	
+when {
+	beforeAgent true
+	allOf{
+		anyOf {
+expression { env.JOB_BASE_NAME ==~  /(?i)RBL_DAI_BR223_VMPS_Plant.*/}
+
+}
+
+	}
+}
+
+
+	steps {
+		deleteDir()	
+		bat """
+			IF EXIST f: (subst f: /d )
+			subst f: .
+			pushd f:
+
+			powershell.exe //abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins/OpsLoadJenkinsScriptSources/rb.ps.scripts.dotNet/JenkinsJobsScripts/build/Build_Freestyle_CDGB.ps1 -Variant VMPSxBR223xPlantD5ED -PathJSONFile ${jsonFile} -JobNeedsPath //abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins/OpsLoadJenkinsScriptSources/rb.ps.scripts.dotNet/JenkinsJobsScripts/build -RunSWUTCT ${SWUTCTVMPSxBR223xPlantD5ED} 
+
+			SET RETURNERROR=%ERRORLEVEL%
+
+			popd
+			subst f: /D
+				
+			exit /b %RETURNERROR%
+		"""
+	}
+	post {
+		success {
+			archiveArtifacts "**/out/**/ApplContainer_BB*.appl.zip"
+			script {
+				try {
+					def VMPSxBR223xPlantD5ED = scanForIssues tool: groovyScript(parserId: 'VMPSCompilerID', pattern: '**/_Log_MTCOutput_*.prt')
+					publishIssues issues: [VMPSxBR223xPlantD5ED], id:'VMPSxBR223xPlantD5ED', name: 'VMPSxBR223xPlantD5ED'
+				} catch (Exception e) {}
+			}
+		}
+		cleanup {
+			deleteDir()
+		}
+	}
+} //stage('ECU: VMPSxBR223xPlantD5ED')
+
+
+stage('ECU: VMPSxBR223xHSM') {
+	agent {
+		label 'MPSP_CI'
+	}
+	
+when {
+	beforeAgent true
+	allOf{
+		anyOf {
+expression { env.JOB_BASE_NAME ==~  /(?i)RBL_DAI_BR223_VMPS_(int|stable|bsw|csw|tpsw|ci).*/}
+expression { env.JOB_BASE_NAME ==~  /(?i)RBL_DAI_BR223_VMPS_HPNE_Team.*?/}
+
+}
+
+	}
+}
+
+
+	steps {
+		deleteDir()	
+		bat """
+			IF EXIST f: (subst f: /d )
+			subst f: .
+			pushd f:
+
+			powershell.exe //abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins/OpsLoadJenkinsScriptSources/rb.ps.scripts.dotNet/JenkinsJobsScripts/build/Build_Freestyle_CDGB.ps1 -Variant VMPSxBR223xHSM -PathJSONFile ${jsonFile} -JobNeedsPath //abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins/OpsLoadJenkinsScriptSources/rb.ps.scripts.dotNet/JenkinsJobsScripts/build -RunSWUTCT ${SWUTCTVMPSxBR223xHSM} 
+
+			SET RETURNERROR=%ERRORLEVEL%
+
+			popd
+			subst f: /D
+				
+			exit /b %RETURNERROR%
+		"""
+	}
+	post {
+		success {
+			archiveArtifacts "**/out/**/ApplContainer_BB*.appl.zip"
+			script {
+				try {
+					def VMPSxBR223xHSM = scanForIssues tool: groovyScript(parserId: 'VMPSCompilerID', pattern: '**/_Log_MTCOutput_*.prt')
+					publishIssues issues: [VMPSxBR223xHSM], id:'VMPSxBR223xHSM', name: 'VMPSxBR223xHSM'
+				} catch (Exception e) {}
+			}
+		}
+		cleanup {
+			deleteDir()
+		}
+	}
+} //stage('ECU: VMPSxBR223xHSM')
+
+
+stage('ECU: VMPSxBR223xD5xUnsecure') {
+	agent {
+		label 'MPSP_CI'
+	}
+	
+when {
+	beforeAgent true
+	allOf{
+		anyOf {
+expression { env.JOB_BASE_NAME ==~  /(?i)RBL_DAI_BR223_VMPS_(int|stable|bsw|csw|tpsw|ci).*/}
+expression { env.JOB_BASE_NAME ==~  /(?i)RBL_DAI_BR223_VMPS_HPNE_Team.*?/}
+
+}
+
+	}
+}
+
+
+	steps {
+		deleteDir()	
+		bat """
+			IF EXIST f: (subst f: /d )
+			subst f: .
+			pushd f:
+
+			powershell.exe //abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins/OpsLoadJenkinsScriptSources/rb.ps.scripts.dotNet/JenkinsJobsScripts/build/Build_Freestyle_CDGB.ps1 -Variant VMPSxBR223xD5xUnsecure -PathJSONFile ${jsonFile} -JobNeedsPath //abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins/OpsLoadJenkinsScriptSources/rb.ps.scripts.dotNet/JenkinsJobsScripts/build -RunSWUTCT ${SWUTCTVMPSxBR223xD5xUnsecure} 
+
+			SET RETURNERROR=%ERRORLEVEL%
+
+			popd
+			subst f: /D
+				
+			exit /b %RETURNERROR%
+		"""
+	}
+	post {
+		success {
+			archiveArtifacts "**/out/**/ApplContainer_BB*.appl.zip"
+			script {
+				try {
+					def VMPSxBR223xD5xUnsecure = scanForIssues tool: groovyScript(parserId: 'VMPSCompilerID', pattern: '**/_Log_MTCOutput_*.prt')
+					publishIssues issues: [VMPSxBR223xD5xUnsecure], id:'VMPSxBR223xD5xUnsecure', name: 'VMPSxBR223xD5xUnsecure'
+				} catch (Exception e) {}
+			}
+		}
+		cleanup {
+			deleteDir()
+		}
+	}
+} //stage('ECU: VMPSxBR223xD5xUnsecure')
+
+
+stage('ECU: VMPSxBR223xD5') {
+	agent {
+		label 'MPSP_CI'
+	}
+	
+when {
+	beforeAgent true
+	allOf{
+		anyOf {
+expression { env.JOB_BASE_NAME ==~  /(?i)RBL_DAI_BR223_VMPS_(int|stable|bsw|csw|tpsw|ci).*/}
+expression { env.JOB_BASE_NAME ==~  /(?i)RBL_DAI_BR223_VMPS_HPNE_Team.*?/}
+
+}
+
+	}
+}
+
+
+	steps {
+		deleteDir()	
+		bat """
+			IF EXIST f: (subst f: /d )
+			subst f: .
+			pushd f:
+
+			powershell.exe //abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins/OpsLoadJenkinsScriptSources/rb.ps.scripts.dotNet/JenkinsJobsScripts/build/Build_Freestyle_CDGB.ps1 -Variant VMPSxBR223xD5 -PathJSONFile ${jsonFile} -JobNeedsPath //abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins/OpsLoadJenkinsScriptSources/rb.ps.scripts.dotNet/JenkinsJobsScripts/build -RunSWUTCT ${SWUTCTVMPSxBR223xD5} 
+
+			SET RETURNERROR=%ERRORLEVEL%
+
+			popd
+			subst f: /D
+				
+			exit /b %RETURNERROR%
+		"""
+	}
+	post {
+		success {
+			archiveArtifacts "**/out/**/ApplContainer_BB*.appl.zip"
+			script {
+				try {
+					def VMPSxBR223xD5 = scanForIssues tool: groovyScript(parserId: 'VMPSCompilerID', pattern: '**/_Log_MTCOutput_*.prt')
+					publishIssues issues: [VMPSxBR223xD5], id:'VMPSxBR223xD5', name: 'VMPSxBR223xD5'
+				} catch (Exception e) {}
+			}
+		}
+		cleanup {
+			deleteDir()
+		}
+	}
+} //stage('ECU: VMPSxBR223xD5')
+
+
+			} //parallel
+
+		} //stage ('Build')
+
+		stage ('Test') {
+			parallel {
+				stage('ECU CAPL Testing: VMPSxBR223xD5onD5EDxDFT') {
+	agent {
+		label 'TS_VMPS_HW_D5ED'
+	}
+	
+when {
+	beforeAgent true
+	allOf{
+		anyOf {
+expression { env.JOB_BASE_NAME ==~  /(?i)RBL_DAI_BR223_VMPS_(int|stable|bsw|csw|tpsw|ci).*/}
+
+}
+environment name: 'caplTestVMPSxBR223xD5onD5EDxDFT', value: 'true'
+
+	}
+}
+
+
+	steps {
+		deleteDir()
+		catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
+			bat """
+				IF EXIST f: (subst f: /d )
+				subst f: .
+				pushd f:
+	
+				powershell.exe //abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins/OpsLoadJenkinsScriptSources/rb.ps.scripts.dotNet/JenkinsJobsScripts/CAPLTesting/Test.ps1 -Variant VMPSxBR223xD5onD5EDxDFT -PathJSONFile ${jsonFile} -ECUBuildStoreFolder ECUBuild -JobNeedsPath //abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins/OpsLoadJenkinsScriptSources/rb.ps.scripts.dotNet/JenkinsJobsScripts/CAPLTesting
+	
+				SET RETURNERROR=%ERRORLEVEL%
+	
+				popd
+				subst f: /D
+					
+				exit /b %RETURNERROR%
+			"""
+		}
+	}
+
+	post {
+		success {
+			archiveArtifacts artifacts: "**/TestReport_*.html", allowEmptyArchive: true
+		}
+		cleanup {
+			deleteDir()
+		}
+	}
+} //stage('ECU CAPL Testing: VMPSxBR223xD5onD5EDxDFT')
+
+stage('ECU CAPL Testing: VMPSxBR223xD5onD5EDxUnsecure') {
+	agent {
+		label 'TS_VMPS_HW_D5ED'
+	}
+	
+when {
+	beforeAgent true
+	allOf{
+		anyOf {
+expression { env.JOB_BASE_NAME ==~  /(?i)RBL_DAI_BR223_VMPS_(int|stable|bsw|csw|tpsw|ci).*/}
+expression { env.JOB_BASE_NAME ==~  /(?i)RBL_DAI_BR223_VMPS_HPNE_Team.*?/}
+
+}
+environment name: 'caplTestVMPSxBR223xD5onD5EDxUnsecure', value: 'true'
+
+	}
+}
+
+
+	steps {
+		deleteDir()
+		catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
+			bat """
+				IF EXIST f: (subst f: /d )
+				subst f: .
+				pushd f:
+	
+				powershell.exe //abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins/OpsLoadJenkinsScriptSources/rb.ps.scripts.dotNet/JenkinsJobsScripts/CAPLTesting/Test.ps1 -Variant VMPSxBR223xD5onD5EDxUnsecure -PathJSONFile ${jsonFile} -ECUBuildStoreFolder ECUBuild -JobNeedsPath //abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins/OpsLoadJenkinsScriptSources/rb.ps.scripts.dotNet/JenkinsJobsScripts/CAPLTesting
+	
+				SET RETURNERROR=%ERRORLEVEL%
+	
+				popd
+				subst f: /D
+					
+				exit /b %RETURNERROR%
+			"""
+		}
+	}
+
+	post {
+		success {
+			archiveArtifacts artifacts: "**/TestReport_*.html", allowEmptyArchive: true
+		}
+		cleanup {
+			deleteDir()
+		}
+	}
+} //stage('ECU CAPL Testing: VMPSxBR223xD5onD5EDxUnsecure')
+
+stage('ECU CAPL Testing: VMPSxBR223xPlantD5') {
+	agent {
+		label 'TS_VMPS_HW_D5ED'
+	}
+	
+when {
+	beforeAgent true
+	allOf{
+		anyOf {
+expression { env.JOB_BASE_NAME ==~  /(?i)RBL_DAI_BR223_VMPS_Plant.*/}
+
+}
+environment name: 'caplTestVMPSxBR223xPlantD5', value: 'true'
+
+	}
+}
+
+
+	steps {
+		deleteDir()
+		catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
+			bat """
+				IF EXIST f: (subst f: /d )
+				subst f: .
+				pushd f:
+	
+				powershell.exe //abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins/OpsLoadJenkinsScriptSources/rb.ps.scripts.dotNet/JenkinsJobsScripts/CAPLTesting/Test.ps1 -Variant VMPSxBR223xPlantD5 -PathJSONFile ${jsonFile} -ECUBuildStoreFolder ECUBuild -JobNeedsPath //abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins/OpsLoadJenkinsScriptSources/rb.ps.scripts.dotNet/JenkinsJobsScripts/CAPLTesting
+	
+				SET RETURNERROR=%ERRORLEVEL%
+	
+				popd
+				subst f: /D
+					
+				exit /b %RETURNERROR%
+			"""
+		}
+	}
+
+	post {
+		success {
+			archiveArtifacts artifacts: "**/TestReport_*.html", allowEmptyArchive: true
+		}
+		cleanup {
+			deleteDir()
+		}
+	}
+} //stage('ECU CAPL Testing: VMPSxBR223xPlantD5')
+
+stage('ECU CAPL Testing: VMPSxBR223xPlantD5ED') {
+	agent {
+		label 'TS_VMPS_HW_D5ED'
+	}
+	
+when {
+	beforeAgent true
+	allOf{
+		anyOf {
+expression { env.JOB_BASE_NAME ==~  /(?i)RBL_DAI_BR223_VMPS_Plant.*/}
+
+}
+environment name: 'caplTestVMPSxBR223xPlantD5ED', value: 'true'
+
+	}
+}
+
+
+	steps {
+		deleteDir()
+		catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
+			bat """
+				IF EXIST f: (subst f: /d )
+				subst f: .
+				pushd f:
+	
+				powershell.exe //abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins/OpsLoadJenkinsScriptSources/rb.ps.scripts.dotNet/JenkinsJobsScripts/CAPLTesting/Test.ps1 -Variant VMPSxBR223xPlantD5ED -PathJSONFile ${jsonFile} -ECUBuildStoreFolder ECUBuild -JobNeedsPath //abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins/OpsLoadJenkinsScriptSources/rb.ps.scripts.dotNet/JenkinsJobsScripts/CAPLTesting
+	
+				SET RETURNERROR=%ERRORLEVEL%
+	
+				popd
+				subst f: /D
+					
+				exit /b %RETURNERROR%
+			"""
+		}
+	}
+
+	post {
+		success {
+			archiveArtifacts artifacts: "**/TestReport_*.html", allowEmptyArchive: true
+		}
+		cleanup {
+			deleteDir()
+		}
+	}
+} //stage('ECU CAPL Testing: VMPSxBR223xPlantD5ED')
+
+stage('ECU CAPL Testing: VMPSxBR223xHSM') {
+	agent {
+		label 'TS_VMPS_HW_D5ED'
+	}
+	
+when {
+	beforeAgent true
+	allOf{
+		anyOf {
+expression { env.JOB_BASE_NAME ==~  /(?i)RBL_DAI_BR223_VMPS_(int|stable|bsw|csw|tpsw|ci).*/}
+expression { env.JOB_BASE_NAME ==~  /(?i)RBL_DAI_BR223_VMPS_HPNE_Team.*?/}
+
+}
+environment name: 'caplTestVMPSxBR223xHSM', value: 'true'
+
+	}
+}
+
+
+	steps {
+		deleteDir()
+		catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
+			bat """
+				IF EXIST f: (subst f: /d )
+				subst f: .
+				pushd f:
+	
+				powershell.exe //abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins/OpsLoadJenkinsScriptSources/rb.ps.scripts.dotNet/JenkinsJobsScripts/CAPLTesting/Test.ps1 -Variant VMPSxBR223xHSM -PathJSONFile ${jsonFile} -ECUBuildStoreFolder ECUBuild -JobNeedsPath //abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins/OpsLoadJenkinsScriptSources/rb.ps.scripts.dotNet/JenkinsJobsScripts/CAPLTesting
+	
+				SET RETURNERROR=%ERRORLEVEL%
+	
+				popd
+				subst f: /D
+					
+				exit /b %RETURNERROR%
+			"""
+		}
+	}
+
+	post {
+		success {
+			archiveArtifacts artifacts: "**/TestReport_*.html", allowEmptyArchive: true
+		}
+		cleanup {
+			deleteDir()
+		}
+	}
+} //stage('ECU CAPL Testing: VMPSxBR223xHSM')
+
+stage('ECU CAPL Testing: VMPSxBR223xD5xUnsecure') {
+	agent {
+		label 'TS_VMPS_HW_D5ED'
+	}
+	
+when {
+	beforeAgent true
+	allOf{
+		anyOf {
+expression { env.JOB_BASE_NAME ==~  /(?i)RBL_DAI_BR223_VMPS_(int|stable|bsw|csw|tpsw|ci).*/}
+expression { env.JOB_BASE_NAME ==~  /(?i)RBL_DAI_BR223_VMPS_HPNE_Team.*?/}
+
+}
+environment name: 'caplTestVMPSxBR223xD5xUnsecure', value: 'true'
+
+	}
+}
+
+
+	steps {
+		deleteDir()
+		catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
+			bat """
+				IF EXIST f: (subst f: /d )
+				subst f: .
+				pushd f:
+	
+				powershell.exe //abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins/OpsLoadJenkinsScriptSources/rb.ps.scripts.dotNet/JenkinsJobsScripts/CAPLTesting/Test.ps1 -Variant VMPSxBR223xD5xUnsecure -PathJSONFile ${jsonFile} -ECUBuildStoreFolder ECUBuild -JobNeedsPath //abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins/OpsLoadJenkinsScriptSources/rb.ps.scripts.dotNet/JenkinsJobsScripts/CAPLTesting
+	
+				SET RETURNERROR=%ERRORLEVEL%
+	
+				popd
+				subst f: /D
+					
+				exit /b %RETURNERROR%
+			"""
+		}
+	}
+
+	post {
+		success {
+			archiveArtifacts artifacts: "**/TestReport_*.html", allowEmptyArchive: true
+		}
+		cleanup {
+			deleteDir()
+		}
+	}
+} //stage('ECU CAPL Testing: VMPSxBR223xD5xUnsecure')
+
+stage('ECU CAPL Testing: VMPSxBR223xD5') {
+	agent {
+		label 'TS_VMPS_HW_D5ED'
+	}
+	
+when {
+	beforeAgent true
+	allOf{
+		anyOf {
+expression { env.JOB_BASE_NAME ==~  /(?i)RBL_DAI_BR223_VMPS_(int|stable|bsw|csw|tpsw|ci).*/}
+expression { env.JOB_BASE_NAME ==~  /(?i)RBL_DAI_BR223_VMPS_HPNE_Team.*?/}
+
+}
+environment name: 'caplTestVMPSxBR223xD5', value: 'true'
+
+	}
+}
+
+
+	steps {
+		deleteDir()
+		catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
+			bat """
+				IF EXIST f: (subst f: /d )
+				subst f: .
+				pushd f:
+	
+				powershell.exe //abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins/OpsLoadJenkinsScriptSources/rb.ps.scripts.dotNet/JenkinsJobsScripts/CAPLTesting/Test.ps1 -Variant VMPSxBR223xD5 -PathJSONFile ${jsonFile} -ECUBuildStoreFolder ECUBuild -JobNeedsPath //abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins/OpsLoadJenkinsScriptSources/rb.ps.scripts.dotNet/JenkinsJobsScripts/CAPLTesting
+	
+				SET RETURNERROR=%ERRORLEVEL%
+	
+				popd
+				subst f: /D
+					
+				exit /b %RETURNERROR%
+			"""
+		}
+	}
+
+	post {
+		success {
+			archiveArtifacts artifacts: "**/TestReport_*.html", allowEmptyArchive: true
+		}
+		cleanup {
+			deleteDir()
+		}
+	}
+} //stage('ECU CAPL Testing: VMPSxBR223xD5')
+
+
+
+				stage("SW-UT/CT") {
+	agent any
+	
+when {
+	beforeAgent true
+	anyOf{
+		expression {env.SWUTCTVMPSxBR223xD5onD5EDxDFT}
+expression {env.SWUTCTVMPSxBR223xD5onD5EDxUnsecure}
+expression {env.SWUTCTVMPSxBR223xPlantD5}
+expression {env.SWUTCTVMPSxBR223xPlantD5ED}
+expression {env.SWUTCTVMPSxBR223xHSM}
+expression {env.SWUTCTVMPSxBR223xD5xUnsecure}
+expression {env.SWUTCTVMPSxBR223xD5}
+
+	}
+}
+
+
+	steps {
+		script {
+			try {build job: "${env.JOB_BASE_NAME}_SW-UT_CT_Delta", parameters: [string(name: 'PathJSONFile', value: jsonFile),string(name: 'Stream', value: env.JOB_BASE_NAME),string(name: 'BuildNumber', value: env.BUILD_NUMBER),booleanParam(name: 'VMPSxBR223xD5onD5EDxDFT', value: env.SWUTCTVMPSxBR223xD5onD5EDxDFT),booleanParam(name: 'VMPSxBR223xD5onD5EDxUnsecure', value: env.SWUTCTVMPSxBR223xD5onD5EDxUnsecure),booleanParam(name: 'VMPSxBR223xPlantD5', value: env.SWUTCTVMPSxBR223xPlantD5),booleanParam(name: 'VMPSxBR223xPlantD5ED', value: env.SWUTCTVMPSxBR223xPlantD5ED),booleanParam(name: 'VMPSxBR223xHSM', value: env.SWUTCTVMPSxBR223xHSM),booleanParam(name: 'VMPSxBR223xD5xUnsecure', value: env.SWUTCTVMPSxBR223xD5xUnsecure),booleanParam(name: 'VMPSxBR223xD5', value: env.SWUTCTVMPSxBR223xD5)], wait: false} catch (Exception e) {}
+		}
+	}
+} // stage("SW-UT/CT")
+
+			}
+		} //stage ('Test')
+
+		stage ('Deliver'){
+			parallel{
+				stage("RBL_DAI_BR223_VMPS_Int"){
+	agent {
+		label 'MPSP_CI'
+	}
+	when {
+		allOf{
+			expression { env.JOB_BASE_NAME ==~  /RBL_DAI_BR223_VMPS_Int/}
+			expression { !((env.personalBuild)?.trim()) }
+		}
+	}
+	steps {
+		echo 'calling ...'
+		script {
+			try {build job: "RBL_DAI_BR223_VMPS_BSW_Team_pullChanges", parameters: [[$class: "StringParameterValue", name: "pathJSONFile", value: "${jsonFile}"]], wait: false} catch (Exception e) {}
+try {build job: "RBL_DAI_BR223_VMPS_CSW_Team_pullChanges", parameters: [[$class: "StringParameterValue", name: "pathJSONFile", value: "${jsonFile}"]], wait: false} catch (Exception e) {}
+try {build job: "RBL_DAI_BR223_VMPS_HPNE_Team1_pullChanges", parameters: [[$class: "StringParameterValue", name: "pathJSONFile", value: "${jsonFile}"]], wait: false} catch (Exception e) {}
+try {build job: "RBL_DAI_BR223_VMPS_HPNE_Team2_pullChanges", parameters: [[$class: "StringParameterValue", name: "pathJSONFile", value: "${jsonFile}"]], wait: false} catch (Exception e) {}
+try {build job: "RBL_DAI_BR223_VMPS_HPNE_Team3_pullChanges", parameters: [[$class: "StringParameterValue", name: "pathJSONFile", value: "${jsonFile}"]], wait: false} catch (Exception e) {}
+try {build job: "RBL_DAI_BR223_VMPS_HPNE_Team4_pullChanges", parameters: [[$class: "StringParameterValue", name: "pathJSONFile", value: "${jsonFile}"]], wait: false} catch (Exception e) {}
+try {build job: "RBL_DAI_BR223_VMPS_HPNE_Team5_pullChanges", parameters: [[$class: "StringParameterValue", name: "pathJSONFile", value: "${jsonFile}"]], wait: false} catch (Exception e) {}
+try {build job: "RBL_DAI_BR223_VMPS_Stable_pullChanges", parameters: [[$class: "StringParameterValue", name: "pathJSONFile", value: "${jsonFile}"]], wait: false} catch (Exception e) {}
+try {build job: "RBL_DAI_BR223_VMPS_TPSW_Integration_pullChanges", parameters: [[$class: "StringParameterValue", name: "pathJSONFile", value: "${jsonFile}"]], wait: false} catch (Exception e) {}
+try {build job: "RBL_DAI_BR223CN_VMPS_Int_pullChanges", parameters: [[$class: "StringParameterValue", name: "pathJSONFile", value: "${jsonFile}"]], wait: false} catch (Exception e) {}
+
+		}
+		echo 'fire and forget ;-) '
+	}
+}
+
+			}
+		} //stage ('Deliver')
+
+	}
+} //pipeline 
+
+

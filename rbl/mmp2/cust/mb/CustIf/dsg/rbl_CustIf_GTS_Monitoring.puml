@@ -1,0 +1,47 @@
+hide empty description
+note "StbM Initialization " as N1
+[*] --> Get_Base_Time
+Get_Base_Time: Initialize the base time to monitor init sync timeout
+Get_Base_Time --> Check_Init_Sync
+Check_Init_Sync : The bit 3 of the Time Sync Status i.e., GLOBAL_TIME_BASE\n checks whether it is set.
+Check_Init_Sync --> Check_Lost_Sync :TRUE
+note on link 
+Log DemConf_DemEventParameter_RBL_STBM_NO_INIT_SYNC_TIMEOUT as PASSED
+end note
+Check_Lost_Sync : The bit 0  of the Time Sync Status i.e., TIMEOUT\n checks whether it is set.
+Check_Init_Sync --> Check_Init_Timeout : False
+note left of Check_Init_Timeout 
+Wait for 15 sec
+end note
+Check_Init_Timeout --> Wait_Sync
+note on link 
+After 15sec if GLOBAL_TIME_BASE bit is not set then log 
+DemConf_DemEventParameter_RBL_STBM_NO_INIT_SYNC_TIMEOUT 
+as FAILED
+end note
+Wait_Sync : Checking if Init Synchronization has occurred
+Wait_Sync --> Wait_Sync : False
+note on link 
+Log DemConf_DemEventParameter_RBL_STBM_NO_INIT_SYNC_TIMEOUT as FAILED
+end note
+Wait_Sync --> Check_Lost_Sync : True
+note on link 
+Log DemConf_DemEventParameter_RBL_STBM_NO_INIT_SYNC_TIMEOUT as PASSED
+end note
+Check_Lost_Sync --> Check_TimeLeap : FALSE
+note on link
+Log DemConf_DemEventParameter_RBL_STBM_LOST_SYNC_TIMEOUT as PASSED
+end note
+Check_Lost_Sync --> Check_Lost_Sync : TRUE 
+note on link 
+Log DemConf_DemEventParameter_RBL_STBM_LOST_SYNC_TIMEOUT as FAILED
+end note
+Check_TimeLeap --> Check_Lost_Sync :TRUE
+note on link 
+Log DemConf_DemEventParameter_RBL_CUSTIF_STBM_TIMELEAP Error as FAILED
+end note
+Check_TimeLeap : The bit 4 and bit 5  of the Time Sync Status i.e., TIMELEAP_FUTURE and TIMELEAP_PAST\n whether it is set.
+Check_TimeLeap --> Check_Lost_Sync : FALSE
+note on link 
+Log DemConf_DemEventParameter_RBL_CUSTIF_STBM_TIMELEAP Error as PASSED
+end note

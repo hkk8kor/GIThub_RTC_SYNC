@@ -1,0 +1,32 @@
+#
+# Cantata Test-Level Options
+#
+# Any options set in this file will override the options set in the
+# project-level options file.
+#
+# WARNING: Do not alter this file manually.
+#
+#tool.testid=e85df71e-5a6b-41c9-9de1-0fc37dd8e72b
+"--ci:--instr:stmt;func;decn;log;"
+"--sa:--calc:*#*"
+"--sm:--access_function:"dcom_PlantModeActivation.c":RBSYS_EnterCommonLockSysfast()"
+"--sm:--access_function:"dcom_PlantModeActivation.c":RBSYS_ExitCommonLockSysfast()"
+"--sm:--access_function:"dcom_PlantModeActivation.c":RBSYS_isBaseOSActive()"
+"--sm:--wrap:RBSYS_EnterCommonLockSysfast()#RBSYS_isBaseOSActive()"
+"--sm:--wrap:RBSYS_EnterCommonLockSysfast()#RBSYS_requestBaseOSAfterSWReset()"
+"--sm:--wrap:RBSYS_EnterCommonLockSysfast()#RBSYS_requestReprogSessionAfterSWReset()"
+"--sm:--wrap:RBSYS_EnterCommonLockSysfast()#RBSYS_requestVx1000ParHandlingAfterSWReset()"
+"--sm:--wrap:RBSYS_EnterCommonLockSysfast()#RBSYS_requestVx1000ReprogSessionAfterSWReset()"
+"--sm:--wrap:RBSYS_ExitCommonLockSysfast()#RBSYS_isBaseOSActive()"
+"--sm:--wrap:RBSYS_ExitCommonLockSysfast()#RBSYS_requestBaseOSAfterSWReset()"
+"--sm:--wrap:RBSYS_ExitCommonLockSysfast()#RBSYS_requestReprogSessionAfterSWReset()"
+"--sm:--wrap:RBSYS_ExitCommonLockSysfast()#RBSYS_requestVx1000ParHandlingAfterSWReset()"
+"--sm:--wrap:RBSYS_ExitCommonLockSysfast()#RBSYS_requestVx1000ReprogSessionAfterSWReset()"
+"--sm:--wrap:RBSYS_isBaseOSActive()#rba_DcmPmaAppl_FillPlantModeResponse()"
+  
+#User Section
+"--dont_ci:*"
+"--do_ci:dcom_PlantModeActivation.c"
+"--ci:--no_instr:all"
+"--ci:--instr:stmt;func;decn;log;#rba_DcmPmaAppl_PlantModeActivation"
+"--ci:--instr:stmt;func;decn;log;#rba_DcmPmaAppl_FillPlantModeResponse"

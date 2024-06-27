@@ -1,0 +1,7 @@
+:get signalSetFil
+Update filVal with signalSetFil for all values of Axis and for all Smus;
+:Call Filter Function;
+partition FilterFunction{
+:Apply a phase correction to have matching phase between
+lowpass filtered signal and aditional derived data;
+} 

@@ -1,0 +1,188 @@
+begin_comment
+#include "rbl_SigChain_Nvm.h"
+end_comment
+
+#include "RBPDMDB_Customer.pdmdb"
+
+
+
+use dataitem rbl_SigChain_TcoAccOffsVal_Red0
+{
+	job interface
+	{
+		read_callback = rbl_SigChain_TCOAccRed0ReadCb;
+		write_callback = rbl_SigChain_GenericWriteCb;
+		result_callback = rbl_SigChain_TCOAccRed0ResultCb;
+	}
+
+	startup read;
+	plant eol preserve;
+	writecycles = 10;
+}
+
+use dataitem rbl_SigChain_TcoAccOffsVal_Red1
+{
+	job interface
+	{
+		read_callback = rbl_SigChain_TCOAccRed1ReadCb;
+		write_callback = rbl_SigChain_GenericWriteCb;
+		result_callback = rbl_SigChain_TCOAccRed1ResultCb;
+	}
+
+	startup read;
+	plant eol preserve;
+	writecycles = 10;
+}
+
+use dataitem rbl_SigChain_TcoAccOffsVal_Red2
+{
+	job interface
+	{
+		read_callback = rbl_SigChain_TCOAccRed2ReadCb;
+		write_callback = rbl_SigChain_GenericWriteCb;
+		result_callback = rbl_SigChain_TCOAccRed2ResultCb;
+	}
+
+	startup read;
+	plant eol preserve;
+	writecycles = 10;
+}
+
+#if(RBFS_SigChainChMap == RBFS_SigChainChMap_4SMU)
+use dataitem rbl_SigChain_TcoAccOffsVal_Red3
+{
+	job interface
+	{
+		read_callback = rbl_SigChain_TCOAccRed3ReadCb;
+		write_callback = rbl_SigChain_GenericWriteCb;
+		result_callback = rbl_SigChain_TCOAccRed3ResultCb;
+	}
+
+	startup read;
+	plant eol preserve;
+	writecycles = 10;
+}
+#endif
+
+use dataitem rbl_SigChain_TcoRateOffsVal_Red0
+{
+	job interface
+	{
+		read_callback = rbl_SigChain_TCORateRed0ReadCb;
+		write_callback = rbl_SigChain_GenericWriteCb;
+		result_callback = rbl_SigChain_TCORateRed0ResultCb;
+
+	}
+
+	startup read;
+	plant eol preserve;
+	writecycles = 10;
+}
+
+#if(RBFS_SigChainChMap == RBFS_SigChainChMap_4SMU)
+use dataitem rbl_SigChain_TcoRateOffsVal_Red1
+{
+	job interface
+	{
+		read_callback = rbl_SigChain_TCORateRed1ReadCb;
+		write_callback = rbl_SigChain_GenericWriteCb;
+		result_callback = rbl_SigChain_TCORateRed1ResultCb;
+
+	}
+
+	startup read;
+	plant eol preserve;
+	writecycles = 10;
+}
+#endif
+
+use dataitem rbl_SigChain_TcsAccSnvtyVal_Red0
+{
+	job interface
+	{
+		read_callback = rbl_SigChain_TCSAccRed0ReadCb;
+		write_callback = rbl_SigChain_GenericWriteCb;
+		result_callback = rbl_SigChain_TCSAccRed0ResultCb;
+	}
+
+	startup read;
+	plant eol preserve;
+	writecycles = 10;
+}
+
+use dataitem rbl_SigChain_TcsAccSnvtyVal_Red1
+{
+	job interface
+	{
+		read_callback = rbl_SigChain_TCSAccRed1ReadCb;
+		write_callback = rbl_SigChain_GenericWriteCb;
+		result_callback = rbl_SigChain_TCSAccRed1ResultCb;
+	}
+
+	startup read;
+	plant eol preserve;
+	writecycles = 10;
+}
+
+use dataitem rbl_SigChain_TcsAccSnvtyVal_Red2
+{
+	job interface
+	{
+		read_callback = rbl_SigChain_TCSAccRed2ReadCb;
+		write_callback = rbl_SigChain_GenericWriteCb;
+		result_callback = rbl_SigChain_TCSAccRed2ResultCb;
+	}
+
+	startup read;
+	plant eol preserve;
+	writecycles = 10;
+}
+
+#if(RBFS_SigChainChMap == RBFS_SigChainChMap_4SMU)
+use dataitem rbl_SigChain_TcsAccSnvtyVal_Red3
+{
+	job interface
+	{
+		read_callback = rbl_SigChain_TCSAccRed3ReadCb;
+		write_callback = rbl_SigChain_GenericWriteCb;
+		result_callback = rbl_SigChain_TCSAccRed3ResultCb;
+	}
+
+	startup read;
+	plant eol preserve;
+	writecycles = 10;
+}
+#endif
+
+use dataitem rbl_SigChain_TcsRateSnvtyVal_Red0
+{
+	job interface
+	{
+		read_callback = rbl_SigChain_TCSRateRed0ReadCb;
+		write_callback = rbl_SigChain_GenericWriteCb;
+		result_callback = rbl_SigChain_TCSRateRed0ResultCb;
+
+	}
+
+	startup read;
+	plant eol preserve;
+	writecycles = 10;
+}
+
+#if(RBFS_SigChainChMap == RBFS_SigChainChMap_4SMU)
+use dataitem rbl_SigChain_TcsRateSnvtyVal_Red1
+{
+	job interface
+	{
+		read_callback = rbl_SigChain_TCSRateRed1ReadCb;
+		write_callback = rbl_SigChain_GenericWriteCb;
+		result_callback = rbl_SigChain_TCSRateRed1ResultCb;
+
+	}
+
+	startup read;
+	plant eol preserve;
+	writecycles = 10;
+}
+#endif
+

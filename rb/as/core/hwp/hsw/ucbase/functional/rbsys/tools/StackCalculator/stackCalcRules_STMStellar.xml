@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<STACK_CALCULATION  xmlns="http://www.bosch.de/stackcalc"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://www.bosch.de/stackcalc stackcalc.xsd">
+  <DEFINES>
+      <DEFINE name="isr os overhead">
+          <SUM>
+              <ENTRY_POINT>Os_demux_wrapper</ENTRY_POINT>
+              <MAX>
+                <ENTRY_POINT>Os_ISRWrapper0</ENTRY_POINT>
+                <ENTRY_POINT>Os_ISRWrapper1</ENTRY_POINT>
+              </MAX>
+          </SUM>
+    </DEFINE>
+    <DEFINE name="task os overhead">
+        <SUM>
+            <ENTRY_POINT>Os_demux_wrapper</ENTRY_POINT>
+            <MAX>
+              <ENTRY_POINT>Os_ISRWrapper0</ENTRY_POINT>
+              <ENTRY_POINT>Os_ISRWrapper1</ENTRY_POINT>
+            </MAX>
+            <MAX>
+              <ENTRY_POINT>Os_Dispatch0</ENTRY_POINT>
+              <ENTRY_POINT>Os_Dispatch1</ENTRY_POINT>
+              <!-- still part of Os_ISRWrapper but function pointer cannot be resolved via os_current_core_const->dispatch -->
+            </MAX>
+            <SUB><ENTRY_POINT>Os_TerminateTask</ENTRY_POINT></SUB>
+            <!-- part of Os_Dispatch and never reached, therefore subtracted -->
+        </SUM>
+    </DEFINE>
+  </DEFINES>
+  <CORES>
+    <CORE name="core 0">
+      <SUM name="overall">
+        <MAX name="wcs cat 1 interrupts">
+          <ENTRY_POINT>b_EXCDataAbort0</ENTRY_POINT>
+          <ENTRY_POINT>b_EXCPrefetchAbort0</ENTRY_POINT>
+          <ENTRY_POINT>b_EXCUndefinedInstruction0</ENTRY_POINT>
+        </MAX>
+        <SUM name="wcs cat 2 interrupts">
+          <MAX name="wcs cat 2 interrupts prio 10">
+            <ENTRY_POINT>Os_Entry_ISRSTM05</ENTRY_POINT>
+          </MAX>
+          <MUL>
+            <FACTOR>
+              <DEFINE_REF>isr os overhead</DEFINE_REF>
+            </FACTOR>
+            <FACTOR>1</FACTOR>   <!--> cat 2 interrupt overhead prio 10 -->
+          </MUL>
+        </SUM>
+        <SUM name="wcs preemptive tasks">
+          <MAX>
+            <ENTRY_POINT>c_Taskx1h</ENTRY_POINT>
+            <ENTRY_POINT>c_Taskx1l</ENTRY_POINT>
+            <ENTRY_POINT>Os_TerminateTask</ENTRY_POINT>
+          </MAX>
+          <MAX>
+            <ENTRY_POINT>c_Taskx2p</ENTRY_POINT>
+            <ENTRY_POINT>Os_TerminateTask</ENTRY_POINT>
+          </MAX>
+          <MAX>
+            <ENTRY_POINT>c_Taskx8</ENTRY_POINT>
+            <ENTRY_POINT>Os_TerminateTask</ENTRY_POINT>
+          </MAX>
+          <MAX>
+            <ENTRY_POINT>Os_Entry_TaskTPSWKillCore0</ENTRY_POINT>
+            <ENTRY_POINT>Os_TerminateTask</ENTRY_POINT>
+          </MAX>
+          <MUL>
+            <FACTOR>
+              <DEFINE_REF>task os overhead</DEFINE_REF>
+            </FACTOR>
+            <FACTOR>4</FACTOR>
+          </MUL>
+        </SUM>
+        <SUM name="wcs idle task">
+          <ENTRY_POINT>c_TaskIdleP</ENTRY_POINT>
+        </SUM>
+        <SAFETY_BUFFER>15</SAFETY_BUFFER>
+      </SUM>
+    </CORE>
+    <CORE name="core 1">
+      <SUM name="overall">
+        <MAX name="wcs cat 1 interrupts">
+          <ENTRY_POINT>b_EXCDataAbort1</ENTRY_POINT>
+          <ENTRY_POINT>b_EXCPrefetchAbort1</ENTRY_POINT>
+          <ENTRY_POINT>b_EXCUndefinedInstruction1</ENTRY_POINT>
+        </MAX>
+        <SUM name="wcs cat 2 interrupts">
+          <MAX name="wcs cat 2 interrupts prio 10">
+            <ENTRY_POINT>Os_Entry_ISRSTM04</ENTRY_POINT>
+          </MAX>
+          <MUL>
+            <FACTOR>
+              <DEFINE_REF>isr os overhead</DEFINE_REF>
+            </FACTOR>
+            <FACTOR>2</FACTOR>   <!--> cat 2 interrupt overhead prio 10 and 11 -->
+          </MUL>
+        </SUM>
+        <SUM name="wcs preemptive tasks">
+          <MAX>
+            <ENTRY_POINT>c_Task0p5ms</ENTRY_POINT>
+            <ENTRY_POINT>Os_TerminateTask</ENTRY_POINT>
+          </MAX>
+          <MAX>
+            <ENTRY_POINT>c_Task1ms</ENTRY_POINT>
+            <ENTRY_POINT>Os_TerminateTask</ENTRY_POINT>
+          </MAX>
+          <MAX>
+            <ENTRY_POINT>c_FlexrayTask</ENTRY_POINT>
+            <ENTRY_POINT>Os_TerminateTask</ENTRY_POINT>
+          </MAX>
+          <MAX>
+            <ENTRY_POINT>c_Taskx2</ENTRY_POINT>
+            <ENTRY_POINT>Os_TerminateTask</ENTRY_POINT>
+          </MAX>
+          <MAX>
+            <ENTRY_POINT>c_Taskx4</ENTRY_POINT>
+            <ENTRY_POINT>Os_TerminateTask</ENTRY_POINT>
+          </MAX>
+          <MAX>
+            <ENTRY_POINT>c_Taskx24</ENTRY_POINT>
+            <ENTRY_POINT>Os_TerminateTask</ENTRY_POINT>
+          </MAX>
+          <MAX>
+            <ENTRY_POINT>Os_Entry_TaskTPSWKillCore1</ENTRY_POINT>
+            <ENTRY_POINT>Os_TerminateTask</ENTRY_POINT>
+          </MAX>
+          <MUL>
+            <FACTOR>
+              <DEFINE_REF>task os overhead</DEFINE_REF>
+            </FACTOR>
+            <FACTOR>7</FACTOR>
+          </MUL>
+        </SUM>
+        <SUM name="wcs idle task">
+          <ENTRY_POINT>c_TaskIdle</ENTRY_POINT>
+        </SUM>
+        <SAFETY_BUFFER>15</SAFETY_BUFFER>
+      </SUM>
+    </CORE>
+  </CORES>
+
+  <!-- entry points which are not relevant for wcs but should be listed
+  in output (handled as non functional entry points) -->
+  <SHOWONLY name="show only entry points; not relevant for wcs">
+    <ENTRY_POINT>c_TaskInit</ENTRY_POINT>
+    <ENTRY_POINT>c_TaskInitP</ENTRY_POINT>
+    <ENTRY_POINT>c_TaskInitBaseOS</ENTRY_POINT>
+    <ENTRY_POINT>c_TaskInitPBaseOS</ENTRY_POINT>
+    <ENTRY_POINT>c_Task0p5msBaseOS</ENTRY_POINT>
+    <ENTRY_POINT>c_Task1msBaseOS</ENTRY_POINT>
+    <ENTRY_POINT>c_Taskx1hBaseOS</ENTRY_POINT>
+    <ENTRY_POINT>c_Taskx1lBaseOS</ENTRY_POINT>
+    <ENTRY_POINT>c_Taskx2BaseOS</ENTRY_POINT>
+    <ENTRY_POINT>c_Taskx2pBaseOS</ENTRY_POINT>
+    <ENTRY_POINT>c_Taskx4BaseOS</ENTRY_POINT>
+    <ENTRY_POINT>c_Taskx8BaseOS</ENTRY_POINT>
+    <ENTRY_POINT>c_Taskx24BaseOS</ENTRY_POINT>
+  </SHOWONLY>
+
+  <!-- The following tags are not used by the stack calculator but exist for modeling our task scheme with Amalthea -->
+  <AMALTHEAONLY>
+    <AMALTHEA_MAPPING task="TaskInit">
+      <AMALTHEA_PRC_ARRAY mode="ControlMode">c_TaskInit</AMALTHEA_PRC_ARRAY>
+      <AMALTHEA_PRC_ARRAY mode="BaseOS">c_TaskInitBaseOS</AMALTHEA_PRC_ARRAY>
+      <AMALTHEA_PRC_FUNC>taskbody_prc_calls</AMALTHEA_PRC_FUNC>
+    </AMALTHEA_MAPPING>
+    <AMALTHEA_MAPPING task="TaskInitP">
+      <AMALTHEA_PRC_ARRAY mode="ControlMode">c_TaskInitP</AMALTHEA_PRC_ARRAY>
+      <AMALTHEA_PRC_ARRAY mode="BaseOS">c_TaskInitPBaseOS</AMALTHEA_PRC_ARRAY>
+      <AMALTHEA_PRC_FUNC>taskbody_prc_calls</AMALTHEA_PRC_FUNC>
+    </AMALTHEA_MAPPING>
+    <AMALTHEA_MAPPING task="Task0p5ms">
+      <AMALTHEA_PRC_ARRAY mode="ControlMode">c_Task0p5ms</AMALTHEA_PRC_ARRAY>
+      <AMALTHEA_PRC_ARRAY mode="BaseOS">c_Task0p5msBaseOS</AMALTHEA_PRC_ARRAY>
+      <AMALTHEA_PRC_FUNC>taskbody_prc_calls</AMALTHEA_PRC_FUNC>
+    </AMALTHEA_MAPPING>
+    <AMALTHEA_MAPPING task="Task1ms">
+      <AMALTHEA_PRC_ARRAY mode="ControlMode">c_Task1ms</AMALTHEA_PRC_ARRAY>
+      <AMALTHEA_PRC_ARRAY mode="BaseOS">c_Task1msBaseOS</AMALTHEA_PRC_ARRAY>
+      <AMALTHEA_PRC_FUNC>taskbody_prc_calls</AMALTHEA_PRC_FUNC>
+    </AMALTHEA_MAPPING>
+    <AMALTHEA_MAPPING task="TaskBaseCtrlCycx1High">
+      <AMALTHEA_PRC_ARRAY mode="ControlMode">c_Taskx1h</AMALTHEA_PRC_ARRAY>
+      <AMALTHEA_PRC_ARRAY mode="BaseOS">c_Taskx1hBaseOS</AMALTHEA_PRC_ARRAY>
+      <AMALTHEA_PRC_FUNC>taskbody_prc_calls</AMALTHEA_PRC_FUNC>
+    </AMALTHEA_MAPPING>
+    <AMALTHEA_MAPPING task="TaskFlexray">
+      <AMALTHEA_PRC_ARRAY mode="ControlMode">c_FlexrayTask</AMALTHEA_PRC_ARRAY>
+      <AMALTHEA_PRC_FUNC>taskbody_prc_calls</AMALTHEA_PRC_FUNC>
+    </AMALTHEA_MAPPING>
+    <AMALTHEA_MAPPING task="TaskBaseCtrlCycx1Low">
+      <AMALTHEA_PRC_ARRAY mode="ControlMode">c_Taskx1l</AMALTHEA_PRC_ARRAY>
+      <AMALTHEA_PRC_ARRAY mode="BaseOS">c_Taskx1lBaseOS</AMALTHEA_PRC_ARRAY>
+      <AMALTHEA_PRC_FUNC>taskbody_prc_calls</AMALTHEA_PRC_FUNC>
+    </AMALTHEA_MAPPING>
+    <AMALTHEA_MAPPING task="TaskBaseCtrlCycx2">
+      <AMALTHEA_PRC_ARRAY mode="ControlMode">c_Taskx2</AMALTHEA_PRC_ARRAY>
+      <AMALTHEA_PRC_ARRAY mode="BaseOS">c_Taskx2BaseOS</AMALTHEA_PRC_ARRAY>
+      <AMALTHEA_PRC_FUNC>taskbody_prc_calls</AMALTHEA_PRC_FUNC>
+    </AMALTHEA_MAPPING>
+    <AMALTHEA_MAPPING task="TaskBaseCtrlCycx2p">
+      <AMALTHEA_PRC_ARRAY mode="ControlMode">c_Taskx2p</AMALTHEA_PRC_ARRAY>
+      <AMALTHEA_PRC_ARRAY mode="BaseOS">c_Taskx2pBaseOS</AMALTHEA_PRC_ARRAY>
+      <AMALTHEA_PRC_FUNC>taskbody_prc_calls</AMALTHEA_PRC_FUNC>
+    </AMALTHEA_MAPPING>
+    <AMALTHEA_MAPPING task="TaskBaseCtrlCycx4">
+      <AMALTHEA_PRC_ARRAY mode="ControlMode">c_Taskx4</AMALTHEA_PRC_ARRAY>
+      <AMALTHEA_PRC_ARRAY mode="BaseOS">c_Taskx4BaseOS</AMALTHEA_PRC_ARRAY>
+      <AMALTHEA_PRC_FUNC>taskbody_prc_calls</AMALTHEA_PRC_FUNC>
+    </AMALTHEA_MAPPING>
+    <AMALTHEA_MAPPING task="TaskBaseCtrlCycx8">
+      <AMALTHEA_PRC_ARRAY mode="ControlMode">c_Taskx8</AMALTHEA_PRC_ARRAY>
+      <AMALTHEA_PRC_ARRAY mode="BaseOS">c_Taskx8BaseOS</AMALTHEA_PRC_ARRAY>
+      <AMALTHEA_PRC_FUNC>taskbody_prc_calls</AMALTHEA_PRC_FUNC>
+    </AMALTHEA_MAPPING>
+    <AMALTHEA_MAPPING task="TaskBaseCtrlCycx24">
+      <AMALTHEA_PRC_ARRAY mode="ControlMode">c_Taskx24</AMALTHEA_PRC_ARRAY>
+      <AMALTHEA_PRC_ARRAY mode="BaseOS">c_Taskx24BaseOS</AMALTHEA_PRC_ARRAY>
+      <AMALTHEA_PRC_FUNC>taskbody_prc_calls</AMALTHEA_PRC_FUNC>
+    </AMALTHEA_MAPPING>
+  </AMALTHEAONLY>
+</STACK_CALCULATION>

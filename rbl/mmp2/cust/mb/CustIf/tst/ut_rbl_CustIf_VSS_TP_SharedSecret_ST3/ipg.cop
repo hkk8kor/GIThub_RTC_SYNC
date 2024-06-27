@@ -1,0 +1,17 @@
+#
+# Cantata Test-Level Options
+#
+# Any options set in this file will override the options set in the
+# project-level options file.
+#
+# WARNING: Do not alter this file manually.
+#
+#tool.testid=bae601f6-d84d-46d5-85a4-22fbfbc17c24
+"--ci:--instr:stmt;func;decn;log;"
+"--sa:--calc:*#*"
+
+#User Section
+"--dont_ci:*"
+"--do_ci:rbl_CustIf_VSS_TP_SharedSecret_ST3.c"
+"--ci:--no_instr:all"
+"--ci:--instr:stmt;func;decn;log;#rbl_CustIf_SgnGrp_Cbk_VSS_TP_SharedSecret_ST3"

@@ -1,0 +1,13 @@
+<workflow>
+
+    <property file="ComScl_Appl_CfgWorkflow.properties" />
+    
+    <!-- This component is to invoke ComSclGen template -->
+    <component id="MeasurementGen" class="${CodeGenerator}">
+        <metaModel id="mm" class="${MetaModel}" />
+        <beautifier class="com.bosch.oawtypesystem.actions.beautifier.BCTBeautifier" beautifierId="CdtBeautifier" configFile="${BEAUTIFIER_LOCATION}" />
+        <expand value="ComScl_Appl_Measurement_Generator::Generate FOR model"/>
+        <outlet path="${OutputDir}"/>
+    </component>
+
+</workflow>

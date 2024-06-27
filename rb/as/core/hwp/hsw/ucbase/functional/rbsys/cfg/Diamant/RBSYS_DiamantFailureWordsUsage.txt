@@ -1,0 +1,19 @@
+/**
+ * @copyright
+ * Robert Bosch GmbH reserves all rights even in the event of industrial property rights.
+ * We reserve all rights of disposal such as copying and passing on to third parties.
+ */
+
+#include "RB_Config.h"
+#include "RBSYS_Config.h"
+
+#if (  (RBFS_SysMaxTaskx1Jitter == RBFS_SysMaxTaskx1Jitter_5)  \
+    || (RBFS_SysMaxTaskx1Jitter == RBFS_SysMaxTaskx1Jitter_15) \
+    )
+  FW_RBSYS_TaskJitter
+#endif
+
+FW_RBSYS_StackOverUnderFlow
+FW_RBSYS_SYSErrorHook
+FW_RBSYS_OSErrorHook
+FW_RBSYS_TaskOverRun

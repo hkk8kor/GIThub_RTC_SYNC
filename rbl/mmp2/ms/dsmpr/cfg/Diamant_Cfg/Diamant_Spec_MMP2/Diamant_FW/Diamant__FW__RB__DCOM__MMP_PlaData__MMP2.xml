@@ -1,0 +1,805 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<DIAGNOSIS INFO="DiamantPro Core Library 4.2.257.1692" CHECK="F731CF404BD5C91926AECA6E5B8F4CE9ICAgICAgICAgRGlhbWFudFBybyBDb3JlIExpYnJhcnkgICAgICAgICAgICAgICAgICAgIDQuMi4yNTcuMTY5MiAgICAgICAgICAgIC04NTg0OTA4NjIyOTg2ODUxNTA1ICAgICAgICAgICAgICAgICAgICBCQU5JLUMtMDA2OFIgICAgICAgICAgICAgICAgICAgIEFQQUNcUFpSMktPUiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg">
+  <FAILURE_WORDS>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_Nvm_ProcProgsId</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">during Initialisation</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>ExternalFaultHighPrio</CATEGORY>
+      <FSC_DESC>NVM Data rbl_ProcProgsId missing or corrupt</FSC_DESC>
+      <TASK_REF>Task_Init</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\PQL1KOR">27 Apr 2023 11:46</LAST_MODIFIED>
+      <MONITORING>
+        <DESCRIPTION>check status from nvm handler</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>Fill this NVM Data with valid or default data from container and restart ECU</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>NVM Data rbl_ProcProgsId missing or corrupt</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>Initialisation</DETECTION_SIT>
+          <DETECTION_TIME>Immediate</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_PlaData</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>false</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_Nvm_SnsrSerlNr</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">during Initialisation</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>ExternalFaultHighPrio</CATEGORY>
+      <FSC_DESC>NVM Data rbl_SnsrSerlNr missing or corrupt</FSC_DESC>
+      <TASK_REF>Task_Init</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\PQL1KOR">27 Apr 2023 11:47</LAST_MODIFIED>
+      <MONITORING>
+        <DESCRIPTION>check status from nvm handler</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>Fill this NVM Data with valid or default data from container and restart ECU</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>NVM Data rbl_SnsrSerlNr missing or corrupt</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>Initialisation</DETECTION_SIT>
+          <DETECTION_TIME>Immediate</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_PlaData</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>false</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_Nvm_PcbDmc</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">during Initialisation</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>ExternalFaultHighPrio</CATEGORY>
+      <FSC_DESC>NVM Datarbl_PcbDmc missing or corrupt</FSC_DESC>
+      <TASK_REF>Task_Init</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\PQL1KOR">27 Apr 2023 11:46</LAST_MODIFIED>
+      <MONITORING>
+        <DESCRIPTION>check status from nvm handler</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>Fill this NVM Data with valid or default data from container and restart ECU</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>NVM Datarbl_PcbDmc missing or corrupt</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>Initialisation</DETECTION_SIT>
+          <DETECTION_TIME>Immediate</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_PlaData</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>false</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_Nvm_RbPartNr</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">during Initialisation</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>ExternalFaultHighPrio</CATEGORY>
+      <FSC_DESC>NVM Data rbl_RbPartNr  missing or corrupt</FSC_DESC>
+      <TASK_REF>Task_Init</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\PQL1KOR">27 Apr 2023 11:46</LAST_MODIFIED>
+      <MONITORING>
+        <DESCRIPTION>check status from nvm handler</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>Fill this NVM Data with valid or default data from container and restart ECU</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>NVM Data rbl_RbPartNr  missing or corrupt</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>Initialisation</DETECTION_SIT>
+          <DETECTION_TIME>Immediate</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_PlaData</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>false</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_Nvm_RbAsblyPartNr</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">during Initialisation</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>ExternalFaultHighPrio</CATEGORY>
+      <FSC_DESC>NVM Data rbl_RbAsblyPartNr missing or corrupt</FSC_DESC>
+      <TASK_REF>Task_Init</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\PQL1KOR">27 Apr 2023 11:46</LAST_MODIFIED>
+      <MONITORING>
+        <DESCRIPTION>check status from nvm handler</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>Fill this NVM Data with valid or default data from container and restart ECU</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>NVM Data rbl_RbAsblyPartNr missing or corrupt</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>Initialisation</DETECTION_SIT>
+          <DETECTION_TIME>Immediate</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_PlaData</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>false</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_Nvm_HwVersNr</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">during Initialisation</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>ExternalFaultHighPrio</CATEGORY>
+      <FSC_DESC>NVM Data rbl_HwVers missing or corrupt</FSC_DESC>
+      <TASK_REF>Task_Init</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\PQL1KOR">27 Apr 2023 11:46</LAST_MODIFIED>
+      <MONITORING>
+        <DESCRIPTION>check status from nvm handler</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>Fill this NVM Data with valid or default data from container and restart ECU</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>NVM Data rbl_HwVers missing or corrupt</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>Initialisation</DETECTION_SIT>
+          <DETECTION_TIME>Immediate</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_PlaData</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>false</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_Nvm_PlaIdNr</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">during Initialisation</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>ExternalFaultHighPrio</CATEGORY>
+      <FSC_DESC>NVM Data rbl_PlaIdNr missing or corrupt</FSC_DESC>
+      <TASK_REF>Task_Init</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\PQL1KOR">27 Apr 2023 11:46</LAST_MODIFIED>
+      <MONITORING>
+        <DESCRIPTION>check status from nvm handler</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>Fill this NVM Data with valid or default data from container and restart ECU</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>NVM Data rbl_PlaIdNr missing or corrupt</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>Initialisation</DETECTION_SIT>
+          <DETECTION_TIME>Immediate</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_PlaData</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>false</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_Nvm_ProdDate</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">during Initialisation</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>ExternalFaultHighPrio</CATEGORY>
+      <FSC_DESC>NVM Data rbl_ProdDate missing or corrupt</FSC_DESC>
+      <TASK_REF>Task_Init</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\PQL1KOR">27 Apr 2023 11:46</LAST_MODIFIED>
+      <MONITORING>
+        <DESCRIPTION>check status from nvm handler</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>Fill this NVM Data with valid or default data from container and restart ECU</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>NVM Data rbl_ProdDate missing or corrupt</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>Initialisation</DETECTION_SIT>
+          <DETECTION_TIME>Immediate</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_PlaData</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>false</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+  </FAILURE_WORDS>
+</DIAGNOSIS>

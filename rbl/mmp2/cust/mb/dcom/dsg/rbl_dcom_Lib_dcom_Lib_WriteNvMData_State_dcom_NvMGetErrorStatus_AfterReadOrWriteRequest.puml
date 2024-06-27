@@ -1,0 +1,23 @@
+!pragma useVerticalIf on
+title State: dcom_NvMGetErrorStatus_AfterReadOrWriteRequest
+start
+:State machine dcom_EepromWriteByPdmState at State <b>dcom_NvMGetErrorStatus_AfterReadOrWriteRequest;
+ : Check Error Status for requested NVM BLOCK ID after NvM_WriteBlock operation 
+   by calling function <b>NvM_GetErrorStatus <plain> and update NVM Status to Local variable <b>l_NvM_Result;
+     if(if error status for Requested block is E_OK in <b>l_NvM_Result <plain>variable ) then (E_OK)
+       :Move State machine to next state <b>dcom_Done_ReadOrWriteNVMBlock;
+        :Return Value will be <b>DCM_E_PENDING;
+        stop 
+      else if(if error status for Requested block is NVM_REQ_PENDING in <b>l_NvM_Result <plain> variable )  then (NVM_REQ_PENDING)
+       :Return Value will be updated to <b>DCM_E_PENDING;
+        stop
+      else if(if error status for Requested block is E_NOT_OK in <b>l_NvM_Result <plain>variable ) then (E_NOT_OK)
+        :Reset the counter l_EEPROMRetryLimit to 0
+         Change state machine to Init state i.e. <b>dcom_NvMGetErrorStatus_BeforeReadOrWriteRequest
+         Update the Error Code to NRC 0x72 GENERAL_PROGRAMMING_FAILURE
+         Update Return Value with E_NOT_OK;
+         stop
+      else
+        :Do Nothing;
+         end
+endif

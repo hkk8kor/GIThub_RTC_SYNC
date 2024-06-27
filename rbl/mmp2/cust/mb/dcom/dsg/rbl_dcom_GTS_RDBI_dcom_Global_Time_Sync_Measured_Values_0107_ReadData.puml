@@ -1,0 +1,17 @@
+start
+if (Check if Data is not equal to null pointer) then (yes)
+   :Filling data to the header structure of Measurement Data set 1 ; 
+if (Check if dcom_MB_GTS_Measurement_Received is equal to FALSE) then (yes)
+   :Index value is updated with default value;
+else (no)
+   :Index value is updated with the header index value;    
+endif
+   :Filling data of measurement Data Type 1;
+while (Loop 11 times to update Measurement Data set 2) (It will loop till the 11th bit data is updated )
+   :The array of data is updating GTS measurement;
+endwhile (The data till the 11th bit is filled and no more array index is present to update)
+   :no data available;
+else (no)
+   :Update return Value as E_NOT_OK; 
+endif
+stop

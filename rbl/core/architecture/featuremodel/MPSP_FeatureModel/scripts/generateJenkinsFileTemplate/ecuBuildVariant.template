@@ -1,0 +1,39 @@
+
+stage('ECU: /*%buildVariantName%*/') {
+	agent {
+		label 'MPSP_CI'
+	}
+	/*%when%*/
+	steps {
+		deleteDir()	
+		bat """
+			IF EXIST f: (subst f: /d )
+			subst f: .
+			pushd f:
+
+			powershell.exe //abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins/OpsLoadJenkinsScriptSources/rb.ps.scripts.dotNet/JenkinsJobsScripts/build/Build_Freestyle_CDGB.ps1 -Variant /*%buildVariantName%*/ -PathJSONFile ${jsonFile} -JobNeedsPath //abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins/OpsLoadJenkinsScriptSources/rb.ps.scripts.dotNet/JenkinsJobsScripts/build -RunSWUTCT ${SWUTCT/*%buildVariantName%*/} 
+
+			SET RETURNERROR=%ERRORLEVEL%
+
+			popd
+			subst f: /D
+				
+			exit /b %RETURNERROR%
+		"""
+	}
+	post {
+		success {
+			archiveArtifacts "**/out/**/ApplContainer_BB*.appl.zip"
+			script {
+				try {
+					def /*%buildVariantName%*/ = scanForIssues tool: groovyScript(parserId: 'VMPSCompilerID', pattern: '**/_Log_MTCOutput_*.prt')
+					publishIssues issues: [/*%buildVariantName%*/], id:'/*%buildVariantName%*/', name: '/*%buildVariantName%*/'
+				} catch (Exception e) {}
+			}
+		}
+		cleanup {
+			deleteDir()
+		}
+	}
+} //stage('ECU: /*%buildVariantName%*/')
+

@@ -1,0 +1,232 @@
+«REM»
+/**********************************************************************************************************************
+*
+* COPYRIGHT RESERVED, Robert Bosch GmbH, 2014. All rights reserved.
+* The reproduction, distribution and utilization of this document as well as the communication of its contents to
+* others without explicit authorization is prohibited. Offenders will be held liable for the payment of damages.
+* All rights reserved in the event of the grant of a patent, utility model or design.
+*
+**********************************************************************************************************************
+*/«ENDREM»
+
+«IMPORT bsw»
+«IMPORT emf»
+«IMPORT bsw::rba_NdsModule»
+
+«EXTENSION org::eclipse::xtend::util::stdlib::io»
+
+«EXTENSION rba_ComScl_Cc_Util»
+«EXTENSION rba_Nds_PduEcuUtil»
+«EXTENSION rba_ComScl_PduEcuUtil»
+«EXTENSION rba_ComScl_SignalEcuUtil»
+«EXTENSION rba_Nds_SignalEcuUtil»
+«EXTENSION rba_ComScl_SignalConvUtil»
+«EXTENSION rba_Nds_SignalConvUtil»
+«EXTENSION rba_Nds_SignalGroupConvUtil»
+«EXTENSION rba_Nds_CcUtil»
+«EXTENSION rba_ComScl_Util»
+«EXTENSION ComScl_Appl_Aspects»
+«EXTENSION rba_Nds_Aspect_CcUtil»
+
+«REM»Report no Error«ENDREM»
+«REM»As several DemEvents can be configured for a failure cause, so that many failure words has to be stored.«ENDREM»
+«AROUND* rba_ComScl_Aspect_ErrorReport_NoError(String failureType, String comment) FOR rba_Nds_ReceiveSignalPdu»
+    «LET this.rba_ComScl_Cc_getSpecificDemEventNames(failureType) AS demEventNames» 
+    «REM» Additional condition for DemEventNames configured for DLC and DC. 
+          The "NoError" shall only be reported if isDlcOK.
+          It is enough with checking the "first()" DemEvent, since if DLC is part of DataCorrupt
+          for one DemEvent, it must be also configured for other DataCorrupts. «ENDREM»
+    «IF !demEventNames.isEmpty && rba_ComScl_isDemEventDCForDlc(this, demEventNames.first())»
+        if (isDLCOk)
+        {
+    «ENDIF»
+    «FOREACH demEventNames AS demEventName ITERATOR it»
+        «IF rba_ComScl_isDiagnosticErrorReportOnChange(this)-»
+            /* Reporting to Dem is done only when there is a change in the event status */
+            if(Dem_EvtGetLastReportedEventStatus(«demEventName») != DEM_EVENT_STATUS_PREPASSED)
+            {
+        «ENDIF»
+        «comment»
+        Dem_SetEventStatus(«demEventName», DEM_EVENT_STATUS_PREPASSED);
+        «IF rba_ComScl_isDiagnosticErrorReportOnChange(this)-»
+            }
+        «ENDIF»
+    «ENDFOREACH»
+    «IF !demEventNames.isEmpty && rba_ComScl_isDemEventDCForDlc(this, demEventNames.first())»
+        }
+    «ENDIF»
+    «ENDLET»
+«ENDAROUND»
+
+«AROUND* rba_ComScl_Aspect_ErrorReport_NoError(String failureType, String comment) FOR bsw::rba_Nds::rba_Nds_Ecu::rba_Nds_EcuPdus::
+    rba_Nds_ReceivePdu::rba_Nds_ReceiveSignalPdu::rba_Nds_ReceiveSignalGroupNetworkPort»
+
+    «FOREACH this.rba_ComScl_Cc_getSpecificDemEventNames(failureType) AS demEventName ITERATOR it»
+        «IF rba_ComScl_isDiagnosticErrorReportOnChange(this)-»
+            /* Reporting to Dem is done only when there is a change in the event status */
+            if(Dem_EvtGetLastReportedEventStatus(«demEventName»)  != DEM_EVENT_STATUS_PREPASSED)
+            {
+        «ENDIF»
+        «comment»
+        Dem_SetEventStatus(«demEventName», DEM_EVENT_STATUS_PREPASSED);
+        «IF rba_ComScl_isDiagnosticErrorReportOnChange(this)-»
+            }
+        «ENDIF»
+    «ENDFOREACH»
+«ENDAROUND»
+
+«AROUND* rba_ComScl_Aspect_ErrorReport_NoError(String failureType, String comment) FOR rba_Nds_TransmitSignalPdu»
+    «FOREACH this.rba_ComScl_Cc_getDemEventNames(failureType) AS demEventName ITERATOR it»
+        «IF rba_ComScl_isDiagnosticErrorReportOnChange(this)-»
+            /* Reporting to Dem is done only when there is a change in the event status */
+            if(Dem_EvtGetLastReportedEventStatus(«demEventName»)  != DEM_EVENT_STATUS_PREPASSED)
+            {
+        «ENDIF»
+        «comment»
+        Dem_SetEventStatus(«demEventName», DEM_EVENT_STATUS_PREPASSED);
+        «IF rba_ComScl_isDiagnosticErrorReportOnChange(this)-»
+            }
+        «ENDIF»
+    «ENDFOREACH»
+«ENDAROUND»
+
+«REM»Report Error«ENDREM»
+«AROUND* rba_ComScl_Aspect_ErrorReport_Error(String failureType, String algorithm, String comment) FOR rba_Nds_TransmitSignalPdu»
+    «FOREACH this.rba_ComScl_Cc_getDemEventNames(failureType) AS demEventName ITERATOR it»
+        «IF rba_ComScl_isDiagnosticErrorReportOnChange(this)-»
+            /* Reporting to Dem is done only when there is a change in the event status */
+            if(Dem_EvtGetLastReportedEventStatus(«demEventName»)  != DEM_EVENT_STATUS_PREFAILED)
+            {
+        «ENDIF»
+        «comment»
+        «REM» The prefix is obtained from the RxSignalNetworkPort, all of them shall have the same. «ENDREM»
+        Dem_SetEventStatus(«demEventName», DEM_EVENT_STATUS_PREFAILED);
+        «IF rba_ComScl_isDiagnosticErrorReportOnChange(this)-»
+            }
+        «ENDIF»
+    «ENDFOREACH»
+«ENDAROUND»
+
+«REM»Report Error«ENDREM»
+«REM»As several DemEvents can be configured for a failure cause, so that many failure words has to be stored.«ENDREM»
+«AROUND* rba_ComScl_Aspect_ErrorReport_Error(String failureType, String algorithm, String comment) FOR rba_Nds_ReceiveSignalPdu»
+    «FOREACH this.rba_ComScl_Cc_getSpecificDemEventNames(failureType) AS demEventName ITERATOR it»
+        «LET this.rba_ComScl_Cc_getDemEventNameMonitoringClasses(demEventName) AS DemEvenMoClasses»
+        «IF !DemEvenMoClasses.isEmpty-»
+            if(«FOREACH DemEvenMoClasses AS DemEvenMoClass SEPARATOR "||"»
+                («DemEvenMoClass.rba_Nds_Cc_Condition»)
+            «ENDFOREACH»)
+            {
+        «ENDIF»         
+            «IF rba_ComScl_isDiagnosticErrorReportOnChange(this)-»
+                /* Reporting to Dem is done only when there is a change in the event status */
+                if(Dem_EvtGetLastReportedEventStatus(«demEventName»)  != DEM_EVENT_STATUS_PREFAILED)
+                {
+            «ENDIF»
+            «comment»
+            «REM» The class is obtained from the RxSignalProcessing (all of them shall have the same). 
+                  Only if no RxSignalProcessing exist, shall the RxSignalNetworkPort be used.
+                  Class is used for the AliveCounter static variable.«ENDREM»
+            «LET this.rba_Nds_getAllSignalNetworkPorts().select(e|!e.rba_Nds_getReceiveSignalProcessings().isEmpty) AS netPorts»
+            «LET (!netPorts.isEmpty)? (netPorts.rba_Nds_getClass().first()): (this.rba_Nds_getAllSignalNetworkPorts().rba_Nds_getClass().first()) AS class»
+            «LET rba_Nds_getDebugVariables(class, failureType, algorithm, this) AS debugVariables»
+            «LET ((algorithm != null) && (algorithm.contains("E2E")))? ("(Dem_MonitorDataType)"): ("") AS cast»
+            «IF cast != ""»
+                // Cast to Dem_MonitorDataType to avoid Misra warning QAC_4424
+            «ENDIF»
+            Dem_SetEventStatusWithMonitorData(«demEventName», DEM_EVENT_STATUS_PREFAILED, «debugVariables.get(0)», «cast»«debugVariables.get(1)»);
+            «IF rba_ComScl_isDiagnosticErrorReportOnChange(this)-»
+                }
+            «ENDIF»
+        «IF !DemEvenMoClasses.isEmpty-»
+            }
+        «ENDIF» 
+        «ENDLET»«ENDLET»«ENDLET»«ENDLET»«ENDLET»
+    «ENDFOREACH»
+«ENDAROUND»
+
+
+«AROUND* rba_ComScl_Aspect_ErrorReport_Error(String failureType, String algorithm, String comment) FOR bsw::rba_Nds::
+    rba_Nds_Ecu::rba_Nds_EcuPdus::rba_Nds_ReceivePdu::rba_Nds_ReceiveSignalPdu::rba_Nds_ReceiveSignalGroupNetworkPort»
+    
+    «FOREACH this.rba_ComScl_Cc_getSpecificDemEventNames(failureType) AS demEventName ITERATOR it»
+        «LET this.rba_ComScl_Cc_getDemEventNameMonitoringClasses(demEventName) AS DemEvenMoClasses» 
+        «IF !DemEvenMoClasses.isEmpty-»
+            if(«FOREACH DemEvenMoClasses AS DemEvenMoClass SEPARATOR "||"»
+                («DemEvenMoClass.rba_Nds_Cc_Condition»)
+            «ENDFOREACH»)
+            {
+        «ENDIF»
+        «IF rba_ComScl_isDiagnosticErrorReportOnChange(this)-»
+            /* Reporting to Dem is done only when there is a change in the event status */
+            if(Dem_EvtGetLastReportedEventStatus(«demEventName»)  != DEM_EVENT_STATUS_PREFAILED)
+            {
+        «ENDIF»
+        «comment»
+        «REM» The class is obtained from the RxSignalProcessing (all of them shall have the same). 
+              Only if no RxSignalProcessing exist, shall the RxSignalNetworkPort be used.
+              Class is used for the AliveCounter static variable.«ENDREM»
+        «LET this.rba_Nds_getSignalNetworkPorts().select(e|!e.rba_Nds_getReceiveSignalProcessings().isEmpty) AS netPorts»
+        «LET (!netPorts.isEmpty)? (
+                netPorts.rba_Nds_getClass().first()
+            ): (
+                this.rba_Nds_getSignalNetworkPorts().rba_Nds_getClass().first()
+            ) AS class» 
+        «LET rba_Nds_getDebugVariables(class, failureType, algorithm, this) AS debugVariables»
+        «LET ((algorithm != null) && (algorithm.contains("E2E")))? ("(Dem_MonitorDataType)"): ("") AS cast»
+        «IF cast != ""»
+            // Cast to Dem_MonitorDataType to avoid Misra warning QAC_4424
+        «ENDIF»
+        Dem_SetEventStatusWithMonitorData(«demEventName-», DEM_EVENT_STATUS_PREFAILED, 
+            «debugVariables.get(0)», «cast»«debugVariables.get(1)»);
+        «IF rba_ComScl_isDiagnosticErrorReportOnChange(this)-»
+            }
+        «ENDIF»
+        «IF !DemEvenMoClasses.isEmpty-»
+            }
+        «ENDIF»
+        «ENDLET»«ENDLET»«ENDLET»«ENDLET»«ENDLET»
+    «ENDFOREACH»
+«ENDAROUND»
+
+
+«AROUND* rba_ComScl_Aspect_ErrorReport(String reportingName, EObject monitoringClass, Boolean error) FOR rba_Nds_ReceiveSignalPdu»
+    «LET ((List[bsw::rba_Nds_Cc::rba_Nds_Cc_SignalEvaluations::
+        rba_Nds_Cc_ReceiveSignalEvaluations::rba_Nds_Cc_ReceiveSignalEvaluation::rba_Nds_Cc_SignalValues::
+        rba_Nds_Cc_OutputStrategy::rba_Nds_Cc_DemReporting])this.rba_Nds_Aspect_getDemDfcDiagReportings()) AS Reportings»
+        
+    «LET Reportings.select(e|e!=null && e.rba_Nds_Cc_DemEventName == reportingName)
+            .rba_Nds_Cc_MonitoringClassRef.select(e|e!=null).toSet()  AS monClasses»   
+
+    «IF error»
+        «IF !monClasses.isEmpty-»
+            if(«FOREACH monClasses AS monClass SEPARATOR "||"»
+                («monClass.rba_Nds_Cc_Condition»)
+            «ENDFOREACH»)
+            {
+        «ENDIF»
+        «IF rba_ComScl_isDiagnosticErrorReportOnChange(this)-»
+            /* Reporting to Dem is done only when there is a change in the event status */
+            if(Dem_EvtGetLastReportedEventStatus(«rba_ComScl_getDemEventNamePrefix()»«reportingName»)  != DEM_EVENT_STATUS_PREFAILED)
+            {
+        «ENDIF»
+        Dem_SetEventStatus(«rba_ComScl_getDemEventNamePrefix()»«reportingName», DEM_EVENT_STATUS_PREFAILED);
+        «IF rba_ComScl_isDiagnosticErrorReportOnChange(this)-»
+            }
+        «ENDIF»
+        «IF !monClasses.isEmpty-»
+            }
+        «ENDIF»
+    «ELSE»
+        «IF rba_ComScl_isDiagnosticErrorReportOnChange(this)-»
+            /* Reporting to Dem is done only when there is a change in the event status */
+            if(Dem_EvtGetLastReportedEventStatus(«rba_ComScl_getDemEventNamePrefix()»«reportingName»)  != DEM_EVENT_STATUS_PREPASSED)
+            {
+        «ENDIF»
+        Dem_SetEventStatus(«rba_ComScl_getDemEventNamePrefix()»«reportingName», DEM_EVENT_STATUS_PREPASSED);
+        «IF rba_ComScl_isDiagnosticErrorReportOnChange(this)-»
+            }
+        «ENDIF»
+    «ENDIF»«ENDLET»«ENDLET»
+«ENDAROUND»
+

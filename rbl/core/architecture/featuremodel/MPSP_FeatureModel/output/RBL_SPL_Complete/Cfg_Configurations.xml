@@ -1,0 +1,63 @@
+<MTCConfigurations>
+  <MTCConfiguration>
+    <ConfigurationName>MMP2xD3xRef</ConfigurationName>
+    <ConfigurationNo>0x001</ConfigurationNo>
+    <BBNo>BB99999</BBNo>
+    <ConfigurationType>DEVELOP</ConfigurationType>
+    <MTCVersion>10.6.1.0</MTCVersion>
+    <Comment>build configuration for MMP2 Dev Board with D3 device</Comment>
+    <BuildIdPrefix>BB99999</BuildIdPrefix>
+  </MTCConfiguration>
+  <MTCConfiguration>
+    <ConfigurationName>VMPSxD5EDxRef</ConfigurationName>
+    <ConfigurationNo>0x002</ConfigurationNo>
+    <BBNo>BB99999</BBNo>
+    <ConfigurationType>DEVELOP</ConfigurationType>
+    <MTCVersion>10.6.1.0</MTCVersion>
+    <Comment>build configuration for VMPS Dev Board with D5ED device</Comment>
+    <BuildIdPrefix>BB99999</BuildIdPrefix>
+  </MTCConfiguration>
+  <MTCConfiguration>
+    <ConfigurationName>VMPSxD5EDxRefxRelease</ConfigurationName>
+    <ConfigurationNo>0x003</ConfigurationNo>
+    <BBNo>BB99999</BBNo>
+    <ConfigurationType>RELEASE</ConfigurationType>
+    <MTCVersion>10.6.1.0</MTCVersion>
+    <Comment>build configuration for VMPS Dev Board with D5ED device</Comment>
+    <BuildIdPrefix>BB99999</BuildIdPrefix>
+  </MTCConfiguration>
+  <MTCConfiguration>
+    <ConfigurationName>VMPSxBR223</ConfigurationName>
+    <ConfigurationNo>0x101</ConfigurationNo>
+    <BBNo>BB99999</BBNo>
+    <ConfigurationType>DEVELOP</ConfigurationType>
+    <MTCVersion>10.6.1.0</MTCVersion>
+    <Comment>Initiated by: Grunwald
+Description: build configuration for VMPS Dev Board with D5ED device
+Use Case: CSW debugging</Comment>
+    <BuildIdPrefix>BB99999</BuildIdPrefix>
+  </MTCConfiguration>
+  <MTCConfiguration>
+    <ConfigurationName>VMPSxBR223xPlantD5</ConfigurationName>
+    <ConfigurationNo>0x102</ConfigurationNo>
+    <BBNo>BB99999</BBNo>
+    <ConfigurationType>DEVELOP</ConfigurationType>
+    <MTCVersion>10.6.1.0</MTCVersion>
+    <Comment>Initiated by: Kalkunte
+Description: build configuration for VMPS Dev Board with D5 device for Plant
+Use Case: Shaker / DKT tests, HW-Validation, Plant tests, delivery to Plant</Comment>
+    <BuildIdPrefix>BB99999</BuildIdPrefix>
+  </MTCConfiguration>
+  <MTCConfiguration>
+    <ConfigurationName>VMPSxBR223xPlantD5ED</ConfigurationName>
+    <ConfigurationNo>0x103</ConfigurationNo>
+    <BBNo>BB99999</BBNo>
+    <ConfigurationType>DEVELOP</ConfigurationType>
+    <MTCVersion>10.6.1.0</MTCVersion>
+    <Comment>Initiated by: Kalkunte
+Description: build configuration for VMPS Dev Board with D5ED device for Plant
+Use Case: HW-Validation, Plant tests, delivery to Plant</Comment>
+    <BuildIdPrefix>BB99999</BuildIdPrefix>
+  </MTCConfiguration>
+</MTCConfigurations>
+

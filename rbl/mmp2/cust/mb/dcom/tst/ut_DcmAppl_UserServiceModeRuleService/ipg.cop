@@ -1,0 +1,19 @@
+#
+# Cantata Test-Level Options
+#
+# Any options set in this file will override the options set in the
+# project-level options file.
+#
+# WARNING: Do not alter this file manually.
+#
+#tool.testid=f3447623-e213-42d9-9e7e-d858738412e2
+"--ci:--instr:stmt;func;decn;log;"
+"--sa:--calc:*#*"
+  
+#User Section
+"--parse:--warning_suppress:9001"
+"--parse:--warning_suppress:10427"
+"--dont_ci:*"
+"--do_ci:DcmAppl_UserServiceModeRuleService.c"
+"--ci:--no_instr:all"
+"--ci:--instr:stmt;func;call;decn;log;#DcmAppl_UserServiceModeRuleService"

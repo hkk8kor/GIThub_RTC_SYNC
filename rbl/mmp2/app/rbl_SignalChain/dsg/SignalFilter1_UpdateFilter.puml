@@ -1,0 +1,10 @@
+:get signalSetRaw
+Populate rbl_SigChain_FilVal with the selected filter value
+Update filVal with signalSetRaw for all values of Axis and for all Smus;
+repeat:Call Filter function;
+partition FilterFunction {
+:Apply IIR filter, 3rd degree Chebychev II;    
+}
+repeat while (filter steps (3) is complete?) is (yes)
+->no;
+: Update the timestamp with the groupdelay of the low pass filter;

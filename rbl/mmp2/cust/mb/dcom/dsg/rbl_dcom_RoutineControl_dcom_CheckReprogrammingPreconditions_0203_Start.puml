@@ -1,0 +1,20 @@
+start
+group RBFS_CheckProgPreCondition == RBFS_CheckProgPreCondition_ON 
+if (l_Platform_Stat_Star3 is not equal to DCOM_FBL_STAR3 AND dcom_isSpeedLimitExceeded(DCOM_REPROG_SPEEDLIMIT) then (yes)
+     :Current Data Length is set to 3;
+     :The array of data is updated with respective number of Unfulfilled PreConditions,Vehicle speed and Platform stat st3 signal;   
+elseif (l_Platform_Stat_Star3 is equal to DCOM_FBL_STAR3 AND dcom_isSpeedLimitExceeded(DCOM_REPROG_SPEEDLIMIT)) then (yes)
+     :Current Data Length is set to 2;
+     :The array of data is updated with respective number of Unfulfilled PreConditions and Vehicle speed; 
+elseif (l_Platform_Stat_Star3 is not equal to DCOM_FBL_STAR3 AND dcom_isSpeedLimitExceeded(DCOM_REPROG_SPEEDLIMIT)) then (yes)
+     :Current Data Length is set to 2;
+     :The array of data is updated with respective number of Unfulfilled PreConditions and Platform stat st3 signal;
+else(no)
+     :Current Data Length is set to 1 \n The array of data is updated with respective number of Unfulfilled PreConditions \n dcom_CheckReprogPreConditionFullfilled is set to TRUE;
+  endif
+end group
+group RBFS_CheckProgPreCondition == RBFS_CheckProgPreCondition_OFF 
+     :Current Data Length is set to 3  \n The array of data is updated with respective number of Unfulfilled PreConditions;
+end group
+     :The array of data is updated with successful Routine PreConditions ;
+stop

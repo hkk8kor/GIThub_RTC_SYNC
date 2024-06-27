@@ -1,0 +1,19 @@
+Start
+:Read the **RBMESG_PT4_PTCoor4_ST3** signal;
+if(PT4_PTCoor4_ST3 is received without timeout) then (Yes)
+:Validate the Received the received \n **PT4_PTCoor_EngStartPN14_Stat_ST3** signal;
+note right
+ invalid value include any other value
+ other than mentioned valid values
+end note
+if(PT4_PTCoor_EngStartPN14_Stat_ST3 signal is valid ? ) then (yes) 
+: Report to dem that \n **RBL_CUSTIF_SIGNAL_INVALID_PT4_PTCoor4_ST3** \n dem event is PREPASSED ;
+else (No) 
+: Report to dem that \n ****RBL_CUSTIF_SIGNAL_INVALID_PT4_PTCoor4_ST3** ** \n dem event is PREFAILED ; 
+: Update the PT4_PTCoor_EngStartPN14_Stat_ST3 signal with \n **I_C03_ENGSTARTPN14_STAT_SNA** value;
+endif
+else (No)
+: Update the PT4_PTCoor_EngStartPN14_Stat_ST3 signal with \n **I_C03_ENGSTARTPN14_STAT_NO_COMBUSTIONSTART_RQ** value;
+endif
+: Transmit the updated signal via \n **RBMESG_rbl_CustIf_PT4_PTCoor4_ST3** Variable;
+Stop

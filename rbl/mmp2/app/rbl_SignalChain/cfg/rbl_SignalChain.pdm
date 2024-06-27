@@ -1,0 +1,50 @@
+begin_comment
+#include "rbl_SigChain_Nvm.h"
+end_comment
+
+#include "RBPDMDB_Customer.pdmdb"
+
+
+use dataitem rbl_SigChain_AlgnmntAccVal
+{
+    job interface
+    {
+        read_callback = rbl_SigChain_AlgnAccSnvtyReadCb;
+        write_callback = rbl_SigChain_GenericWriteCb;
+        result_callback = rbl_SigChain_AlgnAccSnvtyResultCb;
+    }
+
+    startup read;
+    plant eol preserve;
+    writecycles = 10;
+}
+
+use dataitem rbl_SigChain_AlgnmntRateVal
+{
+    job interface
+    {
+        read_callback = rbl_SigChain_AlgnRateSnvtyReadCb;
+        write_callback = rbl_SigChain_GenericWriteCb;
+        result_callback = rbl_SigChain_AlgnRateSnvtyResultCb;
+
+    }
+
+    startup read;
+    plant eol preserve;
+    writecycles = 10;
+}
+
+#if (RBFS_NvmBasedFilter == RBFS_NvmBasedFilter_ON)
+use dataitem rbl_SigChain_PickFil
+{
+    job interface
+    {
+        ram_block   = rbl_SigChain_PickFilValue;
+        result_callback = rbl_SigChain_PickFilResultCb;
+    }
+
+    startup read;
+    plant eol preserve;
+    writecycles = 10;
+}
+#endif

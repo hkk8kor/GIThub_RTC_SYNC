@@ -1,0 +1,67 @@
+start
+
+note right 
+The update is enclosed within RBSYS_EnterCorelocalIntlock and RBSYS_ExitCorelocalIntlock
+To protect the data 
+end note
+
+if (Check if StbM_GetCurrentTime is set to E_NOT_OK) then (yes)
+  :Log the RBL_STBM_TIME_COPY DEM event as FAILED;
+else (no)
+  :Log the RBL_STBM_TIME_COPY DEM event as PASSED;
+endif
+
+note right 
+To check for the Time copy from Time Domain 0 to 
+Time Domain 32 for Get Function 
+end note
+
+if (Check if StbM_GetRateDeviation is set to E_NOT_OK) then (yes)
+  :Log the RBL_STBM_RATE_COPY DEM event as FAILED;
+else (no)
+  :Log the RBL_STBM_RATE_COPY DEM event as PASSED;
+endif
+
+note right 
+To check for the Rate correction copy from Time Domain 0 to 
+Time Domain 32 for Get Function 
+end note
+
+if (Check if rbl_Custif_Gtslocalfallback is equal to FALSE) then (yes)
+:Call the below functions with the specific arguments
+rbl_TiSync_StbMAddNanoSeconds() Function with arguments 
+timestampGTS_st and RBL_CUSTIF_CLONING_DELAY_NS;
+
+if (Check if StbM_SetGlobalTime is set to E_NOT_OK) then (yes)
+  :Log the RBL_STBM_TIME_COPY DEM event as FAILED;
+else (no)
+  :Log the RBL_STBM_TIME_COPY DEM event as PASSED;
+endif
+
+note right 
+To check for the Time copy from Time Domain 0 to 
+Time Domain 32 for Set Function 
+end note
+
+if (Check if StbM_SetRateCorrection is set to E_NOT_OK) then (yes)
+  :Log the RBL_STBM_RATE_COPY DEM event as FAILED;
+else (no)
+  :Log the RBL_STBM_RATE_COPY DEM event as PASSED;
+endif
+
+note right 
+To check for the Rate correction copy from Time Domain 0 
+to Time Domain 32 for Set Function 
+end note
+
+else (no)
+:Call the function Bfx_SetBit_u8u8() with arguments
+TimeStampStatus and RBL_CUSTIF_SYNC2PURELOCAL_TIMEBASE_BflPn;
+endif
+
+:Update Return Value with StbM_GetCurrentTime() Function with arguments
+TimeBaseIdPureLocal, pTimeGTS_st and UserData_st;
+note right 
+Global Time Sync Timestamp for pure local time
+end note 
+stop

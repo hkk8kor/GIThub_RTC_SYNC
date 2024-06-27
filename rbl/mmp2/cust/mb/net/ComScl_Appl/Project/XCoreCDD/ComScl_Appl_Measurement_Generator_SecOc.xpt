@@ -1,0 +1,170 @@
+«REM»
+<BASDKey>
+**********************************************************************************************************************
+*
+* COPYRIGHT RESERVED, Robert Bosch GmbH, 2019. All rights reserved.
+* The reproduction, distribution and utilization of this document as well as the communication of its contents to
+* others without explicit authorization is prohibited. Offenders will be held liable for the payment of damages.
+* All rights reserved in the event of the grant of a patent, utility model or design.
+*
+**********************************************************************************************************************
+* Administrative Information (automatically filled in)
+* $Domain____:$
+* $Namespace_:$
+* $Class_____:$
+* $Name______:$
+* $Variant___:$
+* $Revision__:$
+**********************************************************************************************************************
+</BASDKey>
+«ENDREM»
+
+«IMPORT bsw»
+«IMPORT bsw::rba_NdsModule»
+«IMPORT bsw::rba_Nds_DgsModule»
+
+«EXTENSION rba_Nds_PduCommUtil»
+«EXTENSION rba_Nds_Util»
+«EXTENSION rba_Nds_DgsUtil»
+
+«DEFINE Generate FOR Autosar»
+    «IF this.isModuleExistent("SecOC")»
+        «FILE "ComScl_SecOC_Measurement.c"»
+            /*
+             ********************************************************************************************************************** 
+             *
+             * COPYRIGHT RESERVED, 2019 Robert Bosch GmbH. All rights reserved.
+             * The reproduction, distribution and utilization of this document as well as the communication of its contents to
+             * others without explicit authorization is prohibited. Offenders will be held liable for the payment of damages.
+             * All rights reserved in the event of the grant of a patent, utility model or design.
+             *
+             ********************************************************************************************************************** 
+             */
+            #include "SecOC.h"
+            #include "CM_Basetypes_COMMON.h"
+            
+            typedef enum /*TOOL_SCAN*/
+            {
+                SECOC_TX_AUTHENTIC_STATE_IDLE_E        = 16,
+                SECOC_TX_STATE_SENDING_E               = 17
+            } SecOC_Prv_TxAuthenticPduState_ten;
+
+            typedef enum /*TOOL_SCAN*/
+            {
+                SECOC_TX_SECURED_STATE_IDLE_E          = 32,
+                SECOC_TX_STATE_GENERATE_E              = 33,
+                SECOC_TX_STATE_SENT_E                  = 34,    
+                SECOC_TX_STATE_CANCEL_PENDING_E        = 35,
+                SECOC_TX_STATE_WAIT_FOR_CSM_CALLBACK_E = 36
+            } SecOC_Prv_TxSecuredPduState_ten;
+            
+            typedef enum /*TOOL_SCAN*/
+            {
+                SECOC_RX_STATE_IDLE_E                  = 0,
+                SECOC_RX_STATE_RECEIVING_E             = 1,
+                SECOC_RX_STATE_RECEIVED_E              = 2,
+                SECOC_RX_STATE_MAC_VERIFY_FINISHED_E   = 3,
+                SECOC_RX_STATE_WAIT_FOR_CSM_CALLBACK_E = 4
+            } SecOC_Prv_RxPduState_ten;
+
+            /****************************************************************************/
+            /* Measurement block Transmit Config                                        */
+            /****************************************************************************/
+            «FOREACH this.secOC.secOCTxPduProcessing.sortBy(e|e.secOCTxAuthenticPduLayer.secOCTxAuthenticLayerPduId) AS txPdu ITERATOR index»
+            /****************************************************************************/
+            /* «txPdu.shortName» */
+            /****************************************************************************/
+            /*[[MEASUREMENT*/
+		    /*NAME=SecOC_Prv_TxAuthenticPduContext_ast[«index.counter0»].status_e*/
+		    /*MODEL_NAME=«txPdu.shortName»_Authentic_Status*/
+		    /*DATA_TYPE=enum*/
+		    /*COMMENT=Status of AuthenticPdu «txPdu.shortName» («txPdu.secOCTxAuthenticPduLayer.secOCTxAuthenticLayerPduRef.shortName»)*/
+		    /*FORMULA=SecOC_Prv_TxAuthenticPduState_ten*/
+		    /*MINBORDER=16*/
+		    /*MAXBORDER=17*/
+		    /*MTEVENT=c_MT_Default_Task_x1*/
+		    /*]]MEASUREMENT*/
+		    /*
+		    */
+		    /*[[MEASUREMENT*/
+            /*NAME=SecOC_Prv_TxAuthenticPduContext_ast[«index.counter0»].isLocked_b*/
+            /*MODEL_NAME=«txPdu.shortName»_Authentic_IsLocked*/
+            /*DATA_TYPE=boolean*/
+            /*COMMENT=Is buffer of AuthenticPdu «txPdu.shortName» («txPdu.secOCTxAuthenticPduLayer.secOCTxAuthenticLayerPduRef.shortName») locked*/
+            /*FORMULA=NF_IDENTITY*/
+            /*MINBORDER=0*/
+            /*MAXBORDER=1*/
+            /*MTEVENT=c_MT_Default_Task_x1*/
+            /*]]MEASUREMENT*/
+            /*
+            */
+            /*[[MEASUREMENT*/
+            /*NAME=SecOC_Prv_TxSecuredPduContext_ast[«index.counter0»].status_e*/
+            /*MODEL_NAME=«txPdu.shortName»_Secured_Status*/
+            /*DATA_TYPE=enum*/
+            /*COMMENT=Status of SecuredPdu «txPdu.shortName» («txPdu.secOCTxAuthenticPduLayer.secOCTxAuthenticLayerPduRef.shortName»)*/
+            /*FORMULA=SecOC_Prv_TxSecuredPduState_ten*/
+            /*MINBORDER=32*/
+            /*MAXBORDER=36*/
+            /*MTEVENT=c_MT_Default_Task_x1*/
+            /*]]MEASUREMENT*/
+            /*
+            */
+            /*[[MEASUREMENT*/
+            /*NAME=SecOC_Prv_TxSecuredPduContext_ast[«index.counter0»].isLocked_b*/
+            /*MODEL_NAME=«txPdu.shortName»_Secured_IsLocked*/
+            /*DATA_TYPE=boolean*/
+            /*COMMENT=Is buffer of SecuredPdu «txPdu.shortName» («txPdu.secOCTxAuthenticPduLayer.secOCTxAuthenticLayerPduRef.shortName») locked*/
+            /*FORMULA=NF_IDENTITY*/
+            /*MINBORDER=0*/
+            /*MAXBORDER=1*/
+            /*MTEVENT=c_MT_Default_Task_x1*/
+            /*]]MEASUREMENT*/
+            /*
+            */
+		    «ENDFOREACH»
+		    
+		    /****************************************************************************/
+            /* Measurement block Receive Config                                         */
+            /****************************************************************************/
+            «FOREACH this.secOC.secOCRxPduProcessing.sortBy(e|e.secOCRxAuthenticPduLayer.secOCTxAuthenticLayerPduId) AS txPdu ITERATOR index»
+            /****************************************************************************/
+            /* «txPdu.shortName» */
+            /****************************************************************************/
+            /*[[MEASUREMENT*/
+            /*NAME=SecOC_Prv_RxPduContext_ast[«index.counter0»].status_e*/
+            /*MODEL_NAME=«txPdu.shortName»_Status*/
+            /*DATA_TYPE=uint8*/
+            /*COMMENT=Status of Pdu «txPdu.shortName» («txPdu.secOCTxAuthenticPduLayer.secOCTxAuthenticLayerPduRef.shortName»)*/
+            /*FORMULA=SecOC_Prv_RxPduState_ten*/
+            /*MINBORDER=0*/
+            /*MAXBORDER=4*/
+            /*MTEVENT=c_MT_Default_Task_x1*/
+            /*]]MEASUREMENT*/
+            /*
+            */
+            /*[[MEASUREMENT*/
+            /*NAME=SecOC_Prv_RxPduContext_ast[«index.counter0»].isLocked_b*/
+            /*MODEL_NAME=«txPdu.shortName»_IsLocked*/
+            /*DATA_TYPE=boolean*/
+            /*COMMENT=Is buffer of Pdu «txPdu.shortName» («txPdu.secOCTxAuthenticPduLayer.secOCTxAuthenticLayerPduRef.shortName»)*/
+            /*FORMULA=NF_IDENTITY*/
+            /*MINBORDER=0*/
+            /*MAXBORDER=1*/
+            /*MTEVENT=c_MT_Default_Task_x1*/
+            /*]]MEASUREMENT*/
+            /*
+            */
+            «ENDFOREACH»
+        «ENDFILE»
+    «ENDIF»
+«ENDDEFINE»
+
+«REM»
+<BASDKey>
+**********************************************************************************************************************
+* Administrative Information (automatically filled in)
+* $History___:$
+**********************************************************************************************************************
+</BASDKey>
+«ENDREM»

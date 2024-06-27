@@ -1,0 +1,26 @@
+#
+# Cantata Test-Level Options
+#
+# Any options set in this file will override the options set in the
+# project-level options file.
+#
+# WARNING: Do not alter this file manually.
+#
+#tool.testid=8bf30af0-a1b9-4b1f-a78a-4edbef4e57ab
+"--ci:--instr:stmt;func;decn;log;"
+"--sa:--calc:*#*"
+"--sm:--access_function:"dcom_Lib.c":RBSYS_EnterCommonLockSysfast()"
+"--sm:--access_function:"dcom_Lib.c":RBSYS_ExitCommonLockSysfast()"
+"--sm:--access_variable:"dcom_Lib.c":dcom_EepromReadByPdmState"
+"--sm:--access_variable:"dcom_Lib.c":dcom_EepromWriteByPdmState"
+"--sm:--wrap:RBSYS_EnterCommonLockSysfast()#dcom_isSpeedLimitExceeded(uint16 )"
+"--sm:--wrap:RBSYS_ExitCommonLockSysfast()#dcom_isSpeedLimitExceeded(uint16 )"
+
+#User Section
+"--dont_ci:*"
+"--do_ci:dcom_Lib.c"
+"--ci:--no_instr:all"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_Lib_ReadNvMData"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_Lib_WriteNvMData"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_isSpeedLimitExceeded"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_Lib_HexNibble2ASCII"

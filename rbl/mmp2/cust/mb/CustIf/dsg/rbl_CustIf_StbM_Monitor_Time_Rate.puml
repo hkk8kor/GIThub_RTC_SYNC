@@ -1,0 +1,15 @@
+@startuml
+start
+if (Check if Bfx_GetBit_u8u8_u8() function for eventStatus for GTS_DEMEVENT_GETCURRENT bit or GTS_DEMEVENT_SETCURRENT bit is set to TRUE) then (yes)
+  :Log the RBL_STBM_TIME_COPY DEM event as FAILED;
+else (no)
+
+endif
+
+if (Check if Bfx_GetBit_u8u8_u8() function for eventStatus for GTS_DEMEVENT_GETRATE bit or GTS_DEMEVENT_SETRATE bit is set to TRUE) then (yes)
+  :Log the RBL_STBM_RATE_COPY DEM event as FAILED;
+else (no)
+
+endif
+stop
+@enduml

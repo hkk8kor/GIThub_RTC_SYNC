@@ -1,0 +1,13 @@
+start
+if (Check if Data is not equal to null pointer) is (yes) then
+while (l_dcom_HexBlock.hasNext is set to a value) is (l_dcom_HexBlock is set)
+if (Check if l_dcom_HexBlock.HexInfoRef->BlockStructureID is equal to RBLCF_HEXINFOTYPE_FSW OR l_dcom_HexBlock.HexInfoRef->BlockStructureID is equal to RBLCF_HEXINFOTYPE_COMPLETE) is (yes) then
+else (no)
+     :Do Nothing;
+endif 
+:Function RBLCF_GetFirstHexBlock would be called\nFunction memcpy would be called\nThe array of data is updated to convert values from Hex Nibble to ASCII values\nreturn value would be E_OK;
+endwhile (Data is not available)
+     :No available data to fill;
+else (no) 
+endif
+stop

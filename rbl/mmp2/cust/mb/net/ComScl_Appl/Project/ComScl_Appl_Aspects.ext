@@ -1,0 +1,9 @@
+import bsw::rba_NdsModule;
+
+around *rba_ComScl_Aspect_getMtEvent(rba_Nds_ReceiveSignalPdu rbaNdsRxPdu):
+    "c_MT_Default_Task_x2"
+;
+
+around *rba_ComScl_Aspect_getMtEvent(rba_Nds_TransmitSignalPdu rbaNdsTxPdu):
+    "c_MT_Default_Task_x2"
+;

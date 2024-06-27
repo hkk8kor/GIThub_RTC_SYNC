@@ -1,0 +1,10 @@
+<workflow>
+
+    <!-- Forward data from NDS to ComStack -->
+    <component class="${ForwardComponent}">
+        <metaModel id="mm" class="${MetaModel}" />
+        <invoke value="ComScl_Appl_Forward::ComScl_Appl_Forward(model)"/>
+        <outputSlot value="genIdModel" />
+    </component>
+
+</workflow>

@@ -1,0 +1,14 @@
+:start;
+start
+group RBFS_OEMBootloader == RBFS_OEMBootloader_Yes
+    :Set reprogramming request inverted to DCOM_REQPROGREQUESTINVERTED;
+group RBFS_DcomSecondTesterSupport == RBFS_DcomSecondTesterSupport_ON
+    if(Requested tester is DCOM_SECOND_TESTER) then (yes)
+    :Set reset reason to DCOM_PROGRAMMINGSESSION_2NDTESTER;
+    else
+    :Set reset reason to DCOM_PROGRAMMINGSESSION;
+    endif
+    :Perform reset;     
+end group
+stop
+end

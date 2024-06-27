@@ -1,0 +1,27 @@
+/* ************************************************************************** *
+ *
+ *  Copyright (c) 2020 Robert Bosch GmbH, Germany
+ *  All rights reserved.
+ *
+ * ************************************************************************** */
+#include "rbl_SigChain_OsPub.h"
+
+/******************************************************************************/
+/* header includes                                                            */
+/******************************************************************************/
+
+/*PROC_SECTION: RBLSIGCHAIN_Subsystem */
+rbl_SigChain_OsPub.h
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* processes entries                                                          */
+/******************************************************************************/
+
+/*PROC_SECTION: SPG_RBLSIGCHAIN_Init */
+rbl_SigChainInit
+/*PROC_SECTION_END: */
+
+/*PROC_SECTION: SPG_RBLSIGCHAIN_1ms */
+rbl_SigChain_Proc
+/*PROC_SECTION_END: */

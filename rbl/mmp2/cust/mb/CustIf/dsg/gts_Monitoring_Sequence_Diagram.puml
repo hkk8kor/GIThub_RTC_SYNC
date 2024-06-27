@@ -1,0 +1,5 @@
+StbM -> StbM : StbM initialization
+StbM -> StbM : StbM shall periodically monitor GTS failures as below\n Init_Sync, Lost_Sync and TimeLeap
+note left of StbM : StbM shall set the respective bit in\n StbM_TimeBaseStatusType for the corresponding failure.
+StbM <- CustIf : CustIf shall read the status of\n StbM_TimeBaseStatusType.
+CustIf -> DEM  : CustIf shall report to DEM\n to log the corresponding failure.

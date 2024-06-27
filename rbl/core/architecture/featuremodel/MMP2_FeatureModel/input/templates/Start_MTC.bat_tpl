@@ -1,0 +1,15 @@
+SET BV=#configname#
+
+echo ***********************************************************************
+echo * STARTING BUILD FOR VARIANT: %BV%
+echo ***********************************************************************
+
+cd ..
+
+SET LOG=.\Gen\%BV%\LastBuildOut_#type#.txt
+if exist %LOG% del /S /Q %LOG%
+if not exist .\Gen\%BV% mkdir .\Gen\%BV%
+
+powershell "rbl\#prod#\global\tools\BuildTools\StartMTC.bat %BV% #incremental#| tee %LOG%"
+
+pause

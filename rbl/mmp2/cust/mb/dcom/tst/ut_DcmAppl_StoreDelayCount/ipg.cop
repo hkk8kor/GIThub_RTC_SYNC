@@ -1,0 +1,19 @@
+#
+# Cantata Test-Level Options
+#
+# Any options set in this file will override the options set in the
+# project-level options file.
+#
+# WARNING: Do not alter this file manually.
+#
+#tool.testid=ff5ef228-4e0a-4c20-9ac1-9874e9454ba5
+"--ci:--instr:stmt;func;decn;log;"
+"--sa:--calc:*#*"
+   
+#User Section
+"--parse:--warning_suppress:9001"
+"--parse:--warning_suppress:10427"
+"--dont_ci:*"
+"--do_ci:DcmAppl_StoreDelayCount.c"
+"--ci:--no_instr:all"
+"--ci:--instr:stmt;func;call;decn;log;#DcmAppl_StoreDelayCount"

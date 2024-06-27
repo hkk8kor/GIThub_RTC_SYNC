@@ -1,0 +1,11 @@
+start
+if (Check if Data is not equal to null pointer) is (yes) then
+     :return value would be updated with Data of dcom_Lib_ReadNvMData and Block_Id,NvM_Length and Fill_NvM is filled from the Nvm block;
+if (Check if retVal is equal to E_OK) is (yes) then
+     :The array of data is updated as below \nThe second data array index is equal to DCOM_MAX_REPROG_ATT_MSB\nand the Third data array index is equal to DCOM_MAX_REPROG_ATT_LSB;
+else (no)
+     :Do Nothing;
+endif     
+else (no)
+endif
+stop

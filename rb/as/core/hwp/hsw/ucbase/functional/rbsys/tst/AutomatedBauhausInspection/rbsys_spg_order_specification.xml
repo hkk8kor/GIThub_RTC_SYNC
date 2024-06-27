@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Alternative approach could be to specify this as comments in the mainproclist like the SEQUENCE comments -->
+<SpgOrderRequirements>
+    <Requirement>
+            <Id>Gen_SWFS_0979_HSW_OverallRequirements_888</Id>
+            <!-- The order given here is only for relative order not the real order in mainproclist -->
+            <SpgList>
+              <Spg order="0">SPG_RBCLMA_INIT</Spg>
+              <Spg order="1">SPG_RBECM_Safety_common</Spg>
+            </SpgList>
+    </Requirement>
+    <Requirement>
+            <Id>Gen_SWCS_HSW_uC_Base_SYS-242</Id>
+            <!-- The order given here is only for relative order not the real order in mainproclist -->
+            <SpgList>
+              <Spg order="0">SPG_RBCLMA_INIT</Spg>
+              <Spg order="1">SPG_RBECM_Safety_common</Spg>
+            </SpgList>
+    </Requirement>
+</SpgOrderRequirements>

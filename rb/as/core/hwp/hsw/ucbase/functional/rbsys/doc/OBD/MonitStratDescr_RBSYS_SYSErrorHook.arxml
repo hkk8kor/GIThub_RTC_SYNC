@@ -1,0 +1,1151 @@
+<?xml version='1.0' encoding='utf-8'?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-0-2.xsd">
+  
+  <ADMIN-DATA>
+    <LANGUAGE>EN</LANGUAGE>
+    <USED-LANGUAGES>
+      <L-10 L="EN" xml:space="preserve">EN</L-10>
+    </USED-LANGUAGES>
+    <DOC-REVISIONS>
+      <DOC-REVISION>
+        <REVISION-LABEL>1.1</REVISION-LABEL>
+        <STATE>DRAFT</STATE>
+        <DATE>25/01/2023</DATE>
+        <MODIFICATIONS>
+          <MODIFICATION>
+            <CHANGE>
+              <L-2 L="EN" />
+            </CHANGE>
+            <REASON>
+              <L-2 L="EN" />
+            </REASON>
+          </MODIFICATION>
+        </MODIFICATIONS>
+      </DOC-REVISION>
+    </DOC-REVISIONS>
+  </ADMIN-DATA>
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>RB</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE>
+          <SHORT-NAME>Common</SHORT-NAME>
+          <AR-PACKAGES>
+            <AR-PACKAGE>
+              <SHORT-NAME>Documentations</SHORT-NAME>
+              <ELEMENTS>
+                                <DOCUMENTATION>
+                                    <SHORT-NAME>EB_DOCUMENTATION_MONITOR_OBDDOCUMENTATION</SHORT-NAME>
+                                    <LONG-NAME>
+                                        <L-4 L="EN">EB Documentation - Monitor Description</L-4>
+                                    </LONG-NAME>
+                                    <DESC>
+                                        <L-2 L="EN">OBDDocumentation View</L-2>
+                                    </DESC>
+                                    <CATEGORY>ARREP</CATEGORY>
+                                    <DOCUMENTATION-CONTENT>
+                                        <CHAPTER>
+                                            <SHORT-NAME>OBDDOCU_MONIT_STRAT_DESCR</SHORT-NAME>
+                                            <TABLE>
+                                                <TABLE-CAPTION>
+                                                    <SHORT-NAME>TAB_STRAT_</SHORT-NAME>
+                                                    <LONG-NAME>
+                                                        <L-4 L="EN">Monitoring Strategy description</L-4>
+                                                    </LONG-NAME>
+                                                </TABLE-CAPTION>
+                                                <TGROUP COLS="2">
+                                                    <COLSPEC COLNAME="col1" COLNUM="1" COLWIDTH="1.00*" />
+                                                    <COLSPEC COLNAME="col2" COLNUM="2" COLWIDTH="1.00*" />
+                                                    <TBODY>
+                                                        <ROW>
+                                                            <ENTRY COLNAME="col1" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Monitoring one sentence description</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col2" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">This monitoring checks for several internal system failures.</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                        </ROW>
+                                                        <ROW>
+                                                            <ENTRY COLNAME="col1" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Additional description of Monitoring strategy</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col2" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">This monitoring detects if:
+<BR />- unsupported interrupts from hardware occurred, or
+<BR />- interrupt lock APIs called unbalanced or for too long time, or
+<BR />- standby controller/memory protection could not be initialized correctly (caused by conflicting configurations), or
+<BR />- synchronized time base deviates from system time base, or
+<BR />- internal system timers deviate (ODR comment: this is only valid for projects using D6 or D7 microcontroller), or
+<BR />- invalid API is called.</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                        </ROW>
+                                                    <ROW>
+                                                            <ENTRY COLNAME="col1" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Monitoring LongName</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col2" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">System Failure Monitoring</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                        </ROW>
+                                                        </TBODY>
+                                                </TGROUP>
+                                            </TABLE>
+                                            <TABLE>
+                                                <TABLE-CAPTION>
+                                                    <SHORT-NAME>TAB_MALFUNC_CRIT_FREE_TEXT_</SHORT-NAME>
+                                                    <LONG-NAME>
+                                                        <L-4 L="EN">Malfunction Criteria Free Text</L-4>
+                                                    </LONG-NAME>
+                                                </TABLE-CAPTION>
+                                                <TGROUP COLS="1">
+                                                    <COLSPEC COLNAME="col1" COLNUM="1" COLWIDTH="1.00*" />
+                                                    <TBODY>
+                                                        <ROW>
+                                                            <ENTRY COLNAME="col1" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Malfunction Criteria Free Text</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                        </ROW>
+                                                        <ROW>
+                                                            <ENTRY COLNAME="col1" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                            </ENTRY>
+                                                        </ROW>
+                                                    </TBODY>
+                                                </TGROUP>
+                                            </TABLE>
+                                        <TABLE>
+                                                <TABLE-CAPTION>
+                                                    <SHORT-NAME>ENA_COND_</SHORT-NAME>
+                                                    <LONG-NAME>
+                                                        <L-4 L="EN">Enable Conditions</L-4>
+                                                    </LONG-NAME>
+                                                </TABLE-CAPTION>
+                                                <TGROUP COLS="12">
+                                                    <COLSPEC COLNAME="col1" COLNUM="1" COLWIDTH="1.00*" />
+                                                    <COLSPEC COLNAME="col2" COLNUM="2" COLWIDTH="1.00*" />
+                                                    <COLSPEC COLNAME="col3" COLNUM="3" COLWIDTH="1.00*" />
+                                                    <COLSPEC COLNAME="col4" COLNUM="4" COLWIDTH="1.00*" />
+                                                    <COLSPEC COLNAME="col5" COLNUM="5" COLWIDTH="1.00*" />
+                                                    <COLSPEC COLNAME="col6" COLNUM="6" COLWIDTH="1.00*" />
+                                                    <COLSPEC COLNAME="col7" COLNUM="7" COLWIDTH="1.00*" />
+                                                    <COLSPEC COLNAME="col8" COLNUM="8" COLWIDTH="1.00*" />
+                                                    <COLSPEC COLNAME="col9" COLNUM="9" COLWIDTH="1.00*" />
+                                                    <COLSPEC COLNAME="col10" COLNUM="10" COLWIDTH="1.00*" />
+                                                    <COLSPEC COLNAME="col11" COLNUM="11" COLWIDTH="1.00*" />
+                                                    <COLSPEC COLNAME="col12" COLNUM="12" COLWIDTH="1.00*" />
+                                                    <THEAD>
+                                                        <ROW>
+                                                            <ENTRY COLNAME="col1" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Secondary Parameters</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY MOREROWS="0" NAMEEND="col6" NAMEST="col2">
+                                                                <P>
+                                                                    <L-1 L="EN">Enable Condition</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY MOREROWS="0" NAMEEND="col10" NAMEST="col7">
+                                                                <P>
+                                                                    <L-1 L="EN">Malfunction Criteria Threshold Value for Summary Table</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                        <ENTRY COLNAME="col11" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Frequency of checks</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col12" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Time Required</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            </ROW>
+                                                    </THEAD>
+                                                    <TBODY>
+                                                        <ROW>
+                                                            <ENTRY COLNAME="col1" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Secondary Parameters</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col2" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Enable Conditions Summary Table Operator</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col3" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Enable Conditions Summary Table Parameter Value/Name</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col4" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Enable Conditions Summary Table Unit</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY MOREROWS="0" NAMEEND="col6" NAMEST="col5">
+                                                                <P>
+                                                                    <L-1 L="EN">Enable Conditions Technical Description</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col7" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Malfunction Criteria</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col8" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Operator</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                        <ENTRY COLNAME="col9" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Parameter Value/Name</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col10" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Unit</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col11" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Frequency of checks</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col12" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Time Required</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            </ROW>
+                                                        <ROW>
+                                                            <ENTRY COLNAME="col1" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Detailed View</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col2" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Detailed View</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col3" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Detailed View</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col4" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Detailed View</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col5" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN"><E COLOR="#969696" xmlns="">Detailed View</E></L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col6" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN"><E COLOR="#969696" xmlns="">Detailed View</E></L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col7" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Detailed view</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col8" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Detailed view</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col9" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Detailed view</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col10" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Detailed view</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                        <ENTRY COLNAME="col11" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Detailed View</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col12" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Detailed View</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            </ROW>
+                                                        <ROW>
+                                                            <ENTRY COLNAME="col1" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Ignition state</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col2" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">=</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col3" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">ON</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col4" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col5" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">=</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col6" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">ON</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col7" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Interrupt based fault occurred (e.g. too long interrupt lock)</L-1>
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN">OR</L-1>
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN">Configuration of microcontroller modules failed</L-1>
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN">OR</L-1>
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN">Internal time base deviates from expected time base</L-1>
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN">OR</L-1>
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN">Invalid API is called</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col8" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">=</L-1>
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN">=</L-1>
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN">=</L-1>
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN">=</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col9" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN"> True</L-1>
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN">True</L-1>
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN">True</L-1>
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN">True</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col10" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                            </ENTRY>
+                                                        <ENTRY COLNAME="col11" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Continuous</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                        <ENTRY COLNAME="col12" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                            </ENTRY>
+                                                            </ROW>
+                                                        <ROW>
+                                                            <ENTRY COLNAME="col1" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN"><E COLOR="#969696">Customer View</E></L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col2" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN"><E COLOR="#969696">Customer View</E></L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col3" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN"><E COLOR="#969696">Customer View</E></L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col4" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN"><E COLOR="#969696">Customer View</E></L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col5" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN"><E COLOR="#969696">Customer View</E></L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col6" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN"><E COLOR="#969696">Customer View</E></L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col7" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN"><E COLOR="#969696">Customer view</E></L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col8" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN"><E COLOR="#969696">Customer view</E></L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col9" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN"><E COLOR="#969696">Customer view</E></L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col10" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN"><E COLOR="#969696">Customer view</E></L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                        <ENTRY COLNAME="col11" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN"><E COLOR="#969696">Customer View</E></L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col12" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN"><E COLOR="#969696">Customer View</E></L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            </ROW>
+                                                        <ROW>
+                                                            <ENTRY COLNAME="col1" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Ignition state</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col2" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">=</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col3" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">ON</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col4" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col5" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">=</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col6" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">ON</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col7" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Interrupt based fault occurred (e.g. too long interrupt lock)</L-1>
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN">OR</L-1>
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN">Configuration of microcontroller modules failed</L-1>
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN">OR</L-1>
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN">Internal time base deviates from expected time base</L-1>
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN">OR</L-1>
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN">Invalid API is called</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col8" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">=</L-1>
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN">=</L-1>
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN">=</L-1>
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN">=</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col9" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN"> True</L-1>
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN">True</L-1>
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN">True</L-1>
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN">True</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col10" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                            </ENTRY>
+                                                        <ENTRY COLNAME="col11" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Continuous</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                        <ENTRY COLNAME="col12" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                            </ENTRY>
+                                                            </ROW>
+                                                    </TBODY>
+                                                </TGROUP>
+                                            </TABLE>
+                                            <TABLE>
+                                                <TABLE-CAPTION>
+                                                    <SHORT-NAME>Goodcheck_COND_</SHORT-NAME>
+                                                    <LONG-NAME>
+                                                        <L-4 L="EN">Goodcheck Conditions</L-4>
+                                                    </LONG-NAME>
+                                                </TABLE-CAPTION>
+                                                <TGROUP COLS="12">
+                                                    <COLSPEC COLNAME="col1" COLNUM="1" COLWIDTH="1.00*" />
+                                                    <COLSPEC COLNAME="col2" COLNUM="2" COLWIDTH="1.00*" />
+                                                    <COLSPEC COLNAME="col3" COLNUM="3" COLWIDTH="1.00*" />
+                                                    <COLSPEC COLNAME="col4" COLNUM="4" COLWIDTH="1.00*" />
+                                                    <COLSPEC COLNAME="col5" COLNUM="5" COLWIDTH="1.00*" />
+                                                    <COLSPEC COLNAME="col6" COLNUM="6" COLWIDTH="1.00*" />
+                                                    <COLSPEC COLNAME="col7" COLNUM="7" COLWIDTH="1.00*" />
+                                                    <COLSPEC COLNAME="col8" COLNUM="8" COLWIDTH="1.00*" />
+                                                    <COLSPEC COLNAME="col9" COLNUM="9" COLWIDTH="1.00*" />
+                                                    <COLSPEC COLNAME="col10" COLNUM="10" COLWIDTH="1.00*" />
+                                                    <COLSPEC COLNAME="col11" COLNUM="11" COLWIDTH="1.00*" />
+                                                    <COLSPEC COLNAME="col12" COLNUM="12" COLWIDTH="1.00*" />
+                                                    <THEAD>
+                                                        <ROW>
+                                                            <ENTRY COLNAME="col1" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Good Check Secondary Parameters</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY MOREROWS="0" NAMEEND="col6" NAMEST="col2">
+                                                                <P>
+                                                                    <L-1 L="EN">Good Check Enable Condition</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY MOREROWS="0" NAMEEND="col10" NAMEST="col7">
+                                                                <P>
+                                                                    <L-1 L="EN">Good Check Thershold Value for Summary Table</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                        <ENTRY COLNAME="col11" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Good Check Frequency of Checks</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col12" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Good Check Time Required</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            </ROW>
+                                                    </THEAD>
+                                                    <TBODY>
+                                                        <ROW>
+                                                            <ENTRY COLNAME="col1" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Secondary Parameters for Good Check</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col2" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Enable Conditions Summary Table Operator for Good Check</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col3" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Enable Conditions Summary Table Parameter Value/Name for Good Check</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col4" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Enable Conditions Summary Table Unit for Good Check Criteria</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY MOREROWS="0" NAMEEND="col6" NAMEST="col5">
+                                                                <P>
+                                                                    <L-1 L="EN">Enable Conditions Technical Description for Good Check</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col7" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Good Check Criteria</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col8" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Operator for Good Check</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                        <ENTRY COLNAME="col9" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Parameter Value/Name for Good Check</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col10" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Unit for Good Check</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col11" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Frequency of Checks for Good Check</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col12" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Time Required for Good Check</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            </ROW>
+                                                        <ROW>
+                                                            <ENTRY COLNAME="col1" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Detailed View</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col2" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Detailed View</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col3" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Detailed View</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col4" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Detailed View</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col5" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN"><E COLOR="#969696" xmlns="">Detailed View</E></L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col6" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN"><E COLOR="#969696" xmlns="">Detailed View</E></L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col7" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Detailed view</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col8" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Detailed view</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col9" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Detailed view</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col10" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Detailed view</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                        <ENTRY COLNAME="col11" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Detailed View</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col12" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Detailed View</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            </ROW>
+                                                        <ROW>
+                                                            <ENTRY COLNAME="col1" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col2" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col3" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col4" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col5" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col6" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col7" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col8" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col9" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col10" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                            </ENTRY>
+                                                        <ENTRY COLNAME="col11" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                            </ENTRY>
+                                                        <ENTRY COLNAME="col12" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                            </ENTRY>
+                                                            </ROW>
+                                                        <ROW>
+                                                            <ENTRY COLNAME="col1" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN"><E COLOR="#969696">Customer View</E></L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col2" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN"><E COLOR="#969696">Customer View</E></L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col3" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN"><E COLOR="#969696">Customer View</E></L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col4" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN"><E COLOR="#969696">Customer View</E></L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col5" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN"><E COLOR="#969696">Customer View</E></L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col6" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN"><E COLOR="#969696">Customer View</E></L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col7" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN"><E COLOR="#969696">Customer view</E></L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col8" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN"><E COLOR="#969696">Customer view</E></L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col9" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN"><E COLOR="#969696">Customer view</E></L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col10" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN"><E COLOR="#969696">Customer view</E></L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                        <ENTRY COLNAME="col11" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN"><E COLOR="#969696">Customer View</E></L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col12" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN"><E COLOR="#969696">Customer View</E></L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                            </ROW>
+                                                        <ROW>
+                                                            <ENTRY COLNAME="col1" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col2" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col3" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col4" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col5" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col6" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col7" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col8" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col9" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                            </ENTRY>
+                                                            <ENTRY COLNAME="col10" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                            </ENTRY>
+                                                        <ENTRY COLNAME="col11" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                            </ENTRY>
+                                                        <ENTRY COLNAME="col12" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN" />
+                                                                </P>
+                                                            </ENTRY>
+                                                            </ROW>
+                                                    </TBODY>
+                                                </TGROUP>
+                                            </TABLE>
+                                            <TABLE>
+                                                <TABLE-CAPTION>
+                                                    <SHORT-NAME>MONITORING_CATEGORY</SHORT-NAME>
+                                                    <LONG-NAME>
+                                                        <L-4 L="EN">Monitoring Category</L-4>
+                                                    </LONG-NAME>
+                                                </TABLE-CAPTION>
+                                                <TGROUP COLS="1">
+                                                    <COLSPEC COLNAME="col1" COLNUM="1" COLWIDTH="1.00*" />
+                                                    <THEAD>
+                                                        <ROW>
+                                                            <ENTRY COLNAME="col1" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Monitoring Category</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                        </ROW>
+                                                    </THEAD>
+                                                    <TBODY>
+                                                        <ROW>
+                                                            <ENTRY COLNAME="col1" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Mention all the categories which are relevant to this monitoring</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                        </ROW>
+                                                        <ROW>
+                                                            <ENTRY COLNAME="col1" MOREROWS="0">
+                                                                <P>
+                                                                    <L-1 L="EN">Input Other Rationality</L-1>
+                                                                </P>
+                                                            </ENTRY>
+                                                        </ROW>
+                                                    </TBODY>
+                                                </TGROUP>
+                                            </TABLE>
+                                        <TOPIC-1>
+                                                <SHORT-NAME>Picture_</SHORT-NAME>
+                                                <LONG-NAME>
+                                                    <L-4 L="EN">Picture</L-4>
+                                                </LONG-NAME>
+                                                <P>
+                                                    <L-1 L="EN">Picture of monitor</L-1>
+                                                </P>
+                                                <FIGURE>
+                                                    <FIGURE-CAPTION>
+                                                        <SHORT-NAME>monitor_picture</SHORT-NAME>
+                                                    </FIGURE-CAPTION>
+                                                    <L-GRAPHIC L="EN">
+                                                        <GRAPHIC FILENAME="_pic/picturename.png">
+                                                            <SHORT-LABEL>monitor_picture</SHORT-LABEL>
+                                                        </GRAPHIC>
+                                                    </L-GRAPHIC>
+                                                </FIGURE>
+                                            </TOPIC-1>
+                                            <TOPIC-1>
+                                                <SHORT-NAME>Flowchart_</SHORT-NAME>
+                                                <LONG-NAME>
+                                                    <L-4 L="EN">Flowchart</L-4>
+                                                </LONG-NAME>
+                                                <P>
+                                                    <L-1 L="EN">flowchart of the monitoring, generated out of Enterprise Architect; it will appear in Technical Description</L-1>
+                                                </P>
+                                                <P>
+                                                    <L-1 L="EN" />
+                                                </P>
+                                                <FIGURE>
+                                                    <FIGURE-CAPTION>
+                                                        <SHORT-NAME>flowchart_picture</SHORT-NAME>
+                                                    </FIGURE-CAPTION>
+                                                    <L-GRAPHIC L="EN">
+                                                        <GRAPHIC FILENAME="Flowcharts/RBSYS_SYSErrorHook.png">
+                                                            <SHORT-LABEL>flowchart_picture</SHORT-LABEL>
+                                                        </GRAPHIC>
+                                                    </L-GRAPHIC>
+                                                </FIGURE>
+                                            </TOPIC-1>
+                                            </CHAPTER>
+                                    </DOCUMENTATION-CONTENT>
+                                </DOCUMENTATION>
+                            </ELEMENTS>
+            </AR-PACKAGE>
+          </AR-PACKAGES>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

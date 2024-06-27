@@ -1,0 +1,21 @@
+#
+# Cantata Test-Level Options
+#
+# Any options set in this file will override the options set in the
+# project-level options file.
+#
+# WARNING: Do not alter this file manually.
+#
+#tool.testid=2e392dfd-0687-415c-b431-1d62858c458a
+"--ci:--instr:stmt;func;decn;log;"
+"--sa:--calc:*#*"
+"--sm:--access_function:"dcom_MB_RoutineControl.c":RBSYS_EnterCommonLockSysfast()"
+"--sm:--access_function:"dcom_MB_RoutineControl.c":RBSYS_ExitCommonLockSysfast()"
+"--sm:--wrap:RBSYS_EnterCommonLockSysfast()#dcom_CheckReprogrammingPreconditions_0203_Start(Dcm_OpStatusType ,uint8 *,uint8 *,uint16 *,Dcm_NegativeResponseCodeType *)"
+"--sm:--wrap:RBSYS_ExitCommonLockSysfast()#dcom_CheckReprogrammingPreconditions_0203_Start(Dcm_OpStatusType ,uint8 *,uint8 *,uint16 *,Dcm_NegativeResponseCodeType *)"
+ 
+#User Section
+"--dont_ci:*"
+"--ci:--no_instr:all"
+"--do_ci:dcom_MB_RoutineControl.c"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_CheckReprogrammingPreconditions_0203_Start"

@@ -1,0 +1,1721 @@
+/**
+@copyright
+Robert Bosch GmbH reserves all rights even in the event of industrial property rights.
+We reserve all rights of disposal such as copying and passing on to third parties.
+*/
+
+/* Premises: */
+/* 1. RBTaskMon activation monitor has to be first item of each monitored task to: */
+/*    1. degrade system before calling subprocesses of the task (to avoid follow-up failure entries) */
+/*    2. reduce the jitter of RBTaskMon activation monitor calls */
+/* 2. RBAPPLIF TraceMT has to be last item of each task because it triggers the corresponding XCP event to capture the measurement variables of this task */
+
+#include "RBSYS_Config.h"
+
+/* Assert supported configurations: switches, parameters, constants, ... */
+RB_ASSERT_SWITCH_SETTINGS(RBFS_MCORE, RBFS_MCORE_OFF, RBFS_MCORE_ON);
+RB_ASSERT_SWITCH_SETTINGS(RBFS_SysTask0p5ms, RBFS_SysTask0p5ms_ON, RBFS_SysTask0p5ms_OFF);
+RB_ASSERT_SWITCH_SETTINGS(RBFS_HardwareSecurityModule, RBFS_HardwareSecurityModule_Supported, RBFS_HardwareSecurityModule_Unsupported);
+RB_ASSERT_SWITCH_SETTINGS(RBFS_TaskSchemeExtension, RBFS_TaskSchemeExtension_None, RBFS_TaskSchemeExtension_VMPS, RBFS_TaskSchemeExtension_HostCore0GuestCore1, RBFS_TaskSchemeExtension_AB15);
+RB_ASSERT_SWITCH_SETTINGS(RBFS_DeCoSupport, RBFS_DeCoSupport_Off, RBFS_DeCoSupport_On);
+
+/******************************************************************************/
+/* default header includes (for RBSYS_Dyn.c)                                  */
+/* TYPE: includes                                                             */
+/******************************************************************************/
+/*PROC_SECTION: HeaderIncludes */
+/*PROC_EP: RBSYS_Subsystem */
+/*PROC_EP: RBROMSafety_Subsystem */
+/*PROC_EP: RBRAMSafety_Subsystem */
+/*PROC_EP: RBGTM_Subsystem */
+/*PROC_EP: RBDMA_Subsystem */
+/*PROC_EP: RBSPI_Subsystem */
+/*PROC_EP: RBFSL_Subsystem */
+/*PROC_EP: RBHEA_Subsystem */
+/*PROC_EP: RBWDH_Subsystem */
+/*PROC_EP: RBSWBIST_Subsystem */
+/*PROC_EP: RBFSLAPB_Subsystem */
+/*PROC_EP: RBECM_Subsystem */
+/*PROC_EP: RBCLMA_Subsystem */
+/*PROC_EP: RBHWBIST_Subsystem */
+/*PROC_EP: RBVLV_Subsystem */
+/*PROC_EP: RBMICBASE_Subsystem */
+/*PROC_EP: RBMICSYS_Subsystem */
+/*PROC_EP: RBMICB6_Subsystem */
+/*PROC_EP: RBMICEice_Subsystem */
+/*PROC_EP: RBAPBMOT_Subsystem */
+/*PROC_EP: RBAPBMSS_Subsystem */
+/*PROC_EP: RBEMERGSUPPLY_Subsystem */
+/*PROC_EP: RBWAU_Subsystem */
+/*PROC_EP: RBADC_Subsystem */
+/*PROC_EP: RBSENT_Subsystem */
+/*PROC_EP: RBBANDGAP_Subsystem */
+/*PROC_EP: RBPRESSANA_Subsystem */
+/*PROC_EP: RBBLM_Rotor_Subsystem */
+/*PROC_EP: RBVACANA_Subsystem */
+/*PROC_EP: RBVACSENT_Subsystem */
+/*PROC_EP: RBPRESSSENT_Subsystem */
+/*PROC_EP: RBLiPS_Subsystem */
+/*PROC_EP: RBeHBC_Subsystem */
+/*PROC_EP: RBTSI_Subsystem */
+/*PROC_EP: RBMICAPB_Subsystem */
+/*PROC_EP: RBSEC_Subsystem */
+/*PROC_EP: RBHSMINT_Subsystem */
+/*PROC_EP: CUBAS_Subsystem */
+/*PROC_EP: CUBAS_Xcp_Subsystem */
+/*PROC_EP: RBTEX */
+/*PROC_EP: RBAPPLIF */
+/*PROC_EP: RBApbButton_Processes */
+/*PROC_EP: RBBUTSWI_Subsystem */
+/*PROC_EP: RBSUPPLYBASE_Subsystem */
+/*PROC_EP: RBSUPPLYNBS_Subsystem */
+/*PROC_EP: RBPTS_Subsystem */
+/*PROC_EP: RBePedal_Subsystem */
+/*PROC_EP: RBWSS_Subsystem */
+/*PROC_EP: RBRFP_Subsystem */
+/*PROC_EP: RBNvmTest_Subsystem */
+/*PROC_EP: RBPORT_Subsystem */
+/*PROC_EP: RBIIS_Subsystem */
+/*PROC_EP: CCM_SubSystem */
+/*PROC_EP: rba_Scl_Subsystem */
+/*PROC_EP: Net_SubSystem_CanRef */
+/*PROC_EP: Yrs_SubSystem */
+/*PROC_EP: SAS_SubSystem */
+/*PROC_EP: RBTaskMon_Subsystem */
+/*PROC_EP: RBBLM_Subsystem */                     /* BLM: BrushLessMotor DeviceDriver */
+/*PROC_EP: RTE_Subsystem */
+/*PROC_EP: Ascet_Subsystem */
+/*PROC_EP: AddOnProcs_Subsystem */
+/*PROC_EP: RBEnvData_Subsystem */
+/*PROC_EP: RBSMM_Subsystem */
+/*PROC_EP: RBShutdownHandler_SubSystem */         /* deprecated since 2018.4, but still required for backwards compatibility (see Task 679511) */
+/*PROC_EP: RBBCC_Subsystem */
+/*PROC_EP: RBCVM_Subsystem */
+/*PROC_EP: RBVoltageHandler_Subsystem */
+/*PROC_EP: RBBLM_Switch_Subsystem */              /* BLM: BrushLessMotor DeviceDriver */
+/*PROC_EP: RBPSC_Subsystem */                     /* NBS: New Braking Systems */
+/*PROC_EP: RBDSM_Subsystem */
+/*PROC_EP: RBHMI_Subsystem */
+/*PROC_EP: VAR_Subsystem */
+/*PROC_EP: VSM_Subsystem */
+/*PROC_EP: RBVarMapping_Subsystem */
+/*PROC_EP: RBTtcFactor_Subsystem */
+/*PROC_EP: RBADR_Subsystem */
+/*PROC_EP: MSI_Subsystem */                       /* deprecated since 2018.4, but still required for backwards compatibility (see Task 694451) */
+/*PROC_EP: RBMSI_Subsystem */
+/*PROC_EP: T1_Subsystem */                        /* Gliwa T1 */
+/*PROC_EP: RBDeCo_Subsystem */
+/*PROC_EP: RBEVP_Subsystem */
+/*PROC_EP: RBVSO_Subsystem */
+/*PROC_EP: RBDTS_Subsystem */                     /* NBS: New Braking Systems */
+/*PROC_EP: RBDHP_Subsystem */
+/*PROC_EP: RBTPSW_Subsystem */
+/*PROC_EP: RBBLM_TEMP_Subsystem */
+/*PROC_EP: RBuCTEMP_Subsystem */
+/*PROC_EP: RBNET_Subsystem */
+/*PROC_EP: RBDCOM_Subsystem */
+/*PROC_EP: RBRFPEC_Subsystem */
+/*PROC_EP: RBHYDR_Subsystem */
+/*PROC_EP: RBTestComplete_Header_PROCSEC */
+/*PROC_EP: RBNvM_ErrorMonitoring_Subsystem */     /* deprecated since 2017.1.1, but still required for backwards compatibility (moved to CUBAS_Subsystem) */
+/*PROC_EP: RBEcuSupply_Subsystem */
+/*PROC_EP: RBGLD_Subsystem */
+/*PROC_EP: RBHWLAMPS_Subsystem */
+/*PROC_EP: RBCDI_Subsystem */
+/*PROC_EP: RBRSS_Subsystem */
+/*PROC_EP: RBCBS_Subsystem */
+/*PROC_EP: RBPDM_NvM_Subsystem */
+/*PROC_EP: RBSV_Subsystem */
+/*PROC_EP: RBClutch_Subsystem */
+/*PROC_EP: RBHSWDEM_Subsystem */
+/*PROC_EP: RBAMBPRESS_Subsystem */
+/*PROC_EP: RBHSWESR_Subsystem */
+/*PROC_EP: RBACCPEDAL_Subsystem */
+/*PROC_EP: RBuCWatchdog_Subsystem */
+/*PROC_SECTION_END: */
+
+
+
+
+/******************************************************************************/
+/* exception handler header includes (for RBSYS_ExceptionHandler.c)           */
+/* TYPE: includes                                                             */
+/******************************************************************************/
+/*PROC_SECTION: ExceptionHandlerHeaderIncludes */
+/*PROC_EP: RBECM_Subsystem */
+/*PROC_EP: RBDeCo_Subsystem */
+/*PROC_EP: RBTPSW_Subsystem */
+/*PROC_SECTION_END: */
+
+
+/******************************************************************************/
+/* HWBistEval (stack init done but no c_init - only for HWBIST evaluation)    */
+/* TYPE: preinit                                                              */
+/* ORDER: 0                                                                   */
+/******************************************************************************/
+/*PROC_SECTION: SPG_HWBistInitialEvalAndSWPatternTest */
+/*PROC_EP: SPG_RBHWBIST_PreCInit */                                 /* SEQUENCE: no dependencies */
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* PreCinit (stack init done but no c_init)                                   */
+/* => only for special functions, therefore contact SYS responsible           */
+/* => executed only on master core                                            */
+/* TYPE: preinit                                                              */
+/* ORDER: 1                                                                   */
+/******************************************************************************/
+/*PROC_SECTION: SPG_PreCInit */
+/*PROC_EP: SPG_RBAPPLIF_VX1000_PreCinit */                          /* SEQUENCE: no dependencies */
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* HostCycurHsmInit                                                           */
+/* => executed only on master core                                            */
+/* TYPE: preinit                                                              */
+/* ORDER: 2                                                                   */
+/******************************************************************************/
+#if (RBFS_HardwareSecurityModule == RBFS_HardwareSecurityModule_Supported)
+  /*PROC_SECTION: SPG_HostCycurHsmInit */
+  /*PROC_EP: SPG_RBSEC_HsmHostCore0_Init */                           /* SEQUENCE: no dependencies (and must be as early as possible; deprecated -> use SPG_RBHSMINT_HsmBoot_FlashRelease) */
+  /*PROC_EP: SPG_RBHSMINT_HsmBoot_FlashRelease */                     /* SEQUENCE: no dependencies (and must be as early as possible) */
+  /*PROC_SECTION_END: */
+#endif
+
+/******************************************************************************/
+/* PreReprogCheck                                                             */
+/* => executed only on master core                                            */
+/* TYPE: preinit                                                              */
+/* ORDER: 3                                                                   */
+/******************************************************************************/
+/*PROC_SECTION: SPG_PreReprogCheck */
+/*PROC_EP: SPG_RBECM_Init */                                        /* SEQUENCE: must be before SPG_RBTSI_PrePlantCheck, SPG_PreReprogSession */
+/*PROC_EP: SPG_RBSYS_ModeChangeAfterFCCUInit */                     /* SEQUENCE: must be directly after SPG_RBECM_Init (FCCU reset prevents exception until next mode change) */
+/*PROC_EP: SPG_RBPORT_Init */                                       /* SEQUENCE: must be before SPG_RBTSI_PrePlantCheck (port initialization required for reprog driver) */
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* PreReprogSession                                                           */
+/* => executed only on master core                                            */
+/* TYPE: preinit                                                              */
+/* ORDER: 4                                                                   */
+/******************************************************************************/
+/*PROC_SECTION: SPG_PreReprogSession */
+#if (RBFS_HardwareSecurityModule == RBFS_HardwareSecurityModule_Supported)
+  /*PROC_EP: SPG_RBHSMINT_HsmBoot_NoFlashRelease */                 /* SEQUENCE: no dependencies (and must be as early as possible) */
+#endif
+/*PROC_EP: SPG_RBFSL_Reprog_Init */                                 /* SEQUENCE: must be after SPG_RBPORT_Init */
+/*PROC_EP: SPG_CUBAS_Reprog_Init */                                 /* SEQUENCE: must be after SPG_RBPORT_Init, SPG_RBFSL_Reprog_Init */
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* Vx1000PreReprogSession                                                     */
+/* TYPE: preinit                                                              */
+/* ORDER: 5                                                                   */
+/******************************************************************************/
+/*PROC_SECTION: SPG_Vx1000PreReprogSession */
+#if (RBFS_HardwareSecurityModule == RBFS_HardwareSecurityModule_Supported)
+  /*PROC_EP: SPG_RBHSMINT_HsmBoot_NoFlashRelease */                 /* SEQUENCE: no dependencies (and must be as early as possible) */
+#endif
+/*PROC_EP: SPG_RBAPPLIF_Vx1000Reprog_Init */                        /* SEQUENCE: must be after SPG_RBAPPLIF_VX1000_PreCinit */
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* SPG_Vx1000ParHandlingSession                                               */
+/* TYPE: preinit                                                              */
+/* ORDER: 6                                                                   */
+/******************************************************************************/
+/*PROC_SECTION: SPG_Vx1000ParHandlingSession */
+/*PROC_EP: SPG_Vx1000ParHandling */                                 /* SEQUENCE: no dependencies */
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* PrePlantCheck                                                              */
+/* => executed only on master core                                            */
+/* TYPE: preinit                                                              */
+/* ORDER: 7                                                                   */
+/******************************************************************************/
+/*PROC_SECTION: SPG_PrePlantCheck */
+/*PROC_EP: SPG_CUBAS_DemPreInit */                                  /* SEQUENCE: must be first item of SPG_PrePlantCheck (directly after cinit - from now on failure reporting is possible, but compl. DEM support is only available after SPG_CUBAS_AppMode_Init) */
+/*PROC_EP: SPG_RBHSWESR_PreInit */                                  /* SEQUENCE: must be directly after SPG_CUBAS_DemPreInit and before SPG_RBMICSYS_PreInit (needs to know that from now on failure reporting is possible and to disable SPI_init_ASIC by RBMICSYS in case of a recovery reset) */
+/*PROC_EP: SPG_RBSPI_Init */                                        /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBMICSYS_PreInitAsicDetection */                     /* SEQUENCE: must be after SPG_RBSPI_Init and before SPG_RBSUPPLYBASE_PreInit (and before every other MICSYS user) */
+/*PROC_EP: SPG_RBSUPPLYBASE_PreInit */                              /* SEQUENCE: must be before SPG_RBMICSYS_PreInit, SPG_RBSUPPLYBASE_Init */
+/*PROC_EP: SPG_RBPORT_InitVariant */                                /* SEQUENCE: must be after SPG_RBPORT_Init, SPG_RBMICSYS_PreInitAsicDetection */
+/*PROC_EP: SPG_RBMICSYS_PreInit */                                  /* SEQUENCE: must be after SPG_RBSPI_Init, SPG_RBPORT_InitVariant */
+/*PROC_EP: RBWAU_ProcSection_Init */                                /* SEQUENCE: must be after SPG_RBPORT_Init, SPG_RBPORT_InitVariant and before SPG_RBMICSYS_PreInit_2ndAsic */
+/*PROC_EP: SPG_RBMICSYS_PreInit_2ndAsic */                          /* SEQUENCE: must be after SPG_RBMICSYS_PreInit, RBWAU_ProcSection_Init (see task 1492549) */
+/*PROC_EP: SPG_RBGTM_PreInit */                                     /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBTSI_TsiState */                                    /* SEQUENCE: must be before SPG_RBTSI_PrePlantCheck (and every other TSI-Process) */
+/*PROC_EP: SPG_RBTSI_PrePlantCheck */                               /* SEQUENCE: must be last item of SPG_PrePlantCheck */
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* SPG_RBSYS_PreSafetyAlwaysExecute                                           */
+/* => executed only on master core, independent of OS Mode                    */
+/* TYPE: preinit                                                              */
+/* ORDER:  8                                                                  */
+/******************************************************************************/
+/*PROC_SECTION: SPG_RBSYS_PreSafetyAlwaysExecute */
+/*PROC_EP: SPG_RBECM_PreSafetyAlwaysExecute */                      /* SEQUENCE: must be before SPG_RBECM_PreSafety */
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* PreSafety (only for preparation of uC safety test)                         */
+/* => executed only on master core, no BaseOS                                 */
+/* TYPE: preinit                                                              */
+/* ORDER: 9                                                                  */
+/******************************************************************************/
+/*PROC_SECTION: SPG_PreSafety */
+/*PROC_EP: SPG_RBECM_PreSafety */                                   /* SEQUENCE: must be first item of SPG_PreSafety */
+/*PROC_EP: SPG_RBHWBIST_ResultEvaluation */                         /* SEQUENCE: must be after SPG_RBECM_PreSafety */
+/*PROC_EP: SPG_RBCLMA_INIT */                                       /* SEQUENCE: must be before SPG_SafetyC0 [, SPG_SafetyC1] and after SPG_RBGTM_PreInit */
+/*PROC_EP: SPG_RBCVM_Startup */                                     /* SEQUENCE: no dependencies */
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* SafetyC0 (uC safety startup tests)                                         */
+/* => executed only on master core (parallel to SafetyC1)                     */
+/* TYPE: preinit                                                              */
+/* ORDER: 10                                                                  */
+/******************************************************************************/
+/*PROC_SECTION: SPG_SafetyC0 */
+/*PROC_EP: SPG_RBuCWatchdog_PreInit */                              /* SEQUENCE: must be before SPG_RBECM_Safety_common */
+/*PROC_EP: SPG_RBECM_DebugSupport */                                /* SEQUENCE: must be before SPG_RBECM_Safety_common */
+/*PROC_EP: SPG_RBECM_Safety_common */                               /* SEQUENCE: no dependencies */
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* SafetyC1 (uC safety startup tests)                                         */
+/* => executed only on second core (parallel to SafetyC0)                     */
+/* TYPE: preinit                                                              */
+/* ORDER: 10                                                                  */
+/******************************************************************************/
+#if (RBFS_MCORE == RBFS_MCORE_ON)
+  /*PROC_SECTION: SPG_SafetyC1 */
+  /*PROC_EP: SPG_RBECM_DebugSupport */                                /* SEQUENCE: must be before SPG_RBECM_Safety_common */
+  /*PROC_EP: SPG_RBECM_Safety_common */                               /* SEQUENCE: no dependencies */
+  /*PROC_SECTION_END: */
+#endif
+
+/******************************************************************************/
+/* PreOSStart (in normal operating mode, not in BaseOS)                       */
+/* => executed only on master core                                            */
+/* TYPE: preinit                                                              */
+/* ORDER: 11                                                                  */
+/******************************************************************************/
+/*PROC_SECTION: SPG_PreOSStart */
+/*PROC_EP: SPG_RBSYS_PreOsStartCore0 */                             /* SEQUENCE: must be before SPG_TaskInit */
+/*PROC_EP: SPG_RBTPSW_Init */                                       /* SEQUENCE: must be before SPG_TaskInit */
+/*PROC_EP: SPG_T1_PreOSCore0 */                                     /* SEQUENCE: must be before SPG_TaskInit */
+/*PROC_EP: SPG_RBDeCo_PreOSCore0 */                                 /* SEQUENCE: must be before SPG_TaskInit */
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* PreOSStartC1 (in normal operating mode, not in BaseOS)                     */
+/* => only for special functions, therefore contact SYS responsible           */
+/* => executed only on second core                                            */
+/* TYPE: preinit                                                              */
+/* ORDER: 11                                                                  */
+/******************************************************************************/
+#if (RBFS_MCORE == RBFS_MCORE_ON)
+  /*PROC_SECTION: SPG_PreOSStartC1 */
+  /*PROC_EP: SPG_RBSYS_PreOsStartCore1 */                             /* SEQUENCE: must be before SPG_TaskInitP */
+  /*PROC_EP: SPG_RBTPSW_Init */                                       /* SEQUENCE: must be before SPG_TaskInitP */
+  /*PROC_EP: SPG_T1_PreOSCore1 */                                     /* SEQUENCE: must be before SPG_TaskInitP */
+  /*PROC_EP: SPG_RBDeCo_PreOSCore1 */                                 /* SEQUENCE: must be before SPG_TaskInitP */
+  /*PROC_SECTION_END: */
+#endif
+
+
+/******************************************************************************/
+/* TaskIdle                                                                   */
+/* TYPE: cyclictask                                                           */
+/******************************************************************************/
+/*PROC_SECTION: SPG_TaskIdle */
+/*PROC_EP: SPG_CUBAS_Cyclic*/                                       /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_AswParameterHandling_Idle */                         /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_T1_Idle */                                           /* SEQUENCE: no dependencies (preferred position: after SPG_CUBAS_Cyclic) */
+/*PROC_EP: SPG_RBNvM_ErrorMonitoring_Idle */                        /* SEQUENCE: must be after SPG_CUBAS_Cyclic */
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* TaskIdleP  => only for specific SYS/uC processes!                          */
+/* TYPE: cyclictask                                                           */
+/******************************************************************************/
+/*PROC_SECTION: SPG_TaskIdleP */
+/*PROC_EP: SPG_T1_IdleP */                                          /* SEQUENCE: no dependencies */
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* TaskInit                                                                   */
+/* TYPE: inittask                                                             */
+/******************************************************************************/
+/*PROC_SECTION: SPG_TaskInit */
+/*PROC_EP: SPG_CUBAS_PreInit_RAM */                                 /* SEQUENCE: must be before SPG_CUBAS_AppMode_PreInit, SPG_CUBAS_AppMode_Init (deprecated, but still required for backwards compatibility - see EPIC 184807) */
+/*PROC_EP: SPG_RBSUPPLYBASE_Init */                                 /* SEQUENCE: must be after SPG_RBMICSYS_PreInit and before SPG_RBMICSYS_Init */
+/*PROC_EP: SPG_VAR_PreInit */                                       /* SEQUENCE: must be before SPG_CUBAS_AppMode_Init, SPG_CUBAS_AppMode_PreInit (see EPIC 329308) */
+/*PROC_EP: SPG_CUBAS_PreInit */                                     /* SEQUENCE: must be before SPG_CUBAS_Init (deprecated, but still required for backwards compatibility - see EPIC 354648)*/
+#if( RBFS_CANCommunicationDuringInitTask == RBFS_CANCommunicationDuringInitTask_Enabled )
+  /*PROC_EP: SPG_RBFSL_PreInitEnableElectric */                       /* SEQUENCE: must be before SPG_CUBAS_AppMode_PreInit (to allow CAN communication by CUBAS processes inside TaskInitP -> must only be used for Reception of messages!!) */
+#endif
+/*PROC_EP: SPG_CUBAS_AppMode_PreInit */                             /* SEQUENCE: must be before SPG_CUBAS_AppMode_Init */
+/*PROC_EP: SPG_RBSYS_rba_Runtime_Init */                            /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBSYS_PRC_InitTaskStats */                           /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBROMSafety_Init */                                  /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBDSM_BeforeCUBAS_Init */                            /* SEQUENCE: must be directly before SPG_CUBAS_Init (original dependency: directly before SPG_CUBAS_AppMode_Init) */
+/*PROC_EP: SPG_CUBAS_Init */                                        /* SEQUENCE: must be after SPG_CUBAS_PreInit (deprecated, but still required for backwards compatibility - see EPIC 354648) */
+/*PROC_EP: SPG_CUBAS_AppMode_Init */                                /* SEQUENCE: must be after SPG_CUBAS_AppMode_PreInit */
+/*PROC_EP: SPG_RBDSM_AfterCUBAS_Init */                             /* SEQUENCE: must be directly after SPG_CUBAS_AppMode_Init */
+/*PROC_EP: SPG_RBHSWESR_Init */                                     /* SEQUENCE: must be after SPG_CUBAS_AppMode_Init (So that failure entry to NVM is possible) */
+/*PROC_EP: SPG_RBMICB6_PreInit */                                   /* SEQUENCE: must be after SPG_CUBAS_AppMode_Init, SPG_RBSPI_Init, SPG_RBPORT_InitVariant and before SPG_RBMICB6_Init (preferred position: as early as possible to avoid busy waiting in SPG_RBMICB6_Init)*/
+/*PROC_EP: SPG_RBHWBIST_ResultReport */                             /* SEQUENCE: must be after SPG_CUBAS_AppMode_Init */
+/*PROC_EP: SPG_RBSYS_ClearColdStartResetFlags */                    /* SEQUENCE: must be after SPG_RBHWBIST_ResultReport, SPG_RBECM_Safety_common (Reset Flags shall be cleared after Safety Tests are completed -> only in Control Mode!) */
+/*PROC_EP: SPG_RBADC_Init */                                        /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBGTM_Init */                                        /* SEQUENCE: must be after SPG_RBGTM_PreInit (Switches on peripheral), SPG_RBADC_Init (In some variants the GTM triggers the ADC initially, to make sure ADC is ready for this trigger, ADC must be initialized first) */
+/*PROC_EP: SPG_RBPORT_InitDelayedPins */                            /* SEQUENCE: must be after SPG_RBGTM_Init, SPG_RBPORT_Init, SPG_RBPORT_InitVariant and before SPG_RBMICSYS_Init (to avoid unintended actuation during RBRFP Actuation Mode initialization) */
+/*PROC_EP: SPG_RBVSO_Init */                                        /* SEQUENCE: must be after SPG_RBGTM_Init and before SPG_RBMICAPB_Init1, SPG_RBMICBASE_Init */
+/*PROC_EP: SPG_RBMICBASE_Init */                                    /* SEQUENCE: must be after SPG_RBSPI_Init */
+/*PROC_EP: SPG_RBMICSYS_Init */                                     /* SEQUENCE: must be after SPG_RBSPI_Init (the initial handling of the RBMICSYS is independent from SPG_RBMICBASE_Init) */
+#if( RBFS_CANCommunicationDuringInitTask == RBFS_CANCommunicationDuringInitTask_Enabled )
+  /*PROC_EP: SPG_CUBAS_BeforeSynchronization_Init */                  /* SEQUENCE: must be directly before SPG_RBSYS_SynchronizeCores_TaskInit (Handshake to other Cores to stop CAN communication.  To gain CAN communication time, it should be scheduled as late as possible) */
+  /*PROC_EP: SPG_RBSYS_SynchronizeCores_TaskInit */                   /* SEQUENCE: must be after SPG_CUBAS_BeforeSynchronization_Init (TaskInit has to wait for TaskInitP to finish the PreInit CAN communication) */
+  /*PROC_EP: SPG_RBFSL_PreInitDisableElectric */                      /* SEQUENCE: must be after SPG_RBSYS_SynchronizeCores_TaskInit and before SPG_RBMICAPB_Init1, SPG_RBMICSYS_QxShortCircuitTest_Init (both Cores have to finish CAN communication before disabling Electric Enable / Communication in general. MICAPB and MICSYS are deactivating the Communication again.) */
+#endif
+/*PROC_EP: SPG_RBMICAPB_Init1 */                                    /* SEQUENCE: must be after SPG_RBSPI_Init, SPG_RBMICSYS_Init and before SPG_RBMICAPB_Init2 (the initial handling of the RBMICAPB is independent from SPG_RBMICBASE_Init) */
+/*PROC_EP: SPG_RBMICB6_Init */                                      /* SEQUENCE: must be after SPG_RBMICB6_PreInit (preferred position: start 1ms after SPG_RBMICB6_PreInit. ASIC has to be reset in SPG_RBMICB6_PreInit first)*/
+/*PROC_EP: SPG_RBMICEice_Init */                                    /* SEQUENCE: must be after SPG_RBSPI_Init */
+/*PROC_EP: SPG_RBSENT_Init */                                       /* SEQUENCE: no dependencies (former requirement: must be after SPG_RBMICSYS_Init to switch on sensor supply -> still valid?) */
+/*PROC_EP: SPG_RBLiPS_Init */                                       /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBPRESSSENT_Init */                                  /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBVLV_Init_CM */                                     /* SEQUENCE: must be after SPG_RBMICBASE_Init */
+/*PROC_EP: SPG_RBBANDGAP_Init */                                    /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBFluid_Init */                                      /* SEQUENCE: must be after SPG_RBADC_Init */
+/*PROC_EP: SPG_RBVACSENT_Init */                                    /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBePedal_Init */                                     /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBBLM_Rotor_Init */                                  /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBBLM_TEMP_Init */                                   /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBADC_CollectInitialValues_Init */                   /* SEQUENCE: must be after SPG_RBADC_Init (SPG_RBADC_Init triggered the first conversion for which the results are collected here, so ~50 us should have been passed to make sure conversion is completed. Also the config started in SPG_RBADC_Init is finialized here) */
+/*PROC_EP: SPG_RBGTM_InitAfterAdc */                                /* SEQUENCE: must be after SPG_RBADC_CollectInitialValues_Init (SPG_RBADC_CollectInitialValues_Init will enable GTM and DMA triggers from ADC, which are used here. Should have > 300 us until first 500 us task from this point, to make sure a complete MCS DMA cycle was performed, to have the new ADC values available) */
+/*PROC_EP: SPG_RBSUPPLY_Init */                                     /* SEQUENCE: must be after SPG_RBADC_CollectInitialValues_Init */
+/*PROC_EP: SPG_RBSUPPLYNBS_Init */                                  /* SEQUENCE: no dependencies (deprecated, future SW uses SPG_RBSUPPLY_Init) */
+/*PROC_EP: SPG_RBEcuSupply_Init */                                  /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBRFPEC_Driver_Init */                               /* SEQUENCE: must be after SPG_RBADC_Init */
+/*PROC_EP: SPG_RBRFP_Init */                                        /* SEQUENCE: must be after SPG_RBGTM_Init, SPG_RBMICSYS_Init (to avoid unintended actuation while RBRFP Actuation Mode initialization) */
+/*PROC_EP: SPG_RBBLM_Init */                                        /* SEQUENCE: must be before SPG_GeneralBeforeASW_Init */
+/*PROC_EP: SPG_RBPSC_Init */                                        /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBDSM_Init */                                        /* SEQUENCE: must be before SPG_GeneralBeforeASW_Init */
+/*PROC_EP: SPG_ENV_Init */                                          /* SEQUENCE: must be after SPG_CUBAS_AppMode_Init (deprecated since 2018.4, but still required for backwards compatibility - see Task 694451) */
+/*PROC_EP: SPG_RBMICAPB_Init2 */                                    /* SEQUENCE: must be after SPG_RBMICAPB_Init1 and before SPG_RBAPBMOTBeforeASW_Init */
+/*PROC_EP: SPG_RBHWLAMPS_Init */                                    /* SEQUENCE: must be after SPG_RBADC_Init, SPG_RBMICAPB_Init2 */
+/*PROC_EP: SPG_RBMICBASE_PostInit */                                /* SEQUENCE: must be after SPG_RBMICSYS_Init, SPG_RBMICAPB_Init2 */
+/*PROC_EP: SPG_RBWSS_Init */                                        /* SEQUENCE: must be after SPG_RBMICSYS_Init, SPG_RBMICAPB_Init2 (overwrite ASIC register values in SystemASIC and - for RoPP41 - in APB ASIC) */
+/*PROC_EP: SPG_RBAPBMSS_Init */                                     /* SEQUENCE: must be after SPG_RBMICAPB_Init2 */
+/*PROC_EP: SPG_RBAPBMOTBeforeASW_Init*/                             /* SEQUENCE: must be before SPG_Ascet_TaskInit */
+/*PROC_EP: SPG_GeneralBeforeASW_Init */                             /* SEQUENCE: must be before SPG_Ascet_TaskInit */
+/*PROC_EP: SPG_RBAPPLIF_XPASS_PreASW_CM_INIT */                     /* SEQUENCE: must be directly before SPG_Ascet_TaskInit (nothing else allowed in between) */
+/*PROC_EP: SPG_Ascet_TaskInit */                                    /* SEQUENCE: no dependencies (this is the reference EP for all others) */
+/*PROC_EP: SPG_RBAPPLIF_XPASS_PostASW_CM_INIT */                    /* SEQUENCE: must be directly after SPG_Ascet_TaskInit (nothing else allowed in between) */
+/*PROC_EP: SPG_GeneralAfterASW_Init */                              /* SEQUENCE: must be after SPG_Ascet_TaskInit */
+/*PROC_EP: SPG_RBHMI_Init */                                        /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBSYS_Monitorings_Init */                            /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBFSL_StartupTest_Init */                            /* SEQUENCE: must be after SPG_RBMICBASE_Init, SPG_RBMICSYS_Init, SPG_RBMICAPB_Init2, SPG_RBAPBMOTBeforeASW_Init */
+/*PROC_EP: SPG_RBMICSYS_QxShortCircuitTest_Init */                  /* SEQUENCE: must be directly after SPG_RBFSL_StartupTest_Init (electric enable is toggled twice, kept directly after to not influence EL_EN later) */
+/*PROC_EP: SPG_RBSUPPLYNBS_UBRDINTSwitching_Init */                 /* SEQUENCE: must be after SPG_RBMICSYS_QxShortCircuitTest_Init */
+/*PROC_EP: SPG_RBHSMINT_Config_Init */                              /* SEQUENCE: must be after SPG_RBECM_Safety_common and before SPG_CUBAS_Communication_Init (ECM dependency due to RAM ECC logic tests and HSM shared RAM - see Task 2740749) */
+/*PROC_EP: SPG_RBPORT_InitPostElEn */                               /* SEQUENCE: must be after SPG_RBFSL_StartupTest_Init, SPG_RBMICSYS_QxShortCircuitTest_Init and before SPG_CUBAS_Communication_Init */
+/*PROC_EP: SPG_CUBAS_Communication_Init */                          /* SEQUENCE: must be after SPG_CUBAS_AppMode_Init, SPG_RBFSL_StartupTest_Init, SPG_RBMICSYS_QxShortCircuitTest_Init */
+/*PROC_EP: SPG_CUBAS_Xcp_Init */                                    /* SEQUENCE: must be after SPG_CUBAS_Communication_Init */
+/*PROC_EP: SPG_RTEStart */                                          /* SEQUENCE: must be after SPG_CUBAS_Communication_Init (RTE integrated SW requires initialized network communication) */
+/*PROC_EP: SPG_RBAPBMOT_Init */                                     /* SEQUENCE: must be after SPG_RBMICAPB_Init2 */
+/*PROC_EP: SPG_APBButton_init */                                    /* SEQUENCE: must be after SPG_RBAPBMOT_Init */
+/*PROC_EP: SPG_RBGLD_Init */                                        /* SEQUENCE: must be after SPG_RBFSL_StartupTest_Init, SPG_RBADC_Init */
+/*PROC_EP: SPG_RBBLM_MainSwitch_Init */                             /* SEQUENCE: must be after SPG_RBFSL_StartupTest_Init, SPG_RBBLM_Init */
+/*PROC_EP: SPG_RBFSL_CheckGenericFuncs_Init */                      /* SEQUENCE: must be after SPG_RBVLV_Init_CM */
+/*PROC_EP: SPG_DCOM_INIT */                                         /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBBERT_MOSER_Init */                                 /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBBERT_Init */                                       /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBBls_Init */                                        /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_uC_Temperature_Init */                               /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_NET_INIT */                                          /* SEQUENCE: must be after SPG_CUBAS_Xcp_Init (preferred position: near end of InitTask) */
+/*PROC_EP: SPG_RBSYS_FswFinalGuard_Init */                          /* SEQUENCE: must be after SPG_CUBAS_Communication_Init */
+#if (RBFS_TaskSchemeExtension == RBFS_TaskSchemeExtension_VMPS)
+  /*PROC_EP: SPG_RTE_PostInit */                                      /* SEQUENCE: must be after SPG_CUBAS_Communication_Init */
+#endif
+/*PROC_EP: SPG_RBHSWDEM_AfterAllHSWDemReports_Init */               /* SEQUENCE: must be directly before SPG_CUBAS_PostInit (original dependency: after all HSW failure word reports to report IUMPR status - based on failure word report) */
+/*PROC_EP: SPG_CUBAS_PostInit */                                    /* SEQUENCE: must be before SPG_RBAPPLIF_TraceMT_CM_BOS_Init and before SPG_RBSYS_ResetMaxLockTime_Init (should be directly before those) */
+/*PROC_EP: SPG_RBNvM_ErrorMonitoring_Init */                        /* SEQUENCE: must be after SPG_CUBAS_PostInit */
+/*PROC_EP: SPG_RBuCWatchdog_Init */                                 /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBSYS_ResetMaxLockTime_Init */                       /* SEQUENCE: must be directly before SPG_RBAPPLIF_TraceMT_CM_BOS_Init */
+/*PROC_EP: SPG_RBAPPLIF_TraceMT_CM_BOS_Init */                      /* SEQUENCE: must be last item of SPG_TaskInit (see Premise 2.) */
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* TaskInitP  => only for specific SYS/uC processes!                          */
+/* TYPE: inittask                                                             */
+/******************************************************************************/
+/*PROC_SECTION: SPG_TaskInitP */
+#if( RBFS_CANCommunicationDuringInitTask == RBFS_CANCommunicationDuringInitTask_Enabled )
+  /*PROC_EP: SPG_CUBAS_CanEarlyCommReception_InitP */                 /* SEQUENCE: must be before SPG_RBSYS_SynchronizeCores_TaskInit (Network Message reception can be covered by second core, Cores have to be synchronized afterwards) */
+  /*PROC_EP: SPG_RBSYS_SynchronizeCores_TaskInit */                   /* SEQUENCE: no dependencies (has to run after CUBAS Communication process - which does not exist yet) */
+#endif
+/*PROC_EP: SPG_RBuCWatchdog_Init */                                 /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBSYS_FswFinalGuard_Init */                          /* SEQUENCE: no dependencies */
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* Task0p5ms                                                                  */
+/* TYPE: cyclictask                                                           */
+/******************************************************************************/
+#if (RBFS_SysTask0p5ms ==  RBFS_SysTask0p5ms_ON)
+  /*PROC_SECTION: SPG_Task0p5ms */
+  /*PROC_EP: SPG_RBTaskMon_0p5ms */                                   /* SEQUENCE: must be first item of SPG_Task0p5ms (see Premise 1.) */
+  /*PROC_EP: SPG_RBSYS_SRMSTimeBaseAdaptation_0p5ms */                /* SEQUENCE: no dependencies (preferred position: must be at the beginning of the highest prio task) */
+  /*PROC_EP: SPG_RBGTM_BLM_syncMcsTo500usTask_500us */                /* SEQUENCE: must be before SPG_RBADC_HwTrig_500us (Because in some variants GTM provides ADC results. Preferred position: as early as possible to avoid conflicts with MCS task) */
+  /*PROC_EP: SPG_RBADC_HwTrig_500us */                                /* SEQUENCE: must be before SPG_RBBLM_1st_500us, SPG_RBBLM_Rotor_500us (Collects results of ADCs triggered by GTM, setup via SPG_RBGTM_Init) */
+  /*PROC_EP: SPG_RBSUPPLYBASE_RedundantSupply_500us */                /* SEQUENCE: must be after SPG_RBADC_HwTrig_500us */
+  /*PROC_EP: SPG_RBSUPPLYNBS_500us */                                 /* SEQUENCE: must be after SPG_RBADC_HwTrig_500us, SPG_RBSUPPLYBASE_RedundantSupply_500us (but before users of voltage interfaces, deprecated and replaced by SPG_RBSUPPLY_500us) */
+  /*PROC_EP: SPG_RBSUPPLY_500us */                                    /* SEQUENCE: must be after SPG_RBADC_HwTrig_500us, SPG_RBSUPPLYBASE_RedundantSupply_500us (calculate new voltage and provide voltage interfaces) */
+  /*PROC_EP: SPG_RBECUSUPPLY_500us */                                 /* SEQUENCE: must be after SPG_RBADC_HwTrig_500us (reads updated ADC values, must run before any user of voltage interfaces) */
+  /*PROC_EP: SPG_RBBLM_1st_500us */                                   /* SEQUENCE: must be after SPG_RBADC_HwTrig_500us and before SPG_RBBLM_2nd_500us */
+  /*PROC_EP: SPG_RBBLM_Rotor_500us */                                 /* SEQUENCE: must be after SPG_RBADC_HwTrig_500us and before SPG_RBPSC_500us (this is the reference EP for BrushLessMotor DeviceDriver RPS) */
+  /*PROC_EP: SPG_RBPSC_500us */                                       /* SEQUENCE: must be after SPG_RBBLM_Rotor_500us, SPG_RBBLM_1st_500us and before SPG_RBBLM_2nd_500us */
+  /*PROC_EP: SPG_RBTEX_500us */                                       /* SEQUENCE: must be after SPG_RBPSC_500us */
+  /*PROC_EP: SPG_RBBLM_2nd_500us */                                   /* SEQUENCE: must be after SPG_RBBLM_1st_500us */
+  /*PROC_EP: SPG_RBTSI_500us */                                       /* SEQUENCE: no dependencies (depends on SW-Triggered ADCs @ 1ms task) */
+  /*PROC_EP: SPG_RBCDI_500us */                                       /* SEQUENCE: no dependencies */
+  /*PROC_EP: SPG_RBSYS_TimerInterruptMonitoring_500us */              /* SEQUENCE: no dependencies */
+  /*PROC_EP: SPG_RBAPPLIF_TraceMT_CM_BOS_500us */                     /* SEQUENCE: must be last item of SPG_Task0p5ms (see Premise 2.) */
+  /*PROC_SECTION_END: */
+#endif
+
+/******************************************************************************/
+/* Task1ms                                                                    */
+/* TYPE: cyclictask                                                           */
+/******************************************************************************/
+/*PROC_SECTION: SPG_Task1ms */
+/*PROC_EP: SPG_RBTaskMon_1ms */                                     /* SEQUENCE: must be first item of SPG_Task1ms (see Premise 1.) */
+/*PROC_EP: SPG_RBSYS_SRMSTimeBaseAdaptation_1ms */                  /* SEQUENCE: no dependencies (preferred position: must be at the beginning of the highest prio task) */
+/*PROC_EP: SPG_RBMICAPB_ADCSynchron_1ms */                          /* SEQUENCE: must be directly before SPG_RBADC_1ms (preferred position: as early as possible to avoid task jitter effects) */
+/*PROC_EP: SPG_RBADC_1ms */                                         /* SEQUENCE: no dependencies (must be before all analog readings) */
+/*PROC_EP: SPG_RBSUPPLYBASE_RedundantSupply_1ms */                  /* SEQUENCE: must be after SPG_RBADC_1ms (but before its users) */
+/*PROC_EP: SPG_RBEcuSupply_1ms*/                                    /* SEQUENCE: must be after SPG_RBADC_1ms (but before its users) */
+/*PROC_EP: SPG_RBMICBASE_Receive_1ms */                             /* SEQUENCE: must be before SPG_RBMICBASE_Send_1ms */
+/*PROC_EP: SPG_RBSENT_1ms */                                        /* SEQUENCE: no dependencies (must be before all SENT-Sensors, reads in all available SENT Receive Data) */
+/*PROC_EP: SPG_RBPRESSSENT_1ms */                                   /* SEQUENCE: must be after SPG_RBSENT_1ms and before SPG_Asw_SignalConditioning_1ms and before SPG_General_1ms (processes current PRESS-SENT data for ASW) */
+/*PROC_EP: SPG_RBLiPS_1ms */                                        /* SEQUENCE: must be after SPG_RBSENT_1ms and before SPG_Asw_SignalConditioning_1ms and before SPG_General_1ms (processes current LiPS-SENT data for ASW) */
+/*PROC_EP: SPG_RBePedal_1ms */                                      /* SEQUENCE: must be after SPG_RBSENT_1ms and before SPG_Asw_SignalConditioning_1ms and before SPG_General_1ms (processes current ePedal-SENT data for ASW) */
+/*PROC_EP: SPG_Asw_SignalConditioning_1ms */                        /* SEQUENCE: must be directly after SPG_RBePedal_1ms (see Epic 152989, as soon as possible after receiving SENT data) */
+/*PROC_EP: SPG_RBBLM_BeforeHydrMux_1ms */                           /* SEQUENCE: must be before SPG_RBHYDR_Mux_1ms */
+/*PROC_EP: SPG_RBHYDR_Mux_1ms */                                    /* SEQUENCE: must be after SPG_Asw_SignalConditioning_1ms and before SPG_RBVLV_ActuationFastAccess_CM_1ms */
+/*PROC_EP: SPG_RBVLV_ActuationFastAccess_CM_1ms */                  /* SEQUENCE: must be after SPG_Asw_SignalConditioning_1ms */
+/*PROC_EP: SPG_RBWDH_SSS_CM_BOS_1ms */                              /* SEQUENCE: must be after SPG_RBVLV_ActuationFastAccess_CM_1ms (preferred position: as early as possible to avoid task jitter effects - see Task 725490) */
+/*PROC_EP: SPG_RBPRESSANA_1ms */                                    /* SEQUENCE: must be after SPG_RBADC_1ms */
+/*PROC_EP: SPG_RBDTS_1ms */                                         /* SEQUENCE: must be after SPG_RBLiPS_1ms */
+/*PROC_EP: SPG_RBBERT_BERT_1ms */                                   /* SEQUENCE: must be before SPG_CUBAS_1ms and before SPG_General_1ms (see Tasks 918299 and 1402055) */
+/*PROC_EP: SPG_CUBAS_1ms */                                         /* SEQUENCE: must be before SPG_CUBAS_Xcp_1ms */
+/*PROC_EP: SPG_RBBLM_1ms */                                         /* SEQUENCE: must be after SPG_RBADC_1ms */
+/*PROC_EP: SPG_RBMICBASE_Send_1ms */                                /* SEQUENCE: must be after SPG_RBMICBASE_Receive_1ms */
+/*PROC_EP: SPG_General_1ms */                                       /* SEQUENCE: no dependencies (this is used for project specific 1ms Processes) */
+/*PROC_EP: SPG_RBPTS_1ms */                                         /* SEQUENCE: must be after SPG_RBADC_1ms */
+/*PROC_EP: SPG_RBSUPPLYNBS_1ms */                                   /* SEQUENCE: must be after SPG_RBADC_1ms (voltage filtering, but before users of voltage interfaces, deprecated and replaced by SPG_RBSUPPLY_500us) */
+/*PROC_EP: SPG_RBSUPPLY_1ms */                                      /* SEQUENCE: must be after SPG_RBADC_1ms (filter new voltage values, shall be executed before users of voltage interfaces) */
+/*PROC_EP: SPG_RBAPBMOT_ADCRead_1ms */                              /* SEQUENCE: must be after SPG_RBADC_1ms */
+/*PROC_EP: SPG_RBVLV_State_CM_1ms */                                /* SEQUENCE: must be after SPG_RBADC_1ms */
+/*PROC_EP: SPG_RBGLD_1ms */                                         /* SEQUENCE: must be after SPG_RBADC_1ms and after SPG_Asw_SignalConditioning_1ms*/
+/*PROC_EP: SPG_RBRFP_1ms */                                         /* SEQUENCE: must be after SPG_RBADC_1ms */
+/*PROC_EP: SPG_RBPSC_1ms */                                         /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBTEX_1ms */                                         /* SEQUENCE: must be after SPG_RBADC_1ms, SPG_RBRFP_1ms, SPG_RBPSC_1ms*/
+/*PROC_EP: SPG_RBTSI_1ms */                                         /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBRFPEC_Control_CM1ms */                             /* SEQUENCE: no dependencies */
+/*PROC_EP: RBWAU_ProcSection_1ms */                                 /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBCDI_1ms */                                         /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBTSI_GLD_1ms */                                     /* SEQUENCE: no dependencies */
+#if (RBFS_TaskSchemeExtension == RBFS_TaskSchemeExtension_VMPS)
+  /*PROC_EP: SPG_RTE_ASW_1ms */                                       /* SEQUENCE: no dependencies */
+#endif
+/*PROC_EP: SPG_RBSYS_TimerInterruptMonitoring_1ms */                /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_CUBAS_Xcp_1ms */                                     /* SEQUENCE: must be directly before SPG_RBAPPLIF_TraceMT_CM_BOS_1ms and after SPG_CUBAS_1ms */
+/*PROC_EP: SPG_RBAPPLIF_TraceMT_CM_BOS_1ms */                       /* SEQUENCE: must be last item of SPG_Task1ms (see Premise 2.) */
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* TaskBaseCtrlCycx1High                                                      */
+/* TYPE: cyclictask                                                           */
+/******************************************************************************/
+/*PROC_SECTION: SPG_TaskBaseCtrlCycx1High */
+/*PROC_EP: SPG_RBTaskMon_x1h */                                     /* SEQUENCE: must be first item of SPG_TaskBaseCtrlCycx1High (see Premise 1.) */
+/*PROC_EP: SPG_RBPRESSSENT_x1 */                                    /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBVLV_PreSendFast_CM_x1 */                           /* SEQUENCE: must be before SPG_RBMICBASE_SysSendFast_x1H and after SPG_RBPRESSSENT_x1 */
+/*PROC_EP: SPG_RBMICBASE_SysSendFast_x1H */                         /* SEQUENCE: must be before SPG_RBMICBASE_SysReceiveFast_x1H */
+/*PROC_EP: SPG_VLV_UVR_Leakage_Validity_CM_x1H */                   /* SEQUENCE: must be directly after SPG_RBMICBASE_SysSendFast_x1H */
+/*PROC_EP: SPG_RBWSSDataCollect_X1 */                               /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBSYS_JitterMonitoring_x1 */                         /* SEQUENCE: must be after SPG_RBVLV_PreSendFast_CM_x1, SPG_VLV_UVR_Leakage_Validity_CM_x1H, SPG_RBWSSDataCollect_X1 */
+/*============================== till here is the deadline within the task jitter is monitored ===========================*/
+
+/*PROC_EP: SPG_RBMICBASE_ApbSendFast_x1H */                         /* SEQUENCE: must be before SPG_RBMICBASE_ApbReceiveFast_x1H */
+/*PROC_EP: SPG_RBMICBASE_B6SendFast_x1H */                          /* SEQUENCE: must be before SPG_RBMICBASE_B6ReceiveFast_x1H */
+/*PROC_EP: SPG_RBMICBASE_Receive_x1H */                             /* SEQUENCE: must be before SPG_RBMICBASE_Send_x1H */
+/*PROC_EP: SPG_RBMICSYS_PostReceive_x1H */                          /* SEQUENCE: must be directly after SPG_RBMICBASE_Receive_x1H (to post process received MICSYS data for users and for RoPP41 inter communication data handling)*/
+/*PROC_EP: SPG_RBMICAPB_SpecialClearOnReadHandling_x1H */           /* SEQUENCE: must be directly after SPG_RBMICSYS_PostReceive_x1H (directly after SPG_RBMICBASE_Receive_x1H) */
+/*PROC_EP: SPG_RBWSSDataCalc_X1 */                                  /* SEQUENCE: must be after SPG_RBMICBASE_Receive_x1H, SPG_RBWSSDataCollect_X1 (preferred position: near to SPG_RBWSSDataCollect_X1 - see Task 895744) */
+/*PROC_EP: SPG_RBSUPPLYBASE_SPIRead_x1 */                           /* SEQUENCE: must be after SPG_RBMICBASE_Receive_x1H (and before all it's users e.g. PTS, VACANA) */
+/*PROC_EP: SPG_NET_CtrlCycx1H */                                    /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBRFPEC_x1H */                                       /* SEQUENCE: must be before SPG_RBSUPPLYBASE_RedundantSupply_x1 */
+/*PROC_EP: SPG_RBSUPPLYNBS_x1 */                                    /* SEQUENCE: no dependencies (filtered voltage users should run afterwards) */
+/*PROC_EP: SPG_RBSUPPLY_x1H */                                      /* SEQUENCE: must be after SPG_RBSUPPLYNBS_x1 and before SPG_RBSUPPLYBASE_RedundantSupply_x1 (sync filtered NBS voltage for plausibility monitorings) */
+/*PROC_EP: SPG_RBVLV_Supply_CM_x1H */                               /* SEQUENCE: must be after SPG_RBSUPPLY_x1H (because provided voltages are needed) */
+/*PROC_EP: SPG_RBSUPPLYBASE_RedundantSupply_x1 */                   /* SEQUENCE: must be after SPG_RBSUPPLY_x1H, SPG_RBSUPPLYNBS_x1, SPG_RBRFPEC_x1H */
+/*PROC_EP: SPG_RBRSS_x1 */                                          /* SEQUENCE: must be after SPG_RBSUPPLYNBS_x1 and before SPG_RBBLM_x1H */
+/*PROC_EP: SPG_RBClutch_x1 */                                       /* SEQUENCE: must be after SPG_RBSUPPLY_x1H (current UBVRfiltered is required, no dependency to RBGTM) */
+/*PROC_EP: SPG_RBBLM_x1H */                                         /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBVltgHdlr_Monitoring_x1 */                          /* SEQUENCE: must be after SPG_RBRSS_x1 (Scheduled after to read calculated Redundant Supply path) */
+/*PROC_EP: SPG_RBRSS_Monitoring_x1 */                               /* SEQUENCE: must be after SPG_RBRSS_x1, SPG_RBBLM_x1H */
+/*PROC_EP: SPG_RBPRESSANA_x1 */                                     /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBBUTSWI_x1 */                                       /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBVACANA_x1 */                                       /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBVACSENT_x1 */                                      /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBLiPS_x1 */                                         /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBeHBC_Out_x1 */                                     /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBBLM_Rotor_x1 */                                    /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBPTS_x1 */                                          /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBADC_X1 */                                          /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBIIS_x1 */                                          /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBEMERGVoltageMon_x1H */                             /* SEQUENCE: must be before SPG_RBAPBMOT_x1H */
+/*PROC_EP: SPG_RBFSL_Handler_x1 */                                  /* SEQUENCE: must be before SPG_RBWDH_x1 */
+/*PROC_EP: SPG_RBWDH_x1 */                                          /* SEQUENCE: must be after SPG_RBFSL_Handler_x1 */
+/*PROC_EP: SPG_RBMICBASE_SysReceiveFast_x1H */                      /* SEQUENCE: must be after SPG_RBMICBASE_SysSendFast_x1H */
+/*PROC_EP: SPG_RBRFP_TRIGGERADC_x1H */                              /* SEQUENCE: must be before SPG_RBRFP_x1H and directly after SPG_RBMICBASE_SysReceiveFast_x1H */
+/*PROC_EP: SPG_RBVLV_State_x1H   */                                 /* SEQUENCE: must be after SPG_RBMICBASE_SysReceiveFast_x1H, SPG_RBMICBASE_Receive_x1H */
+/*PROC_EP: SPG_RBMICBASE_ApbReceiveFast_x1H */                      /* SEQUENCE: must be after SPG_RBMICBASE_ApbSendFast_x1H */
+/*PROC_EP: SPG_RBMICAPB_GlobalDataUpdate_X1H */                     /* SEQUENCE: must be after SPG_RBMICBASE_Receive_x1H, SPG_RBMICBASE_ApbReceiveFast_x1H and before SPG_RBMICAPB_X1, SPG_RBAPBMOT_x1H, SPG_RBAPBWATCHDOG_x1H, SPG_RBAPBMSS_x1H */
+/*PROC_EP: SPG_RBMICAPBAdcSync_X1 */                                /* SEQUENCE: must be before SPG_RBMICAPB_X1 (to send latest value in APB SPI communication, as close as possible to SPG_RBMICAPB_X1 to have most recent ADC values)*/
+/*PROC_EP: SPG_RBMICAPB_X1 */                                       /* SEQUENCE: must be before SPG_RBMICBASE_Send_x1H and after SPG_RBMICBASE_ApbReceiveFast_x1H */
+/*PROC_EP: SPG_APBButton_x1 */                                      /* SEQUENCE: must be after SPG_RBMICBASE_ApbReceiveFast_x1H and before SPG_RBMICBASE_Send_x1H (current APB ASIC register value is required from SPI transmission in this X1-task, corresponding output shall be sent in the next SPI transmission) */
+/*PROC_EP: SPG_RBDMA_ErrorHandling_X1H */                           /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBAPBMOT_x1H */                                      /* SEQUENCE: must be before SPG_RBMICBASE_Send_x1H and after SPG_RBMICBASE_ApbReceiveFast_x1H, SPG_RBSUPPLY_x1H */
+/*PROC_EP: SPG_RBAPBWATCHDOG_x1H */                                 /* SEQUENCE: must be before SPG_RBMICBASE_Send_x1H and after SPG_RBMICBASE_ApbReceiveFast_x1H */
+/*PROC_EP: SPG_RBGLD_X1H */                                         /* SEQUENCE: must be after SPG_RBFSL_Handler_x1, SPG_RBAPBMOT_x1H, SPG_RBRFPEC_x1H */
+/*PROC_EP: SPG_RBSUPPLYNBS_UBRDINTSwitchingx1 */                    /* SEQUENCE: must be before SPG_RBAPBMOTRVPSETTING_x1H and after SPG_RBAPBMOT_x1H */
+/*PROC_EP: SPG_RBEMERGSUPPLY_x1H */                                 /* SEQUENCE: must be before SPG_RBAPBMOTRVPSETTING_x1H and after SPG_RBAPBMOT_x1H, SPG_RBSUPPLYNBS_UBRDINTSwitchingx1 */
+/*PROC_EP: SPG_RBAPBMOTRVPSETTING_x1H */                            /* SEQUENCE: must be before SPG_RBMICBASE_Send_x1H and after SPG_RBAPBMOT_x1H, SPG_RBEMERGSUPPLY_x1H */
+/*PROC_EP: RBWAU_ProcSection_5ms */                                 /* SEQUENCE: must be before SPG_RBMICBASE_Send_x1H and after SPG_RBMICBASE_SysReceiveFast_x1H */
+/*PROC_EP: SPG_RBSUPPLYBASE_UEXSSwitching_x1H */                    /* SEQUENCE: must be before SPG_RBMICBASE_Send_x1H (and after all requesters for UEXS switching) */
+/*PROC_EP: SPG_RBAPBMSS_x1H */                                      /* SEQUENCE: must be after SPG_RBMICBASE_ApbReceiveFast_x1H and before SPG_RBMICBASE_Send_x1H*/
+/*PROC_EP: SPG_RBMICBASE_B6ReceiveFast_x1H */                       /* SEQUENCE: must be after SPG_RBMICBASE_B6SendFast_x1H */
+/*PROC_EP: SPG_RBBERT_BERT_x1H */                                   /* SEQUENCE: no dependencies (preferred position: should be after SPG_RBMICBASE_B6ReceiveFast_x1H and before SPG_RBMICBASE_Send_x1H - see Defect 616955) */
+/*PROC_EP: SPG_RBBLM_TransmitReceive_x1H */                         /* SEQUENCE: must be after SPG_RBMICBASE_B6ReceiveFast_x1H and before SPG_RBMICBASE_Send_x1H */
+/*PROC_EP: SPG_RBMICB6_x1H */                                       /* SEQUENCE: must be after SPG_RBMICBASE_B6ReceiveFast_x1H and before SPG_RBMICBASE_Send_x1H */
+/*PROC_EP: SPG_RBMICSYS_PreSend_x1H */                              /* SEQUENCE: must be directly before SPG_RBMICBASE_Send_x1H (for RoPP41 uC SPI inter communication buffer preperation and initiation. For details see: RBMIC_uCInterCom_SW_Doc.md)*/
+/*PROC_EP: SPG_RBMICBASE_Send_x1H */                                /* SEQUENCE: must be after SPG_RBMICBASE_Receive_x1H */
+/*PROC_EP: SPG_RBRFP_x1H */                                         /* SEQUENCE: must be after SPG_RBMICBASE_SysReceiveFast_x1H, SPG_RBMICBASE_Receive_x1H */
+/*PROC_EP: SPG_CUBAS_x1 */                                          /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_AscetStub_x1H */                                     /* SEQUENCE: no dependencies */
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* TaskFlexray                                                                */
+/* TYPE: cyclictask                                                           */
+/******************************************************************************/
+#if (RBFS_SysFlxrTask == RBFS_SysFlxrTask_ON)
+  /*PROC_SECTION: SPG_TaskFlexray */
+  /*PROC_EP: SPG_CUBAS_Comstack_FlexrayTask */                        /* SEQUENCE: no dependencies */
+  /*PROC_SECTION_END: */
+#endif
+
+/******************************************************************************/
+/* TaskBaseCtrlCycx1Low                                                       */
+/* TYPE: cyclictask                                                           */
+/******************************************************************************/
+/*PROC_SECTION: SPG_TaskBaseCtrlCycx1Low */
+/*PROC_EP: SPG_RBTSI_Scheduler_x1L */                               /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_NET_PRECONTROL_CtrlCycx1L */                         /* SEQUENCE: must be before SPG_DCOM_PRECONTROL_CtrlCycx1, SPG_Ascet_TaskBaseCtrlx1 */
+/*PROC_EP: SPG_DCOM_PRECONTROL_CtrlCycx1 */                         /* SEQUENCE: must be before SPG_Ascet_TaskBaseCtrlx1 */
+/*PROC_EP: SPG_DHP_DiagnosisHydraulicProtection_x1L */              /* SEQUENCE: must be after SPG_DCOM_PRECONTROL_CtrlCycx1 and before SPG_Ascet_TaskBaseCtrlx1 */
+/*PROC_EP: SPG_GeneralBeforeASW_Cycx1 */                            /* SEQUENCE: must be before SPG_Ascet_TaskBaseCtrlx1 */
+/*PROC_EP: SPG_RBHMI_PRECONTROL_CtrlCycx1 */                        /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBDSM_PreASW_x1 */                                   /* SEQUENCE: must be before SPG_Ascet_TaskBaseCtrlx1 (VMC requires latest DSM input - see Gen_RS_0086-1403) */
+/*PROC_EP: SPG_MSI2ASCET_x1 */                                      /* SEQUENCE: must be before SPG_Ascet_TaskBaseCtrlx1 (deprecated since 2018.4, but still required for backwards compatibility - see Task 694451) */
+/*PROC_EP: SPG_RTE_PreASW_x1L */                                    /* SEQUENCE: must be before SPG_Ascet_TaskBaseCtrlx1 */
+/*PROC_EP: SPG_RBPDM_NvM_x1 */                                      /* SEQUENCE: must be before SPG_Ascet_TaskBaseCtrlx1 (but as close to the end as possible) */
+/*PROC_EP: SPG_RBVLV_ExternalFreeWheeling_OFF_CM_x1 */              /* SEQUENCE: must be before SPG_Ascet_TaskBaseCtrlx1 (but as close to the end as possible) */
+/*PROC_EP: SPG_RBHYDR_PreASW_x1 */                                  /* SEQUENCE: must be before SPG_Ascet_TaskBaseCtrlx1 (but as close to the end as possible) */
+/*PROC_EP: SPG_RBBCC_ValveCoilResistanceMeasured_x1L */             /* SEQUENCE: must be directly before SPG_RBBCC_CopyInterfaceOfHwpToApp_x1L (original dependency: directly before Ascet_TaskBaseCtrlx1) (-> deprecated EP, use SPG_RBBCC_CopyInterfaceOfAppToHwp_x1L)*/
+/*PROC_EP: SPG_RBBCC_CopyInterfaceOfHwpToApp_x1L */                 /* SEQUENCE: must be directly before SPG_RBAPPLIF_XPASS_PreASW_CM_X1 (original dependency: directly before Ascet_TaskBaseCtrlx1)*/
+/*PROC_EP: SPG_RBAPPLIF_XPASS_PreASW_CM_X1 */                       /* SEQUENCE: must be directly before SPG_Ascet_TaskBaseCtrlx1 (nothing else allowed in between) */
+/*PROC_EP: SPG_Ascet_TaskBaseCtrlx1 */                              /* SEQUENCE: no dependencies (this is the pivot entry point for all others) */
+/*PROC_EP: SPG_RBAPPLIF_XPASS_PostASW_CM_X1 */                      /* SEQUENCE: must be directly after SPG_Ascet_TaskBaseCtrlx1 (nothing else allowed in between) */
+/*PROC_EP: SPG_RBBCC_CopyInterfaceOfAppToHwp_x1L */                 /* SEQUENCE: must be directly after SPG_RBAPPLIF_XPASS_PostASW_CM_X1 and after SPG_DHP_DiagnosisHydraulicProtection_x1L (original dependency: directly after Ascet_TaskBaseCtrlx1) */
+/*PROC_EP: SPG_RTE_PostASW_x1L */                                   /* SEQUENCE: must be after SPG_Ascet_TaskBaseCtrlx1 */
+/*PROC_EP: SPG_ASCET2MSI_x1 */                                      /* SEQUENCE: must be after SPG_Ascet_TaskBaseCtrlx1 (deprecated since 2018.4, but still required for backwards compatibility - see Task 694451) */
+/*PROC_EP: SPG_RBDSM_PostASW_x1 */                                  /* SEQUENCE: must be after SPG_Ascet_TaskBaseCtrlx1 (DSM requires latest VMC signals - see Gen_RS_0086-1403) */
+/*PROC_EP: SPG_RBHMI_POSTCONTROL_CtrlCycx1 */                       /* SEQUENCE: must be after SPG_Ascet_TaskBaseCtrlx1 */
+/*PROC_EP: SPG_NET_POSTCONTROL_CtrlCycx1L */                        /* SEQUENCE: must be after SPG_Ascet_TaskBaseCtrlx1 */
+/*PROC_EP: SPG_RBFSL_BeforeMux_x1L */                               /* SEQUENCE: must be before SPG_RBHYDR_Mux_x1L */
+/*PROC_EP: SPG_RBSUPPLYBASE_BeforeHydrMux_x1 */                     /* SEQUENCE: must be before SPG_RBHYDR_Mux_x1L */
+/*PROC_EP: SPG_RBVLV_BeforeHydrMux_x1L */                           /* SEQUENCE: must be before SPG_RBHYDR_Mux_x1L */
+/*PROC_EP: SPG_RBRFP_BeforeHydrMux_x1L */                           /* SEQUENCE: must be before SPG_RBHYDR_Mux_x1L */
+/*PROC_EP: SPG_RBRFPEC_BeforeHydrMux_x1L */                         /* SEQUENCE: must be before SPG_RBHYDR_Mux_x1L (Collection of CoToM feedback, providing of information to SPG_RBHYDR_Mux_x1L) */
+/*PROC_EP: SPG_RBBLM_BeforeHydrMux_x1L */                           /* SEQUENCE: must be before SPG_RBHYDR_Mux_x1L */
+/*PROC_EP: SPG_RBHYDR_Mux_x1L */                                    /* SEQUENCE: must be after SPG_Ascet_TaskBaseCtrlx1, SPG_RBTSI_Scheduler_x1L (Collects all hydraulic access requests and prioritizes them) */
+/*PROC_EP: SPG_RBSUPPLYBASE_AfterHydrMux_x1 */                      /* SEQUENCE: must be after SPG_RBHYDR_Mux_x1L */
+/*PROC_EP: SPG_RBEcuSupply_AfterHydrMux_x1 */                       /* SEQUENCE: must be after SPG_RBHYDR_Mux_x1L */
+/*PROC_EP: SPG_RBRFPEC_AfterHydrMux_x1L */                          /* SEQUENCE: must be after SPG_RBHYDR_Mux_x1L (Execution of CoToMs and actuations scheduled by SPG_RBHYDR_Mux_x1L) */
+/*PROC_EP: SPG_RBVLV_AfterHydrMux_x1L */                            /* SEQUENCE: must be after SPG_RBHYDR_Mux_x1L */
+/*PROC_EP: SPG_RBBCC_ValveActuationFeedback */                      /* SEQUENCE: must be directly after SPG_RBVLV_AfterHydrMux_x1L */
+/*PROC_EP: SPG_RBAPBMOT_Mux */                                      /* SEQUENCE: must be after SPG_Ascet_TaskBaseCtrlx1, SPG_RBTSI_Scheduler_x1L, SPG_RBAPBMOT_x1H */
+/*PROC_EP: SPG_RBAPBMOT_NodeRelease */                              /* SEQUENCE: must be after SPG_RBAPBMOT_Mux */
+/*PROC_EP: SPG_RBRFPEC_Handling_CMx1 */                             /* SEQUENCE: must be after SPG_Ascet_TaskBaseCtrlx1, SPG_RBTSI_Scheduler_x1L */
+/*PROC_EP: SPG_RBPSC_x1L */                                         /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBBLM_AfterHydrMux_x1L */                            /* SEQUENCE: must be after SPG_RBPSC_x1L, SPG_RBHYDR_Mux_x1L */
+/*PROC_EP: SPG_RBSUPPLYBASE_RedundantSupply_x1L */                  /* SEQUENCE: must be directly after SPG_RBBLM_AfterHydrMux_x1L */
+/*PROC_EP: SPG_RBRFP_x1l */                                         /* SEQUENCE: must be after SPG_RBHYDR_Mux_x1L, SPG_Ascet_TaskBaseCtrlx1 */
+/*PROC_EP: SPG_RBRFPEC_x1L */                                       /* SEQUENCE: must be after SPG_RBRFPEC_Handling_CMx1 */
+/*PROC_EP: SPG_RBCDI_x1 */                                          /* SEQUENCE: must be before SPG_CBS_POSTCONTROL_CtrlCycx1 */
+/*PROC_EP: SPG_GeneralAfterASW_Cycx1 */                             /* SEQUENCE: must be after SPG_Ascet_TaskBaseCtrlx1 */
+/*PROC_EP: SPG_CBS_POSTCONTROL_CtrlCycx1 */                         /* SEQUENCE: must be after SPG_GeneralAfterASW_Cycx1 */
+/*PROC_EP: SPG_RBSV_x1 */                                           /* SEQUENCE: must be after SPG_GeneralAfterASW_Cycx1 */
+/*PROC_EP: SPG_RBTEX_X1L */                                         /* SEQUENCE: must be after SPG_CUBAS_x1 */
+/*PROC_EP: SPG_RBVLV_ActMonTest_x1L */                              /* SEQUENCE: must be after SPG_RBVLV_AfterHydrMux_x1L (SPG_RBVLV_AfterHydrMux_x1L has to decide in advance, which tests shall be executed) */
+/*PROC_EP: SPG_RBMICSYS_QxShortCircuitTest_x1L */                   /* SEQUENCE: must be after SPG_RBRFP_x1l, SPG_RBVLV_ActMonTest_x1L */
+/*PROC_EP: SPG_APBButton_NodeRelease */                             /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBAMBPRESS_x1  */                                    /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBAPPLIF_MailboxHandler_CM_BOS_X1L */                /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBGTM_RFPEC_getMcsRuntimeMeasVariables_x1 */         /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_CUBAS_Xcp_x1 */                                      /* SEQUENCE: must be directly before SPG_RBAPPLIF_TraceMT_CM_BOS_X1L */
+/*PROC_EP: SPG_RBAPPLIF_TraceMT_CM_BOS_X1L */                       /* SEQUENCE: must be last item of SPG_TaskBaseCtrlCycx1Low (see Premise 2.) */
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* TaskBaseCtrlCycx2                                                          */
+/* TYPE: cyclictask                                                           */
+/******************************************************************************/
+/*PROC_SECTION: SPG_TaskBaseCtrlCycx2 */
+/*PROC_EP: SPG_RBTaskMon_x2 */                                      /* SEQUENCE: must be first item of SPG_TaskBaseCtrlCycx2 (see Premise 1.) */
+/*PROC_EP: SPG_RBuCWatchdog_Trigger */                               /* SEQUENCE: as close to the beginning of x2 as possible */
+/*PROC_EP: SPG_RBBERT_x2 */                                         /* SEQUENCE: no dependencies */
+/*PROC_EP: RBWAU_ProcSection_10ms */                                /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_APBButton_x2 */                                      /* SEQUENCE: must be after RBWAU_ProcSection_10ms */
+/*PROC_EP: SPG_RBTPSW_TestSuite_x2 */                               /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBPRESSANA_x2 */                                     /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_CUBAS_x2 */                                          /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBSEC_x2 */                                          /* SEQUENCE: must be after SPG_CUBAS_x2 */
+/*PROC_EP: SPG_RBSWBIST_x2  */                                      /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBSYS_rba_Runtime_MainFunction_x2 */                 /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBSYS_LockMonitoring_x2 */                           /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBSYS_TimerMonitoring_x2 */                          /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBGTM_Mon_x2 */                                      /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBIIS_x2 */                                          /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBADC_X2 */                                          /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_BANDGAP_x2 */                                        /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBMICSYS_AsicInternalMon_x2 */                       /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBSENT_X2 */                                         /* SEQUENCE: no dependencies (should be before all SENT-Sensors -> nice to have) */
+/*PROC_EP: SPG_RBPRESSSENT_x2 */                                    /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBLiPS_x2 */                                         /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBHWLAMPS_x2 */                                      /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBPTS_x2 */                                          /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBePedal_x2 */                                       /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBAcceleratorPedal_x2 */                             /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBNvmTest_cyclic */                                  /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_NET_PRECONTROL_CtrlCycx2 */                          /* SEQUENCE: must be before SPG_DCOM_PRECONTROL_CtrlCycx2, SPG_Ascet_TaskBaseCtrlx2 */
+/*PROC_EP: SPG_DCOM_PRECONTROL_CtrlCycx2 */                         /* SEQUENCE: must be before SPG_Ascet_TaskBaseCtrlx2 */
+/*PROC_EP: SPG_RBVACSWITCH_x2 */                                    /* SEQUENCE: must be after SPG_NET_PRECONTROL_CtrlCycx2 */
+/*PROC_EP: SPG_T1_x2 */                                             /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBDeCo_x2 */                                         /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBShutdownHandler_x2*/                               /* SEQUENCE: must be before SPG_SMM_x2 (deprecated, but still required for backwards compatibility - see Task 679511) */
+/*PROC_EP: SPG_GeneralBeforeASW_Cycx2 */                            /* SEQUENCE: must be before SPG_Ascet_TaskBaseCtrlx2 */
+/*PROC_EP: SPG_RBHMI_PRECONTROL_CtrlCycx2 */                        /* SEQUENCE: must be before SPG_Ascet_TaskBaseCtrlx2 */
+/*PROC_EP: SPG_RBDSM_PreASW_x2 */                                   /* SEQUENCE: must be before SPG_Ascet_TaskBaseCtrlx2 and directly before SPG_SMM_x2 */
+/*PROC_EP: SPG_SMM_x2 */                                            /* SEQUENCE: must be after SPG_CUBAS_x2, RBWAU_ProcSection_10ms (deprecated since 2018.4, but still required for backwards compatibility - see Task 694451) */
+/*PROC_EP: SPG_MSI2ASCET_x2 */                                      /* SEQUENCE: must be before SPG_Ascet_TaskBaseCtrlx2 (deprecated since 2018.4, but still required for backwards compatibility - see Task 694451) */
+/*PROC_EP: SPG_RTE_PreASW_x2 */                                     /* SEQUENCE: must be before SPG_Ascet_TaskBaseCtrlx2 */
+/*PROC_EP: SPG_RBAPPLIF_XPASS_PreASW_CM_X2 */                       /* SEQUENCE: must be directly before SPG_Ascet_TaskBaseCtrlx2 (nothing else allowed in between) */
+/*PROC_EP: SPG_Ascet_TaskBaseCtrlx2 */                              /* SEQUENCE: no dependencies (this is the pivot entry point for all others) */
+/*PROC_EP: SPG_RBAPPLIF_XPASS_PostASW_CM_X2 */                      /* SEQUENCE: must be directly after SPG_Ascet_TaskBaseCtrlx2 (nothing else allowed in between) */
+/*PROC_EP: SPG_RTE_PostASW_x2 */                                    /* SEQUENCE: must be after SPG_Ascet_TaskBaseCtrlx2 */
+/*PROC_EP: SPG_ASCET2MSI_x2*/                                       /* SEQUENCE: must be after SPG_Ascet_TaskBaseCtrlx2 (deprecated since 2018.4, but still required for backwards compatibility - see Task 694451) */
+/*PROC_EP: SPG_RBDSM_PostASW_x2 */                                  /* SEQUENCE: must be after SPG_Ascet_TaskBaseCtrlx2 */
+/*PROC_EP: SPG_RBHMI_POSTCONTROL_CtrlCycx2 */                       /* SEQUENCE: must be after SPG_Ascet_TaskBaseCtrlx2 */
+/*PROC_EP: SPG_RBCDI_x2 */                                          /* SEQUENCE: must be before SPG_CBS_POSTCONTROL_CtrlCycx2 */
+/*PROC_EP: SPG_GeneralAfterASW_Cycx2 */                             /* SEQUENCE: must be after SPG_Ascet_TaskBaseCtrlx2 */
+/*PROC_EP: SPG_CBS_POSTCONTROL_CtrlCycx2 */                         /* SEQUENCE: must be after SPG_GeneralAfterASW_Cycx2 */
+/*PROC_EP: SPG_RBPSC_x2 */                                          /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_NET_POSTCONTROL_CtrlCycx2 */                         /* SEQUENCE: must be after SPG_Ascet_TaskBaseCtrlx2 and before SPG_DCOM_POSTCONTROL_CtrlCycx2 */
+/*PROC_EP: SPG_DCOM_POSTCONTROL_CtrlCycx2 */                        /* SEQUENCE: must be after SPG_Ascet_TaskBaseCtrlx2 */
+/*PROC_EP: SPG_RBSYS_PerformanceCounterMonitoring_x2 */             /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBFSL_x2 */                                          /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_CUBAS_Xcp_x2 */                                      /* SEQUENCE: must be directly before SPG_RBAPPLIF_TraceMT_CM_BOS_X2 */
+/*PROC_EP: SPG_RBAPPLIF_TraceMT_CM_BOS_X2 */                        /* SEQUENCE: must be last item of SPG_TaskBaseCtrlCycx2 (see Premise 2.) */
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* TaskBaseCtrlCycx2p => only for specific SYS/uC processes!                  */
+/* TYPE: cyclictask                                                           */
+/******************************************************************************/
+#if (RBFS_MCORE == RBFS_MCORE_ON)
+  /*PROC_SECTION: SPG_TaskBaseCtrlCycx2p */
+  /*PROC_EP: SPG_RBTaskMon_x2p */                                     /* SEQUENCE: must be first item of SPG_TaskBaseCtrlCycx2p (see Premise 1.) */
+  /*PROC_EP: SPG_RBuCWatchdog_Trigger */                               /* SEQUENCE: as close to the beginning of x2p as possible */
+  /*PROC_EP: SPG_RBBERT_x2p */                                        /* SEQUENCE: no dependencies (preferred position: after SPG_RBuCWatchdog_Trigger as done in TaskBaseCtrlCycx2) */
+  /*PROC_EP: SPG_RBTPSW_TestSuite_x2p */                              /* SEQUENCE: no dependencies */
+  /*PROC_EP: SPG_RBSYS_LockMonitoring_x2 */                           /* SEQUENCE: no dependencies */
+  /*PROC_EP: SPG_RBSWBIST_x2p */                                      /* SEQUENCE: no dependencies */
+  /*PROC_EP: SPG_T1_x2p */                                            /* SEQUENCE: no dependencies */
+  /*PROC_EP: SPG_RBDeCo_x2p */                                        /* SEQUENCE: no dependencies */
+  /*PROC_EP: SPG_RBSYS_PerformanceCounterMonitoring_x2 */             /* SEQUENCE: no dependencies */
+  #if (RBFS_TaskSchemeExtension == RBFS_TaskSchemeExtension_VMPS)
+    /*PROC_EP: SPG_RTE_ASW_x2p */                                       /* SEQUENCE: no dependencies */
+  #endif
+  /*PROC_EP: SPG_RBAPPLIF_TraceMT_CM_BOS_X2P */                       /* SEQUENCE: must be last item of SPG_TaskBaseCtrlCycx2p (see Premise 2.) */
+  /*PROC_SECTION_END: */
+#endif
+
+/******************************************************************************/
+/* TaskBaseCtrlCycx4                                                          */
+/* TYPE: cyclictask                                                           */
+/******************************************************************************/
+/*PROC_SECTION: SPG_TaskBaseCtrlCycx4 */
+/*PROC_EP: SPG_RBTaskMon_x4 */                                      /* SEQUENCE: must be first item of SPG_TaskBaseCtrlCycx4 (see Premise 1.) */
+/*PROC_EP: SPG_RBMICSYS_AsicDioOvercurrent_x4 */                    /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBSUPPLYBASE_x4 */                                   /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBEcuSupply_x4 */                                    /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBSUPPLYRFP_x4 */                                    /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBSUPPLYNBS_x4 */                                    /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBClutch_x4 */                                       /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBVACANA_x4 */                                       /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBVACSENT_x4 */                                      /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBLiPS_x4 */                                         /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBeHBC_In_x4 */                                      /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBPRESSSENT_x4 */                                    /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBWSSMon_X4 */                                       /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBSYS_StackCheck_x4 */                               /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBSYS_SRMSCylicTest_x4 */                            /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBIIS_x4 */                                          /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBHWLAMPS_x4 */                                      /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBVoltageHandler_x4 */                               /* SEQUENCE: must be before SPG_CUBAS_AppMode_x4 (deprecated since 2018.4, but still required for backwards compatibility - see Task 694451) */
+/*PROC_EP: SPG_ENV_x4 */                                            /* SEQUENCE: must be before SPG_CUBAS_AppMode_x4 (deprecated since 2018.4, but still required for backwards compatibility - see Task 694451) */
+/*PROC_EP: SPG_RBDSM_BeforeCUBAS_x4 */                              /* SEQUENCE: must be before SPG_CUBAS_AppMode_x4 (as close as possible) */
+/*PROC_EP: SPG_CUBAS_x4 */                                          /* SEQUENCE: no dependencies (deprecated, but still required for backwards compatibility - see EPIC 354648) */
+/*PROC_EP: SPG_CUBAS_AppMode_x4 */                                  /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBDSM_AfterCUBAS_x4 */                               /* SEQUENCE: must be directly after SPG_CUBAS_AppMode_x4 */
+/*PROC_EP: SPG_NET_PRECONTROL_CtrlCycx4 */                          /* SEQUENCE: must be before SPG_DCOM_PRECONTROL_CtrlCycx4, SPG_Ascet_TaskBaseCtrlx4 */
+/*PROC_EP: SPG_DCOM_PRECONTROL_CtrlCycx4 */                         /* SEQUENCE: must be before SPG_Ascet_TaskBaseCtrlx4 */
+/*PROC_EP: SPG_RBHMI_PRECONTROL_CtrlCycx4 */                        /* SEQUENCE: must be before SPG_Ascet_TaskBaseCtrlx4 */
+/*PROC_EP: RBVarMapping_4x_send */                                  /* SEQUENCE: must be before SPG_RTE_PreASW_x4 */
+/*PROC_EP: SPG_GeneralBeforeASW_Cycx4 */                            /* SEQUENCE: must be before SPG_Ascet_TaskBaseCtrlx4 */
+/*PROC_EP: SPG_RBDSM_PreASW_x4 */                                   /* SEQUENCE: must be before SPG_Ascet_TaskBaseCtrlx4 (VMC requires latest DSM input - see Gen_RS_0086-1402) */
+/*PROC_EP: SPG_MSI2ASCET_x4 */                                      /* SEQUENCE: must be before SPG_Ascet_TaskBaseCtrlx4 (deprecated since 2018.4, but still required for backwards compatibility - see Task 694451) */
+/*PROC_EP: SPG_RTE_PreASW_x4 */                                     /* SEQUENCE: must be before SPG_Ascet_TaskBaseCtrlx4 */
+/*PROC_EP: SPG_RBAPPLIF_XPASS_PreASW_CM_X4 */                       /* SEQUENCE: must be directly before SPG_Ascet_TaskBaseCtrlx4 (nothing else allowed in between) */
+/*PROC_EP: SPG_Ascet_TaskBaseCtrlx4 */                              /* SEQUENCE: no dependencies (this is the pivot entry point for all others) */
+/*PROC_EP: SPG_RBAPPLIF_XPASS_PostASW_CM_X4 */                      /* SEQUENCE: must be directly after SPG_Ascet_TaskBaseCtrlx4 (nothing else allowed in between) */
+/*PROC_EP: SPG_RTE_PostASW_x4 */                                    /* SEQUENCE: must be after SPG_Ascet_TaskBaseCtrlx4 */
+/*PROC_EP: SPG_ASCET2MSI_x4 */                                      /* SEQUENCE: must be after SPG_Ascet_TaskBaseCtrlx4 (deprecated since 2018.4, but still required for backwards compatibility - see Task 694451) */
+/*PROC_EP: SPG_RBDSM_PostASW_x4 */                                  /* SEQUENCE: must be after SPG_Ascet_TaskBaseCtrlx4 (DSM requires latest VMC signals - see Gen_RS_0086-1402) */
+/*PROC_EP: SPG_RBHMI_POSTCONTROL_CtrlCycx4 */                       /* SEQUENCE: must be after SPG_Ascet_TaskBaseCtrlx4 */
+/*PROC_EP: RBVarMapping_4x_receive */                               /* SEQUENCE: must be after SPG_RTE_PreASW_x4 */
+/*PROC_EP: SPG_GeneralAfterASW_Cycx4 */                             /* SEQUENCE: must be after SPG_Ascet_TaskBaseCtrlx4 */
+/*PROC_EP: SPG_RBEVP_x4*/                                           /* SEQUENCE: must be after SPG_Ascet_TaskBaseCtrlx4 */
+/*PROC_EP: SPG_RBVSO_x4*/                                           /* SEQUENCE: must be after SPG_Ascet_TaskBaseCtrlx4 */
+/*PROC_EP: SPG_RBBUTSWI_x4 */                                       /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBPSC_x4 */                                          /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBHEA_Handler_x4 */                                  /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_NET_POSTCONTROL_CtrlCycx4 */                         /* SEQUENCE: must be after SPG_Ascet_TaskBaseCtrlx4 */
+/*PROC_EP: SPG_CUBAS_Xcp_x4 */                                      /* SEQUENCE: must be directly before SPG_RBAPPLIF_TraceMT_CM_BOS_X4 */
+/*PROC_EP: SPG_RBAPPLIF_TraceMT_CM_BOS_X4 */                        /* SEQUENCE: must be last item of SPG_TaskBaseCtrlCycx4 (see Premise 2.) */
+/*PROC_SECTION_END: */
+
+
+/******************************************************************************/
+/* TaskBaseCtrlCycx8                                                          */
+/* TYPE: cyclictask                                                           */
+/******************************************************************************/
+/*PROC_SECTION: SPG_TaskBaseCtrlCycx8 */
+/*PROC_EP: SPG_RBTaskMon_x8 */                                      /* SEQUENCE: must be first item of SPG_TaskBaseCtrlCycx8 (see Premise 1.) */
+/*PROC_EP: SPG_RBROMSafety_x8 */                                    /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBECM_GuardEventMonitoring_x8 */                     /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_NET_PRECONTROL_CtrlCycx8 */                          /* SEQUENCE: must be before SPG_DCOM_PRECONTROL_CtrlCycx8, SPG_Ascet_TaskBaseCtrlx8 */
+/*PROC_EP: SPG_DCOM_PRECONTROL_CtrlCycx8 */                         /* SEQUENCE: must be before SPG_Ascet_TaskBaseCtrlx8 */
+/*PROC_EP: SPG_RBTPSW_TestSuite_x8 */                               /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBHMI_PRECONTROL_CtrlCycx8  */                       /* SEQUENCE: must be before SPG_Ascet_TaskBaseCtrlx8 */
+/*PROC_EP: SPG_GeneralBeforeASW_Cycx8 */                            /* SEQUENCE: must be before SPG_Ascet_TaskBaseCtrlx8 */
+/*PROC_EP: SPG_RBDSM_PreASW_x8 */                                   /* SEQUENCE: must be before SPG_Ascet_TaskBaseCtrlx8 */
+/*PROC_EP: SPG_MSI2ASCET_x8 */                                      /* SEQUENCE: must be before SPG_Ascet_TaskBaseCtrlx8 (deprecated since 2018.4, but still required for backwards compatibility - see Task 694451) */
+/*PROC_EP: SPG_RTE_PreASW_x8 */                                     /* SEQUENCE: must be before SPG_Ascet_TaskBaseCtrlx8 */
+/*PROC_EP: SPG_RBAPPLIF_XPASS_PreASW_CM_X8 */                       /* SEQUENCE: must be directly before SPG_Ascet_TaskBaseCtrlx8 (nothing else allowed in between) */
+/*PROC_EP: SPG_Ascet_TaskBaseCtrlx8 */                              /* SEQUENCE: no dependencies (this is the pivot entry point for all others) */
+/*PROC_EP: SPG_RBAPPLIF_XPASS_PostASW_CM_X8 */                      /* SEQUENCE: must be directly after SPG_Ascet_TaskBaseCtrlx8 (nothing else allowed in between) */
+/*PROC_EP: SPG_RTE_PostASW_x8 */                                    /* SEQUENCE: must be after SPG_Ascet_TaskBaseCtrlx8 */
+/*PROC_EP: SPG_ASCET2MSI_x8*/                                       /* SEQUENCE: must be after SPG_Ascet_TaskBaseCtrlx8 (deprecated since 2018.4, but still required for backwards compatibility - see Task 694451) */
+/*PROC_EP: SPG_RBDSM_PostASW_x8 */                                  /* SEQUENCE: must be after SPG_Ascet_TaskBaseCtrlx8 */
+/*PROC_EP: SPG_RBHMI_POSTCONTROL_CtrlCycx8*/                        /* SEQUENCE: must be after SPG_Ascet_TaskBaseCtrlx8 */
+/*PROC_EP: SPG_GeneralAfterASW_Cycx8 */                             /* SEQUENCE: must be after SPG_Ascet_TaskBaseCtrlx8 */
+/*PROC_EP: SPG_RBPSC_x8 */                                          /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBADC_X8 */                                          /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_NET_POSTCONTROL_CtrlCycx8 */                         /* SEQUENCE: must be after SPG_Ascet_TaskBaseCtrlx8 */
+/*PROC_EP: SPG_CUBAS_Xcp_x8 */                                      /* SEQUENCE: must be directly before SPG_RBAPPLIF_TraceMT_CM_BOS_X8 */
+/*PROC_EP: SPG_RBAPPLIF_TraceMT_CM_BOS_X8 */                        /* SEQUENCE: must be last item of SPG_TaskBaseCtrlCycx8 (see Premise 2.) */
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* TaskBaseCtrlCycx24                                                         */
+/* TYPE: cyclictask                                                           */
+/******************************************************************************/
+/*PROC_SECTION: SPG_TaskBaseCtrlCycx24 */
+/*PROC_EP: SPG_RBTaskMon_x24 */                                     /* SEQUENCE: must be first item of SPG_TaskBaseCtrlCycx24 (see Premise 1.) */
+/*PROC_EP: SPG_CUBAS_x24 */                                         /* SEQUENCE: must be before SPG_CUBAS_Xcp_x24 */
+/*PROC_EP: SPG_RBWDH_Monitor_x24 */                                 /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_ButSwi_CYCx24 */                                     /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_NET_PRECONTROL_CtrlCycx24 */                         /* SEQUENCE: must be before SPG_DCOM_PRECONTROL_CtrlCycx24, SPG_Ascet_TaskBaseCtrlx24 */
+/*PROC_EP: SPG_DCOM_PRECONTROL_CtrlCycx24 */                        /* SEQUENCE: must be before SPG_Ascet_TaskBaseCtrlx24 */
+/*PROC_EP: SPG_GeneralBeforeASW_Cycx24 */                           /* SEQUENCE: must be before SPG_Ascet_TaskBaseCtrlx24 */
+/*PROC_EP: SPG_RBDSM_PreASW_x24 */                                  /* SEQUENCE: must be before SPG_Ascet_TaskBaseCtrlx24 */
+/*PROC_EP: SPG_MSI2ASCET_x24 */                                     /* SEQUENCE: must be before SPG_Ascet_TaskBaseCtrlx24 (deprecated since 2018.4, but still required for backwards compatibility - see Task 694451) */
+/*PROC_EP: SPG_RTE_PreASW_x24 */                                    /* SEQUENCE: must be before SPG_Ascet_TaskBaseCtrlx24 */
+/*PROC_EP: SPG_RBAPPLIF_XPASS_PreASW_CM_X24 */                      /* SEQUENCE: must be directly before SPG_Ascet_TaskBaseCtrlx24 (nothing else allowed in between) */
+/*PROC_EP: SPG_Ascet_TaskBaseCtrlx24 */                             /* SEQUENCE: no dependencies (this is the pivot entry point for all others) */
+/*PROC_EP: SPG_RBAPPLIF_XPASS_PostASW_CM_X24 */                     /* SEQUENCE: must be directly after SPG_Ascet_TaskBaseCtrlx24 (nothing else allowed in between) */
+/*PROC_EP: SPG_RTE_PostASW_x24 */                                   /* SEQUENCE: must be after SPG_Ascet_TaskBaseCtrlx24 */
+/*PROC_EP: SPG_ASCET2MSI_x24*/                                      /* SEQUENCE: must be after SPG_Ascet_TaskBaseCtrlx24 (deprecated since 2018.4, but still required for backwards compatibility - see Task 694451) */
+/*PROC_EP: SPG_RBDSM_PostASW_x24 */                                 /* SEQUENCE: must be after SPG_Ascet_TaskBaseCtrlx24 */
+/*PROC_EP: SPG_GeneralAfterASW_Cycx24 */                            /* SEQUENCE: must be after SPG_Ascet_TaskBaseCtrlx24 */
+/*PROC_EP: SPG_RBPSC_x24 */                                         /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_NET_POSTCONTROL_CtrlCycx24 */                        /* SEQUENCE: must be after SPG_Ascet_TaskBaseCtrlx24 */
+/*PROC_EP: SPG_BLM_TemperatureB6_CYCx24 */                          /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_uC_Temperature_CYCx24 */                             /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBADC_X24 */                                         /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBLiPS_x24 */                                        /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBPRESSSENT_x24 */                                   /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBePedal_x24 */                                      /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBVACSENT_x24 */                                     /* SEQUENCE: no dependencies */
+/*PROC_EP: RBTestComplete_Processes_120ms_PROCSEC */                /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_CUBAS_Xcp_x24 */                                     /* SEQUENCE: must be directly before SPG_RBAPPLIF_TraceMT_CM_BOS_X24 and after SPG_CUBAS_x24 */
+/*PROC_EP: SPG_RBAPPLIF_TraceMT_CM_BOS_X24 */                       /* SEQUENCE: must be last item of SPG_TaskBaseCtrlCycx24 (see Premise 2.) */
+/*PROC_SECTION_END: */
+
+
+#if (RBFS_TaskSchemeExtension == RBFS_TaskSchemeExtension_VMPS)
+  /******************************************************************************/
+  /* TaskBaseCtrlCycx4pLow => only for VMPS!                                    */
+  /* TYPE: cyclictask                                                           */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_TaskBaseCtrlCycx4pLow */
+  /*PROC_EP: SPG_RTE_ASW_x4pLow */                                    /* SEQUENCE: no dependencies */
+  /*PROC_EP: SPG_RBAPPLIF_TraceMT_CM_BOS_X4PL */                      /* SEQUENCE: must be last item of SPG_TaskBaseCtrlCycx4pLow (see Premise 2.) */
+  /*PROC_SECTION_END: */
+
+  /******************************************************************************/
+  /* TaskBaseCtrlCycx200bg => only for VMPS!                                    */
+  /* TYPE: cyclictask                                                           */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_TaskBaseCtrlCycx200bg */
+  /*PROC_EP: SPG_RTE_ASW_x200bg */                                    /* SEQUENCE: no dependencies */
+  /*PROC_EP: SPG_RBAPPLIF_TraceMT_CM_BOS_X200BG */                    /* SEQUENCE: must be last item of SPG_TaskBaseCtrlCycx200bg (see Premise 2.) */
+  /*PROC_SECTION_END: */
+
+  /******************************************************************************/
+  /* TaskEventExtPrio1 => only for VMPS!                                        */
+  /* TYPE: cyclictask                                                           */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_TaskEventExtPrio1 */
+  /*PROC_EP: SPG_RTE_ASW_ExtPrio1 */                                  /* SEQUENCE: no dependencies */
+  /*PROC_EP: SPG_CUBAS_Xcp_EventExtPrio1 */                           /* SEQUENCE: must be directly before SPG_RBAPPLIF_TraceMT_CM_BOS_EventExtPrio1 */
+  /*PROC_EP: SPG_RBAPPLIF_TraceMT_CM_BOS_EventExtPrio1 */             /* SEQUENCE: must be last item of SPG_TaskEventExtPrio1 (see Premise 2.) */
+  /*PROC_SECTION_END: */
+
+  /******************************************************************************/
+  /* TaskEventExtPrio2 => only for VMPS!                                        */
+  /* TYPE: cyclictask                                                           */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_TaskEventExtPrio2 */
+  /*PROC_EP: SPG_RTE_ASW_ExtPrio2 */                                  /* SEQUENCE: no dependencies */
+  /*PROC_EP: SPG_RBAPPLIF_TraceMT_CM_BOS_EventExtPrio2 */             /* SEQUENCE: must be last item of SPG_TaskEventExtPrio2 (see Premise 2.) */
+  /*PROC_SECTION_END: */
+#endif
+
+#if (RBFS_TaskSchemeExtension == RBFS_TaskSchemeExtension_HostCore0GuestCore1)
+  /******************************************************************************/
+  /* TaskBaseCtrlCycx1Guest => only for JLR!                                    */
+  /* TYPE: cyclictask                                                           */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_TaskBaseCtrlCycx1Guest */
+  /*PROC_EP: SPG_RBTaskMon_x1Guest */                                 /* SEQUENCE: must be first item of SPG_TaskBaseCtrlCycx1Guest (see Premise 1.) */
+  /*PROC_EP: SPG_General_x1Guest */                                   /* SEQUENCE: no dependencies */
+  /*PROC_EP: SPG_RBAPPLIF_TraceMT_CM_BOS_X1GUEST */                   /* SEQUENCE: must be last item of SPG_TaskBaseCtrlCycx1Guest (see Premise 2.) */
+  /*PROC_SECTION_END: */
+
+  /******************************************************************************/
+  /* TaskBaseCtrlCycx2Guest => only for JLR!                                    */
+  /* TYPE: cyclictask                                                           */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_TaskBaseCtrlCycx2Guest */
+  /*PROC_EP: SPG_RBTaskMon_x2Guest */                                 /* SEQUENCE: must be first item of SPG_TaskBaseCtrlCycx2Guest (see Premise 1.) */
+  /*PROC_EP: SPG_General_x2Guest */                                   /* SEQUENCE: no dependencies */
+  /*PROC_EP: SPG_RBAPPLIF_TraceMT_CM_BOS_X2GUEST */                   /* SEQUENCE: must be last item of SPG_TaskBaseCtrlCycx2Guest (see Premise 2.) */
+  /*PROC_SECTION_END: */
+
+  /******************************************************************************/
+  /* TaskBaseCtrlCycx4Guest => only for JLR!                                    */
+  /* TYPE: cyclictask                                                           */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_TaskBaseCtrlCycx4Guest */
+  /*PROC_EP: SPG_RBTaskMon_x4Guest */                                 /* SEQUENCE: must be first item of SPG_TaskBaseCtrlCycx4Guest (see Premise 1.) */
+  /*PROC_EP: SPG_General_x4Guest */                                   /* SEQUENCE: no dependencies */
+  /*PROC_EP: SPG_RBAPPLIF_TraceMT_CM_BOS_X4GUEST */                   /* SEQUENCE: must be last item of SPG_TaskBaseCtrlCycx4Guest (see Premise 2.) */
+  /*PROC_SECTION_END: */
+
+  /******************************************************************************/
+  /* TaskBaseCtrlCycx10Guest => only for JLR!                                   */
+  /* TYPE: cyclictask                                                           */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_TaskBaseCtrlCycx10Guest */
+  /*PROC_EP: SPG_RBTaskMon_x10Guest */                                /* SEQUENCE: must be first item of SPG_TaskBaseCtrlCycx10Guest (see Premise 1.) */
+  /*PROC_EP: SPG_General_x10Guest */                                  /* SEQUENCE: no dependencies */
+  /*PROC_EP: SPG_RBAPPLIF_TraceMT_CM_BOS_X10GUEST */                  /* SEQUENCE: must be last item of SPG_TaskBaseCtrlCycx10Guest (see Premise 2.) */
+  /*PROC_SECTION_END: */
+
+  /******************************************************************************/
+  /* TaskBaseCtrlCycx20Guest => only for JLR!                                   */
+  /* TYPE: cyclictask                                                           */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_TaskBaseCtrlCycx20Guest */
+  /*PROC_EP: SPG_RBTaskMon_x20Guest */                                /* SEQUENCE: must be first item of SPG_TaskBaseCtrlCycx20Guest (see Premise 1.) */
+  /*PROC_EP: SPG_General_x20Guest */                                  /* SEQUENCE: no dependencies */
+  /*PROC_EP: SPG_RBAPPLIF_TraceMT_CM_BOS_X20GUEST */                  /* SEQUENCE: must be last item of SPG_TaskBaseCtrlCycx20Guest (see Premise 2.) */
+  /*PROC_SECTION_END: */
+#endif
+
+#if (RBFS_TaskSchemeExtension == RBFS_TaskSchemeExtension_AB15)
+  /******************************************************************************/
+  /* TaskBaseCtrlCycx10 => only for Airbag 15!                                   */
+  /* TYPE: cyclictask                                                           */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_TaskBaseCtrlCycx10 */
+  /*PROC_EP: SPG_RBTaskMon_x10 */                                /* SEQUENCE: must be first item of SPG_TaskBaseCtrlCycx10 (see Premise 1.) */
+  /*PROC_EP: SPG_General_x10 */                                  /* SEQUENCE: no dependencies */
+  /*PROC_EP: SPG_RBAPPLIF_TraceMT_CM_BOS_X10 */                  /* SEQUENCE: must be last item of SPG_TaskBaseCtrlCycx10 (see Premise 2.) */
+  /*PROC_SECTION_END: */
+
+  /******************************************************************************/
+  /* TaskBaseCtrlCycx20 => only for Airbag 15!                                   */
+  /* TYPE: cyclictask                                                           */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_TaskBaseCtrlCycx20 */
+  /*PROC_EP: SPG_RBTaskMon_x20 */                                /* SEQUENCE: must be first item of SPG_TaskBaseCtrlCycx20 (see Premise 1.) */
+  /*PROC_EP: SPG_General_x20 */                                  /* SEQUENCE: no dependencies */
+  /*PROC_EP: SPG_RBAPPLIF_TraceMT_CM_BOS_X20 */                  /* SEQUENCE: must be last item of SPG_TaskBaseCtrlCycx20 (see Premise 2.) */
+  /*PROC_SECTION_END: */
+#endif
+
+
+/******************************************************************************/
+/******************************************************************************/
+/* Base OS Mode for RB Plant with special wiring (Minderbeschaltung)          */
+/* Only uC functional and ECU functional layers are in there                  */
+/******************************************************************************/
+/******************************************************************************/
+
+/******************************************************************************/
+/* TaskInitBaseOS (ensure same SEQUENCE as in normal mode)                    */
+/* TYPE: inittask                                                             */
+/******************************************************************************/
+/*PROC_SECTION: SPG_TaskInitBaseOS */
+/*PROC_EP: SPG_CUBAS_PreInit_RAM */                                 /* SEQUENCE: must be before SPG_CUBAS_BaseOS_PreInit, SPG_CUBAS_BaseOS_Init (deprecated, but still required for backwards compatibility - see EPIC 184807) */
+/*PROC_EP: SPG_RBMICB6_InitBaseOS */                                /* SEQUENCE: must be after SPG_RBSPI_Init, SPG_RBPORT_InitVariant */
+/*PROC_EP: SPG_CUBAS_PreInit */                                     /* SEQUENCE: must be before SPG_CUBAS_Init, SPG_CUBAS_Xcp_Init (deprecated, but still required for backwards compatibility - see EPIC 354648) */
+/*PROC_EP: SPG_CUBAS_Init */                                        /* SEQUENCE: must be before SPG_CUBAS_Xcp_Init and after SPG_CUBAS_PreInit (deprecated, but still required for backwards compatibility - see EPIC 354648) */
+/*PROC_EP: SPG_CUBAS_BaseOS_PreInit */                              /* SEQUENCE: must be before SPG_CUBAS_BaseOS_Init, SPG_CUBAS_Xcp_Init */
+/*PROC_EP: SPG_RBSYS_PRC_InitTaskStats */                           /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBDSM_BeforeCUBAS_BaseOS_Init */                     /* SEQUENCE: must be directly before SPG_CUBAS_BaseOS_Init */
+/*PROC_EP: SPG_CUBAS_BaseOS_Init */                                 /* SEQUENCE: must be before SPG_CUBAS_Xcp_Init and after SPG_CUBAS_BaseOS_PreInit */
+/*PROC_EP: SPG_RBDSM_AfterCUBAS_BaseOS_Init */                      /* SEQUENCE: must be directly after SPG_CUBAS_BaseOS_Init */
+/*PROC_EP: SPG_RBADC_Init */                                        /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBGTM_Init */                                        /* SEQUENCE: must be after SPG_RBGTM_PreInit (Switches on peripheral), SPG_RBADC_Init (In some variants the GTM triggers the ADC initially, to make sure ADC is ready for this trigger, ADC must be initialized first) */
+/*PROC_EP: SPG_RBPORT_InitDelayedPins */                            /* SEQUENCE: must be after SPG_RBPORT_Init, SPG_RBPORT_InitVariant */
+/*PROC_EP: SPG_RBMICAPB_Init1 */                                    /* SEQUENCE: must be after SPG_RBSPI_Init and before SPG_RBMICAPB_Init2 */
+/*PROC_EP: SPG_RBMICBASE_Init */                                    /* SEQUENCE: must be after SPG_RBSPI_Init */
+/*PROC_EP: SPG_RBMICSYS_Init */                                     /* SEQUENCE: must be after SPG_RBSPI_Init */
+/*PROC_EP: SPG_RBFSL_BaseOS_Init */                                 /* SEQUENCE: must be after SPG_RBMICAPB_Init1, SPG_RBMICBASE_Init, SPG_RBMICSYS_Init */
+/*PROC_EP: SPG_RBGLD_BaseOS_RG_Init */                              /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBHSMINT_Config_Init */                              /* SEQUENCE: must be after SPG_RBECM_Safety_common and before SPG_CUBAS_Communication_Init (ECM dependency due to RAM ECC logic tests and HSM shared RAM - see Task 2740749) */
+/*PROC_EP: SPG_CUBAS_Communication_Init */                          /* SEQUENCE: must be after SPG_CUBAS_BaseOS_Init, SPG_RBFSL_BaseOS_Init */
+/*PROC_EP: SPG_CUBAS_Xcp_Init */                                    /* SEQUENCE: must be after SPG_CUBAS_Communication_Init */
+/*PROC_EP: SPG_RBVLV_Init_BOS */                                    /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBBANDGAP_Init */                                    /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBADC_CollectInitialValues_Init */                   /* SEQUENCE: must be after SPG_RBADC_Init (SPG_RBADC_Init triggered the first conversion, for which the results are collected here. Also the config started in SPG_RBADC_Init is finialized here) */
+/*PROC_EP: SPG_RBGTM_InitAfterAdc */                                /* SEQUENCE: must be after SPG_RBADC_CollectInitialValues_Init (SPG_RBADC_CollectInitialValues_Init will enable GTM and DMA triggers from ADC, which are used here) */
+/*PROC_EP: SPG_RBBLM_Init */                                        /* SEQUENCE: must be after SPG_RBADC_Init */
+/*PROC_EP: SPG_RBBLM_MainSwitch_Init */                             /* SEQUENCE: must be after SPG_RBBLM_Init */
+/*PROC_EP: SPG_RBMICAPB_Init2 */                                    /* SEQUENCE: must be after SPG_RBMICAPB_Init1 */
+/*PROC_EP: SPG_RBMICBASE_PostInit */                                /* SEQUENCE: must be after SPG_RBMICSYS_Init, SPG_RBMICAPB_Init2 */
+/*PROC_EP: SPG_NET_PREINIT */                                       /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBSYS_FswFinalGuard_Init */                          /* SEQUENCE: must be after SPG_CUBAS_Communication_Init */
+/*PROC_EP: SPG_CUBAS_PostInit */                                    /* SEQUENCE: must be directly before SPG_RBSYS_ResetMaxLockTime_Init */
+/*PROC_EP: SPG_RBSYS_ResetMaxLockTime_Init */                       /* SEQUENCE: must be directly before SPG_RBAPPLIF_TraceMT_CM_BOS_Init */
+/*PROC_EP: SPG_RBAPPLIF_TraceMT_CM_BOS_Init */                      /* SEQUENCE: must be last item of SPG_TaskInitBaseOS (see Premise 2.) */
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* TaskInitPBaseOS  => only for specific SYS/uC processes!                    */
+/* TYPE: inittask                                                             */
+/******************************************************************************/
+/*PROC_SECTION: SPG_TaskInitPBaseOS */
+/*PROC_EP: SPG_RBSYS_FswFinalGuard_Init */                          /* SEQUENCE: no dependencies */
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* Task0p5msBaseOS (ensure same SEQUENCE as in normal mode)                   */
+/* TYPE: cyclictask                                                           */
+/******************************************************************************/
+#if (RBFS_SysTask0p5ms ==  RBFS_SysTask0p5ms_ON)
+  /*PROC_SECTION: SPG_Task0p5msBaseOS */
+  /*PROC_EP: SPG_RBSYS_SRMSTimeBaseAdaptation_0p5ms */                /* SEQUENCE: no dependencies (preferred position: must be at the beginning of the highest prio task) */
+  /*PROC_EP: SPG_RBGTM_BLM_syncMcsTo500usTask_500us */                /* SEQUENCE: must be before SPG_RBADC_HwTrig_500us (Because in some variants GTM provides ADC results. Preferred position: as early as possible to avoid conflicts with MCS task) */
+  /*PROC_EP: SPG_RBADC_HwTrig_500us */                                /* SEQUENCE: no dependencies (Collects results of ADCs triggered by GTM, setup via SPG_RBGTM_Init)*/
+  /*PROC_EP: SPG_RBTSI_500us */                                       /* SEQUENCE: no dependencies */
+  /*PROC_EP: SPG_RBAPPLIF_TraceMT_CM_BOS_500us */                     /* SEQUENCE: must be last item of SPG_Task0p5msBaseOS (see Premise 2.) */
+  /*PROC_SECTION_END: */
+#endif
+
+/******************************************************************************/
+/* Task1msBaseOS (ensure same SEQUENCE as in normal mode)                     */
+/* TYPE: cyclictask                                                           */
+/******************************************************************************/
+/*PROC_SECTION: SPG_Task1msBaseOS */
+/*PROC_EP: SPG_RBSYS_SRMSTimeBaseAdaptation_1ms */                  /* SEQUENCE: no dependencies (preferred position: must be at the beginning of the highest prio task) */
+/*PROC_EP: SPG_RBMICAPB_ADCSynchron_1ms */                          /* SEQUENCE: no dependencies (preferred position: as early as possible to avoid task jitter effects) */
+/*PROC_EP: SPG_RBMICBASE_Receive_1ms */                             /* SEQUENCE: must be before SPG_RBMICBASE_Send_1ms */
+/*PROC_EP: SPG_RBADC_1ms */                                         /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBWDH_SSS_CM_BOS_1ms */                              /* SEQUENCE: no dependencies (preferred position: as early as possible to avoid task jitter effects - see Task 725490) */
+/*PROC_EP: SPG_CUBAS_1ms */                                         /* SEQUENCE: must be before SPG_CUBAS_Xcp_1ms */
+/*PROC_EP: SPG_RBBLM_BaseOS_1ms */                                  /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBMICBASE_Send_1ms */                                /* SEQUENCE: must be after SPG_RBMICBASE_Receive_1ms */
+/*PROC_EP: RBWAU_ProcSection_1ms */                                 /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBTEX_BaseOS_1ms */                                  /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBTSI_BaseOS_1ms */                                  /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_CUBAS_Xcp_1ms */                                     /* SEQUENCE: must be directly before SPG_RBAPPLIF_TraceMT_CM_BOS_1ms */
+/*PROC_EP: SPG_RBAPPLIF_TraceMT_CM_BOS_1ms */                       /* SEQUENCE: must be last item of SPG_Task1msBaseOS (see Premise 2.) */
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* Taskx1hBaseOS (ensure same SEQUENCE as in normal mode)                     */
+/* TYPE: cyclictask                                                           */
+/******************************************************************************/
+/*PROC_SECTION: SPG_Taskx1hBaseOS */
+/*PROC_EP: SPG_RBMICBASE_SysSendFast_x1H */                         /* SEQUENCE: must be before SPG_RBMICBASE_SysReceiveFast_x1H */
+/*PROC_EP: SPG_RBMICBASE_ApbSendFast_x1H */                         /* SEQUENCE: must be before SPG_RBMICBASE_ApbReceiveFast_x1H */
+/*PROC_EP: SPG_RBMICBASE_B6SendFast_x1H */                          /* SEQUENCE: must be before SPG_RBMICBASE_B6ReceiveFast_x1H */
+/*PROC_EP: SPG_RBMICBASE_Receive_x1H */                             /* SEQUENCE: must be before SPG_RBMICBASE_Send_x1H */
+/*PROC_EP: SPG_RBMICSYS_PostReceive_x1H */                          /* SEQUENCE: must be directly after SPG_RBMICBASE_Receive_x1H (to post process received MICSYS data for users and for RoPP41 inter communication data handling)*/
+/*PROC_EP: SPG_RBMICBASE_SysReceiveFast_x1H */                      /* SEQUENCE: must be after SPG_RBMICBASE_SysSendFast_x1H */
+/*PROC_EP: SPG_RBMICBASE_ApbReceiveFast_x1H */                      /* SEQUENCE: must be after SPG_RBMICBASE_ApbSendFast_x1H */
+/*PROC_EP: SPG_RBMICBASE_B6ReceiveFast_x1H */                       /* SEQUENCE: must be after SPG_RBMICBASE_B6SendFast_x1H */
+/*PROC_EP: SPG_RBBLM_BaseOS_x1H */                                  /* SEQUENCE: must be before SPG_RBMICBASE_Send_x1H and after SPG_RBMICBASE_B6ReceiveFast_x1H */
+/*PROC_EP: SPG_RBRFPEC_BaseOS_x1L */                                /* SEQUENCE: must be before SPG_RBMICBASE_Send_x1H and after SPG_RBMICBASE_B6ReceiveFast_x1H */
+/*PROC_EP: SPG_RBMICAPBAdcSync_X1 */                                /* SEQUENCE: must be before SPG_RBMICBASE_Send_x1H (to send latest value in APB SPI communication, as close as possible to SPG_RBAPBMOT_BaseOS_x1H to have most recent ADC values)*/
+/*PROC_EP: SPG_RBAPBMOT_BaseOS_x1H */                               /* SEQUENCE: must be before SPG_RBMICBASE_Send_x1H and after SPG_RBMICBASE_ApbReceiveFast_x1H (receives APB Fast SPI transmission data and sends in APB Normal SPI transmission)*/
+/*PROC_EP: SPG_RBAPBWATCHDOG_x1H */                                 /* SEQUENCE: must be before SPG_RBMICBASE_Send_x1H and after SPG_RBMICBASE_ApbReceiveFast_x1H */
+/*PROC_EP: RBWAU_ProcSection_5ms */                                 /* SEQUENCE: must be before SPG_RBMICBASE_Send_x1H */
+/*PROC_EP: SPG_RBSUPPLYBASE_UEXSSwitching_x1H */                    /* SEQUENCE: must be before SPG_RBMICBASE_Send_x1H and after RBWAU_ProcSection_5ms (and after all other requesters) */
+/*PROC_EP: SPG_RBMICB6_x1HBaseOS */                                 /* SEQUENCE: must be after SPG_RBMICBASE_B6ReceiveFast_x1H and before SPG_RBMICBASE_Send_x1H */
+/*PROC_EP: SPG_RBMICSYS_PreSend_x1H */                              /* SEQUENCE: must be directly before SPG_RBMICBASE_Send_x1H (for RoPP41 uC SPI inter communication buffer preperation and initiation. For details see: RBMIC_uCInterCom_SW_Doc.md)*/
+/*PROC_EP: SPG_RBMICBASE_Send_x1H */                                /* SEQUENCE: must be after SPG_RBMICBASE_Receive_x1H */
+/*PROC_EP: SPG_CUBAS_x1 */                                          /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_NET_POSTCONTROL_BaseOS_x1 */                         /* SEQUENCE: must be after SPG_CUBAS_x1 (NET receive process has to be completed before NET send process) */
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* Taskx1lBaseOS (ensure same SEQUENCE as in normal mode)                     */
+/* TYPE: cyclictask                                                           */
+/******************************************************************************/
+/*PROC_SECTION: SPG_Taskx1lBaseOS */
+/*PROC_EP: SPG_RBTSI_Scheduler_x1L */                               /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBTEX_X1L */                                         /* SEQUENCE: must be after SPG_CUBAS_x1 */
+/*PROC_EP: SPG_RBTSI_BaseOs_X1L */                                  /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBBLM_BaseOS_x1L */                                  /* SEQUENCE: must be after SPG_RBTSI_BaseOs_X1L */
+/*PROC_EP: SPG_RBAPPLIF_MailboxHandler_CM_BOS_X1L */                /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_CUBAS_Xcp_x1 */                                      /* SEQUENCE: must be directly before SPG_RBAPPLIF_TraceMT_CM_BOS_X1L */
+/*PROC_EP: SPG_RBAPPLIF_TraceMT_CM_BOS_X1L */                       /* SEQUENCE: must be last item of SPG_Taskx1lBaseOS (see Premise 2.) */
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* Taskx2BaseOS (ensure same SEQUENCE as in normal mode)                      */
+/* TYPE: cyclictask                                                           */
+/******************************************************************************/
+/*PROC_SECTION: SPG_Taskx2BaseOS */
+/*PROC_EP: RBWAU_ProcSection_10ms */                                /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_BANDGAP_x2 */                                        /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_CUBAS_x2 */                                          /* SEQUENCE: must be before SPG_CUBAS_Xcp_x2 */
+/*PROC_EP: SPG_NET_POSTCONTROL_BaseOS_x2 */                         /* SEQUENCE: must be after SPG_CUBAS_x2 (NET receive process has to be completed before NET send process) */
+/*PROC_EP: SPG_RBSEC_x2 */                                          /* SEQUENCE: must be after SPG_CUBAS_x2 */
+/*PROC_EP: SPG_CUBAS_Xcp_x2 */                                      /* SEQUENCE: must be directly before SPG_RBAPPLIF_TraceMT_CM_BOS_X2 and after SPG_CUBAS_x2 */
+/*PROC_EP: SPG_RBAPPLIF_TraceMT_CM_BOS_X2 */                        /* SEQUENCE: must be last item of SPG_Taskx2BaseOS (see Premise 2.) */
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* Taskx2pBaseOS (ensure same SEQUENCE as in normal mode)                     */
+/* => only for specific SYS/uC processes!                                     */
+/* TYPE: cyclictask                                                           */
+/******************************************************************************/
+#if (RBFS_MCORE == RBFS_MCORE_ON)
+  /*PROC_SECTION: SPG_Taskx2pBaseOS */
+  /*PROC_EP: SPG_RBAPPLIF_TraceMT_CM_BOS_X2P */                       /* SEQUENCE: must be last item of SPG_Taskx2pBaseOS (see Premise 2.) */
+  /*PROC_SECTION_END: */
+#endif
+
+/******************************************************************************/
+/* Taskx4BaseOS (ensure same SEQUENCE as in normal mode)                      */
+/* TYPE: cyclictask                                                           */
+/******************************************************************************/
+/*PROC_SECTION: SPG_Taskx4BaseOS */
+/*PROC_EP: SPG_RBSYS_SRMSCylicTest_x4 */                            /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBDSM_BeforeCUBAS_BaseOS_x4 */                       /* SEQUENCE: must be directly before SPG_CUBAS_x4 (original dependency: must be directly before SPG_CUBAS_BaseOS_x4; currently no process for "BeforeCUBAS_BaseOS_x4, but could be added once required) */
+/*PROC_EP: SPG_CUBAS_x4 */                                          /* SEQUENCE: must be before SPG_CUBAS_Xcp_x4 (deprecated, but still required for backwards compatibility - see EPIC 354648) */
+/*PROC_EP: SPG_CUBAS_BaseOS_x4 */                                   /* SEQUENCE: must be before SPG_CUBAS_Xcp_x4 */
+/*PROC_EP: SPG_RBDSM_AfterCUBAS_BaseOS_x4 */                        /* SEQUENCE: must be directly after SPG_CUBAS_BaseOS_x4 (Store BFM or Erase BFM events within NVM after DEM X4) */
+/*PROC_EP: SPG_CUBAS_Xcp_x4 */                                      /* SEQUENCE: must be directly before SPG_RBAPPLIF_TraceMT_CM_BOS_X4 and after SPG_CUBAS_BaseOS_x4 */
+/*PROC_EP: SPG_RBAPPLIF_TraceMT_CM_BOS_X4 */                        /* SEQUENCE: must be last item of SPG_Taskx4BaseOS (see Premise 2.) */
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* Taskx8BaseOS (ensure same SEQUENCE as in normal mode)                      */
+/* TYPE: cyclictask                                                           */
+/******************************************************************************/
+/*PROC_SECTION: SPG_Taskx8BaseOS */
+/*PROC_EP: SPG_CUBAS_Xcp_x8 */                                      /* SEQUENCE: must be directly before SPG_RBAPPLIF_TraceMT_CM_BOS_X8 */
+/*PROC_EP: SPG_RBAPPLIF_TraceMT_CM_BOS_X8 */                        /* SEQUENCE: must be last item of SPG_Taskx8BaseOS (see Premise 2.) */
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* Taskx24BaseOS (ensure same SEQUENCE as in normal mode)                     */
+/* TYPE: cyclictask                                                           */
+/******************************************************************************/
+/*PROC_SECTION: SPG_Taskx24BaseOS */
+/*PROC_EP: SPG_CUBAS_x24 */                                         /* SEQUENCE: must be before SPG_CUBAS_Xcp_x24 */
+/*PROC_EP: SPG_CUBAS_Xcp_x24 */                                     /* SEQUENCE: must be directly before SPG_RBAPPLIF_TraceMT_CM_BOS_X24 and after SPG_CUBAS_x24 */
+/*PROC_EP: SPG_RBAPPLIF_TraceMT_CM_BOS_X24 */                       /* SEQUENCE: must be last item of SPG_Taskx24BaseOS (see Premise 2.) */
+/*PROC_SECTION_END: */
+
+#if (RBFS_TaskSchemeExtension == RBFS_TaskSchemeExtension_VMPS)
+  /******************************************************************************/
+  /* Taskx4plBaseOS (ensure same SEQUENCE as in normal mode)                    */
+  /* => only for VMPS!                                                          */
+  /* TYPE: cyclictask                                                           */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_Taskx4plBaseOS */
+  /*PROC_EP: SPG_RBAPPLIF_TraceMT_CM_BOS_X4PL */                      /* SEQUENCE: must be last item of SPG_Taskx4plBaseOS (see Premise 2.) */
+  /*PROC_SECTION_END: */
+
+  /******************************************************************************/
+  /* TaskBaseCtrlCycx200bgBaseOS (ensure same SEQUENCE as in normal mode)       */
+  /* => only for VMPS!                                                          */
+  /* TYPE: cyclictask                                                           */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_TaskBaseCtrlCycx200bgBaseOS */
+  /*PROC_EP: SPG_RBAPPLIF_TraceMT_CM_BOS_X200BG */                    /* SEQUENCE: must be last item of SPG_TaskBaseCtrlCycx200bgBaseOS (see Premise 2.) */
+  /*PROC_SECTION_END: */
+
+  /******************************************************************************/
+  /* TaskEventExtPrio1BaseOS (ensure same SEQUENCE as in normal mode)           */
+  /* => only for VMPS!                                                          */
+  /* TYPE: cyclictask                                                           */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_TaskEventExtPrio1BaseOS */
+  /*PROC_EP: SPG_RBAPPLIF_TraceMT_CM_BOS_EventExtPrio1 */             /* SEQUENCE: must be last item of SPG_TaskEventExtPrio1BaseOS (see Premise 2.) */
+  /*PROC_SECTION_END: */
+
+  /******************************************************************************/
+  /* TaskEventExtPrio2BaseOS (ensure same SEQUENCE as in normal mode)           */
+  /* => only for VMPS!                                                          */
+  /* TYPE: cyclictask                                                           */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_TaskEventExtPrio2BaseOS */
+  /*PROC_EP: SPG_RBAPPLIF_TraceMT_CM_BOS_EventExtPrio2 */             /* SEQUENCE: must be last item of SPG_TaskEventExtPrio2BaseOS (see Premise 2.) */
+  /*PROC_SECTION_END: */
+#endif
+
+#if (RBFS_TaskSchemeExtension == RBFS_TaskSchemeExtension_HostCore0GuestCore1)
+  /******************************************************************************/
+  /* TaskBaseCtrlCycx1GuestBaseOS => only for JLR!                              */
+  /* TYPE: cyclictask                                                           */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_TaskBaseCtrlCycx1GuestBaseOS */
+  /*PROC_EP: SPG_General_x1GuestBaseOS */                             /* SEQUENCE: no dependencies */
+  /*PROC_EP: SPG_RBAPPLIF_TraceMT_CM_BOS_X1GUEST */                   /* SEQUENCE: must be last item of SPG_TaskBaseCtrlCycx1GuestBaseOS (see Premise 2.) */
+  /*PROC_SECTION_END: */
+
+  /******************************************************************************/
+  /* TaskBaseCtrlCycx2GuestBaseOS => only for JLR!                              */
+  /* TYPE: cyclictask                                                           */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_TaskBaseCtrlCycx2GuestBaseOS */
+  /*PROC_EP: SPG_General_x2GuestBaseOS */                             /* SEQUENCE: no dependencies */
+  /*PROC_EP: SPG_RBAPPLIF_TraceMT_CM_BOS_X2GUEST */                   /* SEQUENCE: must be last item of SPG_TaskBaseCtrlCycx2GuestBaseOS (see Premise 2.) */
+  /*PROC_SECTION_END: */
+
+  /******************************************************************************/
+  /* TaskBaseCtrlCycx4GuestBaseOS => only for JLR!                              */
+  /* TYPE: cyclictask                                                           */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_TaskBaseCtrlCycx4GuestBaseOS */
+  /*PROC_EP: SPG_General_x4GuestBaseOS */                             /* SEQUENCE: no dependencies */
+  /*PROC_EP: SPG_RBAPPLIF_TraceMT_CM_BOS_X4GUEST */                   /* SEQUENCE: must be last item of SPG_TaskBaseCtrlCycx4GuestBaseOS (see Premise 2.) */
+  /*PROC_SECTION_END: */
+
+  /******************************************************************************/
+  /* TaskBaseCtrlCycx10GuestBaseOS => only for JLR!                             */
+  /* TYPE: cyclictask                                                           */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_TaskBaseCtrlCycx10GuestBaseOS */
+  /*PROC_EP: SPG_General_x10GuestBaseOS */                            /* SEQUENCE: no dependencies */
+  /*PROC_EP: SPG_RBAPPLIF_TraceMT_CM_BOS_X10GUEST */                  /* SEQUENCE: must be last item of SPG_TaskBaseCtrlCycx10GuestBaseOS (see Premise 2.) */
+  /*PROC_SECTION_END: */
+
+  /******************************************************************************/
+  /* TaskBaseCtrlCycx20GuestBaseOS => only for JLR!                             */
+  /* TYPE: cyclictask                                                           */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_TaskBaseCtrlCycx20GuestBaseOS */
+  /*PROC_EP: SPG_General_x20GuestBaseOS */                            /* SEQUENCE: no dependencies */
+  /*PROC_EP: SPG_RBAPPLIF_TraceMT_CM_BOS_X20GUEST */                  /* SEQUENCE: must be last item of SPG_TaskBaseCtrlCycx20GuestBaseOS (see Premise 2.) */
+  /*PROC_SECTION_END: */
+#endif
+
+#if (RBFS_TaskSchemeExtension == RBFS_TaskSchemeExtension_AB15)
+  /******************************************************************************/
+  /* TaskBaseCtrlCycx10BaseOS => only for Airbag 15!                             */
+  /* TYPE: cyclictask                                                           */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_TaskBaseCtrlCycx10BaseOS */
+  /*PROC_EP: SPG_General_x10BaseOS */                            /* SEQUENCE: no dependencies */
+  /*PROC_EP: SPG_RBAPPLIF_TraceMT_CM_BOS_X10 */                  /* SEQUENCE: must be last item of SPG_TaskBaseCtrlCycx10BaseOS (see Premise 2.) */
+  /*PROC_SECTION_END: */
+
+  /******************************************************************************/
+  /* TaskBaseCtrlCycx20BaseOS => only for Airbag 15!                             */
+  /* TYPE: cyclictask                                                           */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_TaskBaseCtrlCycx20BaseOS */
+  /*PROC_EP: SPG_General_x20BaseOS */                            /* SEQUENCE: no dependencies */
+  /*PROC_EP: SPG_RBAPPLIF_TraceMT_CM_BOS_X20 */                  /* SEQUENCE: must be last item of SPG_TaskBaseCtrlCycx20BaseOS (see Premise 2.) */
+  /*PROC_SECTION_END: */
+#endif
+
+/******************************************************************************/
+/* T1_TaskStart  void proc(TaskType task)                                     */
+/* TYPE: isr                                                                  */
+/******************************************************************************/
+/*PROC_SECTION: SPG_T1_TaskStart */
+/*PROC_EP: SPG_T1_TaskStart_Callout */
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* T1_TaskEnd  void proc(TaskType task)                                       */
+/* TYPE: isr                                                                  */
+/******************************************************************************/
+/*PROC_SECTION: SPG_T1_TaskEnd */
+/*PROC_EP: SPG_T1_TaskEnd_Callout */
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* T1_IsrStart  void proc(ISRType isr)                                        */
+/* TYPE: isr                                                                  */
+/******************************************************************************/
+/*PROC_SECTION: SPG_T1_IsrStart */
+/*PROC_EP: SPG_T1_IsrStart_Callout */
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* T1_IsrEnd  void proc(ISRType isr)                                          */
+/* TYPE: isr                                                                  */
+/******************************************************************************/
+/*PROC_SECTION: SPG_T1_IsrEnd */
+/*PROC_EP: SPG_T1_IsrEnd_Callout */
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* ISRSWINT0 (only for BERT on MCORE)                                         */
+/* TYPE: isr                                                                  */
+/******************************************************************************/
+#if (RBFS_MCORE == RBFS_MCORE_ON)
+  /*PROC_SECTION: SPG_ISRSWINT0 */
+  /*PROC_EP: SPG_RBBERT_BERT_ISRSWINT0 */
+  /*PROC_SECTION_END: */
+#endif
+
+#if (RBFS_uCFamily == RBFS_uCFamily_RenesasP1x)
+
+  /******************************************************************************/
+  /* ISRMTTCANI0                                                                */
+  /* TYPE: isr                                                                  */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_ISRMTTCANI0 */
+  /*PROC_EP: SPG_CUBAS_ComStack_MTTCAN0_Transfer_ISR */
+  /*PROC_SECTION_END: */
+
+  /******************************************************************************/
+  /* ISRMCAN0I0                                                                 */
+  /* TYPE: isr                                                                  */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_ISRMCAN0I0 */
+  /*PROC_EP: SPG_CUBAS_ComStack_MCAN0_Transfer_ISR */
+  /*PROC_SECTION_END: */
+
+  /******************************************************************************/
+  /* ISRMCAN1I0                                                                 */
+  /* TYPE: isr                                                                  */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_ISRMCAN1I0 */
+  /*PROC_EP: SPG_CUBAS_ComStack_MCAN1_Transfer_ISR */
+  /*PROC_SECTION_END: */
+
+  /******************************************************************************/
+  /* ISRMCAN2I0                                                                 */
+  /* TYPE: isr                                                                  */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_ISRMCAN2I0 */
+  /*PROC_EP: SPG_CUBAS_ComStack_MCAN2_Transfer_ISR */
+  /*PROC_SECTION_END: */
+
+#else
+
+  /******************************************************************************/
+  /* ISRCAN0REC                                                                 */
+  /* TYPE: isr                                                                  */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_ISRCAN0REC */
+  /*PROC_EP: SPG_CUBAS_ComStack_RSCAN0_Transfer_ISR */
+  /*PROC_SECTION_END: */
+
+  /******************************************************************************/
+  /* ISRCAN0TRX                                                                 */
+  /* TYPE: isr                                                                  */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_ISRCAN0TRX */
+  /*PROC_EP: SPG_CUBAS_ComStack_RSCAN0_TxTransfer_ISR */
+  /*PROC_SECTION_END: */
+
+  /******************************************************************************/
+  /* ISRCAN1REC                                                                 */
+  /* TYPE: isr                                                                  */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_ISRCAN1REC */
+  /*PROC_EP: SPG_CUBAS_ComStack_RSCAN1_Transfer_ISR */
+  /*PROC_SECTION_END: */
+
+  /******************************************************************************/
+  /* ISRCAN1TRX                                                                 */
+  /* TYPE: isr                                                                  */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_ISRCAN1TRX */
+  /*PROC_EP: SPG_CUBAS_ComStack_RSCAN1_TxTransfer_ISR */
+  /*PROC_SECTION_END: */
+
+  /******************************************************************************/
+  /* ISRCAN2REC                                                                 */
+  /* TYPE: isr                                                                  */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_ISRCAN2REC */
+  /*PROC_EP: SPG_CUBAS_ComStack_RSCAN2_Transfer_ISR */
+  /*PROC_SECTION_END: */
+
+  /******************************************************************************/
+  /* ISRCAN2TRX                                                                 */
+  /* TYPE: isr                                                                  */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_ISRCAN2TRX */
+  /*PROC_EP: SPG_CUBAS_ComStack_RSCAN2_TxTransfer_ISR */
+  /*PROC_SECTION_END: */
+
+  #if( RBFS_uCFamily == RBFS_uCFamily_RenesasU2C )
+    /******************************************************************************/
+    /* ISRCAN3REC                                                                 */
+    /* TYPE: isr                                                                  */
+    /******************************************************************************/
+    /*PROC_SECTION: SPG_ISRCAN3REC */
+    /*PROC_EP: SPG_CUBAS_ComStack_RSCAN3_Transfer_ISR */
+    /*PROC_SECTION_END: */
+
+    /******************************************************************************/
+    /* ISRCAN3TRX                                                                 */
+    /* TYPE: isr                                                                  */
+    /******************************************************************************/
+    /*PROC_SECTION: SPG_ISRCAN3TRX */
+    /*PROC_EP: SPG_CUBAS_ComStack_RSCAN3_TxTransfer_ISR */
+    /*PROC_SECTION_END: */
+
+  #elif( (RBFS_uCFamily == RBFS_uCFamily_RenesasU2A) || (RBFS_uCFamily == RBFS_uCFamily_STMStellar) )
+
+    /******************************************************************************/
+    /* ISRCAN6REC                                                                 */
+    /* TYPE: isr                                                                  */
+    /******************************************************************************/
+    /*PROC_SECTION: SPG_ISRCAN6REC */
+    /*PROC_EP: SPG_CUBAS_ComStack_RSCAN6_Transfer_ISR */
+    /*PROC_SECTION_END: */
+
+    /******************************************************************************/
+    /* ISRCAN6TRX                                                                 */
+    /* TYPE: isr                                                                  */
+    /******************************************************************************/
+    /*PROC_SECTION: SPG_ISRCAN6TRX */
+    /*PROC_EP: SPG_CUBAS_ComStack_RSCAN6_TxTransfer_ISR */
+    /*PROC_SECTION_END: */
+
+    /******************************************************************************/
+    /* ISRCAN8REC                                                                 */
+    /* TYPE: isr                                                                  */
+    /******************************************************************************/
+    /*PROC_SECTION: SPG_ISRCAN8REC */
+    /*PROC_EP: SPG_CUBAS_ComStack_RSCAN8_Transfer_ISR */
+    /*PROC_SECTION_END: */
+
+    /******************************************************************************/
+    /* ISRCAN8TRX                                                                 */
+    /* TYPE: isr                                                                  */
+    /******************************************************************************/
+    /*PROC_SECTION: SPG_ISRCAN8TRX */
+    /*PROC_EP: SPG_CUBAS_ComStack_RSCAN8_TxTransfer_ISR */
+    /*PROC_SECTION_END: */
+  #endif
+
+#endif
+
+/******************************************************************************/
+/* ISRFLX0LINE0                                                               */
+/* TYPE: isr                                                                  */
+/******************************************************************************/
+/*PROC_SECTION: SPG_ISRFLX0LINE0 */
+/*PROC_EP: SPG_CUBAS_ComStack_Fr_Eray_ISR */
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* ISRFLX1LINE0                                                               */
+/* TYPE: isr                                                                  */
+/******************************************************************************/
+/*PROC_SECTION: SPG_ISRFLX1LINE0 */
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* ISRRLIN30RX                                                                */
+/* TYPE: isr                                                                  */
+/******************************************************************************/
+/*PROC_SECTION: SPG_ISRRLIN30RX */
+/*PROC_EP: SPG_CUBAS_ComStack_RLIN30_Receive_ISR */
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* ISRRLIN30STATUS                                                            */
+/* TYPE: isr                                                                  */
+/******************************************************************************/
+/*PROC_SECTION: SPG_ISRRLIN30STATUS */
+/*PROC_EP: SPG_CUBAS_ComStack_RLIN30_Status_ISR */
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* ISRRLIN31RX                                                                */
+/* TYPE: isr                                                                  */
+/******************************************************************************/
+/*PROC_SECTION: SPG_ISRRLIN31RX */
+/*PROC_EP: SPG_CUBAS_ComStack_RLIN31_Receive_ISR */
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* ISRRLIN31STATUS                                                            */
+/* TYPE: isr                                                                  */
+/******************************************************************************/
+/*PROC_SECTION: SPG_ISRRLIN31STATUS */
+/*PROC_EP: SPG_CUBAS_ComStack_RLIN31_Status_ISR */
+/*PROC_SECTION_END: */
+
+#if( (RBFS_uCFamily == RBFS_uCFamily_RenesasP1x) || (RBFS_uCFamily == RBFS_uCFamily_RenesasU2A) || (RBFS_uCFamily == RBFS_uCFamily_RenesasU2C) )
+  /******************************************************************************/
+  /* EXCSYSERR                                                                  */
+  /* TYPE: isr                                                                  */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_RBSYS_EXCSYSERR */
+  /*PROC_EP: SPG_RBECM_EXCSYSERR */
+  /*PROC_SECTION_END: */
+
+  /******************************************************************************/
+  /* EXCHVTRAP                                                                  */
+  /* TYPE: isr                                                                  */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_RBSYS_EXCHVTRAP */
+  /*PROC_EP: SPG_RBECM_EXCGLOBAL_FE */
+  /*PROC_SECTION_END: */
+
+  /******************************************************************************/
+  /* EXCFETRAP                                                                  */
+  /* TYPE: isr                                                                  */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_RBSYS_EXCFETRAP */
+  /*PROC_EP: SPG_RBECM_EXCGLOBAL_FE */
+  /*PROC_SECTION_END: */
+
+  /******************************************************************************/
+  /* EXCRIE                                                                     */
+  /* TYPE: isr                                                                  */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_RBSYS_EXCRIE */
+  /*PROC_EP: SPG_RBECM_EXCGLOBAL_FE */
+  /*PROC_SECTION_END: */
+
+  /******************************************************************************/
+  /* EXCRIE TPSW handler                                                        */
+  /* TYPE: isr                                                                  */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_RBSYS_TPSWEXCRIE */
+  /*PROC_EP: SPG_RBTPSW_EXCRIE */
+  /*PROC_SECTION_END: */
+
+  /******************************************************************************/
+  /* EXCFPP / FPI                                                               */
+  /* TYPE: isr                                                                  */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_RBSYS_EXCFPP */
+  /*PROC_EP: SPG_RBECM_EXCFPP */
+  /*PROC_SECTION_END: */
+
+  /******************************************************************************/
+  /* EXCFPP / FPI TPSW handler                                                  */
+  /* TYPE: isr                                                                  */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_RBSYS_TPSWEXCFPP */
+  /*PROC_EP: SPG_RBTPSW_EXCFPP */
+  /*PROC_SECTION_END: */
+
+  /******************************************************************************/
+  /* EXCUCPOP                                                                   */
+  /* TYPE: isr                                                                  */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_RBSYS_EXCUCPOP */
+  /*PROC_EP: SPG_RBECM_EXCGLOBAL_FE */
+  /*PROC_SECTION_END: */
+
+  /******************************************************************************/
+  /* EXCDEBUG                                                                   */
+  /* TYPE: isr                                                                  */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_RBSYS_EXCDEBUG */
+  #if (RBFS_DeCoSupport == RBFS_DeCoSupport_On)
+    /*PROC_EP: SPG_RBDeCo_EXCDEBUG */
+  #else
+    /*PROC_EP: SPG_RBECM_EXCDEBUG */
+  #endif
+  /*PROC_SECTION_END: */
+
+  /******************************************************************************/
+  /* EXCMAE                                                                     */
+  /* TYPE: isr                                                                  */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_RBSYS_EXCMAE */
+  /*PROC_EP: SPG_RBECM_EXCGLOBAL_FE */
+  /*PROC_SECTION_END: */
+
+  /******************************************************************************/
+  /* EXCMAE TPSW handler                                                        */
+  /* TYPE: isr                                                                  */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_RBSYS_TPSWEXCMAE */
+  /*PROC_EP: SPG_RBTPSW_EXCMAE */
+  /*PROC_SECTION_END: */
+
+  /******************************************************************************/
+  /* EXCFENMI                                                                   */
+  /* TYPE: isr                                                                  */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_RBSYS_EXCFENMI */
+  /*PROC_EP: SPG_RBECM_EXCGLOBAL_FE */
+  /*PROC_SECTION_END: */
+
+  /******************************************************************************/
+  /* EXCFEINT                                                                   */
+  /* TYPE: isr                                                                  */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_RBSYS_EXCFEINT */
+  /*PROC_EP: SPG_RBECM_EXCFEINT */
+  /*PROC_SECTION_END: */
+
+  /******************************************************************************/
+  /* EXCPIE                                                                     */
+  /* TYPE: isr                                                                  */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_RBSYS_EXCPIE */
+  /*PROC_EP: SPG_RBECM_EXCGLOBAL_FE */
+  /*PROC_SECTION_END: */
+
+  /******************************************************************************/
+  /* T1_EXCDEBUG                                                                */
+  /* TYPE: isr                                                                  */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_T1_EXCDEBUG */
+  /*PROC_EP: SPG_T1_EXCDEBUG_Callout */
+  /*PROC_SECTION_END: */
+#elif( RBFS_uCFamily == RBFS_uCFamily_STMStellar )
+  /******************************************************************************/
+  /* EXC_UNDEFINSTR                                                             */
+  /* TYPE: isr                                                                  */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_RBSYS_EXCUNDEFINSTR */
+  /*PROC_EP: SPG_RBECM_EXCUNDEFINSTR */
+  /*PROC_SECTION_END: */
+
+  /******************************************************************************/
+  /* EXC_PREFETCHABORT                                                           */
+  /* TYPE: isr                                                                  */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_RBSYS_EXCPREFETCHABORT */
+  /*PROC_EP: SPG_RBECM_EXCPREFETCHABORT */
+  /*PROC_SECTION_END: */
+
+  /******************************************************************************/
+  /* EXC_DATAABORT                                                              */
+  /* TYPE: isr                                                                  */
+  /******************************************************************************/
+  /*PROC_SECTION: SPG_RBSYS_EXCDATAABORT */
+  /*PROC_EP: SPG_RBECM_EXCDATAABORT */
+  /*PROC_SECTION_END: */
+#endif
+
+/******************************************************************************/
+/* SPG_RBTPSW_KillCore0                                                       */
+/* TYPE: isr                                                                  */
+/******************************************************************************/
+/*PROC_SECTION: SPG_RBTPSW_KillCore0 */
+/*PROC_EP: SPG_RBTPSW_KillCore0_Proc */
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* SPG_RBTPSW_KillCore1                                                       */
+/* TYPE: isr                                                                  */
+/******************************************************************************/
+/*PROC_SECTION: SPG_RBTPSW_KillCore1 */
+/*PROC_EP: SPG_RBTPSW_KillCore1_Proc */
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* SPG_RBSYS_TPSWTimeout                                                      */
+/* TYPE: isr                                                                  */
+/******************************************************************************/
+/*PROC_SECTION: SPG_RBSYS_TPSWTimeout */
+/*PROC_EP: SPG_RBTPSW_Timeout */
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* SPG_RBSYS_ResetSync                                                        */
+/* TYPE: undefined                                                            */
+/******************************************************************************/
+/*PROC_SECTION: SPG_RBSYS_ResetSync */
+/*PROC_EP: SPG_RBECM_ResetSync */
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* SPG_RBSYS_AfterResetSync                                                   */
+/* TYPE: undefined                                                            */
+/******************************************************************************/
+/*PROC_SECTION: SPG_RBSYS_AfterResetSync */
+/*PROC_EP: SPG_RBECM_PreSwReset */                 /* SEQUENCE: no dependencies */
+/*PROC_EP: SPG_RBHSMINT_PreSwReset */              /* SEQUENCE: must be before SPG_CUBAS_PreSwReset (HSM has to stop all Flash access before applying FAL Fullstop command) */
+/*PROC_EP: SPG_CUBAS_PreSwReset */                 /* SEQUENCE: must be after SPG_RBECM_PreSwReset (ECM has to be deactivated before applying FAL Fullstop command) */
+/*PROC_SECTION_END: */
+

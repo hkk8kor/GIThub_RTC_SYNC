@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-2-2.xsd">
+  <ADMIN-DATA>
+    <DOC-REVISIONS>
+      <DOC-REVISION>
+        <ISSUED-BY>RB</ISSUED-BY>
+        <DATE>2022-03-08</DATE>
+      </DOC-REVISION>
+    </DOC-REVISIONS>
+  </ADMIN-DATA>
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>RB</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE>
+          <SHORT-NAME>RBC</SHORT-NAME>
+          <AR-PACKAGES>
+            <AR-PACKAGE>
+              <SHORT-NAME>rbc_XCoreDefaults</SHORT-NAME>
+              <AR-PACKAGES>
+                <AR-PACKAGE>
+                  <SHORT-NAME>EcucModuleDefs</SHORT-NAME>
+                  <ELEMENTS>
+                    <!-- Module Definition: rbc_XCoreDefaults -->
+                    <ECUC-MODULE-DEF>
+                      <SHORT-NAME>rbc_XCoreDefaults</SHORT-NAME>
+                      <LONG-NAME>
+                        <L-4 L="EN">XCoreDefaults</L-4>
+                      </LONG-NAME>
+                      <DESC>
+                        <L-2 L="EN">Configuration of default Xcore assignement</L-2>
+                      </DESC>
+                      <CATEGORY>VENDOR_SPECIFIC_MODULE_DEFINITION</CATEGORY>
+                      <ADMIN-DATA>
+                        <DOC-REVISIONS>
+                          <DOC-REVISION>
+                            <REVISION-LABEL>4.5.0</REVISION-LABEL>
+                            <ISSUED-BY>AUTOSAR</ISSUED-BY>
+                          </DOC-REVISION>
+                        </DOC-REVISIONS>
+                      </ADMIN-DATA>
+                      <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                      <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                      <POST-BUILD-VARIANT-SUPPORT>false</POST-BUILD-VARIANT-SUPPORT>
+                      <REFINED-MODULE-DEF-REF DEST="ECUC-MODULE-DEF">/AUTOSAR/EcucDefs/Dio</REFINED-MODULE-DEF-REF>
+                      <SUPPORTED-CONFIG-VARIANTS>
+                        <SUPPORTED-CONFIG-VARIANT>VARIANT-PRE-COMPILE</SUPPORTED-CONFIG-VARIANT>
+                      </SUPPORTED-CONFIG-VARIANTS>
+                      <CONTAINERS>
+                        <!-- Container Definition: rbc_XCoreDefaults_XCoreDefaultsFrameProcsessingAllocation -->
+                        <ECUC-PARAM-CONF-CONTAINER-DEF>
+                          <SHORT-NAME>rbc_XCoreDefaults_XCoreDefaultsFrameProcsessingAllocation</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">XCoreDefaultsFrameProcsessingAllocation</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Allocation of Processing allocation to Frame</L-2>
+                          </DESC>
+                          <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                          <UPPER-MULTIPLICITY-INFINITE>true</UPPER-MULTIPLICITY-INFINITE>
+                          <PARAMETERS>
+                            <!-- PARAMETER DEFINITION: rbc_XCoreDefaults_FrameProcessingType -->
+                            <ECUC-ENUMERATION-PARAM-DEF>
+                              <SHORT-NAME>rbc_XCoreDefaults_FrameProcessingType</SHORT-NAME>
+                              <LONG-NAME>
+                                <L-4 L="EN">FrameProcessingType</L-4>
+                              </LONG-NAME>
+                              <DESC>
+                                <L-2 L="EN">Processing type based on the direction</L-2>
+                              </DESC>
+                              <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                              <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                              <MULTIPLICITY-CONFIG-CLASSES>
+                                <ECUC-MULTIPLICITY-CONFIGURATION-CLASS>
+                                  <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                                  <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                                </ECUC-MULTIPLICITY-CONFIGURATION-CLASS>
+                              </MULTIPLICITY-CONFIG-CLASSES>
+                              <ORIGIN>RB:1.0.0:2021-03-01</ORIGIN>
+                              <POST-BUILD-VARIANT-MULTIPLICITY>false</POST-BUILD-VARIANT-MULTIPLICITY>
+                              <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                              <LITERALS>
+                                <ECUC-ENUMERATION-LITERAL-DEF>
+                                  <SHORT-NAME>RECEIVE</SHORT-NAME>
+                                  <LONG-NAME>
+                                    <L-4 L="EN">RECEIVE</L-4>
+                                  </LONG-NAME>
+                                  <ORIGIN>RBC:1.0.0:2021-08-26</ORIGIN>
+                                </ECUC-ENUMERATION-LITERAL-DEF>
+                                <ECUC-ENUMERATION-LITERAL-DEF>
+                                  <SHORT-NAME>TRANSMIT</SHORT-NAME>
+                                  <LONG-NAME>
+                                    <L-4 L="EN">TRANSMIT</L-4>
+                                  </LONG-NAME>
+                                  <ORIGIN>RBC:1.0.0:2021-08-26</ORIGIN>
+                                </ECUC-ENUMERATION-LITERAL-DEF>
+                                <ECUC-ENUMERATION-LITERAL-DEF>
+                                  <SHORT-NAME>TXCONFIRMATION</SHORT-NAME>
+                                  <LONG-NAME>
+                                    <L-4 L="EN">TXCONFIRMATION</L-4>
+                                  </LONG-NAME>
+                                  <ORIGIN>RBC:1.0.0:2021-08-26</ORIGIN>
+                                </ECUC-ENUMERATION-LITERAL-DEF>
+                              </LITERALS>
+                            </ECUC-ENUMERATION-PARAM-DEF>
+                          </PARAMETERS>
+                          <REFERENCES>
+                            <!-- Choice Reference Definition: rbc_XCoreDefaults_rbaNdsConnectorRef -->
+                            <ECUC-CHOICE-REFERENCE-DEF>
+                              <SHORT-NAME>rbc_XCoreDefaults_rbaNdsConnectorRef</SHORT-NAME>
+                              <LONG-NAME>
+                                <L-4 L="EN">rbaNdsConnectorRef</L-4>
+                              </LONG-NAME>
+                              <DESC>
+                                <L-2 L="EN">Reference to the Connector containing the frames</L-2>
+                              </DESC>
+                              <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                              <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                              <ORIGIN>RB:1.0.0:2021-03-01</ORIGIN>
+                              <DESTINATION-REFS>
+                                <DESTINATION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_Connectors/rba_Nds_CanConnector</DESTINATION-REF>
+                                <DESTINATION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_Connectors/rba_Nds_FlexRayConnector</DESTINATION-REF>
+                              </DESTINATION-REFS>
+                            </ECUC-CHOICE-REFERENCE-DEF>
+                            <!-- Reference Definition: rbc_XCoreDefaults_rbaNdsProcessingAllocationRef -->
+                            <ECUC-REFERENCE-DEF>
+                              <SHORT-NAME>rbc_XCoreDefaults_rbaNdsProcessingAllocationRef</SHORT-NAME>
+                              <LONG-NAME>
+                                <L-4 L="EN">rbaNdsProcessingAllocationRef</L-4>
+                              </LONG-NAME>
+                              <DESC>
+                                <L-2 L="EN">The processing allocation assigned to the frames</L-2>
+                              </DESC>
+                              <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                              <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                              <MULTIPLICITY-CONFIG-CLASSES>
+                                <ECUC-MULTIPLICITY-CONFIGURATION-CLASS>
+                                  <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                                  <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                                </ECUC-MULTIPLICITY-CONFIGURATION-CLASS>
+                              </MULTIPLICITY-CONFIG-CLASSES>
+                              <ORIGIN>RB:1.0.0:2021-03-01</ORIGIN>
+                              <POST-BUILD-VARIANT-MULTIPLICITY>false</POST-BUILD-VARIANT-MULTIPLICITY>
+                              <DESTINATION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_EcuProcesses/rba_Nds_ProcessingAllocation</DESTINATION-REF>
+                            </ECUC-REFERENCE-DEF>
+                          </REFERENCES>
+                        </ECUC-PARAM-CONF-CONTAINER-DEF>
+                        <!-- Container Definition: rbc_XCoreDefaults_XCoreDefaultsPduProcsessingAllocation -->
+                        <ECUC-PARAM-CONF-CONTAINER-DEF>
+                          <SHORT-NAME>rbc_XCoreDefaults_XCoreDefaultsPduProcsessingAllocation</SHORT-NAME>
+                          <LONG-NAME>
+                            <L-4 L="EN">XCoreDefaultsPduProcsessingAllocation</L-4>
+                          </LONG-NAME>
+                          <DESC>
+                            <L-2 L="EN">Allocation of Processing allocation to PDU</L-2>
+                          </DESC>
+                          <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                          <UPPER-MULTIPLICITY-INFINITE>true</UPPER-MULTIPLICITY-INFINITE>
+                          <PARAMETERS>
+                            <!-- PARAMETER DEFINITION: rbc_XCoreDefaults_PduProcessingType -->
+                            <ECUC-ENUMERATION-PARAM-DEF>
+                              <SHORT-NAME>rbc_XCoreDefaults_PduProcessingType</SHORT-NAME>
+                              <LONG-NAME>
+                                <L-4 L="EN">PduProcessingType</L-4>
+                              </LONG-NAME>
+                              <DESC>
+                                <L-2 L="EN">Processing type based on the direction</L-2>
+                              </DESC>
+                              <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                              <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                              <MULTIPLICITY-CONFIG-CLASSES>
+                                <ECUC-MULTIPLICITY-CONFIGURATION-CLASS>
+                                  <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                                  <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                                </ECUC-MULTIPLICITY-CONFIGURATION-CLASS>
+                              </MULTIPLICITY-CONFIG-CLASSES>
+                              <ORIGIN>RB:1.0.0:2021-03-01</ORIGIN>
+                              <POST-BUILD-VARIANT-MULTIPLICITY>false</POST-BUILD-VARIANT-MULTIPLICITY>
+                              <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                              <LITERALS>
+                                <ECUC-ENUMERATION-LITERAL-DEF>
+                                  <SHORT-NAME>RECEIVE</SHORT-NAME>
+                                  <LONG-NAME>
+                                    <L-4 L="EN">RECEIVE</L-4>
+                                  </LONG-NAME>
+                                  <ORIGIN>RBC:1.0.0:2021-08-26</ORIGIN>
+                                </ECUC-ENUMERATION-LITERAL-DEF>
+                                <ECUC-ENUMERATION-LITERAL-DEF>
+                                  <SHORT-NAME>TRANSMIT</SHORT-NAME>
+                                  <LONG-NAME>
+                                    <L-4 L="EN">TRANSMIT</L-4>
+                                  </LONG-NAME>
+                                  <ORIGIN>RBC:1.0.0:2021-08-26</ORIGIN>
+                                </ECUC-ENUMERATION-LITERAL-DEF>
+                                <ECUC-ENUMERATION-LITERAL-DEF>
+                                  <SHORT-NAME>TXCONFIRMATION</SHORT-NAME>
+                                  <LONG-NAME>
+                                    <L-4 L="EN">TXCONFIRMATION</L-4>
+                                  </LONG-NAME>
+                                  <ORIGIN>RBC:1.0.0:2021-08-26</ORIGIN>
+                                </ECUC-ENUMERATION-LITERAL-DEF>
+                              </LITERALS>
+                            </ECUC-ENUMERATION-PARAM-DEF>
+                            <!-- PARAMETER DEFINITION: rbc_XCoreDefaults_PduType -->
+                            <ECUC-ENUMERATION-PARAM-DEF>
+                              <SHORT-NAME>rbc_XCoreDefaults_PduType</SHORT-NAME>
+                              <LONG-NAME>
+                                <L-4 L="EN">PduType</L-4>
+                              </LONG-NAME>
+                              <DESC>
+                                <L-2 L="EN">Type of the PDU</L-2>
+                              </DESC>
+                              <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                              <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                              <MULTIPLICITY-CONFIG-CLASSES>
+                                <ECUC-MULTIPLICITY-CONFIGURATION-CLASS>
+                                  <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                                  <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                                </ECUC-MULTIPLICITY-CONFIGURATION-CLASS>
+                              </MULTIPLICITY-CONFIG-CLASSES>
+                              <ORIGIN>RB:1.0.0:2021-03-01</ORIGIN>
+                              <POST-BUILD-VARIANT-MULTIPLICITY>false</POST-BUILD-VARIANT-MULTIPLICITY>
+                              <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                              <LITERALS>
+                                <ECUC-ENUMERATION-LITERAL-DEF>
+                                  <SHORT-NAME>CONTAINER_PDU</SHORT-NAME>
+                                  <LONG-NAME>
+                                    <L-4 L="EN">CONTAINER_PDU</L-4>
+                                  </LONG-NAME>
+                                  <ORIGIN>RBC:1.0.0:2021-08-26</ORIGIN>
+                                </ECUC-ENUMERATION-LITERAL-DEF>
+                                <ECUC-ENUMERATION-LITERAL-DEF>
+                                  <SHORT-NAME>MULTIPLEXED_PDU</SHORT-NAME>
+                                  <LONG-NAME>
+                                    <L-4 L="EN">MULTIPLEXED_PDU</L-4>
+                                  </LONG-NAME>
+                                  <ORIGIN>RBC:1.0.0:2021-08-26</ORIGIN>
+                                </ECUC-ENUMERATION-LITERAL-DEF>
+                                <ECUC-ENUMERATION-LITERAL-DEF>
+                                  <SHORT-NAME>SECURED_PDU</SHORT-NAME>
+                                  <LONG-NAME>
+                                    <L-4 L="EN">SECURED_PDU</L-4>
+                                  </LONG-NAME>
+                                  <ORIGIN>RBC:1.0.0:2021-08-26</ORIGIN>
+                                </ECUC-ENUMERATION-LITERAL-DEF>
+                                <ECUC-ENUMERATION-LITERAL-DEF>
+                                  <SHORT-NAME>SIGNAL_PDU</SHORT-NAME>
+                                  <LONG-NAME>
+                                    <L-4 L="EN">SIGNAL_PDU</L-4>
+                                  </LONG-NAME>
+                                  <ORIGIN>RBC:1.0.0:2021-08-26</ORIGIN>
+                                </ECUC-ENUMERATION-LITERAL-DEF>
+                              </LITERALS>
+                            </ECUC-ENUMERATION-PARAM-DEF>
+                          </PARAMETERS>
+                          <REFERENCES>
+                            <!-- Choice Reference Definition: rbc_XCoreDefaults_rbaNdsConnectorRef -->
+                            <ECUC-CHOICE-REFERENCE-DEF>
+                              <SHORT-NAME>rbc_XCoreDefaults_rbaNdsConnectorRef</SHORT-NAME>
+                              <LONG-NAME>
+                                <L-4 L="EN">rbaNdsConnectorRef</L-4>
+                              </LONG-NAME>
+                              <DESC>
+                                <L-2 L="EN">Reference to the Connector containing the pdus</L-2>
+                              </DESC>
+                              <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                              <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                              <ORIGIN>RB:1.0.0:2021-03-01</ORIGIN>
+                              <DESTINATION-REFS>
+                                <DESTINATION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_Connectors/rba_Nds_CanConnector</DESTINATION-REF>
+                                <DESTINATION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_Connectors/rba_Nds_FlexRayConnector</DESTINATION-REF>
+                              </DESTINATION-REFS>
+                            </ECUC-CHOICE-REFERENCE-DEF>
+                            <!-- Reference Definition: rbc_XCoreDefaults_rbaNdsProcessingAllocationRef -->
+                            <ECUC-REFERENCE-DEF>
+                              <SHORT-NAME>rbc_XCoreDefaults_rbaNdsProcessingAllocationRef</SHORT-NAME>
+                              <LONG-NAME>
+                                <L-4 L="EN">rbaNdsProcessingAllocationRef</L-4>
+                              </LONG-NAME>
+                              <DESC>
+                                <L-2 L="EN">The processing allocation assigned to the pdus</L-2>
+                              </DESC>
+                              <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                              <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                              <ORIGIN>RB:1.0.0:2021-03-01</ORIGIN>
+                              <POST-BUILD-VARIANT-VALUE>false</POST-BUILD-VARIANT-VALUE>
+                              <VALUE-CONFIG-CLASSES>
+                                <ECUC-VALUE-CONFIGURATION-CLASS>
+                                  <CONFIG-CLASS>PUBLISHED-INFORMATION</CONFIG-CLASS>
+                                  <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                                </ECUC-VALUE-CONFIGURATION-CLASS>
+                              </VALUE-CONFIG-CLASSES>
+                              <DESTINATION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_EcuProcesses/rba_Nds_ProcessingAllocation</DESTINATION-REF>
+                            </ECUC-REFERENCE-DEF>
+                          </REFERENCES>
+                        </ECUC-PARAM-CONF-CONTAINER-DEF>
+                      </CONTAINERS>
+                    </ECUC-MODULE-DEF>
+                  </ELEMENTS>
+                </AR-PACKAGE>
+              </AR-PACKAGES>
+            </AR-PACKAGE>
+          </AR-PACKAGES>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

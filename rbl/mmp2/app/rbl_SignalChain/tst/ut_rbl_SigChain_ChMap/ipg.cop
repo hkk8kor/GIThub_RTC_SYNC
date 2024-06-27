@@ -1,0 +1,18 @@
+#
+# Cantata Test-Level Options
+#
+# Any options set in this file will override the options set in the
+# project-level options file.
+#
+# WARNING: Do not alter this file manually.
+#
+#tool.testid=55a46f71-a5e7-4b66-aef0-546862de036c
+"--ci:--instr:stmt;func;decn;log;"
+"--sa:--calc:*#*"
+"--sm:--access_variable:"rbl_SigChain_ChMap.c":rbl_SigChain_ChMapSigSet"
+
+#User Section
+"--dont_ci:*"
+"--do_ci:rbl_SigChain_ChMap.c"
+"--ci:--no_instr:all"
+"--ci:--instr:stmt;func;decn;log;#rbl_SigChainChMap"

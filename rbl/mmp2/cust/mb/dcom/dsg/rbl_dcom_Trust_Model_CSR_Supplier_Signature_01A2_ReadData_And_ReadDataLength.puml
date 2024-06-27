@@ -1,0 +1,26 @@
+start
+note left
+ **dcom_Trust_Model_CSR_Supplier_Signature_01A2_ReadData**
+end note
+if(Check if Data is not equal to null pointer) then (yes)
+ :Copy the Supplier Public Key and Supplier Signature into DCM buffer using memcpy function;
+endif
+stop
+
+start
+note left
+ **dcom_Trust_Model_CSR_Supplier_Signature_01A2_ReadDataLength**
+end note
+ :Copy the Supplier Public Key length from Zeroth byte of DCOM_SupplierPubKey_Sig_RAM_Mirror array variable;
+ if(Check if Supplier Public Key length is less than or equal to 128) then (yes)
+  :Copy the Supplier Signature length from DCOM_SupplierPubKey_Sig_RAM_Mirror array variable;
+  if(Check if Supplier Signature length is less than or equal to 128) then (yes)
+   :Calculate the DID 01A2 Data length by adding Supplier Public Key length and Supplier Signature length and 2 bytes;
+   :Return E_OK;
+  else (no)
+   :Return E_NOT_OK;
+  endif
+ else (no)
+  :Return E_NOT_OK;
+ endif
+stop

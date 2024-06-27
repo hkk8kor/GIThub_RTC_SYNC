@@ -1,0 +1,8 @@
+start
+if(NVM item DCOM_AMG_SWITCH is not empty and 
+   variant monitoring for Valid variant is coded i.e. MB/AMG) then (yes)
+:Passed the variant DTC for valid variants;
+else(no)
+:Failed the variant DTC for invalid variants;
+endif
+stop

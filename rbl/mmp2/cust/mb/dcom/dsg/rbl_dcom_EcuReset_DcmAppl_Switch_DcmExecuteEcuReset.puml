@@ -1,0 +1,7 @@
+start
+group (DCM_CFG_DSPUDSSUPPORT_ENABLED is not equal to DCM_CFG_OFF AND DCM_CFG_DSP_ECURESET_ENABLED is not equal to DCM_CFG_OFF)
+if (rba_DcmPma_PlantModeStatus_b is not equal to TRUE AND ResetType_u8 is equal to DCOM_HARD_RESET OR ResetType_u8 is equal to DCOM_SOFT_RESET) then (yes)
+     :Function RB_performSWResetSkipBootBlock would be called;
+endif
+end group
+stop

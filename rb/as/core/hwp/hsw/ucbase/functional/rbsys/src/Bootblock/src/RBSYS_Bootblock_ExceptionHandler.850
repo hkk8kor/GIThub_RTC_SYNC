@@ -1,0 +1,140 @@
+-- Copyright:
+-- Robert Bosch GmbH reserves all rights even in the event of industrial property rights.
+-- We reserve all rights of disposal such as copying and passing on to third parties.
+
+  .globl _RBSYS_BBStartupPreOSPhase0
+  .globl _Os_vector_0x0010
+  .globl _Os_vector_0x0020
+  .globl _Os_vector_0x0030
+  .globl _Os_vector_0x0040
+  .globl _Os_vector_0x0050
+  .globl _Os_vector_0x0060
+  .globl _Os_vector_0x0070
+  .globl _Os_vector_0x0080
+  .globl _Os_vector_0x0090
+  .globl _Os_vector_0x00A0
+  .globl _Os_vector_0x00B0
+  .globl _Os_vector_0x00C0
+  .globl _Os_vector_0x00D0
+  .globl _Os_vector_0x00E0
+  .globl _Os_vector_0x00F0
+  .globl _Os_demux_wrapper
+
+  .globl _BBResetVector
+
+  .section ".BBintvect",.text
+  .offset 0x0000
+
+-- Vector 0x0000: RESET
+_BBResetVector:
+   jr32 _RBSYS_BBStartupPreOSPhase0         -- branch to reset handler
+-- Speculative execution of instructions after the previous branch may lead to
+-- compare errors, because general purpose registers are not yet initialized.
+-- Therefore it is recommended to insert at least three nop instructions.
+-- (see Mantis issue 8799 within HW_UM_RH850/P1x-C or 7958 within CC-Cube_Virtual Prototyping)
+   nop
+   nop
+   nop
+  .align 16
+
+
+-- Branches directly to the FSW OS
+
+-- Vector 0x0010: SYSERR
+  syncp                         /* SW workaround for Renesas G3M Errata RB114 */
+  jr32 _Os_vector_0x0010
+  nop
+  .align 16
+
+-- Vector 0x0020: HVTRAP
+  syncp                         /* SW workaround for Renesas G3M Errata RB114 */
+  jr32 _Os_vector_0x0020
+  nop
+  .align 16
+
+-- Vector 0x0030: FETRAP
+  syncp                         /* SW workaround for Renesas G3M Errata RB114 */
+  jr32 _Os_vector_0x0030
+  nop
+  .align 16
+
+-- Vector 0x0040: EITRAP0
+  syncp                         /* SW workaround for Renesas G3M Errata RB114 */
+  jr32 _Os_vector_0x0040
+  nop
+  .align 16
+
+-- Vector 0x0050: EITRAP1
+  syncp                         /* SW workaround for Renesas G3M Errata RB114 */
+  jr32 _Os_vector_0x0050
+  nop
+  .align 16
+
+-- Vector 0x0060: RIE
+  syncp                         /* SW workaround for Renesas G3M Errata RB114 */
+  jr32 _Os_vector_0x0060
+  nop
+  .align 16
+
+-- Vector 0x0070: FPP/FPI
+  syncp                         /* SW workaround for Renesas G3M Errata RB114 */
+  jr32 _Os_vector_0x0070
+  nop
+  .align 16
+
+-- Vector 0x0080: UCPOP
+  syncp                         /* SW workaround for Renesas G3M Errata RB114 */
+  jr32 _Os_vector_0x0080
+  nop
+  .align 16
+
+-- Vector 0x0090: MIP/MDP/ITLBE/DTLBE
+  syncp                         /* SW workaround for Renesas G3M Errata RB114 */
+  jr32 _Os_vector_0x0090
+  nop
+  .align 16
+
+-- Vector 0x00A0: PIE
+  syncp                         /* SW workaround for Renesas G3M Errata RB114 */
+  jr32 _Os_vector_0x00A0
+  nop
+  .align 16
+
+-- Vector 0x00B0: DEBUG
+  syncp                         /* SW workaround for Renesas G3M Errata RB114 */
+  jr32 _Os_vector_0x00B0
+  nop
+  .align 16
+
+-- Vector 0x00C0: MAE
+  syncp                         /* SW workaround for Renesas G3M Errata RB114 */
+  jr32 _Os_vector_0x00C0
+  nop
+  .align 16
+
+-- Vector 0x00D0: RESERVED
+  syncp                         /* SW workaround for Renesas G3M Errata RB114 */
+  jr32 _Os_vector_0x00D0
+  nop
+  .align 16
+
+  -- Vector 0x00E0: FENMI
+  syncp                         /* SW workaround for Renesas G3M Errata RB114 */
+  jr32 _Os_vector_0x00E0
+  nop
+  .align 16
+
+  -- Vector 0x00F0: FEINT
+  syncp                         /* SW workaround for Renesas G3M Errata RB114 */
+  jr32 _Os_vector_0x00F0
+  nop
+  .align 16
+
+  -- Vector 0x0100: Interrupts: demux wrapper
+  syncp                         /* SW workaround for Renesas G3M Errata RB114 */
+  jr32 _Os_demux_wrapper
+  nop
+  .align 16
+
+
+

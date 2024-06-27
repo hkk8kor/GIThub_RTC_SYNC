@@ -1,0 +1,16 @@
+* Repeated Testing of TSI command 11 03 (ResetSkipBootBlock to ControlMode)
+
+wiederhole(600)
+
+11 03
+
+* this is optional to avoid that TKWinX is polling for the communcation status (multiple tester presents)
+stoppe_kommunikation
+
+* Wait 150ms until ECU is back up
+warte(150)
+
+* this is mandatory: create new communcation session (old one is lost after reset)
+starte_kommunikation
+
+wiederhole_ende

@@ -1,0 +1,98 @@
+/**
+ * \brief Build configuration of IMU - part of overall build configuration
+ *
+ * For details see Cfg_build_master.bcfg in project root folder
+ */
+
+module "rbl/mmp2/cust/mb/rbl_CustIf"
+{
+    export
+    {
+        "api";
+        "cfg";
+        
+         #if(RBFS_ThirdPartySoftware != RBFS_ThirdPartySoftware_ON)
+             exclude "src/*rbl_CustIf_ROE_IMU_A_ST3.h";
+         #endif
+         
+         #if(RBFS_CyberSecuritySecOC != RBFS_CyberSecuritySecOC_On)
+             exclude "src/*rbl_CustIf_VSS_TP_Auth_ST3.h";
+             exclude "src/*rbl_CustIf_VSS_TP_RealTmOffset_ST3.h";
+             exclude "src/*rbl_CustIf_VSS_TP_SecTickCount_Lvl1_ST3.h";
+             exclude "src/*rbl_CustIf_VSS_TP_SharedSecret_ST3.h";
+             exclude "src/*rbl_CustIf_VSS_TP_VIN_ST3.h";
+        #endif
+         
+        #if (RBFS_MMP2 == RBFS_MMP2_IMUA)
+            exclude "api/*rbl_CustIf_ADAS_HAD_Stat_IDC_M_FSI_ST3.h";  
+        #endif
+        #if (RBFS_MMP2 == RBFS_MMP2_IMUB)
+               exclude "api/*rbl_CustIf_ADAS_HAD_Stat_IDC_S_FSI_Bckp_ST3.h";  
+        #endif            
+    
+            #if(RBFS_DrivingCANSignals == RBFS_DrivingCANSignals_OFF)    
+             exclude "api/*rbl_CustIf_PT4_Det05_IMU_D_Ctrl_ST3.h";
+             exclude "api/*rbl_CustIf_IMU_D_Stat_ST3.h";  
+             exclude "api/*rbl_CustIf_ECU_Stat_IMU_D_ST3.h";
+             #endif 
+
+        #if(RBFS_TimeSync == RBFS_TimeSync_TSCan)
+            "src/TimeSync";
+        #endif
+    }
+
+    files
+    {
+        c
+        { 
+            "src/*.c";
+            
+            #if(RBFS_ThirdPartySoftware != RBFS_ThirdPartySoftware_ON)
+             exclude "src/*rbl_CustIf_ROE_IMU_A_ST3.c";
+             exclude "src/*rbl_CustIf_SSA_Stub.c";
+            #endif
+            
+            #if(RBFS_CyberSecuritySecOC != RBFS_CyberSecuritySecOC_On)
+             exclude "src/*rbl_CustIf_VSS_TP_Auth_ST3.c";
+             exclude "src/*rbl_CustIf_VSS_TP_RealTmOffset_ST3.c";
+             exclude "src/*rbl_CustIf_VSS_TP_SecTickCount_Lvl1_ST3.c";
+             exclude "src/*rbl_CustIf_VSS_TP_SharedSecret_ST3.c";
+             exclude "src/*rbl_CustIf_VSS_TP_VIN_ST3.c";
+            #endif
+            
+         #if(RBFS_DrivingCANSignals == RBFS_DrivingCANSignals_OFF)           
+             exclude "src/*rbl_CustIf_PT4_Det05_IMU_D_Ctrl_ST3.c";
+             exclude "src/*rbl_CustIf_IMU_D_Stat_ST3.c";  
+             exclude "src/rbl_CustIf_ECU_Stat_IMU_D_ST3.c";
+            #endif  
+                   
+             #if (RBFS_MMP2 == RBFS_MMP2_IMUA)
+               exclude "src/*rbl_CustIf_ADAS_HAD_Stat_IDC_M_FSI_ST3.c";              
+             #endif
+             
+               #if (RBFS_MMP2 == RBFS_MMP2_IMUB)
+               exclude "src/*rbl_CustIf_ADAS_HAD_Stat_IDC_S_FSI_Bckp_ST3.c";  
+             #endif
+             
+            #if(RBFS_TimeSync == RBFS_TimeSync_TSCan)
+                "src/TimeSync/*.c";
+                  #if (RBFS_MMP2 == RBFS_MMP2_IMUA)
+                    exclude "src/TimeSync/rbl_CustIf_TiSync_AMG.c";
+                    exclude "src/TimeSync/rbl_CustIf_GTS_Monitoring_AMG.c";
+                  #endif                  
+            #endif
+
+        }
+
+        genprodb
+        {
+            "api/*.h";
+            "src/*.[hc]";   
+        }
+    
+        proc
+        {
+            "*.proc"
+        }
+    }
+}

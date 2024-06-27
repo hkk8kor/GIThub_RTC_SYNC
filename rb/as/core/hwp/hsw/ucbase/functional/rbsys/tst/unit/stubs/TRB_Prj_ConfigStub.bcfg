@@ -1,0 +1,19 @@
+module "ConfigStub" {
+  export {
+    /** now map the header stub name to the original header file names */
+    /** stub "RB_Config.h"                  with "TRB_Prj_Config.h"            */
+    /** stub "RBHSW_Config.h"               with "TRB_Prj_Config.h"            */
+    /** stub "RBCMHSW_SWDebugSupport.h"     with "TRB_Prj_Config.h"            */
+    /** stub "RBCMHSW_Locks.h"              with "TRB_Prj_Config.h"            */
+    /** stub "RBCMHSW_CoreInfo.h"           with "TRB_Prj_Config.h"            */
+    /** stub "RBCMHSW_TaskSchemeAddOn.h"    with "TRB_Prj_Config.h"            */
+    /** stub "RBCMHSW_MemoryInfo.h"         with "TRB_Prj_Config.h"            */
+    /** stub "RBCMHSW_uCSafety.h"           with "TRB_Prj_Config.h"            */
+    /** stub "RBHSWESR_FailureHandling.h"   with "TRBHSWESR_FailureHandling.h" */
+  }
+  files {
+    c {
+      /** stubs */
+    }
+  }
+} 

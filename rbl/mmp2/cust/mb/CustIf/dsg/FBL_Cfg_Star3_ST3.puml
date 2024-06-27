@@ -1,0 +1,15 @@
+start
+:Read the **Platform_Stat_Star3**;
+:Validate the Received signal;
+note right
+ invalid value include any other value
+ other than valid values mentioned
+end note
+if(siganl is valid ) then (yes) 
+: Report to dem that **RBL_CUSTIF_SIGNAL_INVALID_FBL_Cfg_Star3_ST3** \n dem event is PREPASSED ;
+: Transmit the recieved signal \n via **RBMESG_Platform_Stat_Star3** Variable;
+else (No) 
+:  Report to dem that **RBL_CUSTIF_SIGNAL_INVALID_FBL_Cfg_Star3_ST3** \n dem event is PREFAILED ; 
+: Transmit the **I_C08_PLATFORM_STAT_SNA**\n value via **RBMESG_rbl_CustIf_Platform_Stat_Star3** Variable;
+endif
+stop

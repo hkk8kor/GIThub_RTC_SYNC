@@ -1,0 +1,27 @@
+#
+# Cantata Test-Level Options
+#
+# Any options set in this file will override the options set in the
+# project-level options file.
+#
+# WARNING: Do not alter this file manually.
+#
+#tool.testid=bc0d23e6-42df-4671-b535-dba37f25fc4c
+"--ci:--instr:stmt;func;decn;log;"
+"--sa:--calc:*#*"
+"--sm:--access_function:"rbl_SigChain_Init.c":rbl_SigChainActive_Init(uint32 *)"
+"--sm:--access_function:"rbl_SigChain_Init.c":rbl_SigChain_NVMcontentValid(uint32 *)"
+"--sm:--wrap:RBSYS_EnterCommonLockSysfast()#rbl_SigChainInit()"
+"--sm:--wrap:RBSYS_EnterCommonLockSysfast()#rbl_SigChain_NVMcontentValid(uint32 *)"
+"--sm:--wrap:RBSYS_ExitCommonLockSysfast()#rbl_SigChainInit()"
+"--sm:--wrap:RBSYS_ExitCommonLockSysfast()#rbl_SigChain_NVMcontentValid(uint32 *)"
+"--sm:--wrap:rbl_SigChainActive_Init(uint32 *)#rbl_SigChainInit()"
+"--sm:--wrap:rbl_SigChain_NVMcontentValid(uint32 *)#rbl_SigChainInit()"
+
+#User Section
+"--dont_ci:*"
+"--do_ci:rbl_SigChain_Init.c"
+"--ci:--no_instr:all"
+"--ci:--instr:stmt;func;decn;log;#rbl_SigChainInit"
+"--ci:--instr:stmt;func;decn;log;#rbl_SigChainActive_Init"
+"--ci:--instr:stmt;func;decn;log;#rbl_SigChain_NVMcontentValid"

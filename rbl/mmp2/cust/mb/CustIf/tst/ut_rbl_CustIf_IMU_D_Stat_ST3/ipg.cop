@@ -1,0 +1,28 @@
+#
+# Cantata Test-Level Options
+#
+# Any options set in this file will override the options set in the
+# project-level options file.
+#
+# WARNING: Do not alter this file manually.
+#
+#tool.testid=24cee42b-63c3-4079-87ab-9059f9e6f004
+"--ci:--instr:stmt;func;decn;log;"
+"--sa:--calc:*#*"
+"--sm:--access_function:"rbl_CustIf_IMU_D_Stat_ST3.c":RBSYS_EnterCommonLockSysfast()"
+"--sm:--access_function:"rbl_CustIf_IMU_D_Stat_ST3.c":RBSYS_ExitCommonLockSysfast()"
+"--sm:--access_function:"rbl_CustIf_IMU_D_Stat_ST3.c":RB_FloatToInt_f32_u8(float32)"
+"--sm:--access_function:"rbl_CustIf_IMU_D_Stat_ST3.c":rbl_CustIf_IMU_D_Prepare_Temp(const rbl_ImuStdTypes_ImuSignalSet_t *)"
+"--sm:--access_variable:"rbl_CustIf_IMU_D_Stat_ST3.c":rbl_CustIf_CAN3_compu_param"
+"--sm:--access_variable:"rbl_CustIf_IMU_D_Stat_ST3.c":rbl_CustIf_IMU_D_Stat_Pr5_ST3_SigData"
+"--sm:--wrap:RBSYS_EnterCommonLockSysfast()#rbl_CustIf_IMU_D_Driving_IMU_D_Stat_ST3(const rbl_ImuStdTypes_ImuSignalSet_t *)"
+"--sm:--wrap:RBSYS_ExitCommonLockSysfast()#rbl_CustIf_IMU_D_Driving_IMU_D_Stat_ST3(const rbl_ImuStdTypes_ImuSignalSet_t *)"
+"--sm:--wrap:RB_FloatToInt_f32_u8(float32)#rbl_CustIf_IMU_D_Prepare_Temp(const rbl_ImuStdTypes_ImuSignalSet_t *)"
+"--sm:--wrap:rbl_CustIf_IMU_D_Prepare_Temp(const rbl_ImuStdTypes_ImuSignalSet_t *)#rbl_CustIf_IMU_D_Driving_IMU_D_Stat_ST3(const rbl_ImuStdTypes_ImuSignalSet_t *)"
+
+#User Section
+"--dont_ci:*"
+"--ci:--no_instr:all"
+"--do_ci:rbl_CustIf_IMU_D_Stat_ST3.c"
+"--ci:--instr:stmt;func;call;decn;log;#rbl_CustIf_IMU_D_Prepare_Temp"
+"--ci:--instr:stmt;func;call;decn;log;#rbl_CustIf_IMU_D_Driving_IMU_D_Stat_ST3"

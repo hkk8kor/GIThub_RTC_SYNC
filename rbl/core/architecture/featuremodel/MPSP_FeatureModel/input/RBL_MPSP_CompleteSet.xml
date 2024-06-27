@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BuildVariantConfig>
+  <BuildVariants>
+    <BuildVariant>
+      <VDM>..\MPSP_FeatureModel\rb\hwref_mpsp\MMP2xD3xRef.vdm</VDM>
+      <VDM>..\MPSP_FeatureModel\rb\hwref_mpsp\VMPSxD5EDxRef.vdm</VDM>
+      <VDM>..\MPSP_FeatureModel\rb\hwref_mpsp\VMPSxD5EDxRefxRelease.vdm</VDM>
+    </BuildVariant>
+  </BuildVariants>
+  <Settings>
+    <FeatureModel>..\MPSP_FeatureModel.xfm</FeatureModel>
+    <OutputFolder>..\..\..\..\..\..\</OutputFolder>
+    <TemplateFolder>..\input\templates</TemplateFolder>
+  </Settings>
+</BuildVariantConfig>  

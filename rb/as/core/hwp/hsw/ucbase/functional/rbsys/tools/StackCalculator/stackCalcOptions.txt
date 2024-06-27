@@ -1,0 +1,12 @@
+
+/*********************************************************/
+/* RBSYS specific option file for stack calculation tool */
+/*********************************************************/
+
+
+/* start-up enty points which are not relevant for wcs */
+-d <<address_taken>>:RBSYS_StartupPreOSPhase0
+-d <<address_taken>>:RBSYS_StartupPreOSPhase1
+-d <<address_taken>>:RBSYS_StartupPreOSPhase2
+-d <<address_taken>>:RBSYS_StartupPreOSPhase3
+-d <<address_taken>>:main

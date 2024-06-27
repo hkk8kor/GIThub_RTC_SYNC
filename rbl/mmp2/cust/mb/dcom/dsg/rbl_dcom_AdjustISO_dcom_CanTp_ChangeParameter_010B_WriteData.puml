@@ -1,0 +1,18 @@
+start
+if(Check if Data is not equal to null pointer) then (yes)
+Switch(dcom_Requested_Tester)
+case (DCOM_FIRST_TESTER)
+     :From the function call CanTp_ChangeParameter the first return value would be updated with BlockSize,id,CanTpConf_CanTpRxNSdu_CanTpRxNSdu_MB_DiagExt_PHY and Second return value would be updated with STMIN,id,CanTpConf_CanTpRxNSdu_CanTpRxNSdu_MB_DiagExt_PHY;
+case ( DCOM_SECOND_TESTER )
+group (RBFS_DcomSecondTesterSupport != RBFS_DcomSecondTesterSupport_OFF) 
+     :From the function call CanTp_ChangeParameter the first return value would be updated with BlockSize,id,CanTpConf_CanTpRxNSdu_CanTpRxNSdu_MB_DiagExt_PHY and Second return value would be updated with STMIN,id,CanTpConf_CanTpRxNSdu_CanTpRxNSdu_MB_DiagExt_PHY;
+end group
+case ( default)
+     :retVal is updated to E_NOT_OK;
+endswitch
+if(Check if return Value 1 AND return Value 2 is equal to E_OK)
+     :Return Value is updated with E_OK;
+endif
+else (no)
+endif
+stop

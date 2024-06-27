@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RTAOS_Project version="1.0">
+  <Working name="rtaos_ccas_mcore_sc1.arxml" />
+  <File name="rtaos_ccas_mcore_sc1.arxml" />
+  <File name=".\..\..\..\cfg\EcuC_EcucValues.arxml" />
+  <Options>
+    <Option name="BuildGui.LastBuildCommand">rtaosgen.exe --debug:assembler --debug:source --build:clean --samples:[Includes]overwrite --target_include:c:\toolbase\rtaos.target_rh850.ghs\5.0.32\RH850GHS_5.0.32 --output:.\out --include:.\out\.\Samples\Includes --nobuild rtaos_ccas_mcore_sc1.rtaos</Option>
+    <Option name="BuildGui.KeepListingFiles">TRUE</Option>
+    <Option name="BuildGui.KeepSourceFiles">TRUE</Option>
+    <Option name="BuildGui.CleanRebuild">TRUE</Option>
+    <Option name="BuildGui.GenSampleInc">TRUE</Option>
+    <Option name="BuildGui.OverwriteSampleInc">TRUE</Option>
+    <Option name="BuildGui.AddSampleIncPath">TRUE</Option>
+    <Option name="BuildGui.Reports">Configuration Summary</Option>
+    <Option name="BuildGui.CheckOnly">TRUE</Option>
+    <Option name="BuildGui.OutputFolder">.\out</Option>
+  </Options>
+</RTAOS_Project>

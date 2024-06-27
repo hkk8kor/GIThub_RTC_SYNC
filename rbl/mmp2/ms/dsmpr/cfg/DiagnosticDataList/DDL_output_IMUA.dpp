@@ -1,0 +1,45 @@
+/// <name>Generate_DiagnosisDocumentation</name>
+/// <version>3</version>
+/// <author>Praveenraj Vajravel</author>
+/// <description>This plugins generates your Diagnosis Documentation</description>
+/// <icon>{plugin.png}</icon>
+/// <entrypoint>FileGenerator</entrypoint>
+
+using System;
+using DDB = com.bosch.Diamant.Diagnosis;
+using DPP = com.bosch.Diamant.Plugins;
+using System.IO;
+using System.Xml;
+using System.Collections.Generic;
+using CORE = com.bosch.Diamant;
+using System.Xml.Serialization;
+using System.Linq;
+
+#include "..\..\..\..\..\..\rb\as\core\app\dsm\tools\Library\DiamantInterfaceLib\Diamant_DDB_CN.cs"
+#include "..\..\..\..\..\..\rb\as\core\app\dsm\tools\Library\DiamantInterfaceLib\Diamant_GeneralLib.cs"
+#include "..\..\..\..\..\..\rb\as\core\app\dsm\tools\Library\DiamantInterfaceLib\Diamant_DDB_Base.cs"
+#include "..\..\..\..\..\..\rb\as\core\app\dsm\tools\Library\DiamantInterfaceLib\Diamant_DDB_FWAccess.cs"
+#include "..\..\..\..\..\..\rb\as\core\app\dsm\tools\Library\DiamantInterfaceLib\Diamant_DDB_NodeAccess.cs"
+#include "..\..\..\..\..\..\rb\as\core\app\dsm\tools\Library\DiamantInterfaceLib\Diamant_DDB_DTCAccess.cs"
+#include "..\..\..\..\..\..\rb\as\core\app\dsm\tools\Library\DiamantInterfaceLib\Diamant_DDB_STMAccess.cs"
+#include "..\..\..\..\..\..\rb\as\core\app\dsm\tools\Library\DiamantInterfaceLib\Diamant_DDB_GeneralConfigAccess.cs"
+#include "..\..\..\..\..\..\rb\as\core\app\dsm\tools\Library\DiagnosticDataList\DDL\Output_Formater.cs"
+#include "..\..\..\..\..\..\rb\as\core\app\dsm\tools\Library\DiagnosticDataList\DDL\Diamant_generate_DiagOutput.cs"
+#include "..\..\..\..\..\..\rb\as\core\app\dsm\tools\Library\DiagnosticDataList\DDL\Diamant_DDB_Collections.cs"
+#include "..\..\..\..\..\..\rb\as\core\app\dsm\tools\Library\DiagnosticDataList\DDL\Diamant_DDB_DDL_Class.cs"
+#include "..\..\..\..\..\..\rb\as\core\app\dsm\tools\Library\DiagnosticDataList\DDL\Diamant_DDB_TKWinx_FailueMemoryDescription_Class.cs"
+#include "..\..\..\..\..\..\rb\as\core\app\dsm\tools\Library\DiagnosticDataList\DDL\Diamant_DDB_SystemReleaseTable_Class.cs"
+#include "..\..\..\..\..\..\rb\as\core\app\dsm\tools\Library\DiagnosticDataList\DDL\Diamant_Generate_SLM.cs"
+#include "..\..\..\..\..\..\rb\as\core\app\dsm\tools\Library\DiagnosticDataList\DDL\Diamant_Generate_GeneralConfig.cs"
+#include "..\..\..\..\..\..\rb\as\core\app\dsm\rbsysco\tools\RBSysCoLibrary\Diamant_DDB_RBSysCoAccess.cs"
+
+#include "DDL\Diamant_DDL_PRJ_Class_IMUA.cs"
+
+public partial class Plugin : DPP.IGeneratorPlugin
+{
+ 
+  #region EntryPoint
+  // methods and definitions are done in DiagDocu10\Diamant_generate_DiagOutput.cs
+  #endregion EntryPoint
+   
+}

@@ -1,0 +1,19 @@
+#
+# Cantata Test-Level Options
+#
+# Any options set in this file will override the options set in the
+# project-level options file.
+#
+# WARNING: Do not alter this file manually.
+#
+#tool.testid=5cb82e52-b48b-4c41-bf5c-0f739b8ee7b0
+"--ci:--instr:stmt;func;decn;log;"
+"--sa:--calc:*#*"
+   
+#User Section
+"--parse:--warning_suppress:9001"
+"--parse:--warning_suppress:10427"
+"--dont_ci:*"
+"--do_ci:DcmAppl_Switch_DcmDiagnosticSessionControl.c"
+"--ci:--no_instr:all"
+"--ci:--instr:stmt;func;call;decn;log;#DcmAppl_Switch_DcmDiagnosticSessionControl"

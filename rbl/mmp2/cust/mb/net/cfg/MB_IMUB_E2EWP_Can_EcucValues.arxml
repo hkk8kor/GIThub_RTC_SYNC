@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-2-2.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>RB</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE>
+          <SHORT-NAME>UBK</SHORT-NAME>
+          <AR-PACKAGES>
+            <AR-PACKAGE>
+              <SHORT-NAME>Project</SHORT-NAME>
+              <AR-PACKAGES>
+                <AR-PACKAGE>
+                  <SHORT-NAME>EcucModuleConfigurationValuess</SHORT-NAME>
+                  <ELEMENTS>
+                    <ECUC-MODULE-CONFIGURATION-VALUES>
+                      <SHORT-NAME>Rba_E2EWP</SHORT-NAME>
+                      <DEFINITION-REF DEST="ECUC-MODULE-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP</DEFINITION-REF>
+                      <IMPLEMENTATION-CONFIG-VARIANT>VARIANT-PRE-COMPILE</IMPLEMENTATION-CONFIG-VARIANT>
+                      <CONTAINERS>
+                        <ECUC-CONTAINER-VALUE>
+                          <SHORT-NAME>rba_E2EWPRbProfile5</SHORT-NAME>
+                          <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5</DEFINITION-REF>
+                          <SUB-CONTAINERS>
+                            <ECUC-CONTAINER-VALUE>
+                              <SHORT-NAME>rba_E2EWP_RbConfig_IMU_B_Output_ST3</SHORT-NAME>
+                              <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig</DEFINITION-REF>
+                              <PARAMETER-VALUES>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbCheck</DEFINITION-REF>
+                                  <VALUE>false</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbDataID</DEFINITION-REF>
+                                  <VALUE>845</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbDataLen</DEFINITION-REF>
+                                  <VALUE>320</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbDataOffset</DEFINITION-REF>
+                                  <VALUE>0</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbMaxDeltaCounter</DEFINITION-REF>
+                                  <VALUE>3</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbOffset</DEFINITION-REF>
+                                  <VALUE>0</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-TEXTUAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbPDU</DEFINITION-REF>
+                                  <VALUE>IMU_B_Output_ST3</VALUE>
+                                </ECUC-TEXTUAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbProtect</DEFINITION-REF>
+                                  <VALUE>true</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-TEXTUAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbSigGrp</DEFINITION-REF>
+                                  <VALUE>IMU_B_Output_Pr5_ST3_8enshzy4a8xe2badcgusoewm2</VALUE>
+                                </ECUC-TEXTUAL-PARAM-VALUE>
+                              </PARAMETER-VALUES>
+                            </ECUC-CONTAINER-VALUE>
+                            <ECUC-CONTAINER-VALUE>
+                              <SHORT-NAME>rba_E2EWP_RbConfig_IMU_B_Output_Fast_ST3</SHORT-NAME>
+                              <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig</DEFINITION-REF>
+                              <PARAMETER-VALUES>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbCheck</DEFINITION-REF>
+                                  <VALUE>false</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbDataID</DEFINITION-REF>
+                                  <VALUE>923</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbDataLen</DEFINITION-REF>
+                                  <VALUE>320</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbDataOffset</DEFINITION-REF>
+                                  <VALUE>0</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbMaxDeltaCounter</DEFINITION-REF>
+                                  <VALUE>3</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbOffset</DEFINITION-REF>
+                                  <VALUE>0</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-TEXTUAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbPDU</DEFINITION-REF>
+                                  <VALUE>IMU_B_Output_Fast_ST3</VALUE>
+                                </ECUC-TEXTUAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbProtect</DEFINITION-REF>
+                                  <VALUE>true</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-TEXTUAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbSigGrp</DEFINITION-REF>
+                                  <VALUE>IMU_B_Output_Fast_Pr5_ST3_dk96owji618h3fdh75ws5eyj3</VALUE>
+                                </ECUC-TEXTUAL-PARAM-VALUE>
+                              </PARAMETER-VALUES>
+                            </ECUC-CONTAINER-VALUE>
+                            <ECUC-CONTAINER-VALUE>
+                              <SHORT-NAME>rba_E2EWP_RbConfig_BCS_Whl_Msg1_BTC_ST3</SHORT-NAME>
+                              <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig</DEFINITION-REF>
+                              <PARAMETER-VALUES>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbCheck</DEFINITION-REF>
+                                  <VALUE>true</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbDataID</DEFINITION-REF>
+                                  <VALUE>413</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbDataLen</DEFINITION-REF>
+                                  <VALUE>160</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbDataOffset</DEFINITION-REF>
+                                  <VALUE>0</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbMaxDeltaCounter</DEFINITION-REF>
+                                  <VALUE>3</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbOffset</DEFINITION-REF>
+                                  <VALUE>0</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-TEXTUAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbPDU</DEFINITION-REF>
+                                  <VALUE>BCS_Whl_Msg1_BTC_ST3</VALUE>
+                                </ECUC-TEXTUAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbProtect</DEFINITION-REF>
+                                  <VALUE>false</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-TEXTUAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbSigGrp</DEFINITION-REF>
+                                  <VALUE>BCS_Whl_Msg1_BTC_Pr5_ST3_3z5vvcdtzaheg7vz23u7gb0g6</VALUE>
+                                </ECUC-TEXTUAL-PARAM-VALUE>
+                              </PARAMETER-VALUES>
+                            </ECUC-CONTAINER-VALUE>
+                            <ECUC-CONTAINER-VALUE>
+                              <SHORT-NAME>rba_E2EWP_RbConfig_DI_OdoSpeedometer_ST3</SHORT-NAME>
+                              <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig</DEFINITION-REF>
+                              <PARAMETER-VALUES>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbCheck</DEFINITION-REF>
+                                  <VALUE>true</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbDataID</DEFINITION-REF>
+                                  <VALUE>186</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbDataLen</DEFINITION-REF>
+                                  <VALUE>48</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbDataOffset</DEFINITION-REF>
+                                  <VALUE>0</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbMaxDeltaCounter</DEFINITION-REF>
+                                  <VALUE>3</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbOffset</DEFINITION-REF>
+                                  <VALUE>0</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-TEXTUAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbPDU</DEFINITION-REF>
+                                  <VALUE>DI_OdoSpeedometer_ST3</VALUE>
+                                </ECUC-TEXTUAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbProtect</DEFINITION-REF>
+                                  <VALUE>false</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-TEXTUAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbSigGrp</DEFINITION-REF>
+                                  <VALUE>DI_Odo_Pr5_ST3_e68xmtlkywxgxsdwekdjjhw3t</VALUE>
+                                </ECUC-TEXTUAL-PARAM-VALUE>
+                              </PARAMETER-VALUES>
+                            </ECUC-CONTAINER-VALUE>
+                            <ECUC-CONTAINER-VALUE>
+                              <SHORT-NAME>rba_E2EWP_RbConfig_Ign_Stat_ST3</SHORT-NAME>
+                              <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig</DEFINITION-REF>
+                              <PARAMETER-VALUES>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbCheck</DEFINITION-REF>
+                                  <VALUE>true</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbDataID</DEFINITION-REF>
+                                  <VALUE>51</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbDataLen</DEFINITION-REF>
+                                  <VALUE>32</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbDataOffset</DEFINITION-REF>
+                                  <VALUE>0</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbMaxDeltaCounter</DEFINITION-REF>
+                                  <VALUE>3</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbOffset</DEFINITION-REF>
+                                  <VALUE>0</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-TEXTUAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbPDU</DEFINITION-REF>
+                                  <VALUE>Ign_Stat_ST3</VALUE>
+                                </ECUC-TEXTUAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbProtect</DEFINITION-REF>
+                                  <VALUE>false</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-TEXTUAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbSigGrp</DEFINITION-REF>
+                                  <VALUE>Ign_Stat_Pr5_ST3_csgs1dv6drms80o1i9p49677w</VALUE>
+                                </ECUC-TEXTUAL-PARAM-VALUE>
+                              </PARAMETER-VALUES>
+                            </ECUC-CONTAINER-VALUE>
+                            <ECUC-CONTAINER-VALUE>
+                              <SHORT-NAME>rba_E2EWP_RbConfig_PT4_PTCoor4_ST3</SHORT-NAME>
+                              <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig</DEFINITION-REF>
+                              <PARAMETER-VALUES>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbCheck</DEFINITION-REF>
+                                  <VALUE>true</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbDataID</DEFINITION-REF>
+                                  <VALUE>196</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbDataLen</DEFINITION-REF>
+                                  <VALUE>32</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbDataOffset</DEFINITION-REF>
+                                  <VALUE>0</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbMaxDeltaCounter</DEFINITION-REF>
+                                  <VALUE>3</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbOffset</DEFINITION-REF>
+                                  <VALUE>0</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-TEXTUAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbPDU</DEFINITION-REF>
+                                  <VALUE>PT4_PTCoor4_ST3</VALUE>
+                                </ECUC-TEXTUAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbProtect</DEFINITION-REF>
+                                  <VALUE>false</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-TEXTUAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbSigGrp</DEFINITION-REF>
+                                  <VALUE>PT4_PTCoor4_Pr5_ST3_af4fxb1ykieox3itqdfzs0kpb</VALUE>
+                                </ECUC-TEXTUAL-PARAM-VALUE>
+                              </PARAMETER-VALUES>
+                            </ECUC-CONTAINER-VALUE>
+                            <ECUC-CONTAINER-VALUE>
+                              <SHORT-NAME>IMU_D_DRIVING_Container_Det05_ST3_PT4_Det05_IMU_D_Ctrl_ST3</SHORT-NAME>
+                              <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig</DEFINITION-REF>
+                              <PARAMETER-VALUES>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbCheck</DEFINITION-REF>
+                                  <VALUE>false</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbDataID</DEFINITION-REF>
+                                  <VALUE>824</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbDataLen</DEFINITION-REF>
+                                  <VALUE>272</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbDataOffset</DEFINITION-REF>
+                                  <VALUE>0</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbMaxDeltaCounter</DEFINITION-REF>
+                                  <VALUE>3</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbOffset</DEFINITION-REF>
+                                  <VALUE>0</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-TEXTUAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbPDU</DEFINITION-REF>
+                                  <VALUE>IMU_D_DRIVING_Container_Det05_ST3_PT4_Det05_IMU_D_Ctrl_ST3</VALUE>
+                                </ECUC-TEXTUAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbProtect</DEFINITION-REF>
+                                  <VALUE>true</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-TEXTUAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbSigGrp</DEFINITION-REF>
+                                  <VALUE>PT4_Det05_IMU_D_Ctrl_Pr5_ST3_9ibx3pdl90d59keo4mo66if6x</VALUE>
+                                </ECUC-TEXTUAL-PARAM-VALUE>
+                              </PARAMETER-VALUES>
+                            </ECUC-CONTAINER-VALUE>
+                            <ECUC-CONTAINER-VALUE>
+                              <SHORT-NAME>rba_E2EWP_RbConfig_ADAS_HAD_Stat_IDC_M_FSI_ST3</SHORT-NAME>
+                              <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig</DEFINITION-REF>
+                              <PARAMETER-VALUES>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbDataID</DEFINITION-REF>
+                                  <VALUE>1083</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbDataLen</DEFINITION-REF>
+                                  <VALUE>64</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbDataOffset</DEFINITION-REF>
+                                  <VALUE>0</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbMaxDeltaCounter</DEFINITION-REF>
+                                  <VALUE>3</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-INTEGER-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbOffset</DEFINITION-REF>
+                                  <VALUE>0</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbCheck</DEFINITION-REF>
+                                  <VALUE>true</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-NUMERICAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-BOOLEAN-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbProtect</DEFINITION-REF>
+                                  <VALUE>false</VALUE>
+                                </ECUC-NUMERICAL-PARAM-VALUE>
+                                <ECUC-TEXTUAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbPDU</DEFINITION-REF>
+                                  <VALUE>IDC_M_FSI_HAD_IMU_Container_ST3_ADAS_HAD_Stat_IDC_M_FSI_ST3</VALUE>
+                                </ECUC-TEXTUAL-PARAM-VALUE>
+                                <ECUC-TEXTUAL-PARAM-VALUE>
+                                  <DEFINITION-REF DEST="ECUC-STRING-PARAM-DEF">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig/rba_E2EWPRbSigGrp</DEFINITION-REF>
+                                  <VALUE>ADAS_HAD_Stat_IDC_M_FSI_Pr5_ST3_azb6uvmzdxiqsmnean8m9u52u</VALUE>
+                                </ECUC-TEXTUAL-PARAM-VALUE>
+                              </PARAMETER-VALUES>
+                            </ECUC-CONTAINER-VALUE>
+                          </SUB-CONTAINERS>
+                        </ECUC-CONTAINER-VALUE>
+                      </CONTAINERS>
+                    </ECUC-MODULE-CONFIGURATION-VALUES>
+                  </ELEMENTS>
+                </AR-PACKAGE>
+              </AR-PACKAGES>
+            </AR-PACKAGE>
+          </AR-PACKAGES>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>
+

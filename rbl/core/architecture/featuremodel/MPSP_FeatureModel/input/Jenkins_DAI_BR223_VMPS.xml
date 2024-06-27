@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<mappings>
+		<mapping>
+			<streamNamePattern>(?i)RBL_DAI_BR223_VMPS_(int|stable|bsw|csw|tpsw|ci).*</streamNamePattern>
+			<config>RBL_DAI_BR223_VMPS_Int.xml</config>
+		</mapping>
+		<mapping>
+			<streamNamePattern>(?i)RBL_DAI_BR223_VMPS_HPNE_Team.*?</streamNamePattern>
+			<config>RBL_DAI_BR223_HPNE.xml</config>
+		</mapping>
+		<mapping>
+			<streamNamePattern>(?i)RBL_DAI_BR223_VMPS_Plant.*</streamNamePattern>
+			<config>RBL_DAI_BR223_VMPS_Plant.xml</config>
+		</mapping>
+	</mappings>
+	<deliveries>
+		<deliver>
+			<stream>RBL_DAI_BR223_VMPS_Int</stream>
+			<deliverTo>
+				<stream>RBL_DAI_BR223_VMPS_BSW_Team</stream>
+				<stream>RBL_DAI_BR223_VMPS_CSW_Team</stream>
+				<stream>RBL_DAI_BR223_VMPS_HPNE_Team1</stream>
+				<stream>RBL_DAI_BR223_VMPS_HPNE_Team2</stream>
+				<stream>RBL_DAI_BR223_VMPS_HPNE_Team3</stream>
+				<stream>RBL_DAI_BR223_VMPS_HPNE_Team4</stream>
+				<stream>RBL_DAI_BR223_VMPS_HPNE_Team5</stream>
+				<stream>RBL_DAI_BR223_VMPS_Stable</stream>
+				<stream>RBL_DAI_BR223_VMPS_TPSW_Integration</stream>
+				<stream>RBL_DAI_BR223CN_VMPS_Int</stream>
+			</deliverTo>
+		</deliver>
+	</deliveries>
+	<callOfflineTool>
+		<evaluate>false</evaluate>
+		<stream>
+			<streamNamePattern>(?i)RBL_DAI_BR223_VMPS_HPNE_Team.*?</streamNamePattern>
+			<usedServices>
+				<name>Trimble</name>
+			</usedServices>
+		</stream>
+		<stream>
+			<streamNamePattern>(?i)RBL_DAI_BR223_VMPS_int.*</streamNamePattern>
+			<usedServices>
+				<name>Trimble</name>
+			</usedServices>
+		</stream>
+	</callOfflineTool>
+	<testing>Testing_RBL_DAI_BR223_VMPS.xml</testing>
+</config>
+
+

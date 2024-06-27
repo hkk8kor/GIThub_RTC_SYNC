@@ -1,0 +1,10 @@
+<workflow>
+
+    <!-- Forward default data to FrIf -->
+    <component class="${ForwardComponent}">
+        <metaModel id="mm" class="${MetaModel}" />
+        <invoke value="ComScl_Appl_ForwardFirstTimeout4SignalGroup::ComScl_Appl_ForwardFirstTimeoutForSignalGroup(model)"/>
+        <outputSlot value="genIdModel" />
+    </component>
+
+</workflow>

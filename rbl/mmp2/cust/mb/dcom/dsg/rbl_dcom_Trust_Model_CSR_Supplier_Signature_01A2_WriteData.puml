@@ -1,0 +1,9 @@
+start
+note left
+ **dcom_Trust_Model_CSR_Supplier_Signature_01A2_WriteData**
+end note
+if(Check if Data is not equal to null pointer) then (yes)
+ :Copy the Supplier Public Key and Supplier Signature into DCOM_SupplierPubKey_Sig_RAM_Mirror array variable;
+endif
+:Return E_OK;
+stop

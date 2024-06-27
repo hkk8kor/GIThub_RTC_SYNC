@@ -1,0 +1,14 @@
+#
+# Cantata Options
+#
+# WARNING: Do not alter this file manually.
+#
+#tool.testid=8270385d-650e-4f19-9073-0fac4e4f315b
+"--ci:--instr:stmt;func;call;decn;log;"
+"--sa:--calc:*#*"
+
+#User Section
+"--dont_ci:*"
+"--do_ci:DcmAppl_DcmModifyResponse.c"
+"--ci:--no_instr:all"
+"--ci:--instr:stmt;func;call;decn;log;#DcmAppl_DcmModifyResponse"

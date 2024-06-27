@@ -1,0 +1,426 @@
+/****************************************************************************/
+/*                                                                          */
+/*     /  __ /                                                              */
+/*    /  /__/                                                               */
+/*                                                                          */
+/*                                                                          */
+/* Linker Directives File (.ld)                                             */
+/*                                                                          */
+/****************************************************************************/
+/* TARGET_DEVICE:                                                           */
+/*                                                                          */
+/* Supplier = "Renesas"                                                     */
+/* ProductName = "R7F701325"                                                */
+/* AliasName = "D5ED"                                                       */
+/* DeviceId = "0x0000D5ED"                                                  */
+/* InstructionSet = V850E3V5                                                */
+/*                                                                          */
+/* TARGET_DEVICE_END:                                                       */
+/****************************************************************************/
+
+/**
+@copyright
+Robert Bosch GmbH reserves all rights even in the event of industrial property rights.
+We reserve all rights of disposal such as copying and passing on to third parties.
+*/
+
+/*******************************************   Readme  ******************************************
+ *
+ * 1. Project specific linker directive file must be derived by device specific templates
+ *    under HWP core component RBLCF\tpl
+ * 2. Renesas (REL) program flash is splitted into two banks with a gap between. RB CC-AS hexfile
+ *    layout does not allow gaps within single hexblocks. This means, that projects have
+ *    to define at least one hexblock before the gap (bank A) and one behind the gap (bank B).
+ * 3. The REL instruction fetch unit (IFU) preloads at most 48 bytes from the current program
+ *    counter (PC) in advance if the code is executed from code flash. If it is executed from
+ *    other memories (e.g. RAM), at most 32 bytes are read in advance. The preloads are performed
+ *    by the instruction fetch pipeline, irrespective if cache memory is available or not. In
+ *    order to prevent exceptions due to access violations reported by guards, there must not be
+ *    any instructions located in the last 48 (code flash) or 32 (other memories) bytes of an
+ *    protected address range. For the code flash, the last 48 bytes of both the unsecure and
+ *    secure (ICU-M) flash region must not be filled with instructions. This condition must be
+ *    fulfilled for both banks of the code flash. Therefore the reserved area is introduced here.
+ * 4. Only .bss default sections are zeroed by GHS init code (.cinit). All other sections need
+ *    an explicit CLEAR statement. Renamed .data and .bss sections can not be allocated in
+ *    the same memory section! Renamed .data is considered correctly.
+ *
+ * Referenced documents:
+ * - C:\MTC10Base\HexfileHandling\hexfile_handling_in_Evo17_projects.pdf
+ * - C:\MTC10Base\HexfileHandling\Multi_block_hexfile_handling.pdf
+ * - C:\MTC10Tools\Compiler_GHS\[used version]\manuals\build_v800.pdf (chapter linker)
+ *******************************************   Readme  ******************************************/
+
+
+#include "RBLCF_LDAddOn.h"
+
+
+-e 0x0      /* specifying an alternate program start address for debugger (e.g. GHS Multi, Lauterbach, ...) instead of using default symbol "_start" */
+
+
+DEFAULTS {
+
+    /*************************************************************************/
+    /* Device specific default values - not allowed to be changed by project */
+    /*************************************************************************/
+    PFLASH_RESERVED_AREA          = 48            /* see Readme No.3 */
+
+    PFLASH_ORIGIN_BANK_A          = 0x00000000
+    PFLASH_SIZE_BANK_A            = 6M
+    PFLASH_END_BANK_A             = PFLASH_ORIGIN_BANK_A + PFLASH_SIZE_BANK_A
+
+    PFLASH_ORIGIN_BANK_B          = 0x00800000
+    PFLASH_SIZE_BANK_B            = 4M
+    PFLASH_END_BANK_B             = PFLASH_ORIGIN_BANK_B + PFLASH_SIZE_BANK_B
+
+    LRAM_ORIGIN_CPU0              = 0xFEBF0000
+    LRAM_SIZE_CPU0                = 63K            /* LRAM: 64kB - 1 kB Backup RAM */
+
+    LRAM_ORIGIN_CPU1              = 0xFE9F0000
+    LRAM_SIZE_CPU1                = 64K
+
+    GRAM_ORIGIN                   = 0xFEE88000
+    GRAM_SIZE_BANK_A              = 480K
+    GRAM_SIZE_BANK_B              = 480K
+    GRAM_SIZE                     = GRAM_SIZE_BANK_A + GRAM_SIZE_BANK_B
+
+    VARIABLE_RAM_ORIGIN_PART1     = 0xFEE58000    /* additional RAM area available only on emulation devices */
+    VARIABLE_RAM_SIZE_PART1       = 192K
+
+    VARIABLE_RAM_ORIGIN_PART2     = 0xFEF78000    /* additional RAM area available only on emulation devices */
+    VARIABLE_RAM_SIZE_PART2       = 192K
+
+    BURAM_ORIGIN                  = 0xFEBFFC00    /* Backup RAM */
+    BURAM_SIZE                    = 1K
+
+    /*************************************************************************/
+    /* CC specific default values - not allowed to be changed by project     */
+    /*************************************************************************/
+    VECTORS_SIZE                  = 4K
+    HEXBLOCKST_SIZE               = 36
+    CHECKST_SIZE                  = 28
+    DLM_RAM_SIZE                  = 8K                                          /* Download Module Area */
+
+    BURAM_BB_FSW_INTERFACE_ORIGIN = BURAM_ORIGIN                                /* Backup RAM sharing data beetween BB and FSW */
+    BURAM_BB_FSW_INTERFACE_SIZE   = 4
+    BURAM_BB_ORIGIN               = BURAM_ORIGIN + BURAM_BB_FSW_INTERFACE_SIZE  /* Backup RAM for Bootblock */
+    BURAM_BB_SIZE                 = (BURAM_SIZE / 2) - BURAM_BB_FSW_INTERFACE_SIZE
+    BURAM_FSW_ORIGIN              = BURAM_BB_ORIGIN + BURAM_BB_SIZE             /* Backup RAM for FSW */
+    BURAM_FSW_SIZE                = BURAM_SIZE / 2
+}
+
+MEMORY {
+
+    /*********************************************************/
+    /* Program Flash - Bank A                                */
+    /*********************************************************/
+    VECTORS_FSW_01          : ORIGIN = PFLASH_ORIGIN_BANK_A,                                          LENGTH = VECTORS_SIZE
+    HEXBLOCKST_FSW_01       : ORIGIN = PFLASH_ORIGIN_BANK_A + VECTORS_SIZE,                           LENGTH = HEXBLOCKST_SIZE
+    PFLASH_FSW_01           : ORIGIN = .,                                                             LENGTH = PFLASH_SIZE_BANK_A - VECTORS_SIZE - HEXBLOCKST_SIZE - CHECKST_SIZE - PFLASH_RESERVED_AREA
+    CHECKST_FSW_01          : ORIGIN = PFLASH_END_BANK_A - PFLASH_RESERVED_AREA - CHECKST_SIZE,       LENGTH = CHECKST_SIZE
+    RESERVED_BANK_A         : ORIGIN = PFLASH_END_BANK_A - PFLASH_RESERVED_AREA,                      LENGTH = PFLASH_RESERVED_AREA
+
+    /*********************************************************/
+    /* Program Flash - Bank B                                */
+    /*********************************************************/
+    HEXBLOCKST_FSW_02       : ORIGIN = PFLASH_ORIGIN_BANK_B,                                          LENGTH = HEXBLOCKST_SIZE
+    PFLASH_FSW_02           : ORIGIN = .,                                                             LENGTH = PFLASH_SIZE_BANK_B - HEXBLOCKST_SIZE - CHECKST_SIZE - PFLASH_RESERVED_AREA
+    CHECKST_FSW_02          : ORIGIN = PFLASH_END_BANK_B - PFLASH_RESERVED_AREA - CHECKST_SIZE,       LENGTH = CHECKST_SIZE
+    RESERVED_BANK_B         : ORIGIN = PFLASH_END_BANK_B - PFLASH_RESERVED_AREA,                      LENGTH = PFLASH_RESERVED_AREA
+
+
+//    zda_memory            : ORIGIN = 0xffff8000,                  LENGTH = 28K
+//    sfr_memory            : ORIGIN = 0xfffff000,                  LENGTH = 4K
+
+
+    /*********************************************************/
+    /* RAM - not allowed to be changed by project            */
+    /*********************************************************/
+    LRAM_CPU0               : ORIGIN = LRAM_ORIGIN_CPU0,                          LENGTH = LRAM_SIZE_CPU0
+    LRAM_CPU1               : ORIGIN = LRAM_ORIGIN_CPU1,                          LENGTH = LRAM_SIZE_CPU1
+    GRAM_BANK_A             : ORIGIN = GRAM_ORIGIN,                               LENGTH = GRAM_SIZE_BANK_A
+    GRAM_BANK_B             : ORIGIN = GRAM_ORIGIN + GRAM_SIZE_BANK_A,            LENGTH = GRAM_SIZE_BANK_B - DLM_RAM_SIZE
+    DLM_RAM                 : ORIGIN = GRAM_ORIGIN + GRAM_SIZE - DLM_RAM_SIZE,    LENGTH = DLM_RAM_SIZE
+    VARIABLE_RAM_PART1      : ORIGIN = VARIABLE_RAM_ORIGIN_PART1,                 LENGTH = VARIABLE_RAM_SIZE_PART1
+    VARIABLE_RAM_PART2      : ORIGIN = VARIABLE_RAM_ORIGIN_PART2,                 LENGTH = VARIABLE_RAM_SIZE_PART2
+    BURAM_BB_FSW_INTERFACE  : ORIGIN = BURAM_BB_FSW_INTERFACE_ORIGIN,             LENGTH = BURAM_BB_FSW_INTERFACE_SIZE
+    BURAM_BB                : ORIGIN = BURAM_BB_ORIGIN,                           LENGTH = BURAM_BB_SIZE        /* Backup RAM for Bootblock */
+    BURAM_FSW               : ORIGIN = BURAM_FSW_ORIGIN,                          LENGTH = BURAM_FSW_SIZE       /* Backup RAM for FSW */
+}
+
+SECTIONS
+{
+    /*********************************************************/
+    /* Program Flash - Bank A                                */
+    /*********************************************************/
+    /* Hint: .BBintvect will be used as startup vectors in bootblock linker diretive file and .FSWStartvect together with .Os_intvect in application */
+    .FSWStartvect                                     align(4) ABS : > VECTORS_FSW_01    /* FSWStartvect must be placed directly before Os_intvect and at a fix start address */
+    .Os_intvect                                       align(4) ABS : > .                 /* due to the reason that bootblock vectors branch directly to this fix addresses */
+    .hexblockst_fsw_01                                align(4) ABS : > HEXBLOCKST_FSW_01
+    .Os_primitives                                    align(4) ABS : > PFLASH_FSW_01
+    .text                                             align(4) ABS : > .    /* program code area */
+    .robase                                           align(4) ABS : > .    /* initialize textpointer TP for SDA addressing */
+    .rodata                                           align(4) ABS : > .    /* constant datas in normal area */
+    .rosdata                                          align(4) ABS : > .    /* constant datas in SDA area */
+    .rozdata                                          align(4) ABS : > .    /* constant datas in ZDA area */
+    .R_FAL_CODE_ROM                                   align(4) ABS : > .    /* renesas flash library */
+    .R_FAL_CONST                                      align(4) ABS : > .    /* renesas flash library */
+    .syscall                                          align(4) ABS : > .    /* ghs internal (linker) */
+    .secinfo                                          align(4) ABS : > .    /* ghs internal (runtime library) */
+    .fixaddr                                          align(4) ABS : > .    /* ghs internal (compiler) */
+    .fixtype                                          align(4) ABS : > .    /* ghs internal (compiler) */
+    .CROM.data               CROM(.data)              align(4) ABS : > .    /* compressed constant data to initialize variables (copied to RAM at startup) */
+    .CROM.MYTPSW1_DATA  CROM(.MYTPSW1_DATA)   align(4) ABS : > .    /* compressed constant data to initialize variables (copied to RAM at startup) */
+    .CROM.MYTPSW2_DATA  CROM(.MYTPSW2_DATA)   align(4) ABS : > .    /* compressed constant data to initialize variables (copied to RAM at startup) */
+    .CROM.MYTPSW3_DATA  CROM(.MYTPSW3_DATA)   align(4) ABS : > .    /* compressed constant data to initialize variables (copied to RAM at startup) */
+    .CROM.MYTPSW2_DATA_LRAM0  CROM(.MYTPSW2_DATA_LRAM0)   align(4) ABS : > .    /* compressed constant data to initialize variables (copied to RAM at startup) */
+    .CROM.MYTPSW2_DATA_LRAM1  CROM(.MYTPSW2_DATA_LRAM1)   align(4) ABS : > .    /* compressed constant data to initialize variables (copied to RAM at startup) */
+    .CROM.sdata              CROM(.sdata)             align(4) ABS : > .    /* compressed constant data to initialize variables in SDA area (copied to RAM at startup)*/
+    .CROM.tdata              CROM(.tdata)             align(4) ABS : > .    /* compressed constant data to initialize variables in TDA area (copied to RAM at startup)*/
+    .CROM.zdata              CROM(.zdata)             align(4) ABS : > .    /* compressed constant data to initialize variables in ZDA area (copied to RAM at startup)*/
+    .CROM.lram0_data         CROM(.lram0_data)        align(4) ABS : > .    /* compressed constant data to initialize variables (copied to RAM at startup) */
+    .CROM.lram1_data         CROM(.lram1_data)        align(4) ABS : > .    /* compressed constant data to initialize variables (copied to RAM at startup) */
+    .CROM.variable_ram_data  CROM(.variable_ram_data) align(4) ABS : > .    /* compressed constant data to initialize variables (copied to RAM at startup) */
+    .CROM.asw_ram_init       CROM(.asw_ram_init)      align(4) ABS : > .    /* compressed constant data to initialize variables (copied to RAM at startup) */
+    .CROM.gram_text          CROM(.gram_text)         align(4) ABS : > .    /* compressed text section for special startup-code executed out of RAM (copied to RAM at startup) */
+    .CROM.R_FAL_CODE_RAM     CROM(.R_FAL_CODE_RAM)    align(4) ABS : > .    /* compressed renesas flash library section for special startup-code executed out of RAM (copied to RAM at startup) */
+    .fsw_01                                           align(4) ABS : > .
+    .ascet_const                                      align(4) ABS : > .    /* ASW code */
+    .checkst_fsw_01                                   align(4) ABS : > CHECKST_FSW_01
+
+
+    /*********************************************************/
+    /* Program Flash - Bank B                                */
+    /*********************************************************/
+    .hexblockst_fsw_02                                align(4) ABS : > HEXBLOCKST_FSW_02
+    .fsw_02                                           align(4) ABS : > PFLASH_FSW_02
+    .checkst_fsw_02                                   align(4) ABS : > CHECKST_FSW_02
+
+
+    /*********************************************************/
+    /* Local RAM CPU0                                        */
+    /*********************************************************/
+    .bb_lram0_stack_noclear                   NOCLEAR align(4) ABS : > LRAM_CPU0
+    .lram0_stack_noclear                      NOCLEAR align(4) ABS : > .    /* stack at beginning of LRAM due to overflow */
+    .lram0_data                                       align(4) ABS : > .
+    .lram0_bss_clear                          CLEAR   align(4) ABS : > .
+    .lram0_bss_noclear                        NOCLEAR align(4) ABS : > .
+
+    /*********************************************************/
+    /* MYTPSW2_LOCAL0_LCF                                    */
+    /*********************************************************/
+    RBTPSW_SECTION_START(MYTPSW2_LOCAL0_LCF)
+
+   .MYTPSW2_DATA_LRAM0  align(4)  :
+   {
+    RBTPSW_MyTPSW2_LRAM0.o (.data)
+    RBTPSW_MyTPSW2_LRAM0.o (.sdata)
+   } > .
+
+   .MYTPSW2_BSS_LRAM0  align(4)  :
+   {
+    RBTPSW_MyTPSW2_LRAM0.o (.bss)
+    RBTPSW_MyTPSW2_LRAM0.o (.sbss)
+   } > .
+
+   RBTPSW_SECTION_END(MYTPSW2_LOCAL0_LCF)
+
+
+    /*********************************************************/
+    /* Local RAM CPU1                                        */
+    /*********************************************************/
+    .bb_lram1_stack_noclear           NOCLEAR align(4) ABS : > LRAM_CPU1
+    .lram1_stack_noclear              NOCLEAR align(4) ABS : > .    /* stack at beginning of LRAM due to overflow */
+    .lram1_data                               align(4) ABS : > .
+    .lram1_bss_clear                  CLEAR   align(4) ABS : > .
+    .lram1_bss_noclear                NOCLEAR align(4) ABS : > .
+
+    /*********************************************************/
+    /* MYTPSW2_LOCAL1_LCF                                    */
+    /*********************************************************/
+    RBTPSW_SECTION_START(MYTPSW2_LOCAL1_LCF)
+
+   .MYTPSW2_DATA_LRAM1  align(4)  :
+   {
+    RBTPSW_MyTPSW2_LRAM1.o (.data)
+    RBTPSW_MyTPSW2_LRAM1.o (.sdata)
+   } > .
+
+   .MYTPSW2_BSS_LRAM1  align(4)  :
+   {
+    RBTPSW_MyTPSW2_LRAM1.o (.bss)
+    RBTPSW_MyTPSW2_LRAM1.o (.sbss)
+   } > .
+
+   RBTPSW_SECTION_END(MYTPSW2_LOCAL1_LCF)
+
+
+
+
+    /*********************************************************/
+    /* Global RAM                                            */
+    /*********************************************************/
+    .xcp_noclear                              NOCLEAR align(4) ABS : > GRAM_BANK_A                /* xcp data structure for measurement must be located at the very beginning of GRAM */
+    .xcpperf_noclear                          NOCLEAR align(4) ABS : > .                          /* xcp power on start up timing; must be directly after xcp_noclear */
+    .gram_bank_a_bss_clear                    CLEAR   align(4) ABS : > .                          /* zero initialized data for uC safety tests allocated on GRAM BANK A */
+    .gram_bank_b_bss_clear                    CLEAR   align(4) ABS : > GRAM_BANK_B                /* zero initialized data for uC safety tests allocated on GRAM BANK B */
+    .data                                             align(4) ABS : > GRAM_BANK_A, GRAM_BANK_B   /* explicitly initialized data */
+    .sdata                                            align(4) ABS : > .                          /* explicitly initialized data in SDA area */
+    .tdata                                            align(4) ABS : > .                          /* explicitly initialized data in TDA area */
+    .zdata                                            align(4) ABS : > .                          /* explicitly initialized data in ZDA area */
+    .sdabase                                          align(4) ABS : > .                          /* initialize global pointer GP for SDA addressing */
+    .bss                                              align(4) ABS : > .                          /* zero initialized data */
+    .sbss                                             align(4) ABS : > .                          /* zero initialized data in SDA area */
+    .zbss                                             align(4) ABS : > .                          /* zero initialized data in ZDA area */
+    .stack                                            align(4) ABS : > .                          /* section not used -> placed manually */
+    .gram_text                                        align(4) ABS : > .                          /* text section for special startup-code executed out of RAM */
+    .gram_bss_noclear                         NOCLEAR align(4) ABS : > .                          /* non zero initialized data section */
+    .asw_ram_init                                     align(4) ABS : > .                          /* explicitly initialized ASW data */
+    .asw_ram_noinit                           CLEAR   align(4) ABS : > .                          /* zero initialized ASW data */
+    .R_FAL_DATA                                       align(4) ABS : > .                          /* renesas flash library */
+    .R_FAL_CODE_RAM                                   align(4) ABS : > .                          /* renesas flash library */
+
+
+    /*********************************************************/
+    /* MYTPSW1_LCF                                           */
+    /*********************************************************/
+    RBTPSW_SECTION_START(MYTPSW1_LCF)
+
+    /* LCF entry for TPSW .data inside GRAM */
+    .MYTPSW1_DATA  align(4)  :
+    {
+      RBTPSW_MyTPSW1.o (.data)
+      RBTPSW_MyTPSW1.o (.sdata)
+      RBTPSW_MyTPSW1_TCimpl.o (.data)
+      RBTPSW_MyTPSW1_TCimpl.o (.sdata)
+    } > .
+
+    /* LCF entry for TPSW .bss */
+    .MYTPSW1_BSS  align(4)  :
+    {
+      RBTPSW_MyTPSW1.o (.bss)
+      RBTPSW_MyTPSW1.o (.sbss)
+      RBTPSW_MyTPSW1_TCimpl.o (.bss)
+      RBTPSW_MyTPSW1_TCimpl.o (.sbss)
+    } > .
+
+    RBTPSW_SECTION_END(MYTPSW1_LCF)
+
+
+    /*********************************************************/
+    /* MYTPSW2_GLOBAL_LCF                                    */
+    /*********************************************************/
+    RBTPSW_SECTION_START(MYTPSW2_GLOBAL_LCF)
+
+    /* LCF entry for TPSW .data inside GRAM */
+    .MYTPSW2_DATA  align(4)  :
+    {
+      RBTPSW_MyTPSW2.o (.data)
+      RBTPSW_MyTPSW2.o (.sdata)
+    } > .
+
+    /* LCF entry for TPSW .bss */
+    .MYTPSW2_BSS  align(4)  :
+    {
+      RBTPSW_MyTPSW2.o (.bss)
+      RBTPSW_MyTPSW2.o (.sbss)
+    } > .
+
+    RBTPSW_SECTION_END(MYTPSW2_GLOBAL_LCF)
+
+
+    /*********************************************************/
+    /* MYTPSW3_GLOBAL_LCF                                    */
+    /*********************************************************/
+    RBTPSW_SECTION_START(MYTPSW3_GLOBAL_LCF)
+
+    /* LCF entry for TPSW .data inside GRAM */
+    .MYTPSW3_DATA :
+    {
+      RBTPSW_MyTPSW3.o (.data)
+      RBTPSW_MyTPSW3.o (.sdata)
+    } > .
+
+    /* LCF entry for TPSW .bss */
+    .MYTPSW3_BSS :
+    {
+      RBTPSW_MyTPSW3.o (.bss)
+      RBTPSW_MyTPSW3.o (.sbss)
+    } > .
+
+    RBTPSW_SECTION_END(MYTPSW3_GLOBAL_LCF)
+
+
+    /*********************************************************/
+    /* Variable RAM (only available on emulation devices)    */
+    /*********************************************************/
+    .variable_ram_data                                align(4) ABS : > VARIABLE_RAM_PART1, VARIABLE_RAM_PART2
+    .variable_ram_bss_clear                   CLEAR   align(4) ABS : > .
+    .variable_ram_bss_noclear                 NOCLEAR align(4) ABS : > .
+
+
+    /*********************************************************/
+    /* DLM Area                                              */
+    /*********************************************************/
+    .dlm_noclear                              NOCLEAR align(4) ABS : > DLM_RAM
+
+
+    /*********************************************************/
+    /* Backup RAM                                            */
+    /*********************************************************/
+    .buram_bb_fsw_interface_noclear           NOCLEAR align(4) ABS : > BURAM_BB_FSW_INTERFACE
+    .buram_bb_noclear                         NOCLEAR align(4) ABS : > BURAM_BB
+    .buram_fsw_noclear                        NOCLEAR align(4) ABS : > BURAM_FSW
+
+
+    /*-------------------------------------------------------*/
+    /* Linker generated Symbols                              */
+    /*-------------------------------------------------------*/
+    ___ghs_lram_start_cpu0                = LRAM_ORIGIN_CPU0;
+    ___ghs_lram_end_cpu0                  = LRAM_ORIGIN_CPU0+LRAM_SIZE_CPU0;
+    ___ghs_lram_length_cpu0               = LRAM_SIZE_CPU0;
+
+    ___ghs_lram_start_cpu1                = LRAM_ORIGIN_CPU1;
+    ___ghs_lram_end_cpu1                  = LRAM_ORIGIN_CPU1+LRAM_SIZE_CPU1;
+    ___ghs_lram_length_cpu1               = LRAM_SIZE_CPU1;
+
+    ___ghs_buram_bb_fsw_interface_start   = addr(BURAM_BB_FSW_INTERFACE);
+    ___ghs_buram_bb_fsw_interface_end     = endaddr(BURAM_BB_FSW_INTERFACE);
+    ___ghs_buram_bb_fsw_interface_length  = endaddr(BURAM_BB_FSW_INTERFACE)-addr(BURAM_BB_FSW_INTERFACE);
+
+    ___ghs_buram_bb_start                 = addr(BURAM_BB);
+    ___ghs_buram_bb_end                   = endaddr(BURAM_BB);
+    ___ghs_buram_bb_length                = endaddr(BURAM_BB)-addr(BURAM_BB);
+
+    ___ghs_buram_fsw_start                = addr(BURAM_FSW);
+    ___ghs_buram_fsw_end                  = endaddr(BURAM_FSW);
+    ___ghs_buram_fsw_length               = endaddr(BURAM_FSW)-addr(BURAM_FSW);
+
+    ___ghs_gram_start                     = GRAM_ORIGIN;
+    ___ghs_gram_end                       = GRAM_ORIGIN+GRAM_SIZE;
+    ___ghs_gram_length                    = GRAM_SIZE;
+
+    ___ghs_pflash_start_bank_a            = PFLASH_ORIGIN_BANK_A;
+    ___ghs_pflash_end_bank_a              = PFLASH_ORIGIN_BANK_A+PFLASH_SIZE_BANK_A;
+    ___ghs_pflash_length_bank_a           = PFLASH_SIZE_BANK_A;
+
+    ___ghs_pflash_start_bank_b            = PFLASH_ORIGIN_BANK_B;
+    ___ghs_pflash_end_bank_b              = PFLASH_ORIGIN_BANK_B+PFLASH_SIZE_BANK_B;
+    ___ghs_pflash_length_bank_b           = PFLASH_SIZE_BANK_B;
+
+    ___ghs_dlm_ram_start                  = addr(DLM_RAM);
+    ___ghs_dlm_ram_end                    = endaddr(DLM_RAM);
+    ___ghs_dlm_ram_length                 = endaddr(DLM_RAM)-addr(DLM_RAM);
+
+    ___ghs_rambootcodestart               = 0;
+    ___ghs_rambootcodeend                 = 0;
+
+    ___ghs_rombootcodestart               = addr(.text);
+    ___ghs_rombootcodeend                 = endaddr(.fixtype);
+    
+    ___ghs_xcp_noclear_start              = addr(.xcp_noclear);
+    ___ghs_xcp_noclear_end                = endaddr(.xcp_noclear);
+    
+    ___ghs_xcpperf_noclear_start          = addr(.xcpperf_noclear);
+    ___ghs_xcpperf_noclear_end            = endaddr(.xcpperf_noclear);
+
+}

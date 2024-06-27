@@ -1,0 +1,403 @@
+
+import bsw;
+import bsw::rba_NdsModule;
+import bsw::PduRModule;
+
+extension org::eclipse::xtend::util::stdlib::io;
+extension rba_Nds_EcuUtil;
+extension rba_Nds_PduEcuUtil;
+extension templates::mathlib;
+//extension ComScl_Appl_PrepareRbaNds4TxSecurity;
+extension rbc_XCoreCddDefaults_Forward;
+
+Void ComScl_Appl_PrepareRbaNds(Autosar model):
+    if(model.isModuleExistent("rba_Nds")) then (
+        model.rbc_XCoreCddDefaults_Forward() ->
+        model.rba_Nds.forwardPduProcessingAllocation() ->
+        model.rba_Nds.forwardEcuReceiveProcessRef() ->
+        model.rba_Nds.forwardComProcessingAllocationRef()
+    ) ->
+    model
+;
+
+private Void forwardComProcessingAllocationRef(rba_Nds rbaNds):
+    // FlexRay
+    //info("Forwarding of EcuReceiveProcessRef for FlexRay Receive SignalPdus") ->
+    //rbaNds.rba_Nds_Ecu.rba_Nds_Connectors.rba_Nds_FlexRayConnector.rba_Nds_FlexRayReceivePduLinkage.forwardComProcessingAllocationRef() ->
+    // CAN
+    //info("Forwarding of EcuReceiveProcessRef for CAN Receive SignalPdus") ->
+    //rbaNds.rba_Nds_Ecu.rba_Nds_Connectors.rba_Nds_CanConnector.rba_Nds_CanReceivePduLinkage.forwardComProcessingAllocationRef() ->
+    // FlexRay
+    info("Forwarding of EcuReceiveProcessRef for FlexRay Transmit SignalPdus") ->
+    rbaNds.rba_Nds_Ecu.rba_Nds_Connectors.rba_Nds_FlexRayConnector.rba_Nds_FlexRayTransmitPduLinkage.forwardComProcessingAllocationRef(rbaNds) ->
+    // CAN
+    info("Forwarding of EcuReceiveProcessRef for CAN Transmit SignalPdus") ->
+    rbaNds.rba_Nds_Ecu.rba_Nds_Connectors.rba_Nds_CanConnector.rba_Nds_CanTransmitPduLinkage.forwardComProcessingAllocationRef(rbaNds)
+;
+
+/*private Void forwardComProcessingAllocationRef(rba_Nds_CanReceivePduLinkage rxLink):
+    if(rxLink.rba_Nds_ReceivePduRef != null && rxLink.rba_Nds_ReceivePduRef.rba_Nds_ReceiveSignalPdu != null) then (
+        rxLink.rba_Nds_ReceivePduRef.rba_Nds_ReceiveSignalPdu.fwdRba_Nds_ComProcessingAllocationRef(
+            rxLink.rba_Nds_ReceivePduRef.rba_Nds_ReceiveSignalPdu.rba_Nds_EcuReceiveProcessRef.rba_Nds_ProcessingAllocationRef)
+    )
+;*/
+
+/*private Void forwardComProcessingAllocationRef(rba_Nds_FlexRayReceivePduLinkage rxLink):
+    if(rxLink.rba_Nds_ReceivePduRef != null && rxLink.rba_Nds_ReceivePduRef.rba_Nds_ReceiveSignalPdu != null) then (
+        rxLink.rba_Nds_ReceivePduRef.rba_Nds_ReceiveSignalPdu.fwdRba_Nds_ComProcessingAllocationRef(
+            rxLink.rba_Nds_ReceivePduRef.rba_Nds_ReceiveSignalPdu.rba_Nds_EcuReceiveProcessRef.rba_Nds_ProcessingAllocationRef)
+    )
+;*/
+
+private Void forwardComProcessingAllocationRef(rba_Nds_CanTransmitPduLinkage txLink, rba_Nds rbaNds):
+    if(txLink.rba_Nds_TransmitPduRef != null && txLink.rba_Nds_TransmitPduRef.rba_Nds_TransmitSignalPdu != null) then (
+        if(txLink.rba_Nds_TransmitPduRef.rba_Nds_TransmitSignalPdu.rba_Nds_EcuTransmitProcessRef == null) then (
+            let ecuProc = rbaNds.getEcuTransmitProcCan():
+            txLink.rba_Nds_TransmitPduRef.rba_Nds_TransmitSignalPdu.fwdRba_Nds_EcuTransmitProcessRef(ecuProc) ->
+            txLink.rba_Nds_TransmitPduRef.rba_Nds_TransmitSignalPdu.fwdRba_Nds_ComProcessingAllocationRef(ecuProc.rba_Nds_ProcessingAllocationRef)
+        ) else if(txLink.rba_Nds_TransmitPduRef.rba_Nds_TransmitSignalPdu.rba_Nds_ComProcessingAllocationRef == null) then (
+            txLink.rba_Nds_TransmitPduRef.rba_Nds_TransmitSignalPdu.fwdRba_Nds_ComProcessingAllocationRef(
+                   txLink.rba_Nds_TransmitPduRef.rba_Nds_TransmitSignalPdu.rba_Nds_EcuTransmitProcessRef.rba_Nds_ProcessingAllocationRef)
+        ) else (
+            // Nothing to do
+            null
+        )
+    )
+;
+
+private Void forwardComProcessingAllocationRef(rba_Nds_FlexRayTransmitPduLinkage txLink, rba_Nds rbaNds):
+    if(txLink.rba_Nds_TransmitPduRef != null && txLink.rba_Nds_TransmitPduRef.rba_Nds_TransmitSignalPdu != null) then (
+        if(txLink.rba_Nds_TransmitPduRef.rba_Nds_TransmitSignalPdu.rba_Nds_EcuTransmitProcessRef == null) then (
+            txLink.rba_Nds_TransmitPduRef.rba_Nds_TransmitSignalPdu.fwdRba_Nds_EcuTransmitProcessRef(rbaNds.getEcuTransmitProcFlexRay()) ->
+            txLink.rba_Nds_TransmitPduRef.rba_Nds_TransmitSignalPdu.fwdRba_Nds_ComProcessingAllocationRef(rbaNds.getEcuTransmitProcFlexRay().rba_Nds_ProcessingAllocationRef)
+        ) else if(txLink.rba_Nds_TransmitPduRef.rba_Nds_TransmitSignalPdu.rba_Nds_ComProcessingAllocationRef == null) then (
+            txLink.rba_Nds_TransmitPduRef.rba_Nds_TransmitSignalPdu.fwdRba_Nds_ComProcessingAllocationRef(
+                   txLink.rba_Nds_TransmitPduRef.rba_Nds_TransmitSignalPdu.rba_Nds_EcuTransmitProcessRef.rba_Nds_ProcessingAllocationRef)
+        ) else (
+            // Nothing to do
+            null
+        )
+    )
+;
+
+private cached rba_Nds_EcuTransmitProcess getEcuTransmitProcFlexRay(rba_Nds rbaNds):
+    rbaNds.rba_Nds_Ecu.rba_Nds_EcuProcesses.rba_Nds_EcuTransmitProcess.selectFirst(e|e.shortName.contains("_FlexRay"))
+;
+
+private cached rba_Nds_EcuTransmitProcess getEcuTransmitProcCan(rba_Nds rbaNds):
+    rbaNds.rba_Nds_Ecu.rba_Nds_EcuProcesses.rba_Nds_EcuTransmitProcess.selectFirst(e|e.shortName.contains("_Can"))
+;
+
+/**********************************************************************************************************************/
+/************************** Forward rba_Nds_EcuReceiveProcessRef of rba_Nds_ReceiveSignalPdu **************************/
+/**********************************************************************************************************************/
+/** Forward the rba_Nds_EcuProcessRef for the rba_Nds_ReceiveSignalPdus
+*/
+private Void forwardEcuReceiveProcessRef(rba_Nds rbaNds):
+    // FlexRay
+    info("Forwarding of EcuReceiveProcessRef for FlexRay Receive SignalPdus") ->
+    rbaNds.rba_Nds_getEcuReceiveSignalPdusFlexRayApp().select(e|e.rba_Nds_EcuReceiveProcessRef == null).
+                                                                                        forwardEcuReceiveProcessRef() ->
+    // CAN
+    info("Forwarding of EcuReceiveProcessRef for CAN Receive SignalPdus") ->
+    rbaNds.rba_Nds_getEcuReceiveSignalPdusCanApp().select(e|e.rba_Nds_EcuReceiveProcessRef == null).
+                                                                                        forwardEcuReceiveProcessRef()
+;
+
+/** Selects the rba_Nds_SignalPdus which do not have a rba_Nds_ReceiveEcuProcess configured and forwards it.
+*/
+private Void forwardEcuReceiveProcessRef(rba_Nds_ReceiveSignalPdu rxPdu):
+    if(rxPdu.rba_Nds_EcuReceiveProcessRef == null) then (
+        rxPdu.fwdRba_Nds_EcuReceiveProcessRef(rxPdu.rba_Nds_SignalPduRef.getEcuReceiveProcess()) ->
+        if(rxPdu.rba_Nds_ComProcessingAllocationRef == null) then (
+            rxPdu.fwdRba_Nds_ComProcessingAllocationRef(rxPdu.rba_Nds_SignalPduRef.getEcuReceiveProcess().rba_Nds_ProcessingAllocationRef)
+        )
+    )
+;
+
+/** Returns the EcuReceiveProcess depending on the time where Pdu is scheduled
+*/
+private rba_Nds_EcuReceiveProcess getEcuReceiveProcess(rba_Nds_SignalPdu signalPdu):
+    let rbaNds = signalPdu.parent.parent.parent:
+    if(signalPdu.getScheduleTime() == 10) then (
+        rbaNds.rba_Nds_Ecu.rba_Nds_EcuProcesses.rba_Nds_EcuReceiveProcess.selectFirst(e|e.shortName == "rba_Nds_EcuReceiveProcess_10ms")
+    ) else if(signalPdu.getScheduleTime() == 20) then (
+        rbaNds.rba_Nds_Ecu.rba_Nds_EcuProcesses.rba_Nds_EcuReceiveProcess.selectFirst(e|e.shortName == "rba_Nds_EcuReceiveProcess_20ms")
+    ) else if(signalPdu.getScheduleTime() == 40) then (
+        rbaNds.rba_Nds_Ecu.rba_Nds_EcuProcesses.rba_Nds_EcuReceiveProcess.selectFirst(e|e.shortName == "rba_Nds_EcuReceiveProcess_40ms")
+    ) else if(signalPdu.getScheduleTime() == 120) then (
+        rbaNds.rba_Nds_Ecu.rba_Nds_EcuProcesses.rba_Nds_EcuReceiveProcess.selectFirst(e|e.shortName == "rba_Nds_EcuReceiveProcess_120ms")
+    ) else (
+        rbaNds.rba_Nds_Ecu.rba_Nds_EcuProcesses.rba_Nds_EcuReceiveProcess.selectFirst(e|e.shortName == "rba_Nds_EcuReceiveProcess_5ms")
+    )
+;
+
+/**********************************************************************************************************************/
+/************************** Forward rba_Nds_EcuReceiveProcessRef of rba_Nds_ReceiveSignalPdu **************************/
+/**********************************************************************************************************************/
+/** Forward the FlexRayPduProcessingAllocation for rba_Nds
+*/
+private Void forwardPduProcessingAllocation(rba_Nds rbaNds):
+    info("Forwarding of PduProcessingAllocation for FlexRay Receive SignalPdus") ->
+    rbaNds.rba_Nds_getFlexRayConnectors().getFrRxSigPduLinkages().select(e|e.rba_Nds_PduProcessingAllocation == null).
+                                                                                        forwardPduProcessingAllocation() ->
+    rbaNds.rba_Nds_getFlexRayConnectors().getFrRxGwPduLinkages().select(e|e.rba_Nds_PduProcessingAllocation == null).
+                                                                                        forwardPduProcessingAllocation() ->
+    rbaNds.rba_Nds_getFlexRayConnectors().rba_Nds_FlexRayTransmitPduLinkage.select(e|e.rba_Nds_PduProcessingAllocation == null).
+                                                                                        forwardPduProcessingAllocation() ->
+    info("Forwarding of PduProcessingAllocation for CAN Receive SignalPdus") ->
+    rbaNds.rba_Nds_getCanConnectors().getCanRxSigPduLinkages().select(e|e.rba_Nds_PduProcessingAllocation == null).
+                                                                                        forwardPduProcessingAllocation() ->
+    rbaNds.rba_Nds_getCanConnectors().getCanRxGwPduLinkages().select(e|e.rba_Nds_PduProcessingAllocation == null).
+                                                                                        forwardPduProcessingAllocation() ->
+    rbaNds.rba_Nds_getCanConnectors().rba_Nds_CanTransmitPduLinkage.select(e|e.rba_Nds_PduProcessingAllocation == null).
+                                                                                        forwardPduProcessingAllocation()
+;
+
+/** Returns a list of all rba_Nds_FlexRayReceivePduLinkages, which represent a rba_Nds_ReceiveSignalPdu
+*/
+private List[rba_Nds_FlexRayReceivePduLinkage] getFrRxSigPduLinkages(rba_Nds_FlexRayConnector frConnector):
+    frConnector.rba_Nds_FlexRayReceivePduLinkage.select(e|e.rba_Nds_ReceivePduRef != null && 
+                                                          e.rba_Nds_ReceivePduRef.rba_Nds_ReceiveSignalPdu != null)
+;
+
+/** Returns a list of all rba_Nds_FlexRayReceivePduLinkages, which represent a rba_Nds_ReceiveSignalPdu
+*/
+private List[rba_Nds_FlexRayReceivePduLinkage] getFrRxGwPduLinkages(rba_Nds_FlexRayConnector frConnector):
+    frConnector.rba_Nds_FlexRayReceivePduLinkage.select(e|e.rba_Nds_ReceivePduRef != null && 
+                                                          e.rba_Nds_ReceivePduRef.rba_Nds_ReceiveGatewayPdu != null)
+;
+
+/** Returns a list of all rba_Nds_CanReceivePduLinkages, which represent a rba_Nds_ReceiveSignalPdu
+*/
+private List[rba_Nds_CanReceivePduLinkage] getCanRxSigPduLinkages(rba_Nds_CanConnector frConnector):
+    frConnector.rba_Nds_CanReceivePduLinkage.select(e|e.rba_Nds_ReceivePduRef != null && 
+                                                      e.rba_Nds_ReceivePduRef.rba_Nds_ReceiveSignalPdu != null)
+;
+
+/** Returns a list of all rba_Nds_CanReceivePduLinkages, which represent a rba_Nds_ReceiveSignalPdu
+*/
+private List[rba_Nds_CanReceivePduLinkage] getCanRxGwPduLinkages(rba_Nds_CanConnector frConnector):
+    frConnector.rba_Nds_CanReceivePduLinkage.select(e|e.rba_Nds_ReceivePduRef != null && 
+                                                      e.rba_Nds_ReceivePduRef.rba_Nds_ReceiveGatewayPdu != null)
+;
+
+/** Creates and forwards the ProcessingAllocation for the rba_Nds_FlexRayReceivePduLinkage
+*/
+private Void forwardPduProcessingAllocation(rba_Nds_FlexRayReceivePduLinkage link):
+    if(link.rba_Nds_ReceivePduRef != null && link.rba_Nds_ReceivePduRef.rba_Nds_ReceiveSignalPdu != null &&
+       link.rba_Nds_PduProcessingAllocation == null && link.rba_Nds_ReceivePduRef.getPduProcessingAllocation() != null) then (
+        link.fwdRba_Nds_PduProcessingAllocation(link.createPduProcAlloc())
+    ) ->
+    
+    if(link.rba_Nds_ReceivePduRef != null && link.rba_Nds_ReceivePduRef.rba_Nds_ReceiveGatewayPdu != null &&
+       link.rba_Nds_PduProcessingAllocation == null && link.rba_Nds_ReceivePduRef.getPduProcessingAllocationGw() != null) then (
+        link.fwdRba_Nds_PduProcessingAllocation(link.createPduProcAllocGw())
+    )   
+;
+
+private Void forwardPduProcessingAllocation(rba_Nds_FlexRayTransmitPduLinkage link):
+    if(link.rba_Nds_TransmitPduRef != null && link.rba_Nds_TransmitPduRef.rba_Nds_TransmitGatewayPdu != null &&
+       link.rba_Nds_PduProcessingAllocation == null && link.parent.parent.getPduProcessingAllocationGw() != null) then (
+        link.fwdRba_Nds_PduProcessingAllocation(link.createPduProcAllocGw())
+    )  
+;
+
+private Void forwardPduProcessingAllocation(rba_Nds_CanTransmitPduLinkage link):
+    if(link.rba_Nds_TransmitPduRef != null && link.rba_Nds_TransmitPduRef.rba_Nds_TransmitGatewayPdu != null &&
+       link.rba_Nds_PduProcessingAllocation == null && link.parent.parent.getPduProcessingAllocationGw() != null) then (
+        link.fwdRba_Nds_PduProcessingAllocation(link.createPduProcAllocGw())
+    )  
+;
+
+/** Create a new PduProcessingAllocation container
+*/
+private create bsw::rba_Nds::rba_Nds_Ecu::rba_Nds_Connectors::rba_Nds_FlexRayConnector::rba_Nds_FlexRayReceivePduLinkage::rba_Nds_PduProcessingAllocation createPduProcAlloc(rba_Nds_FlexRayReceivePduLinkage link):
+    this.fwdShortName("rba_Nds_PduProcessingAllocation") ->
+    this.fwdRba_Nds_ReceivePduProcessingAllocationRef(link.rba_Nds_ReceivePduRef.getPduProcessingAllocation())
+;
+
+/** Create a new PduProcessingAllocation container
+*/
+private create bsw::rba_Nds::rba_Nds_Ecu::rba_Nds_Connectors::rba_Nds_FlexRayConnector::rba_Nds_FlexRayReceivePduLinkage::rba_Nds_PduProcessingAllocation createPduProcAllocGw(rba_Nds_FlexRayReceivePduLinkage link):
+    this.fwdShortName("rba_Nds_PduProcessingAllocation") ->
+    this.fwdRba_Nds_ReceivePduProcessingAllocationRef(link.rba_Nds_ReceivePduRef.getPduProcessingAllocationGw())
+;
+
+private getPduProcessingAllocationGw(rba_Nds_FlexRayReceivePduLinkage link):
+    link.parent.parent.parent.rba_Nds_EcuProcesses.rba_Nds_ProcessingAllocation.selectFirst(e|e.shortName == "rba_Nds_ProcessingAllocation_TaskFlexRay")
+;
+
+/** Create a new PduProcessingAllocation container
+*/
+private create bsw::rba_Nds::rba_Nds_Ecu::rba_Nds_Connectors::rba_Nds_FlexRayConnector::rba_Nds_FlexRayTransmitPduLinkage::rba_Nds_PduProcessingAllocation createPduProcAllocGw(rba_Nds_FlexRayTransmitPduLinkage link):
+    this.fwdShortName("rba_Nds_PduProcessingAllocation") ->
+    this.fwdRba_Nds_TransmitPduProcessingAllocationRef(link.parent.parent.getPduProcessingAllocationGw())
+;
+
+/** Create a new PduProcessingAllocation container
+*/
+private create bsw::rba_Nds::rba_Nds_Ecu::rba_Nds_Connectors::rba_Nds_CanConnector::rba_Nds_CanTransmitPduLinkage::rba_Nds_PduProcessingAllocation createPduProcAllocGw(rba_Nds_CanTransmitPduLinkage link):
+    this.fwdShortName("rba_Nds_PduProcessingAllocation") ->
+    this.fwdRba_Nds_TransmitPduProcessingAllocationRef(link.parent.parent.getPduProcessingAllocationGw())
+;
+
+private getPduProcessingAllocationGw(rba_Nds_Connectors connector):
+    connector.parent.rba_Nds_EcuProcesses.rba_Nds_ProcessingAllocation.selectFirst(e|e.shortName == "rba_Nds_ProcessingAllocation_TaskFlexRay")
+;
+
+/** Creates and forwards the ProcessingAllocation for the rba_Nds_CanReceivePduLinkage
+*/
+private Void forwardPduProcessingAllocation(rba_Nds_CanReceivePduLinkage link):
+    if(link.rba_Nds_ReceivePduRef != null && link.rba_Nds_ReceivePduRef.rba_Nds_ReceiveSignalPdu != null &&
+       link.rba_Nds_PduProcessingAllocation == null && link.rba_Nds_ReceivePduRef.getPduProcessingAllocation() != null) then (
+        link.fwdRba_Nds_PduProcessingAllocation(link.createPduProcAlloc())
+    ) ->
+    
+    if(link.rba_Nds_ReceivePduRef != null && link.rba_Nds_ReceivePduRef.rba_Nds_ReceiveGatewayPdu != null &&
+       link.rba_Nds_PduProcessingAllocation == null && link.rba_Nds_ReceivePduRef.getPduProcessingAllocationGw() != null) then (
+        link.fwdRba_Nds_PduProcessingAllocation(link.createPduProcAllocGw())
+    )
+;
+
+/** Create a new PduProcessingAllocation container
+*/
+private create bsw::rba_Nds::rba_Nds_Ecu::rba_Nds_Connectors::rba_Nds_CanConnector::rba_Nds_CanReceivePduLinkage::rba_Nds_PduProcessingAllocation createPduProcAlloc(rba_Nds_CanReceivePduLinkage link):
+    this.fwdShortName("rba_Nds_PduProcessingAllocation") ->
+    this.fwdRba_Nds_ReceivePduProcessingAllocationRef(link.rba_Nds_ReceivePduRef.getPduProcessingAllocation())
+;
+
+/** Create a new PduProcessingAllocation container
+*/
+private create bsw::rba_Nds::rba_Nds_Ecu::rba_Nds_Connectors::rba_Nds_CanConnector::rba_Nds_CanReceivePduLinkage::rba_Nds_PduProcessingAllocation createPduProcAllocGw(rba_Nds_CanReceivePduLinkage link):
+    this.fwdShortName("rba_Nds_PduProcessingAllocation") ->
+    this.fwdRba_Nds_ReceivePduProcessingAllocationRef(link.rba_Nds_ReceivePduRef.getPduProcessingAllocationGw())
+;
+
+private getPduProcessingAllocationGw(rba_Nds_ReceivePdu rxPdu):
+    rxPdu.parent.parent.rba_Nds_EcuProcesses.rba_Nds_ProcessingAllocation.selectFirst(e|e.shortName == "rba_Nds_ProcessingAllocation_TaskFlexRay")
+;
+
+/** Returns the PduProcessingAllocation for the following Pdu Types:
+ *   - SecuredPdu
+ *   - SignalPdu
+ *   ContainerPdu is always Scheduled in 5ms on Core1
+*/
+private Void getPduProcessingAllocation(rba_Nds_ReceivePdu rxPdu):
+    if(rxPdu.rba_Nds_ReceiveSignalPdu != null) then (
+        rxPdu.parent.parent.parent.getProcessingAllocations(rxPdu.rba_Nds_ReceiveSignalPdu.rba_Nds_SignalPduRef.getScheduleTime())
+    ) else (
+        null
+    )
+;
+
+/** Select the ProcessingAllocation depending on the scheduled time
+*/
+private List[rba_Nds_ProcessingAllocation] getProcessingAllocations(rba_Nds rbaNds, Integer cycleTime):
+    if(cycleTime == 10) then (
+        rbaNds.rba_Nds_Ecu.rba_Nds_EcuProcesses.rba_Nds_ProcessingAllocation.selectFirst(e|e.shortName == "rba_Nds_ProcessingAllocation_x2")
+    ) else if(cycleTime == 20) then (
+        rbaNds.rba_Nds_Ecu.rba_Nds_EcuProcesses.rba_Nds_ProcessingAllocation.selectFirst(e|e.shortName == "rba_Nds_ProcessingAllocation_x4")
+    ) else if(cycleTime == 40) then (
+        rbaNds.rba_Nds_Ecu.rba_Nds_EcuProcesses.rba_Nds_ProcessingAllocation.selectFirst(e|e.shortName == "rba_Nds_ProcessingAllocation_x8")
+    ) else if(cycleTime == 120) then (
+        rbaNds.rba_Nds_Ecu.rba_Nds_EcuProcesses.rba_Nds_ProcessingAllocation.selectFirst(e|e.shortName == "rba_Nds_ProcessingAllocation_x24")
+    ) else (
+        rbaNds.rba_Nds_Ecu.rba_Nds_EcuProcesses.rba_Nds_ProcessingAllocation.selectFirst(e|e.shortName == "rba_Nds_ProcessingAllocation_x1Low")
+    )
+;
+
+/**********************************************************************************************************************/
+/**************************************** Helper functions ************************************************************/
+/**********************************************************************************************************************/
+/** Returns the SignalPdus scheduling cycle time
+*/
+private cached Integer getScheduleTime(rba_Nds_SignalPdu signalPdu):
+    if(signalPdu.rba_Nds_PduTiming != null) then (
+        let cycleTime = signalPdu.rba_Nds_PduTiming.rba_Nds_getCycleTimes().sortBy(e|e).first():
+        // No cycle time, e.g. EventTriggered Pdu. Return 5 as default (5ms Task)
+        if(cycleTime == null) then (
+            5
+        ) else if((RemainderOf(cycleTime.toInteger(), 120)) == 0) then (
+            120
+        // Cycle time is configured. If Pdu fits into 20ms Task, return 20
+        ) else if((RemainderOf(cycleTime.toInteger(), 40)) == 0) then (
+            40
+        // 40ms does not fit. If Pdu fits into 20ms Task, return 20
+        ) else if((RemainderOf(cycleTime.toInteger(), 20)) == 0) then (
+            20
+        // 40ms and 20ms does not fit. If Pdu fits into 10ms Task, return 10
+        ) else if((RemainderOf(cycleTime.toInteger(), 10)) == 0) then (
+            10
+        // Return 5 as default (5ms Task)
+        ) else (
+            5
+        ) 
+    )
+;
+
+private Real getCycleTime(rba_Nds_ReceiveSignalPdu pdu):
+    if(pdu.isEventTriggered()) then (
+        5
+    ) else (
+        let trueCycle = pdu.rba_Nds_SignalPduRef.getTmttCycleTime():
+        let falseCycle = pdu.rba_Nds_SignalPduRef.getTmftCycleTime():
+        if(trueCycle <= falseCycle) then (
+            trueCycle
+        ) else (
+            falseCycle
+        )
+    ) 
+;
+
+
+private Real getTmttCycleTime(rba_Nds_SignalPdu pdu):
+    if(pdu.getTmtt().rba_Nds_CycleTime != null) then (
+        pdu.getTmtt().rba_Nds_CycleTime
+    ) else (
+        0
+    )
+;
+
+private Real getTmftCycleTime(rba_Nds_SignalPdu pdu):
+    if(pdu.getTmtt().rba_Nds_CycleTime != null) then (
+        pdu.getTmtt().rba_Nds_CycleTime
+    ) else (
+        0
+    )
+;
+
+private Boolean isEventTriggered(rba_Nds_TransmitSignalPdu pdu):
+    pdu.rba_Nds_TransmitSignalGroupNetworkPort.exists(e|e.rba_Nds_EventTransferSignalGroup != null) ||
+    pdu.rba_Nds_TransmitSignalNetworkPort.exists(e|e.rba_Nds_EventTransferSignal != null) ||
+    pdu.rba_Nds_SignalPduRef.isEventTriggered()
+;
+
+private Boolean isEventTriggered(rba_Nds_ReceiveSignalPdu pdu):
+    pdu.rba_Nds_SignalPduRef.isEventTriggered()
+;
+
+private Boolean isEventTriggered(rba_Nds_SignalPdu pdu):
+    (pdu.getTmtt() != null && (pdu.getTmtt().rba_Nds_EventTransmissionCycleTime != null || 
+                               pdu.getTmtt().rba_Nds_NumberOfEventTransmissions != null)) ||
+    (pdu.getTmft() != null && (pdu.getTmft().rba_Nds_EventTransmissionCycleTime != null || 
+                               pdu.getTmft().rba_Nds_NumberOfEventTransmissions != null))
+;
+
+private cached rba_Nds_TransmissionModeFalseTiming getTmft(rba_Nds_SignalPdu pdu):
+    if(pdu.rba_Nds_PduTiming != null &&
+       pdu.rba_Nds_PduTiming.rba_Nds_TransmissionModeDeclaration != null) then (
+        pdu.rba_Nds_PduTiming.rba_Nds_TransmissionModeDeclaration.rba_Nds_TransmissionModeFalseTiming
+    ) else (
+        null
+    )
+;
+
+private cached rba_Nds_TransmissionModeTrueTiming getTmtt(rba_Nds_SignalPdu pdu):
+    if(pdu.rba_Nds_PduTiming != null &&
+       pdu.rba_Nds_PduTiming.rba_Nds_TransmissionModeDeclaration != null) then (
+        pdu.rba_Nds_PduTiming.rba_Nds_TransmissionModeDeclaration.rba_Nds_TransmissionModeTrueTiming
+    ) else (
+        null
+    )
+;

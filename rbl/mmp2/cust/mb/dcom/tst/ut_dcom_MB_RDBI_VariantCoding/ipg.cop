@@ -1,0 +1,18 @@
+#
+# Cantata Test-Level Options
+#
+# Any options set in this file will override the options set in the
+# project-level options file.
+#
+# WARNING: Do not alter this file manually.
+#
+#tool.testid=51480456-938f-4a78-bb57-38547ebd9f7a
+"--ci:--instr:stmt;func;decn;log;"
+"--sa:--calc:*#*"
+
+#User Section
+"--dont_ci:*"
+"--ci:--no_instr:all"
+"--do_ci:dcom_MB_RDBI_VariantCoding.c"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_AMG_SWITCH_0400_ReadData"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_Calibration_Identifications_E104_ReadData"

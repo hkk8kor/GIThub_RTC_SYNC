@@ -1,0 +1,599 @@
+﻿/**
+ * \brief Build configuration of RBSYS - part of overall build configuration
+ *
+ * For details see Cfg_build_master.bcfg in project root folder
+ */
+
+
+#include "api/cfg/RBSYS_DefaultElementsPure.h"
+
+/* Stack calculation not supported with MTC < 10.1 */
+#define RB_MTC_STACK_CALC_SUPPORT_NONE              1
+
+/* MTC 10.1 requires a manual update of stack calculation tool (V1.2.0 to V1.3.0) within RBSYS prebuild */
+#define RB_MTC_STACK_CALC_SUPPORT_PARTIAL           2
+
+/* MTC > 10.1 supports final stack calculation tool */
+#define RB_MTC_STACK_CALC_SUPPORT_COMPLETE          3
+
+
+#if( __RB_MTC_MAJOR_VERSION__ == 10 )
+  #if( __RB_MTC_MINOR_VERSION__ == 0 )
+      #define RB_MTC_STACK_CALC_SUPPORT        RB_MTC_STACK_CALC_SUPPORT_NONE
+  #elif( __RB_MTC_MINOR_VERSION__ == 1 )
+    #if( __RB_MTC_BUGFIXMAJOR_VERSION__ == 0 )
+      #define RB_MTC_STACK_CALC_SUPPORT        RB_MTC_STACK_CALC_SUPPORT_PARTIAL
+    #endif
+  #endif
+#endif
+
+#ifndef RB_MTC_STACK_CALC_SUPPORT
+  #define RB_MTC_STACK_CALC_SUPPORT        RB_MTC_STACK_CALC_SUPPORT_COMPLETE
+#endif
+
+
+module "rbsys"
+{
+  #if (RBFS_HSWSimulation == RBFS_HSWSimulation_OFF)
+    #if (RBFS_HexBlockBuild == RBFS_HexBlockBuild_BOOTMANAGER)
+
+      export
+      {
+        "api/**";
+        "src/bootblock/api/**";
+      }
+
+      files
+      {
+        c
+        {
+          // BootManager must always set RBFS_BootblockSysStartupCode to _ON
+          "src/bootblock/**/*.c";
+          "src/RBSYS_CacheControl.c";
+          "src/RBSYS_ClockSettings.c";
+          "src/RBSYS_BBFSW_StartupServices.c";
+          "src/RBSYS_TimerSetup.c";
+          "src/SystemMemoryProtection/**/*.c";
+          "src/RBSYS_uCReset.c";
+          "src/RBSYS_MultiCoreSync.c";
+
+          #if ((RBFS_uCFamily == RBFS_uCFamily_RenesasU2A) || (RBFS_uCFamily == RBFS_uCFamily_RenesasU2C) || (RBFS_BootblockEnableAsicSupport == RBFS_BootblockEnableAsicSupport_ON))
+            /* Hint:
+            *   RBFS_uCFamily_RenesasU2A/C => required for timer initialization
+            *   RBFS_BootblockEnableAsicSupport => required for SPI initialization
+            */
+            "src/RBSYS_uCModuleModeCtrl.c";
+          #endif
+
+          #if (RBFS_uCFamily == RBFS_uCFamily_RenesasP1x)
+            "src/FlashOptions/Renesas_P1x/*.c";
+          #elif (RBFS_uCFamily == RBFS_uCFamily_RenesasU2A)
+            "src/FlashOptions/Renesas_U2A/*.c";
+          #elif (RBFS_uCFamily == RBFS_uCFamily_RenesasU2C)
+            "src/FlashOptions/Renesas_U2C/*.c";
+          #elif (RBFS_uCFamily == RBFS_uCFamily_STMStellar)
+            "src/FlashOptions/STM_Stellar/*.c";
+          #endif
+        }
+
+        asm
+        {
+          #if (RBFS_BootblockSysStartupCode == RBFS_BootblockSysStartupCode_ON)
+            #if( RBFS_uCFamily == RBFS_uCFamily_STMStellar )
+              "src/bootblock/**/*.s";
+              "src/RBSYS_HypervisorVectUnicon.s";
+            #else
+              "src/bootblock/**/*.850";
+            #endif
+          #endif
+        }
+      }
+
+    #elif ((RBFS_HexBlockBuild == RBFS_HexBlockBuild_BOOTLOADER) || (RBFS_HexBlockBuild == RBFS_HexBlockBuild_RBBOOTLOADER))
+
+      export
+      {
+        "api/**";
+        "src/bootblock/api/**";
+      }
+
+      files
+      {
+        c
+        {
+          #if (RBFS_BootblockSysStartupCode == RBFS_BootblockSysStartupCode_ON)
+            "src/bootblock/**/*.c";
+            "src/RBSYS_CacheControl.c";
+            "src/RBSYS_ClockSettings.c";
+            //< startup code (rbsys) sets up stack + sp
+          #else
+            "src/bootblock/**/RBSYS_BBStackHandling.c";
+            //< provide stack init api for bootloader (otherwise not-cleaned-up stack from bmgr may be used)
+          #endif
+
+          "src/RBSYS_BBFSW_StartupServices.c";
+          "src/RBSYS_TimerSetup.c";
+          "src/RBSYS_uCModuleModeCtrl.c";
+          "src/SystemMemoryProtection/**/*.c";
+          "src/RBSYS_uCReset.c";
+
+          #if (RBFS_uCFamily == RBFS_uCFamily_RenesasP1x)
+            "src/FlashOptions/Renesas_P1x/*.c";
+          #elif (RBFS_uCFamily == RBFS_uCFamily_RenesasU2A)
+            "src/FlashOptions/Renesas_U2A/*.c";
+          #elif (RBFS_uCFamily == RBFS_uCFamily_RenesasU2C)
+            "src/FlashOptions/Renesas_U2C/*.c";
+          #elif (RBFS_uCFamily == RBFS_uCFamily_STMStellar)
+            "src/FlashOptions/STM_Stellar/*.c";
+          #endif
+        }
+
+        asm
+        {
+          #if (RBFS_BootblockSysStartupCode == RBFS_BootblockSysStartupCode_ON)
+            #if( RBFS_uCFamily == RBFS_uCFamily_STMStellar )
+              "src/bootblock/**/*.s";
+            #else
+              "src/bootblock/**/*.850";
+            #endif
+          #endif
+        }
+      }
+
+    #else  /* (RBFS_HexBlockBuild == RBFS_HexBlockBuild_APPLICATION) */
+
+      export
+      {
+        "api/**";
+        "src";   // todo: "src" must be removed - temporary required for mergeproc (see bugzilla bug 84807)
+      }
+
+      files
+      {
+        c
+        {
+          "src/*.c";
+          "src/Monitorings/*.c";
+          "src/Statistics/*.c";
+          "src/SystemMemoryProtection/**/*.c";
+
+          #if (RBFS_uCFamily == RBFS_uCFamily_RenesasP1x)
+            "src/FlashOptions/Renesas_P1x/*.c";
+          #elif (RBFS_uCFamily == RBFS_uCFamily_RenesasU2A)
+            "src/FlashOptions/Renesas_U2A/*.c";
+          #elif (RBFS_uCFamily == RBFS_uCFamily_RenesasU2C)
+            "src/FlashOptions/Renesas_U2C/*.c";
+          #elif (RBFS_uCFamily == RBFS_uCFamily_STMStellar)
+            "src/FlashOptions/STM_Stellar/*.c";
+          #endif
+
+          // bootblock files will be compiled only in bb context, not in application context
+          exclude "src/bootblock/**/*.c";
+        }
+
+        diamant
+        {
+          "cfg/**/Diamant_*.xml";
+        }
+
+        #if (RBFS_DiamantProOnlineGenerationByHsw == RBFS_DiamantProOnlineGenerationByHsw_Yes)
+          diamant_used_failure_words
+          {
+            "cfg/**/RBSYS_DiamantFailureWordsUsage.txt";
+          }
+        #endif
+
+        genprodb
+        {
+          "api/**/*.h";
+          "api/**/*.cfg";
+          "src/**/*.[hc]";
+          #if( RBFS_uCFamily == RBFS_uCFamily_STMStellar)
+            exclude "src/Statistics/RBSYS_TaskStats.c"; //todo: remove when RBSYS_ISR_SIZE_4_GENPRODB for Stellar is finalized
+          #endif
+        }
+
+        proc_target_tpl
+        {
+          "src/RBSYS_FSWStartup.c";
+          "src/RBSYS_Dyn.c";
+          "src/RBSYS_ExceptionHandler.c";
+          "src/RBSYS_uCReset.c";
+        }
+
+        asm
+        {
+          #if( RBFS_uCFamily == RBFS_uCFamily_STMStellar )
+            "src/**/*.s";
+          #else
+            "src/**/*.850";
+          #endif
+
+          // bootblock files will be compiled only in bb context, not in application context
+          #if( RBFS_uCFamily == RBFS_uCFamily_STMStellar )
+            exclude "src/bootblock/**/*.s";
+          #else
+            exclude "src/bootblock/**/*.850";
+          #endif
+        }
+
+        pdm
+        {
+          "cfg/**/*.pdm";
+        }
+
+        proc
+        {
+          "cfg/RBSYS_Subsystem.proc";
+          "cfg/RBSYS_MainProcLists.proc";
+        }
+      }
+    #endif /* RBFS_HexBlockBuild */
+
+  #else /* RBFS_HSWSimulation */
+
+
+    export
+    {
+      "api/**";
+      "src";
+    }
+
+    files
+    {
+      c
+      {
+        /* original implementation used: */
+        "src/RBSYS_uCModuleModeCtrl.c";
+        "src/RBSYS_RAMBackupService.c";
+        "src/RBSYS_TaskSync.c";
+      }
+
+      genprodb
+      {
+        "api/**/*.h";
+        "api/**/*.cfg";
+        "src/**/*.[h]";
+      }
+
+      proc
+      {
+        "cfg/RBSYS_MainProcLists.proc";         // MainProcList also used in HSWSim
+      }
+    }
+  #endif
+}
+
+#if( RBFS_HSWSimulation == RBFS_HSWSimulation_ON )
+	#include "./tst/HSWSim/SWStub/RBSYS_HSWSimStub_BuildConfig.bcfg"
+#endif
+
+
+module "rbsys/rtaos"
+{
+  #if(RBFS_HexBlockBuild == RBFS_HexBlockBuild_APPLICATION)
+    export
+    {
+      "api/**";
+    }
+
+    files
+    {
+      c
+      {
+        #if( RBFS_HSWSimulation == RBFS_HSWSimulation_ON )
+          "src/RBSYS_OsServices.c";
+        #else
+          "src/*.c";
+        #endif
+      }
+
+      genprodb
+      {
+        "api/*.h";
+        "src/*.[hc]";
+      }
+    }
+
+    #if (RBFS_HSWSimulation == RBFS_HSWSimulation_OFF)
+      #if(   (RBFS_uCFamily == RBFS_uCFamily_RenesasP1x) && (RBFS_ConfigCore == RBFS_ConfigCore_MultiCore) && (RBFS_SysTPSWSupport == RBFS_SysTPSWSupport_YES) && (RBFS_TaskSchemeExtension == RBFS_TaskSchemeExtension_VMPS))
+        #if( RBFS_Compiler == RBFS_Compiler_GHS2018 )
+          module "RH850G3M/MultiCore_SC4_VMPS/201815"
+        #else
+          #error ("Wrong compiler version for this build configuration, does not match with Os.")
+        #endif
+      #elif(   (RBFS_uCFamily == RBFS_uCFamily_RenesasP1x) && (RBFS_ConfigCore == RBFS_ConfigCore_SingleCore) && (RBFS_SysTPSWSupport == RBFS_SysTPSWSupport_NO) && (RBFS_TaskSchemeExtension == RBFS_TaskSchemeExtension_AB15))
+        #if( RBFS_Compiler == RBFS_Compiler_GHS2021 )
+          module "RH850G3M/SingleCore_SC1_AB15/202115"
+        #else
+          #error ("Wrong compiler version for this build configuration, does not match with Os.")
+        #endif
+      #elif( (RBFS_uCFamily == RBFS_uCFamily_RenesasP1x) && (RBFS_ConfigCore == RBFS_ConfigCore_SingleCore) && (RBFS_SysTPSWSupport == RBFS_SysTPSWSupport_NO) )
+        #if( RBFS_Compiler == RBFS_Compiler_GHS )
+          module "RH850G3M/SingleCore_SC1/201517"
+        #elif( RBFS_Compiler == RBFS_Compiler_GHS2018 )
+          module "RH850G3M/SingleCore_SC1/201815"
+        #elif( RBFS_Compiler == RBFS_Compiler_GHS2021 )
+          module "RH850G3M/SingleCore_SC1/202115"
+        #endif
+      #elif( (RBFS_uCFamily == RBFS_uCFamily_RenesasP1x) && (RBFS_ConfigCore == RBFS_ConfigCore_SingleCore) && (RBFS_SysTPSWSupport == RBFS_SysTPSWSupport_YES) )
+        #if( RBFS_Compiler == RBFS_Compiler_GHS )
+          module "RH850G3M/SingleCore_SC4/201517"
+        #elif( RBFS_Compiler == RBFS_Compiler_GHS2018 )
+          module "RH850G3M/SingleCore_SC4/201815"
+        #elif( RBFS_Compiler == RBFS_Compiler_GHS2021 )
+          module "RH850G3M/SingleCore_SC4/202115"
+        #endif
+      #elif(   (RBFS_uCFamily == RBFS_uCFamily_RenesasP1x) && (RBFS_ConfigCore == RBFS_ConfigCore_MultiCore) && (RBFS_SysTPSWSupport == RBFS_SysTPSWSupport_NO) && (RBFS_TaskSchemeExtension == RBFS_TaskSchemeExtension_AB15))
+        #if( RBFS_Compiler == RBFS_Compiler_GHS2021 )
+          module "RH850G3M/MultiCore_SC1_AB15/202115"
+        #else
+          #error ("Wrong compiler version for this build configuration, does not match with Os.")
+        #endif
+      #elif( (RBFS_uCFamily == RBFS_uCFamily_RenesasP1x) && (RBFS_ConfigCore == RBFS_ConfigCore_MultiCore) && (RBFS_SysTPSWSupport == RBFS_SysTPSWSupport_NO) )
+        #if( RBFS_Compiler == RBFS_Compiler_GHS )
+          module "RH850G3M/MultiCore_SC1/201517"
+        #elif( RBFS_Compiler == RBFS_Compiler_GHS2018 )
+          module "RH850G3M/MultiCore_SC1/201815"
+        #elif( RBFS_Compiler == RBFS_Compiler_GHS2021 )
+          module "RH850G3M/MultiCore_SC1/202115"
+        #endif
+      #elif( (RBFS_uCFamily == RBFS_uCFamily_RenesasP1x) && (RBFS_ConfigCore == RBFS_ConfigCore_MultiCore) && (RBFS_SysTPSWSupport == RBFS_SysTPSWSupport_YES) )
+        #if( RBFS_Compiler == RBFS_Compiler_GHS )
+          module "RH850G3M/MultiCore_SC4/201517"
+        #elif( RBFS_Compiler == RBFS_Compiler_GHS2018 )
+          module "RH850G3M/MultiCore_SC4/201815"
+        #elif( RBFS_Compiler == RBFS_Compiler_GHS2021 )
+          module "RH850G3M/MultiCore_SC4/202115"
+        #endif
+      #elif ((RBFS_uCFamily == RBFS_uCFamily_RenesasU2A) && (RBFS_SysTPSWSupport == RBFS_SysTPSWSupport_YES) &&  (RBFS_TaskSchemeExtension == RBFS_TaskSchemeExtension_HostCore0GuestCore1))
+        #if( RBFS_Compiler == RBFS_Compiler_GHS2018 )
+          module "RH850G4M/MultiCore_SC4_HostCore0GuestCore1/201815"
+        #elif( RBFS_Compiler == RBFS_Compiler_GHS2021 )
+          module "RH850G4M/MultiCore_SC4_HostCore0GuestCore1/202115"
+        #endif
+      #elif( (RBFS_uCFamily == RBFS_uCFamily_RenesasU2A) && (RBFS_SysTPSWSupport == RBFS_SysTPSWSupport_NO) )
+        #if( RBFS_Compiler == RBFS_Compiler_GHS2018 )
+          module "RH850G4M/MultiCore_SC1/201815"
+        #elif( RBFS_Compiler == RBFS_Compiler_GHS2021 )
+          module "RH850G4M/MultiCore_SC1/202115"
+        #endif
+      #elif( (RBFS_uCFamily == RBFS_uCFamily_RenesasU2A) && (RBFS_SysTPSWSupport == RBFS_SysTPSWSupport_YES) )
+        #if( RBFS_Compiler == RBFS_Compiler_GHS2018 )
+          module "RH850G4M/MultiCore_SC4/201815"
+        #elif( RBFS_Compiler == RBFS_Compiler_GHS2021 )
+          module "RH850G4M/MultiCore_SC4/202115"
+        #endif
+      #elif( (RBFS_uCFamily == RBFS_uCFamily_STMStellar) && (RBFS_SysTPSWSupport == RBFS_SysTPSWSupport_NO) )
+        module "StellarR52/MultiCore_SC1/202114"
+      #elif( (RBFS_uCFamily == RBFS_uCFamily_RenesasU2C) )
+        #warning("U2C OS configuration is not final")
+        module "RH850G4KH/MultiCore_SC1/202354"
+      #endif
+      {
+        export{
+          "api/**";
+        }
+
+        files{
+          library{
+            "RTAOS.a";
+            "RTAOS.dba";
+          }
+          application_container_element{
+            "RTAOS.orti";
+          }
+        }
+      }
+    #endif
+  #endif
+}
+
+
+module "rbsys/rbtpsw"
+{
+  #if (  (RBFS_HSWSimulation == RBFS_HSWSimulation_OFF)             \
+      && (RBFS_HexBlockBuild == RBFS_HexBlockBuild_APPLICATION)     \
+      && (RBFS_SysTPSWSupport == RBFS_SysTPSWSupport_YES)            \
+      )
+
+    export
+    {
+      "api/**";
+
+      #if (RBFS_TPSWTestsuite == RBFS_TPSWTestsuite_ON)
+        "tst/**";
+      #endif
+    }
+
+    files
+    {
+      c
+      {
+        "src/*.c";
+
+        #if (RBFS_TPSWTestsuite == RBFS_TPSWTestsuite_ON)
+          "tst/**/*.c";
+        #endif
+      }
+
+      genprodb
+      {
+        "api/**/*.h";
+        "src/**/*.[hc]";
+
+        #if (RBFS_TPSWTestsuite == RBFS_TPSWTestsuite_ON)
+          "tst/**/*.[hc]";
+        #endif
+      }
+
+      proc
+      {
+        "cfg/*.proc";
+      }
+    }
+  #elif( RBFS_HSWSimulation == RBFS_HSWSimulation_ON )
+    export
+    {
+      "api/**";
+      "src/**";
+    }
+
+    files
+    {
+      genprodb
+      {
+        "api/**/*.h";
+        "src/**/*.h";
+      }
+    }
+  #endif
+}
+
+
+module "rbsys/tools"
+{
+  files
+  {
+    #if( RBFS_HSWSimulation == RBFS_HSWSimulation_OFF )
+      #if ( RBFS_HexBlockBuild == RBFS_HexBlockBuild_APPLICATION )
+
+        prebuild
+        {
+          #if (RB_MTC_STACK_CALC_SUPPORT == RB_MTC_STACK_CALC_SUPPORT_PARTIAL)
+            "StackCalculator/V1_3_0/RBSYS_StackCalcOverwrite.mk";
+          #endif
+        }
+
+        postbuild
+        {
+          "PrePostBuild/RBSYS_PostBuild.mk";
+          #if( (RBFS_TargetDevice == RBFS_TargetDevice_RenesasM2) )
+            "AllocationChecker/RBSYS_AllocationChecker_PostBuild_M2.mk";
+          #elif( (RBFS_TargetDevice == RBFS_TargetDevice_RenesasM3) )
+            "AllocationChecker/RBSYS_AllocationChecker_PostBuild_M3.mk";
+          #elif( (RBFS_TargetDevice == RBFS_TargetDevice_RenesasD7) \
+              || (RBFS_TargetDevice == RBFS_TargetDevice_RenesasM6) )
+            "AllocationChecker/RBSYS_AllocationChecker_PostBuild_M6.mk";
+          #elif( RBFS_TargetDevice == RBFS_TargetDevice_STMP6 )
+            "AllocationChecker/RBSYS_AllocationChecker_PostBuild_P6.mk";
+            #warning("Input for AllocationChecker is not finalized yet.")
+          #endif
+        }
+
+        #if (  (RB_MTC_STACK_CALC_SUPPORT == RB_MTC_STACK_CALC_SUPPORT_PARTIAL)  \
+            || (RB_MTC_STACK_CALC_SUPPORT == RB_MTC_STACK_CALC_SUPPORT_COMPLETE) \
+            )
+
+          stack_calc_scheduling
+          {
+            "../src/RBSYS_Dyn.c";
+          }
+
+          stack_calc_rules
+          {
+            #if (RBFS_uCFamily == RBFS_uCFamily_RenesasP1x)
+              #if (RBFS_TaskSchemeExtension == RBFS_TaskSchemeExtension_AB15)
+                #warning ("Stack Calculator configuration not yet adapted for Airbag 15.")
+              #endif
+              #if (RBFS_ConfigCore == RBFS_ConfigCore_SingleCore)
+                "StackCalculator/stackCalcRules_RenesasP1x_SingleCore.xml";
+              #else
+                "StackCalculator/stackCalcRules_RenesasP1x_MultiCore.xml";
+              #endif
+            #elif (RBFS_uCFamily == RBFS_uCFamily_RenesasU2A)
+              #if (RBFS_TaskSchemeExtension == RBFS_TaskSchemeExtension_HostCore0GuestCore1)
+                "StackCalculator/stackCalcRules_RenesasU2A_HostCore0GuestCore1.xml";
+              #else
+                "StackCalculator/stackCalcRules_RenesasU2A.xml";
+              #endif
+            #elif (RBFS_uCFamily == RBFS_uCFamily_STMStellar)
+              "StackCalculator/stackCalcRules_STMStellar.xml";
+              #warning("Stack Calculator input for STM Stellar is not the final version!")
+            #elif (RBFS_uCFamily == RBFS_uCFamily_RenesasU2C)
+              "StackCalculator/stackCalcRules_RenesasU2A.xml";
+              #warning("Stack Calculator input for U2C is missing!")
+            #else
+              #error ("Stack Calculator Input is undefined for this uCFamily")
+            #endif
+          }
+
+          stack_calc_options
+          {
+            "StackCalculator/stackCalcOptions.txt";
+          }
+
+        #endif
+      #else // all other HexBlockBuilds: BMGR, BLDR, RBBLDR
+        postbuild
+        {
+          #if( (RBFS_TargetDevice == RBFS_TargetDevice_RenesasM2) )
+            "AllocationChecker/RBSYS_AllocationChecker_PostBuild_M2.mk";
+          #elif( (RBFS_TargetDevice == RBFS_TargetDevice_RenesasM3) )
+            "AllocationChecker/RBSYS_AllocationChecker_PostBuild_M3.mk";
+          #elif( (RBFS_TargetDevice == RBFS_TargetDevice_RenesasD7) \
+              || (RBFS_TargetDevice == RBFS_TargetDevice_RenesasM6) )
+            "AllocationChecker/RBSYS_AllocationChecker_PostBuild_M6.mk";
+          #elif( RBFS_TargetDevice == RBFS_TargetDevice_STMP6 )
+            "AllocationChecker/RBSYS_AllocationChecker_PostBuild_P6.mk";
+          #endif
+        }
+      #endif
+
+      prebuild_postbuild_config
+      {
+        "PrePostBuild/RBSYS_PrePostBuild_Config.mk";
+      }
+    #endif // RBFS_HSWSimulation == RBFS_HSWSimulation_OFF
+  }
+}
+
+#if( (RBFS_uCFamily == RBFS_uCFamily_RenesasP1x) || (RBFS_uCFamily == RBFS_uCFamily_RenesasU2A) || (RBFS_uCFamily == RBFS_uCFamily_RenesasU2C) )
+  module "rbsys/lib_renesas"
+  {
+    #if(RBFS_HSWSimulation == RBFS_HSWSimulation_OFF)
+      ///< since U2A no longer GCC compatible
+      ///< EXAMPLE:
+      ///< dr7f702z19.dvf.h:146494:33: error: expected identifier or '(' before 'volatile'
+      ///< #define OTS0                 (*(volatile T_OTS0               *)0xFFC00200) /* OTS0 */
+
+    export
+    {
+      "api/**";
+    }
+    #endif
+  }
+#endif
+
+
+module "rbsys/lib_ghs"
+{
+
+  export
+  {
+    "api/**";
+  }
+
+  files
+  {
+    library
+    {
+      #if( (RBFS_uCFamily == RBFS_uCFamily_RenesasP1x) && (RBFS_Compiler == RBFS_Compiler_GHS) )       // Compiler configuration setting for Green Hills 2015 compiler
+        "RH850G3M/201517/libstartup.a";
+      #elif( (RBFS_uCFamily == RBFS_uCFamily_RenesasP1x) && (RBFS_Compiler == RBFS_Compiler_GHS2018) )
+        "RH850G3M/201815/libstartup.a";
+      #elif( (RBFS_uCFamily == RBFS_uCFamily_RenesasP1x) && (RBFS_Compiler == RBFS_Compiler_GHS2021) )
+        "RH850G3M/202115/libstartup.a";
+      #elif( (RBFS_uCFamily == RBFS_uCFamily_RenesasU2A) && (RBFS_Compiler == RBFS_Compiler_GHS2018) )
+        "RH850G4M/201815/libstartup.a";
+      #elif( (RBFS_uCFamily == RBFS_uCFamily_RenesasU2A) && (RBFS_Compiler == RBFS_Compiler_GHS2021) )
+        "RH850G4M/202115/libstartup.a";
+      #elif( (RBFS_uCFamily == RBFS_uCFamily_RenesasU2C) && (RBFS_Compiler == RBFS_Compiler_GHS2021) )
+        #warning("U2C GHS lib configuration is not final")
+        "RH850G4M/202115/libstartup.a";
+      #elif( (RBFS_uCFamily == RBFS_uCFamily_STMStellar) && (RBFS_Compiler == RBFS_Compiler_GHS2021) )
+        "StellarR52/202114/libstartup.a";
+      #endif
+    }
+  }
+}

@@ -1,0 +1,77 @@
+Start
+if (PN14_Master_Stat1_ST3 is received successfully without  timeout) then (Yes)
+partition PN14_TransMd_Stat_ST3{
+: Read the **RBMESG_PN14_TransMd_Stat_ST3** signal;
+: Validate the Received signal;
+note right
+ invalid values are any other values
+ other than mentioned valid values 
+end note
+if(**PN14_TransMd_Stat_ST3** Signal \n is valid ?) then (Yes) 
+: Report to dem that \n **RBL_CUSTIF_SIGNAL_INVALID_PN14_Master_Stat1_ST3** \n dem event is PREPASSED ;
+else (No) 
+: Report to dem that \n **RBL_CUSTIF_SIGNAL_INVALID_PN14_Master_Stat1_ST3** \n dem event is PREFAILED ; 
+: Update the PN14_TransMd_Stat_ST3 signal with \n **I_C02_TRANSMD_STAT_SNA** value;
+endif
+}
+partition PN14_ProdMd_Stat_ST3{
+: Read the **RBMESG_PN14_ProdMd_Stat_ST3** signal;
+: Validate the Received signal;
+note right
+ invalid values are any other values
+ other than mentioned valid values 
+end note
+if(**PN14_ProdMd_Stat_ST3** Signal \n is valid ?) then (Yes) 
+: Report to dem that \n **RBL_CUSTIF_SIGNAL_INVALID_PN14_Master_Stat1_ST3** \n dem event is PREPASSED ;
+else (No) 
+: Report to dem that \n **RBL_CUSTIF_SIGNAL_INVALID_PN14_Master_Stat1_ST3** \n dem event is PREFAILED ; 
+: Update the PN14_ProdMd_Stat_ST3 signal with \n **I_C02_TRANSMD_STAT_SNA** value;
+endif
+}
+partition PN14_DDP_Sw_Stat_ST3{
+: Read the **RBMESG_PN14_DDP_Sw_Stat_ST3** signal;
+: Validate the Received signal;
+note right
+ invalid values are any other values
+ other than mentioned valid values 
+end note
+if(**PN14_DDP_Sw_Stat_ST3** Signal \n is valid ?) then (Yes) 
+: Report to dem that \n **RBL_CUSTIF_SIGNAL_INVALID_PN14_Master_Stat1_ST3** \n dem event is PREPASSED ;
+else (No) 
+: Report to dem that \n **RBL_CUSTIF_SIGNAL_INVALID_PN14_Master_Stat1_ST3** \n dem event is PREFAILED ; 
+: Update the PN14_DDP_Sw_Stat_ST3 signal with \n **I_C03_PN14_TDP_SW_STAT_SNA** value;
+endif
+}
+partition PN14_SupBat_Volt_ST3{
+: Read the **RBMESG_PN14_SupBat_Volt_ST3** signal;
+: Validate the Received signal;
+note right
+ invalid values are any other values
+ other than mentioned valid values 
+end note
+note left
+  valid values are 0 to 1022
+end note
+if(**PN14_SupBat_Volt_ST3** Signal \n is valid ?) then (Yes) 
+: Report to dem that \n **RBL_CUSTIF_SIGNAL_INVALID_PN14_Master_Stat1_ST3** \n dem event is PREPASSED ;
+else (No) 
+: Report to dem that \n **RBL_CUSTIF_SIGNAL_INVALID_PN14_Master_Stat1_ST3** \n dem event is PREFAILED ; 
+: Update the PN14_SupBat_Volt_ST3 signal with \n **I_C10_V_0_25K55_0K025_SNA** value;
+endif
+}
+else (No)
+: Update the PN14_TransMd_Stat_ST3 signal with \n **I_C02_TRANSMD_STAT_SNA** value;
+: Update the PN14_ProdMd_Stat_ST3 signal with \n **I_C02_TRANSMD_STAT_SNA** value;
+: Update the PN14_SupBat_Volt_ST3 signal with \n **I_C10_V_0_25K55_0K025_SNA** value;
+: Reset timeout flag ;
+endif
+
+: Read the **RBMESG_PN14_ProdMd_BatStat_ST3** signal;
+: Read the **RBMESG_PN14_SupBat_Stat_ST3** signal;
+: Read the **RBMESG_PN14_SupBat_Curr_ST3** signal;
+: Read the **RBMESG_PN14_SupBat_Temp_ST3** signal;
+: Read the **RBMESG_PN14_PNSec_RechargeEnable_ST3** signal;
+: Read the **RBMESG_PN14_ExtBat_Charge_Actv_ST3** signal;
+: Read the **RBMESG_PN14_DDP_Sw2_Stat_ST3** signal;
+: Transmit the All the receievd signal via RBMESG variables;
+Stop

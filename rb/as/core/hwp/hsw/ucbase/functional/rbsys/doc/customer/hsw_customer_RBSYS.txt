@@ -1,0 +1,96 @@
+
+/** @visible_for_customer_composition{Operating System (RBSYS), RBSYS_MSR_Doc}
+
+ @page_reference{RBSYS_MSR_Doc_Intro}
+
+*/
+
+/** @visible_for_customer_page{Introduction, RBSYS_MSR_Doc_Intro}
+
+  @chapter{1 Architecture Specification (static view)}
+The software group RBSYS coordinates the system start-up and encapsulates the @abbreviation{OS, Operating System} together with the complete dynamic framework.
+  @endchapter
+
+  @chapter{2 Physical Overview}
+The operating system is distributed by ETAS under the name RTA-OS. It offers the following features:
+-AUTOSAR compliant real-time OS
+-Cyclic task execution in several time slices
+
+After sequential init phase and a sequential init task, which are running only once at system start-up, the cyclic task execution starts with a
+base control cycle of 5ms. Derived from that, tasks with multiple cycle times exist:
+
+x1 task with a cycle time of 5 ms. It is split into two parts: a high-priority part containing processes which are sensitive to execution delays
+(jitter) and a low-priority part. The FlexRay with a priority in between this two parts has its own cycle given from the outside. The expected rate is about twice every 5 ms.
+
+x2 task with a cycle time of 10 ms
+
+x4 task with a cycle time of 20 ms
+
+x8 task with a cycle time of 40 ms
+
+x24 task with a cycle time of 120 ms
+
+In addition, a 1ms task and in case of iBooster and IPB systems a 0.5ms task are used for even higher execution rates.
+The idle task contains special limited functionality without any real-time requirements. It consumes the remaining CPU time when no other tasks are running.@pb
+
+Task scheme overview of brake systems like ABS, ESP, iBooster or IPB:
+
+@figure{RBSYS_Overview_SingleCore.png, Physical overview of RBSYS with SingleCore, 1.1}
+@figure{RBSYS_Overview_MultiCore.png, Physical overview of RBSYS with MultiCore, 1.1}
+
+  @endchapter
+
+  @chapter{3 Functionality}
+    @topic{Function in normal mode}
+
+Main purpose of the OS is cyclic execution of several tasks in dedicated time slices. Most tasks have a repetition rate that are n times a base
+rate (BaseCtrl), the tasks are named BaseCtrlxN. RBSYS is responsible for the corresponding OS port and the complete dynamic framework (i.e. tasks and interrupt frames).
+Furthermore it handles the core configuration and the system start-up. To ensure a @abbreviation{SEP, Safe Excecution Platform} based on the RBSYS provided functionality
+it monitors in addition:
+- Task overrun and lock time to ensure the real-time requirements and schedulability of the overall system
+- Stack monitoring to detect over- and underflows
+- Jitter monitoring for a dedicated region in the most relevant IO task
+
+
+    @topic{3.1 Operating System Error Hook}
+This function monitors the error hooks occurring in the OS. In the used configuration there is mostly one relevant error hook. This
+error hook indicates that a task is restarted before it has finished its previous run.@lb
+@bold{Failure word:} RBSYS_OSErrorHook@lb
+@bold{Shutdown strategy:} Failsafe mode (electrical and hydraulical shutdown)
+
+    @topic{3.2 System Error Hook}
+RBSYS internal faults (mostly internal interrupt based system errors) are monitored or notified using a single failure word RBSYS_SYSErrorHook. The system fault notification is issued according to the
+fault type.@lb
+- An invalid interrupt occured (unused/not implemented interrupt)@lb
+- An unbalanced lock is called@lb
+- The maximum lock time is exceeded@lb
+@bold{Failure word:} RBSYS_SYSErrorHook@lb
+@bold{Shutdown strategy:} Failsafe mode (electrical and hydraulical shutdown)
+
+    @topic{3.3 Stack Monitoring}
+There is a stack monitoring for over- and underflow detection implemented. At start-up, check words are set at beginning and end of the stack
+area. These words are checked cyclically and a fault is reported in case of a detected overwritten stack word.@lb
+@bold{Failure word:} RBSYS_StackOverUnderFlow@lb
+@bold{Shutdown strategy:} Failsafe mode (electrical and hydraulical shutdown)
+
+    @topic{3.4 Jitter Monitor}
+The task jitter monitor measures the jitter of the IO sensitive processes in BaseCtrlx1 (5ms) task. It works in a way that a monitor process
+at specific location in the x1 task checks the difference in time between the current and the last point of this process execution
+against the ideal task cycle time +/- an allowed jitter. If the difference exceeds the allowed jitter tolerance a failure is logged.
+The jitter monitor ensures that every process in the BaseCtrlx1 task before the deadline monitor process has a maximum
+of the allowed jitter in its execution.@lb
+@bold{Failure word:} RBSYS_TaskJitter@lb
+@bold{Shutdown strategy}: Failsafe mode (electrical and hydraulical shutdown)@lb
+@bold{Hint:} Disabled for Series SW! (see RBFS_BUILDTYPE_RELEASE)
+
+    @topic{3.5 Task Overrun}
+In addition to the OS monitoring of task double activation, there are additional manual deadline checks to detect a system overload situation.
+CC-AS MultiCore approach is that tasks with lower priorities must be finished with next x1 trigger of same activation cycle.@lb
+@bold{Failure word:} RBSYS_TaskOverRun@lb
+@bold{Shutdown strategy}: Failsafe mode (electrical and hydraulical shutdown)
+
+  @endchapter
+
+*/
+
+

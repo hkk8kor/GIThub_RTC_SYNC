@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<DIAGNOSIS INFO="DiamantPro Core Library 4.2.257.1692" CHECK="79F5A399CBD5BFF7B9439B823F358528ICAgICAgICAgRGlhbWFudFBybyBDb3JlIExpYnJhcnkgICAgICAgICAgICAgICAgICAgIDQuMi4yNTcuMTY5MiAgICAgICAgICAgIC04NTg0ODkzODQ5MDI2MDUyMjcxICAgICAgICAgICAgICAgICAgICAgS09SLUMtMDExS0sgICAgICAgICAgICAgICAgICAgIEFQQUNcVUNIM0tPUiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg">
+  <NODES>
+    <NODE>
+      <NAME>Node_MMP_Stbm_TimeDomain_2</NAME>
+      <SW_GROUP_REF>SwGrp_MMP_NET</SW_GROUP_REF>
+      <KEYLIST>
+        <ITEM key="STATUSEXPORTTOASW">false</ITEM>
+        <ITEM key="ASWSETSINIT">false</ITEM>
+        <ITEM key="ALLOWEDRECOVERIES">0xFF</ITEM>
+        <ITEM key="FW_Priorities_Disabled">false</ITEM>
+        <ITEM key="Desc">Failures Related to StbM for TImeDomain 2</ITEM>
+        <ITEM key="HWShutdown">NoHWShutdown</ITEM>
+      </KEYLIST>
+      <FUNCTION_ID_REFS />
+      <FW_REFS />
+    </NODE>
+    <NODE>
+      <NAME>Node_MMMP_GTS_Cloning_TimeDomain_2</NAME>
+      <SW_GROUP_REF>SwGrp_MMP_NET</SW_GROUP_REF>
+      <KEYLIST>
+        <ITEM key="STATUSEXPORTTOASW">false</ITEM>
+        <ITEM key="ASWSETSINIT">false</ITEM>
+        <ITEM key="ALLOWEDRECOVERIES">0xFF</ITEM>
+        <ITEM key="FW_Priorities_Disabled">true</ITEM>
+        <ITEM key="Desc">Node responsible GTS Time and Rate Cloning related monitroings for TimeDomain2</ITEM>
+        <ITEM key="HWShutdown">NoHWShutdown</ITEM>
+      </KEYLIST>
+      <FUNCTION_ID_REFS />
+      <FW_REFS />
+    </NODE>
+    <NODE>
+      <NAME>Node_MMP_HAD_Stat_IDC_S_FSI_Bckp_Pr5_ST3</NAME>
+      <SW_GROUP_REF>SwGrp_MMP_NET</SW_GROUP_REF>
+      <KEYLIST>
+        <ITEM key="STATUSEXPORTTOASW">false</ITEM>
+        <ITEM key="ASWSETSINIT">false</ITEM>
+        <ITEM key="ALLOWEDRECOVERIES">0xFF</ITEM>
+        <ITEM key="FW_Priorities_Disabled">false</ITEM>
+        <ITEM key="Desc">Failures of HAD_Stat_IDC_S_FST_Bckp_Pr5_ST3 PDU belongs to this node</ITEM>
+        <ITEM key="HWShutdown">NoHWShutdown</ITEM>
+      </KEYLIST>
+      <FUNCTION_ID_REFS />
+      <FW_REFS>
+        <FW_REF prio="50">FW_RBL_CUSTIF_TIMEOUT_HAD_Stat_IDC_S_FSI_Bckp_Pr5_ST3</FW_REF>
+        <FW_REF prio="40">FW_RBL_CUSTIF_SAFETY_HAD_Stat_IDC_S_FSI_Bckp_Pr5_ST3</FW_REF>
+        <FW_REF prio="30">FW_RBL_CUSTIF_SQC_HAD_Stat_IDC_S_FSI_Bckp_Pr5_ST3</FW_REF>
+        <FW_REF prio="20">FW_RBL_CUSTIF_SIGNAL_INVALID_HAD_Stat_IDC_S_FSI_Bckp_Pr5_ST3</FW_REF>
+      </FW_REFS>
+    </NODE>
+    <NODE>
+      <NAME>Node_MMP_GTS_Cloning</NAME>
+      <SW_GROUP_REF>SwGrp_MMP_NET</SW_GROUP_REF>
+      <KEYLIST>
+        <ITEM key="STATUSEXPORTTOASW">false</ITEM>
+        <ITEM key="ASWSETSINIT">false</ITEM>
+        <ITEM key="ALLOWEDRECOVERIES">0xFF</ITEM>
+        <ITEM key="FW_Priorities_Disabled">true</ITEM>
+        <ITEM key="Desc">Node responsible GTS Time and Rate Cloning related monitroings</ITEM>
+        <ITEM key="HWShutdown">NoHWShutdown</ITEM>
+      </KEYLIST>
+      <FUNCTION_ID_REFS />
+      <FW_REFS />
+    </NODE>
+    <NODE>
+      <NAME>Node_MMP_FBL_Cfg_Star3_ST3</NAME>
+      <SW_GROUP_REF>SwGrp_MMP_NET</SW_GROUP_REF>
+      <KEYLIST>
+        <ITEM key="STATUSEXPORTTOASW">false</ITEM>
+        <ITEM key="ASWSETSINIT">false</ITEM>
+        <ITEM key="ALLOWEDRECOVERIES">0xFF</ITEM>
+        <ITEM key="FW_Priorities_Disabled">false</ITEM>
+        <ITEM key="Desc">Failures related to FBL_Cfg_Star3_ST3 PDU</ITEM>
+        <ITEM key="HWShutdown">NoHWShutdown</ITEM>
+      </KEYLIST>
+      <FUNCTION_ID_REFS />
+      <FW_REFS>
+        <FW_REF prio="50">FW_RBL_CUSTIF_TIMEOUT_FBL_Cfg_Star3_ST3</FW_REF>
+        <FW_REF prio="30">FW_RBL_CUSTIF_SIGNAL_INVALID_FBL_Cfg_Star3_ST3</FW_REF>
+      </FW_REFS>
+    </NODE>
+    <NODE>
+      <NAME>Node_MMP_BCS_Whl_Msg1_BTC_ST3</NAME>
+      <SW_GROUP_REF>SwGrp_MMP_NET</SW_GROUP_REF>
+      <KEYLIST>
+        <ITEM key="STATUSEXPORTTOASW">false</ITEM>
+        <ITEM key="ASWSETSINIT">false</ITEM>
+        <ITEM key="ALLOWEDRECOVERIES">0xFF</ITEM>
+        <ITEM key="FW_Priorities_Disabled">false</ITEM>
+        <ITEM key="Desc">Failures related to BCS_Whl_Msg1_BTC_ST3 PDU</ITEM>
+        <ITEM key="HWShutdown">NoHWShutdown</ITEM>
+      </KEYLIST>
+      <FUNCTION_ID_REFS />
+      <FW_REFS>
+        <FW_REF prio="50">FW_RBL_CUSTIF_TIMEOUT_BCS_Whl_Msg1_BTC_ST3</FW_REF>
+        <FW_REF prio="40">FW_RBL_CUSTIF_SAFETY_BCS_Whl_Msg1_BTC_ST3</FW_REF>
+        <FW_REF prio="35">FW_RBL_CUSTIF_SQC_BCS_Whl_Msg1_BTC_ST3</FW_REF>
+        <FW_REF prio="30">FW_RBL_CUSTIF_SIGNAL_INVALID_BCS_Whl_Msg1_BTC_ST3</FW_REF>
+      </FW_REFS>
+    </NODE>
+    <NODE>
+      <NAME>Node_MMP_DIAG_Stat_ST3</NAME>
+      <SW_GROUP_REF>SwGrp_MMP_NET</SW_GROUP_REF>
+      <KEYLIST>
+        <ITEM key="STATUSEXPORTTOASW">false</ITEM>
+        <ITEM key="ASWSETSINIT">false</ITEM>
+        <ITEM key="ALLOWEDRECOVERIES">0xFF</ITEM>
+        <ITEM key="FW_Priorities_Disabled">false</ITEM>
+        <ITEM key="Desc">Failures related to DIAG_Stat_ST3</ITEM>
+        <ITEM key="HWShutdown">NoHWShutdown</ITEM>
+      </KEYLIST>
+      <FUNCTION_ID_REFS />
+      <FW_REFS>
+        <FW_REF prio="50">FW_RBL_CUSTIF_TIMEOUT_DIAG_Stat_ST3</FW_REF>
+        <FW_REF prio="30">FW_RBL_CUSTIF_SIGNAL_INVALID_DIAG_Stat_ST3</FW_REF>
+      </FW_REFS>
+    </NODE>
+    <NODE>
+      <NAME>Node_MMP_PT4_PTCoor4_ST3</NAME>
+      <SW_GROUP_REF>SwGrp_MMP_NET</SW_GROUP_REF>
+      <KEYLIST>
+        <ITEM key="STATUSEXPORTTOASW">false</ITEM>
+        <ITEM key="ASWSETSINIT">false</ITEM>
+        <ITEM key="ALLOWEDRECOVERIES">0xFF</ITEM>
+        <ITEM key="FW_Priorities_Disabled">false</ITEM>
+        <ITEM key="Desc">Failures related to PT4_PTCoor4_ST3 PDU</ITEM>
+        <ITEM key="HWShutdown">NoHWShutdown</ITEM>
+      </KEYLIST>
+      <FUNCTION_ID_REFS />
+      <FW_REFS>
+        <FW_REF prio="50">FW_RBL_CUSTIF_TIMEOUT_PT4_PTCoor4_ST3</FW_REF>
+        <FW_REF prio="40">FW_RBL_CUSTIF_SAFETY_PT4_PTCoor4_ST3</FW_REF>
+        <FW_REF prio="35">FW_RBL_CUSTIF_SQC_PT4_PTCoor4_ST3</FW_REF>
+        <FW_REF prio="30">FW_RBL_CUSTIF_SIGNAL_INVALID_PT4_PTCoor4_ST3</FW_REF>
+      </FW_REFS>
+    </NODE>
+    <NODE>
+      <NAME>Node_MMP_PN14_Master_Stat1_ST3</NAME>
+      <SW_GROUP_REF>SwGrp_MMP_NET</SW_GROUP_REF>
+      <KEYLIST>
+        <ITEM key="STATUSEXPORTTOASW">false</ITEM>
+        <ITEM key="ASWSETSINIT">false</ITEM>
+        <ITEM key="ALLOWEDRECOVERIES">0xFF</ITEM>
+        <ITEM key="FW_Priorities_Disabled">false</ITEM>
+        <ITEM key="Desc">Failures related to PN14_Master_Stat1_ST3</ITEM>
+        <ITEM key="HWShutdown">NoHWShutdown</ITEM>
+      </KEYLIST>
+      <FUNCTION_ID_REFS />
+      <FW_REFS>
+        <FW_REF prio="50">FW_RBL_CUSTIF_TIMEOUT_PN14_Master_Stat1_ST3</FW_REF>
+        <FW_REF prio="30">FW_RBL_CUSTIF_SIGNAL_INVALID_PN14_Master_Stat1_ST3</FW_REF>
+      </FW_REFS>
+    </NODE>
+    <NODE>
+      <NAME>Node_MMP_Ign_Stat_ST3</NAME>
+      <SW_GROUP_REF>SwGrp_MMP_NET</SW_GROUP_REF>
+      <KEYLIST>
+        <ITEM key="STATUSEXPORTTOASW">false</ITEM>
+        <ITEM key="ASWSETSINIT">false</ITEM>
+        <ITEM key="ALLOWEDRECOVERIES">0xFF</ITEM>
+        <ITEM key="FW_Priorities_Disabled">false</ITEM>
+        <ITEM key="Desc">Failures related to Ign_Stat_ST3</ITEM>
+        <ITEM key="HWShutdown">NoHWShutdown</ITEM>
+      </KEYLIST>
+      <FUNCTION_ID_REFS />
+      <FW_REFS>
+        <FW_REF prio="50">FW_RBL_CUSTIF_TIMEOUT_Ign_Stat_ST3</FW_REF>
+        <FW_REF prio="40">FW_RBL_CUSTIF_SAFETY_Ign_Stat_ST3</FW_REF>
+        <FW_REF prio="35">FW_RBL_CUSTIF_SQC_Ign_Stat_ST3</FW_REF>
+        <FW_REF prio="30">FW_RBL_CUSTIF_SIGNAL_INVALID_Ign_Stat_ST3</FW_REF>
+      </FW_REFS>
+    </NODE>
+    <NODE>
+      <NAME>Node_MMP_DI_OdoSpeedometer_ST3</NAME>
+      <SW_GROUP_REF>SwGrp_MMP_NET</SW_GROUP_REF>
+      <KEYLIST>
+        <ITEM key="STATUSEXPORTTOASW">false</ITEM>
+        <ITEM key="ASWSETSINIT">false</ITEM>
+        <ITEM key="ALLOWEDRECOVERIES">0xFF</ITEM>
+        <ITEM key="FW_Priorities_Disabled">false</ITEM>
+        <ITEM key="Desc">Failures related to OdoSpeedometer_ST3</ITEM>
+        <ITEM key="HWShutdown">NoHWShutdown</ITEM>
+      </KEYLIST>
+      <FUNCTION_ID_REFS />
+      <FW_REFS>
+        <FW_REF prio="50">FW_RBL_CUSTIF_TIMEOUT_DI_OdoSpeedometer_ST3</FW_REF>
+        <FW_REF prio="40">FW_RBL_CUSTIF_SAFETY_DI_OdoSpeedometer_ST3</FW_REF>
+        <FW_REF prio="35">FW_RBL_CUSTIF_SQC_DI_OdoSpeedometer_ST3</FW_REF>
+      </FW_REFS>
+    </NODE>
+    <NODE>
+      <NAME>Node_MMP_DI_OdoSpeedometer_Signal</NAME>
+      <SW_GROUP_REF>SwGrp_MMP_NET</SW_GROUP_REF>
+      <KEYLIST>
+        <ITEM key="STATUSEXPORTTOASW">false</ITEM>
+        <ITEM key="ASWSETSINIT">false</ITEM>
+        <ITEM key="ALLOWEDRECOVERIES">0xFF</ITEM>
+        <ITEM key="FW_Priorities_Disabled">true</ITEM>
+        <ITEM key="Desc">Signal Invalid Failures related to OdoSpeedometer</ITEM>
+        <ITEM key="HWShutdown">NoHWShutdown</ITEM>
+      </KEYLIST>
+      <FUNCTION_ID_REFS />
+      <FW_REFS>
+        <FW_REF prio="30">FW_RBL_CUSTIF_SIGNAL_INVALID_DI_OdoSpeedometer_ST3</FW_REF>
+        <FW_REF prio="25">FW_RBL_CUSTIF_SIGNAL_INVALID_VEHSPD_DISP_ST3</FW_REF>
+      </FW_REFS>
+    </NODE>
+    <NODE>
+      <NAME>Node_MMP_StbM</NAME>
+      <SW_GROUP_REF>SwGrp_MMP_NET</SW_GROUP_REF>
+      <KEYLIST>
+        <ITEM key="STATUSEXPORTTOASW">false</ITEM>
+        <ITEM key="ASWSETSINIT">false</ITEM>
+        <ITEM key="ALLOWEDRECOVERIES">0xFF</ITEM>
+        <ITEM key="FW_Priorities_Disabled">false</ITEM>
+        <ITEM key="Desc">Failures Related to StbM</ITEM>
+        <ITEM key="HWShutdown">NoHWShutdown</ITEM>
+      </KEYLIST>
+      <FUNCTION_ID_REFS />
+      <FW_REFS>
+        <FW_REF prio="50">FW_RBL_STBM_NO_INIT_SYNC_TIMEOUT</FW_REF>
+        <FW_REF prio="40">FW_RBL_STBM_SYNC_LOST_TIMEOUT</FW_REF>
+        <FW_REF prio="30">FW_RBL_CUSTIF_STBM_TIMELEAP</FW_REF>
+        <FW_REF prio="20">FW_RBL_STBM_TIME_COPY</FW_REF>
+        <FW_REF prio="10">FW_RBL_STBM_RATE_COPY</FW_REF>
+      </FW_REFS>
+    </NODE>
+    <NODE>
+      <NAME>Node_MMP_HAD_Stat_IDC_M_FSI_Pr5_ST3</NAME>
+      <SW_GROUP_REF>SwGrp_MMP_NET</SW_GROUP_REF>
+      <KEYLIST>
+        <ITEM key="STATUSEXPORTTOASW">false</ITEM>
+        <ITEM key="ASWSETSINIT">false</ITEM>
+        <ITEM key="ALLOWEDRECOVERIES">0xFF</ITEM>
+        <ITEM key="FW_Priorities_Disabled">false</ITEM>
+        <ITEM key="Desc">Failure Related to HAD_Stat_IDC_M_FSI_Pr5_ST3 PDU belongs to this node</ITEM>
+        <ITEM key="HWShutdown">NoHWShutdown</ITEM>
+      </KEYLIST>
+      <FUNCTION_ID_REFS />
+      <FW_REFS>
+        <FW_REF prio="50">FW_RBL_CUSTIF_TIMEOUT_HAD_Stat_IDC_M_FSI_Pr5_ST3</FW_REF>
+        <FW_REF prio="40">FW_RBL_CUSTIF_SAFETY_HAD_Stat_IDC_M_FSI_Pr5_ST3</FW_REF>
+        <FW_REF prio="30">FW_RBL_CUSTIF_SQC_HAD_Stat_IDC_M_FSI_Pr5_ST3</FW_REF>
+        <FW_REF prio="20">FW_RBL_CUSTIF_SIGNAL_INVALID_HAD_Stat_IDC_M_FSI_Pr5_ST3</FW_REF>
+      </FW_REFS>
+    </NODE>
+  </NODES>
+</DIAGNOSIS>

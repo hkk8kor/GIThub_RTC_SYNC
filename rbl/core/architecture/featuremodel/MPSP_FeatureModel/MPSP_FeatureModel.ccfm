@@ -1,0 +1,39 @@
+<cm:consulmodel xmlns:cm="http://www.pure-systems.com/consul/model" cm:id="iFdaMx47cs1pIjUAu" cm:version="1.5" cm:type="ps:ccfm">
+  <cm:head>
+    <cm:properties>
+      <cm:property cm:id="idIl5-cgeSKko037C" cm:type="ps:string" cm:invisible="true" cm:name="ps:name">
+        <cm:constant cm:id="igcsUnErqJHls7kZi" cm:type="ps:string">MPSP_FeatureModelFamily</cm:constant>
+      </cm:property>
+      <cm:property cm:id="iuTtvs4Cxf6i-R7Uq" cm:type="ps:string" cm:invisible="true" cm:name="ps:author">
+        <cm:constant cm:id="ioSv_Q5v7Hkqg7Bta" cm:type="ps:string">gni2si</cm:constant>
+      </cm:property>
+      <cm:property cm:id="iCKmCm36-6gUgnd8A" cm:type="ps:string" cm:invisible="true" cm:name="ps:version">
+        <cm:constant cm:id="iR_beW6K8oLm_DeA9" cm:type="ps:string">1.0</cm:constant>
+      </cm:property>
+      <cm:property cm:id="ioZCoq7anXcz6mp6P" cm:type="ps:datetime" cm:invisible="true" cm:name="ps:created">
+        <cm:constant cm:id="iTPvWu6JGFpRYa273" cm:type="ps:datetime">2019-02-20T09:30:24.706Z</cm:constant>
+      </cm:property>
+      <cm:property cm:id="i6i7QterDbP9H-_KG" cm:type="ps:mimetype" cm:invisible="true" cm:name="ps:DescriptionType">
+        <cm:constant cm:id="i5-c-sRc0ByT2piYk" cm:type="ps:mimetype">text/html</cm:constant>
+      </cm:property>
+    </cm:properties>
+  </cm:head>
+  <cm:elements cm:rootid="iVhevl1nPltvjCokh">
+    <cm:element cm:id="iVhevl1nPltvjCokh" cm:name="MPSP_FeatureModelFamily" cm:type="ps:family" cm:class="ps:family" cm:default="on">
+      <cm:properties>
+        <cm:property cm:id="irsp2_Xa6l-0Kz9NF" cm:type="ps:string" cm:fixed="true" cm:readonly="true" cm:name="ps:Source">
+          <cm:constant cm:id="ilJ4ZKhcvxRt_ZDWg" cm:type="ps:string">gni2si</cm:constant>
+        </cm:property>
+        <cm:property cm:id="idGQa2xEq8TjnlTtc" cm:type="ps:datetime" cm:fixed="true" cm:readonly="true" cm:name="ps:Created">
+          <cm:constant cm:id="i32zn9ji2_fT0cHou" cm:type="ps:datetime">2019-02-20T09:30:24.706Z</cm:constant>
+        </cm:property>
+        <cm:property cm:id="iHbyYa2T7VTFVgIrh" cm:type="ps:string" cm:fixed="true" cm:readonly="true" cm:name="ps:ChangedBy">
+          <cm:constant cm:id="igThfqNK8f1i14qPd" cm:type="ps:string">gni2si</cm:constant>
+        </cm:property>
+        <cm:property cm:id="itwxQbXA-5sIuWvFq" cm:type="ps:datetime" cm:fixed="true" cm:readonly="true" cm:name="ps:Changed">
+          <cm:constant cm:id="ilhTu0j25RMd9VGAU" cm:type="ps:datetime">2019-02-20T09:30:24.706Z</cm:constant>
+        </cm:property>
+      </cm:properties>
+    </cm:element>
+  </cm:elements>
+</cm:consulmodel>

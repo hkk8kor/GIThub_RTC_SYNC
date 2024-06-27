@@ -1,0 +1,10 @@
+start
+if (Check if Data is not equal to null pointer) is (yes) then
+while (Loop 10 times to update the variable i) is (It will loop till the 10th bit data is updated)
+     :The array of data is updated with respective number of ECU Names;
+endwhile (empty)
+     :No array available to fill the data ;
+    :return value is updated to E_OK;
+else (no) 
+endif
+stop

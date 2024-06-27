@@ -1,0 +1,27 @@
+@startuml
+start
+switch (Minimum software version NVM operation state)
+case ( READ_STATE )
+:Calls dcom_Lib_ReadNvMData to read Minimum Software Version value from coresonding NVM block;
+if (NVM read is success?) then (yes)
+  :Check if Minimum Software version is equal to Downgrade Protection version;
+  if (Minimum Software Version value!=Downgrade Protection version) then (yes)
+  :Updates Minimum Software version with Downgrade Protection version and moves the Minimum software version NVM operation state to WRITE_STATE ;
+  else (no)
+  :Update Minimum software version NVM operation state to IDLE_STATE;
+  endif 
+else (no)
+  :Minimum software version NVM operation state remains in READ_STATE;  
+endif
+case ( WRITE_STATE ) 
+  :Calls dcom_Lib_WriteNvMData to write Minimum Software Version value to coresonding NVM block;
+  if (NVM write is success?) then (yes)
+  :Update Minimum software version NVM operation state to IDLE_STATE;
+else (no)
+  :Minimum software version NVM operation state remains in WRITE_STATE;  
+endif
+case ( default )
+  :idle state and do nothing;
+endswitch
+stop
+@enduml

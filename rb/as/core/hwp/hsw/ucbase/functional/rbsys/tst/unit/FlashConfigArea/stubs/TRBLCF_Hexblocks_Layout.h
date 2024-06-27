@@ -1,0 +1,7 @@
+#ifndef TRBLCF_HEXBLOCKS_LAYOUT_H__
+#define TRBLCF_HEXBLOCKS_LAYOUT_H__
+
+#define RBLCF_HSM_CFLASH_START (0u)
+#define RBLCF_HSM_LRAM_START (0u)
+
+#endif

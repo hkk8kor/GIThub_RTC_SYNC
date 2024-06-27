@@ -1,0 +1,16 @@
+#
+# Cantata Options
+#
+# WARNING: Do not alter this file manually.
+#
+#tool.testid=13e1ec06-09e7-4e82-8df7-b0d911867a28
+"--ci:--instr:stmt;func;decn;log;"
+ 
+#User Section
+#"--dr"
+#"--dr_list_definitions:%s_dr.log"
+#"--dr_max_link_iterations:10"
+"--dont_ci:*"
+"--do_ci:DcmAppl_DcmSecaValidKey.c"
+"--ci:--no_instr:all"
+"--ci:--instr:stmt;func;decn;log;#DcmAppl_DcmSecaValidKey"

@@ -1,0 +1,35 @@
+module "/rb/as/core/hwp/hsw/ucbase/functional/rbsys/tst/HSWSim/SWStub"
+{
+  export
+  {
+    "EbOs_stub/api";
+    "lib_renesas_stub";
+    "os_stub/api";
+    "os_stub/src";
+    "rbsys_stub/api";
+  }
+
+  files
+  {
+    c
+    {
+      "**/*.c";
+    }
+
+    genprodb
+    {
+      "**/api/**/*.[hc]";
+      "**/src/**/*.[hc]";
+    }
+
+    proc_target_tpl{ "rbsys_stub/src/RBSYSStub_Dyn.c" }
+
+    // this single file is necessary, because MergeProc would throw an error "0 proc files but 1 tgt file"
+    // this file will also satisfy all open MainProcLists entries, which are open due
+    // to removed functionality (like SYS or DMA) - otherwise we would need to provide
+    // additional MainProcLists for Sim (might cause failures ...)
+    proc { "rbsys_stub/cfg/RBSYSStub_Subsystem.proc" }
+
+
+  } //< files
+}

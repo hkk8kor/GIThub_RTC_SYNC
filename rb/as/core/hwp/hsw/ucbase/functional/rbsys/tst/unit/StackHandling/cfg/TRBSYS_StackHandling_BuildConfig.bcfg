@@ -1,0 +1,70 @@
+module "TRBSYSStackHandling"
+{
+  module "TestCase" {
+    files {
+      c {
+        /** files containing tests */
+        "/rb/as/core/hwp/hsw/ucbase/functional/RBSYS/tst/unit/StackHandling/TRBSYS_StackHandling.c";
+      }
+    }
+  } // TestCase
+
+  module "UnitUnderTest" {
+    export {
+      /** export headers */
+      "/rb/as/core/hwp/hsw/ucbase/functional/RBSYS/api/**";
+      "/rb/as/core/hwp/hsw/ucbase/functional/RBSYS/src/**";
+      "/rb/as/core/hwp/hsw/ucbase/functional/RBSYS/rtaos/api";
+      "/rb/as/core/hwp/hsw/ucbase/functional/RBSYS/rtaos/src";
+    }
+
+    files {
+      c {
+        // effectively: "/rb/as/core/hwp/hsw/ucbase/functional/RBSYS/src/RBSYS_StackHandling.c";
+        "/rb/as/core/hwp/hsw/ucbase/functional/RBSYS/tst/unit/StackHandling/TRBSYS_StackHandling_Adaptor.c";
+      }
+    }
+  } // UnitUnderTest
+
+  module "DiamantConfig" {
+    files {
+      diamant {
+        "/rb/as/core/hwp/hsw/ucbase/functional/rbsys/cfg/Diamant/Diamant_*.xml";
+      }
+
+      diamant_used_failure_words {
+        "/rb/as/core/hwp/hsw/ucbase/functional/rbsys/cfg/Diamant/*DiamantFailureWordsUsage*.txt";
+      }
+    }
+  }
+
+  #include "../../stubs/TRB_Prj_ConfigStub.bcfg"
+
+  module "Stub" {
+    export {
+      /** export the stubs */
+      "/rb/as/core/hwp/hsw/ucbase/functional/RBSYS/tst/unit/stubs/**";
+      "/rb/as/core/hwp/hsw/ucbase/functional/RBSYS/tst/unit/StackHandling/stubs/**";
+
+      /** Configure "TRB_Prj_Config.h" from "TRB_Prj_ConfigElements.h": RBFS_MCORE */
+
+      /** now map the header stub name to the original header file names */
+      /** stub "RBSYS_Intrinsics.h"           with "TRBSYS_Intrinsics.h" */
+      /** stub "RBSYS_uCRegisters.h"          with "TRBSYS_uCRegisters.h" */
+      /** stub "Os.h"                         with "TRBSYS_Os.h" */
+      /** stub "Os_ConfigInterrupts.h"        with "TRBSYS_Os_ConfigInterrupts.h" */
+
+      /** stub "RBLCF_MemoryRemap.h"          with "TRBLCF_MemoryRemap.h" */
+      /** stub "rba_MultiStackTrace.h"        with "trba_MultiStackTrace.h" */
+    }
+    files {
+      c {
+        /** stubs */
+        "/rb/as/core/hwp/hsw/ucbase/functional/RBSYS/tst/unit/StackHandling/stubs/*.c";
+        "/rb/as/core/hwp/hsw/ucbase/functional/RBSYS/tst/unit/stubs/*.c";
+        exclude "/rb/as/core/hwp/hsw/ucbase/functional/rbsys/tst/unit/stubs/TRBSYS_StackHandling.c";
+        "/rb/as/core/hwp/hsw/ucbase/functional/rbsys/src/Monitorings/RBSYS_ErrorHooks.c";
+      }
+    }
+  } // Stub
+} // TRBSYSStackHandling

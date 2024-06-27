@@ -1,0 +1,16 @@
+@startuml
+start
+if(Check if Data is not equal to null pointer) then (yes)
+ if(Check if Requested Number of data items is equal to 1 ) then (yes)
+ : Update Ram_Block <b> rbl_Mirrordcom_CalId_u8 of 16 byte <plain>with requested CALID
+ Return Value updated with <b>E_OK;
+else (no)
+ :Update ErrorCode with <b>DCM REQUESTOUTOFRANGE NRC(0x31)
+  Return Value updated with <b>E_NOT_OK;
+endif
+else (no)
+ :Update ErrorCode with <b>DCM CONDITIONSNOTCORRECT NRC(0x22)
+  Return Value updated with <b>E_NOT_OK;
+endif
+stop
+@enduml

@@ -1,0 +1,42 @@
+/**
+ * \brief Build configuration of signalChain - part of overall build configuration
+ *
+ * For details see Cfg_build_master.bcfg in project root folder
+ */
+
+
+module "rbl/mmp2/app/rbl_SignalChain"
+{
+  export
+  {
+      "api";
+      "cfg";
+  }
+
+  files
+  {
+    c
+    {
+      "src/*.c";
+      "src/rbmesg/*.c";
+      
+    }
+
+    genprodb
+    {
+      "cfg/*.h";	
+      "src/**/*.c";
+      "src/**/*.h";
+      "api/**/*.h";
+    }
+
+	proc
+	{
+	   "RBLSIGCHAIN_Subsystem.proc";
+	}
+	pdm
+    {
+         "cfg/*.pdm";
+    }
+   }
+}

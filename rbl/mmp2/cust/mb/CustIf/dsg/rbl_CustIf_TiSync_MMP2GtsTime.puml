@@ -1,0 +1,22 @@
+start
+:Update Return value with rbl_TiSync_getPureLocalTime() Function 
+with arguments currenttimestampMMP_u32 and timeGTS_st;
+:Calculate the time difference by subtracting 
+MMP Time with the current MMP time stamp;
+:Update the time differnce as the Delta Time;
+:Update valid time range as RBL_CUSTIF_TISYNC_MAXSYSTICKS;
+if (Check if \nDelta Time is Greater Than equal to valid time range \nAND \nDelta Time is Lesser Than equal to valid time range \nAND \nReturn Value is equal to E_OK) then (yes)
+:Update nanosecond increase as 
+(DeltaTime *(RBL_CUSTIF_TISYNC_2SYSTICKS2NS +1))/2;
+note right
+Compute updated nanoseconds
+end note
+:Call function rbl_TiSync_StbMAddNanoSeconds()
+timeGTS_st and nanosecondIncrease as agruments;
+note right
+Add time difference to timestamp
+end note
+else (no)
+:Update Return value as E_NOT_OK;
+endif
+stop

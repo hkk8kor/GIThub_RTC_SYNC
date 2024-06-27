@@ -1,0 +1,82 @@
+/**
+@copyright
+Robert Bosch GmbH reserves all rights even in the event of industrial property rights.
+We reserve all rights of disposal such as copying and passing on to third parties.
+*/
+
+#include "RBSYS_Config.h"
+
+/* Assert supported configurations: switches, parameters, constants, ... */
+RB_ASSERT_SWITCH_SETTINGS(RBFS_TPSWTestsuite,
+                          RBFS_TPSWTestsuite_OFF,
+                          RBFS_TPSWTestsuite_ON);
+RB_ASSERT_SWITCH_SETTINGS(RBFS_SysTPSWSupport,
+                          RBFS_SysTPSWSupport_YES,
+                          RBFS_SysTPSWSupport_NO);
+
+
+
+#if (RBFS_SysTPSWSupport == RBFS_SysTPSWSupport_YES)
+
+  /******************************************************************************/
+  /* header entries for RBTPSW                                                  */
+  /******************************************************************************/
+  /*PROC_SECTION: RBTPSW_Subsystem */
+  RBTPSW_TPSWCapsule.h
+  #if (RBFS_TPSWTestsuite == RBFS_TPSWTestsuite_ON)
+    RBTPSW_MyTPSWCapsule.h
+  #endif
+  ../src/RBTPSW_TPSWCapsule_ExcHandler.h
+  /*PROC_SECTION_END: */
+
+
+  /******************************************************************************/
+  /* process entries for RBTPSW                                                 */
+  /******************************************************************************/
+
+  /*PROC_SECTION: SPG_RBTPSW_Init */
+  RBTPSW_Init
+  /*PROC_SECTION_END: */
+
+  /*PROC_SECTION: SPG_RBTPSW_KillCore0_Proc */
+  RBTPSW_CrossCoreKill_Proc
+  /*PROC_SECTION_END: */
+
+  /*PROC_SECTION: SPG_RBTPSW_KillCore1_Proc */
+  RBTPSW_CrossCoreKill_Proc
+  /*PROC_SECTION_END: */
+
+  /*PROC_SECTION: SPG_RBTPSW_EXCFPP */
+  RBTPSW_EXCFPP_TPSWENTRY
+  /*PROC_SECTION_END: */
+
+  /*PROC_SECTION: SPG_RBTPSW_EXCMAE */
+  RBTPSW_FE_TPSWENTRY
+  /*PROC_SECTION_END: */
+
+  /*PROC_SECTION: SPG_RBTPSW_EXCRIE */
+  RBTPSW_FE_TPSWENTRY
+  /*PROC_SECTION_END: */
+
+  /*PROC_SECTION: SPG_RBTPSW_Timeout */
+  RBTPSW_TimingHandler
+  /*PROC_SECTION_END: */
+
+  #if (RBFS_TPSWTestsuite == RBFS_TPSWTestsuite_ON)
+    /*PROC_SECTION: SPG_RBTPSW_TestSuite_x2 */
+    RBTPSW_MyTPSWCapsule_CoreScheduler_Proc
+    /*PROC_SECTION_END: */
+
+    /*PROC_SECTION: SPG_RBTPSW_TestSuite_x8 */
+    RBTPSW_MyTPSWCapsule_PreemptedWaitingAndReset_Proc
+    /*PROC_SECTION_END: */
+
+    #if (RBFS_MCORE == RBFS_MCORE_ON)
+      /*PROC_SECTION: SPG_RBTPSW_TestSuite_x2p */
+      RBTPSW_MyTPSWCapsule_CoreScheduler_Proc
+      /*PROC_SECTION_END: */
+    #endif
+  #endif
+
+#endif
+

@@ -1,0 +1,142 @@
+/**
+@copyright
+Robert Bosch GmbH reserves all rights even in the event of industrial property rights.
+We reserve all rights of disposal such as copying and passing on to third parties.
+*/
+
+#include "RBSYS_Config.h"
+
+/* Assert supported configurations: switches, parameters, constants, ... */
+RB_ASSERT_SWITCH_SETTINGS(RBFS_MCORE, RBFS_MCORE_OFF, RBFS_MCORE_ON);
+RB_ASSERT_SWITCH_SETTINGS(RBFS_SysTask0p5ms, RBFS_SysTask0p5ms_OFF, RBFS_SysTask0p5ms_ON);
+RB_ASSERT_SWITCH_SETTINGS(RBFS_TaskSync, RBFS_TaskSync_OFF, RBFS_TaskSync_ON);
+RB_ASSERT_SWITCH_SETTINGS(RBFS_uCFamily, RBFS_uCFamily_RenesasP1x, RBFS_uCFamily_RenesasU2A);
+RB_ASSERT_SWITCH_SETTINGS(RBFS_SYSDebugFeatures, RBFS_SYSDebugFeatures_OFF, RBFS_SYSDebugFeatures_ON);
+
+
+/******************************************************************************/
+/* header entries for RBSYS                                                   */
+/******************************************************************************/
+/*PROC_SECTION: RBSYS_Subsystem */
+RBSYS_Subsystem.h
+/*PROC_SECTION_END: */
+
+
+/******************************************************************************/
+/* process entries for RBSYS                                                  */
+/******************************************************************************/
+
+/*PROC_SECTION: SPG_RBSYS_ClearColdStartResetFlags */
+RBSYS_PRC_ClearColdStartResetFlags
+/*PROC_SECTION_END: */
+
+/*PROC_SECTION: SPG_RBSYS_JitterMonitoring_x1 */
+RBSYS_PRC_JitterMonitoring_x1
+/*PROC_SECTION_END: */
+
+/*PROC_SECTION: SPG_RBSYS_LockMonitoring_x2 */
+RBSYS_PRC_LockMonitoring        /* process has to run on every core */
+/*PROC_SECTION_END: */
+
+/*PROC_SECTION: SPG_RBSYS_PreOsStartCore0 */
+RBSYS_PRC_RuntimeMeasure_PreOSInit
+RBSYS_PRC_StackCheckInit
+/*PROC_SECTION_END: */
+
+#if (RBFS_MCORE == RBFS_MCORE_ON)
+  /*PROC_SECTION: SPG_RBSYS_PreOsStartCore1 */
+  RBSYS_PRC_RuntimeMeasure_PreOSInit
+  RBSYS_PRC_StackCheckInit
+  /*PROC_SECTION_END: */
+#endif
+
+/*PROC_SECTION: SPG_RBSYS_StackCheck_x4 */
+RBSYS_PRC_StackCheck
+/*PROC_SECTION_END: */
+
+#if(((RBFS_uCFamily == RBFS_uCFamily_RenesasU2A) || (RBFS_uCFamily == RBFS_uCFamily_STMStellar)) && (RBFS_SYSDebugFeatures == RBFS_SYSDebugFeatures_ON))
+  /* todo: activate for U2C when performance counters are implemented */
+  /*PROC_SECTION: SPG_RBSYS_PerformanceCounterMonitoring_x2 */
+  RBSYS_PRC_PerformanceCounterMonitoring_x2
+  /*PROC_SECTION_END: */
+#endif
+
+/*PROC_SECTION: SPG_RBSYS_rba_Runtime_Init */
+RBSYS_PRC_RuntimeMeasure_Init
+/*PROC_SECTION_END: */
+
+/*PROC_SECTION: SPG_RBSYS_rba_Runtime_MainFunction_x2 */
+RBSYS_PRC_RuntimeMeasure_MainFunction
+/*PROC_SECTION_END: */
+
+/*PROC_SECTION: SPG_RBSYS_PRC_InitTaskStats */
+RBSYS_PRC_InitTaskStats
+/*PROC_SECTION_END: */
+
+/*PROC_SECTION: SPG_RBSYS_TimerMonitoring_x2 */
+RBSYS_PRC_TimerMonitoring
+/*PROC_SECTION_END: */
+
+/*todo*/
+#if( RBFS_uCFamily == RBFS_uCFamily_RenesasU2A )
+  #if( RBFS_SysTask0p5ms == RBFS_SysTask0p5ms_ON )
+    /*PROC_SECTION: SPG_RBSYS_TimerInterruptMonitoring_500us */
+      RBSYS_PRC_TimerInterruptMonitoring
+    /*PROC_SECTION_END: */
+  #elif( RBFS_SysTask0p5ms == RBFS_SysTask0p5ms_OFF )
+    /*PROC_SECTION: SPG_RBSYS_TimerInterruptMonitoring_1ms */
+      RBSYS_PRC_TimerInterruptMonitoring
+    /*PROC_SECTION_END: */
+  #endif
+#endif
+
+/* todo */
+/*PROC_SECTION: SPG_RBSYS_Monitorings_Init */
+RBSYS_PRC_UnsupportedHW
+#if( RBFS_uCFamily == RBFS_uCFamily_RenesasU2A )
+  RBSYS_PRC_CheckClockTreeSettings
+#endif
+/*PROC_SECTION_END: */
+
+/*todo*/
+/*PROC_SECTION: SPG_RBSYS_FswFinalGuard_Init */
+RBSYS_PRC_FSW_FinalGuard_Init
+#if( RBFS_uCFamily != RBFS_uCFamily_STMStellar )
+  RBSYS_PRC_FSW_VerifyFinalGuardSettings
+#endif
+/*PROC_SECTION_END: */
+
+#if (RBFS_TaskSync == RBFS_TaskSync_ON)
+  /* RBSYS_PRC_SRMSTimeBaseAdaptation must be in highest prio task */
+  #if (RBFS_SysTask0p5ms == RBFS_SysTask0p5ms_ON)
+    /*PROC_SECTION: SPG_RBSYS_SRMSTimeBaseAdaptation_0p5ms */
+    RBSYS_PRC_SRMSTimeBaseAdaptation
+    /*PROC_SECTION_END: */
+  #else
+    /*PROC_SECTION: SPG_RBSYS_SRMSTimeBaseAdaptation_1ms */
+    RBSYS_PRC_SRMSTimeBaseAdaptation
+    /*PROC_SECTION_END: */
+  #endif
+
+  /*PROC_SECTION: SPG_RBSYS_SRMSCylicTest_x4 */
+    RBSYS_PRC_SRMSCylicTest
+  /*PROC_SECTION_END: */
+#endif
+
+#if( RBFS_LockTimeMonitoring == RBFS_LockTimeMonitoring_Enabled )
+  /*PROC_SECTION: SPG_RBSYS_ResetMaxLockTime_Init */
+  RBSYS_PRC_ResetMaxLockTime_Init
+  /*PROC_SECTION_END: */
+#endif
+
+#if( RBFS_CANCommunicationDuringInitTask == RBFS_CANCommunicationDuringInitTask_Enabled )
+  /*PROC_SECTION: SPG_RBSYS_SynchronizeCores_TaskInit */
+  RBSYS_PRC_SynchronizeCores_TaskInit
+  /*PROC_SECTION_END: */
+#endif
+
+#if( RBFS_uCFamily == RBFS_uCFamily_STMStellar )
+  /*PROC_SECTION: SPG_RBSYS_ModeChangeAfterFCCUInit */
+  RBSYS_PRC_ModeChangeAfterFCCUInit
+  /*PROC_SECTION_END: */
+#endif

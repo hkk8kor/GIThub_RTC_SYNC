@@ -1,0 +1,84 @@
+«REM»
+<BASDKey>
+**********************************************************************************************************************
+*
+* COPYRIGHT RESERVED, Robert Bosch GmbH, 2014. All rights reserved.
+* The reproduction, distribution and utilization of this document as well as the communication of its contents to
+* others without explicit authorization is prohibited. Offenders will be held liable for the payment of damages.
+* All rights reserved in the event of the grant of a patent, utility model or design.
+*
+**********************************************************************************************************************
+* Administrative Information (automatically filled in)
+* $Domain____:$
+* $Namespace_:$
+* $Class_____:$
+* $Name______:$
+* $Variant___:$
+* $Revision__:$
+**********************************************************************************************************************
+</BASDKey>
+«ENDREM»
+
+«IMPORT bsw»
+«IMPORT bsw::rba_NdsModule»
+
+«EXTENSION rba_ComScl_Cc_Util»
+«EXTENSION rba_Nds_PduEcuUtil»
+«EXTENSION rba_Nds_SignalEcuUtil»
+«EXTENSION rba_Nds_SignalConvUtil»
+«EXTENSION rba_Nds_SignalGroupConvUtil»
+«EXTENSION rba_Nds_Util»
+«EXTENSION rba_Nds_CcUtil»
+
+«REM»Report no Error«ENDREM»
+«AROUND *rba_ComScl_Aspect_ErrorReport_NoError(String failureType) FOR rba_Nds_ReceivePdu»
+    «LET this.rba_ComScl_Cc_getDemEventName(failureType) AS demEventName»
+    «IF demEventName != null»
+        Dem_ReportErrorStatus(«demEventName», DEM_EVENT_STATUS_PREPASSED); 
+    «ENDIF»
+    «ENDLET»
+«ENDAROUND»
+
+«AROUND *rba_ComScl_Aspect_ErrorReport_NoError(String failureType) FOR rba_Nds_ReceiveSignalGroupNetworkPort»
+    «LET this.rba_ComScl_Cc_getDemEventName(failureType) AS demEventName»
+    «IF demEventName != null»
+       Dem_ReportErrorStatus(«demEventName», DEM_EVENT_STATUS_PREPASSED); 
+    «ENDIF»
+    «ENDLET»
+«ENDAROUND»
+
+«AROUND *rba_ComScl_Aspect_ErrorReport_NoError(String failureType) FOR rba_Nds_TransmitPdu»
+    «LET this.rba_ComScl_Cc_getDemEventName(failureType) AS demEventName»
+    «IF demEventName != null»
+        Dem_ReportErrorStatus(«demEventName», DEM_EVENT_STATUS_PREPASSED); 
+    «ENDIF»
+    «ENDLET»
+«ENDAROUND»
+
+«REM»Report Error«ENDREM»
+«AROUND *rba_ComScl_Aspect_ErrorReport_Error(String failureType, String algorithm) FOR rba_Nds_TransmitPdu»
+    «LET this.rba_ComScl_Cc_getDemEventName(failureType) AS demEventName»
+    «REM» The prefix is obtained from the RxSignalNetworkPort, all of them shall have the same. «ENDREM»
+    «LET this.rba_Nds_TransmitSignalNetworkPort.rba_Nds_getPrefix().first() AS prefix»
+    «IF demEventName != null»
+       Dem_ReportErrorStatus(«demEventName», DEM_EVENT_STATUS_PREFAILED); 
+    «ENDIF»
+    «ENDLET»«ENDLET»
+«ENDAROUND»
+
+«AROUND *rba_ComScl_Aspect_ErrorReport(String reportingName, String MonitoringClass, Boolean error) FOR rba_Nds_ReceivePdu»
+    «IF error»
+       Dem_ReportErrorStatus(DemConf_DemEventParameter_«reportingName», DEM_EVENT_STATUS_PREFAILED); 
+    «ELSE»
+        Dem_ReportErrorStatus(DemConf_DemEventParameter_«reportingName», DEM_EVENT_STATUS_PREPASSED); 
+    «ENDIF»
+«ENDAROUND»
+
+«REM»
+<BASDKey>
+**********************************************************************************************************************
+* Administrative Information (automatically filled in)
+* $History___:$
+**********************************************************************************************************************
+</BASDKey>
+«ENDREM»

@@ -1,0 +1,17 @@
+#
+# Cantata Test-Level Options
+#
+# Any options set in this file will override the options set in the
+# project-level options file.
+#
+# WARNING: Do not alter this file manually.
+#
+#tool.testid=367a3b4e-422f-48ba-b3ee-312ad87e0963
+"--ci:--instr:stmt;func;decn;log;"
+"--sa:--calc:*#*"
+
+#User Section
+"--dont_ci:*"
+"--do_ci:rbl_CustIf_ECU_Stat_IMU_A_ST3.c"
+"--ci:--no_instr:all"
+"--ci:--instr:stmt;func;call;decn;log;#rbl_CustIf_ECU_Stat_IMU_A_ST3_PDU_Update"

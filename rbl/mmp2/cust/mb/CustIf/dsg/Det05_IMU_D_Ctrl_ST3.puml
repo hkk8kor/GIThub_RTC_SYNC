@@ -1,0 +1,14 @@
+
+start
+  :Read the SigChain_FinalRaw signal;
+  :prepare imu driving can signal status;
+note left
+refer IMU_D_PrepareStatus diagram for driving Can status preperation
+end note
+  :prepare Imu driving can signals;
+note left
+refer Prepare_IMU_D_Signals diagram for driving Can signal preperation
+end note
+  :Tymsync,tymstamp and reserved signal updated to default value;
+  :Transmit the updated signal via rbl_CustIf_IMU_D_Det05_CtrlMsg_ST3 variable;
+stop

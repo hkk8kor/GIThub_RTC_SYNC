@@ -1,0 +1,111 @@
+#if( RBFS_uCFamily == RBFS_uCFamily_RenesasP1x )
+  __attribute__((always_inline)) static inline void RBSYS_PEGuardInit(void)
+  {
+    /** todo: Lock Access to the PEG here!! (PBUS Guard or LockBit) and only for Application */
+  
+  
+      /* PE guard area 0:
+        * We don't rely on the default setting, therefore all default settings are written explicit.
+        * This means read only access by HSM is allowed for LRAM of CPU0/CPU1: 0xFE800000 - 0xFEBFFFFF
+        */
+      PEGG0MK = 0x003FF000u;
+      PEGG0SP = RBSYS_SPID_SECURE_MASK;
+      PEGG0BA = (0xFE800000u | RBSYS_PEG_READ_ACCESS | RBSYS_PEG_ENABLE);
+  
+  
+      /* PE guard area 1:
+        * Enables read/write access for all safe bus masters for LRAM of CPU0/CPU1: 0xFE800000 - 0xFEBFFFFF
+        */
+      PEGG1MK = 0x003FF000u;
+      PEGG1SP = RBSYS_SPID_SAFE_MASK;
+      PEGG1BA = (0xFE800000u | RBSYS_PEG_WRITE_ACCESS | RBSYS_PEG_READ_ACCESS | RBSYS_PEG_ENABLE);
+  }
+
+
+#endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#if( RBFS_uCFamily == RBFS_uCFamily_RenesasU2A )
+  
+  static inline void RBSYS_PBUSGuardInit_ForPEGuard(void)
+  {
+    static const RBSYS_BUSGuardConfig_t rbsys_PBusGuardConfigs_ForPEGuard[] = {
+      /* Restrict Write Access to PEGuard Registers */
+      {   RBSYS_SPID_REGAddr(01,0) , RBSYS_SPID_SAFE_MASK ,                                 RBSYS_PROT_REGAddr(01,0) , RBSYS_PROT_EnLock,         RBSYS_KCPROT_REGAddr(00)},
+      {   RBSYS_SPID_REGAddr(01,1) , RBSYS_SPID_SAFE_MASK ,                                 RBSYS_PROT_REGAddr(01,1) , RBSYS_PROT_EnLock,         RBSYS_KCPROT_REGAddr(00)},
+      {   RBSYS_SPID_REGAddr(01,2) , RBSYS_SPID_SAFE_MASK ,                                 RBSYS_PROT_REGAddr(01,2) , RBSYS_PROT_EnLock,         RBSYS_KCPROT_REGAddr(00)},
+      {   RBSYS_SPID_REGAddr(01,3) , RBSYS_SPID_SAFE_MASK ,                                 RBSYS_PROT_REGAddr(01,3) , RBSYS_PROT_EnLock,         RBSYS_KCPROT_REGAddr(00)},
+      /* Restrict Write Access to SPIDCTL Registers */
+      {   RBSYS_SPID_REGAddr(90,3) , RBSYS_SPID_SAFE_MASK ,                                 RBSYS_PROT_REGAddr(90,3) , RBSYS_PROT_EnLock,         RBSYS_KCPROT_REGAddr(90)},
+    };
+    rbsys_InitializeGuards(rbsys_PBusGuardConfigsPreInit, sizeof(rbsys_PBusGuardConfigsPreInit)/sizeof(RBSYS_BUSGuardConfig_t));
+  }
+
+  __attribute__((always_inline)) static inline void RBSYS_PEGuardInit(void)
+  {
+      /* PEGPROTn - PE Guard Area n Protection Setting Register */
+      #define RBSYS_PEG_RD_EN  ((uint32) 1u<<0)   //< As against P1x PEGGnBA, this will allow read access without SPID restriction
+      #define RBSYS_PEG_WR_EN  ((uint32) 1u<<1)   //< As against P1x PEGGnBA, this will allow write access without SPID restriction
+      #define RBSYS_PEG_UM_EN  ((uint32) 1u<<4)
+      #define RBSYS_PEG_DBG_EN ((uint32) 1u<<6)
+      #define RBSYS_PEG_EN     ((uint32) 1u<<8)
+
+      #define RBSYS_PEG_BAD_VALID_BITS (0x03FFF000u)
+
+      #define RBSYS_PEG_ADV_64KB (0x03FF0000u) //< Bit 31-26 must not be written
+      #define RBSYS_PEG_ADV_16KB (0x03FFC000u) //< Bit 31-26 must not be written
+
+      /* todo: different to P1x, U2A PEG will also protect the respective LRAM against access of the corresponding CPU if
+         the SPID does not match. All SPIDs (that the CPU will possibly use) have to have r/w access */
+
+      if (RBSYS_getCoreID() == RBSYS_CORE_ID_0)
+      {
+        /** PE0 Guard for LRAM 0xFDC00000 to 0xFDC0FFFF (+ PE0.INTC1) */
+        /*  Attention: allow read for all bus masters -> needed by HSM */
+        RBSYS_UnlockAccessToHwModule(&GUARD_PE0CL0PEGKCPROT);                                           // enable writing protected registers
+        GUARD_PE0CL0PEGSPID0  = RBSYS_SPID_SAFE_MASK;
+        GUARD_PE0CL0PEGPROT0  = RBSYS_PEG_EN | RBSYS_PEG_DBG_EN | RBSYS_PEG_UM_EN | RBSYS_PEG_RD_EN;
+        GUARD_PE0CL0PEGBAD0   = 0xFDC00000u & RBSYS_PEG_BAD_VALID_BITS;                                 // access base address for LRAM 0
+        GUARD_PE0CL0PEGADV0   = RBSYS_PEG_ADV_64KB;                                                     // access address valid bits -> all
+
+        /** Guard PE0 INTC1 */
+        GUARD_PE0CL0PEGSPID1  = RBSYS_SPID_SAFE_MASK;
+        GUARD_PE0CL0PEGPROT1  = RBSYS_PEG_EN | RBSYS_PEG_DBG_EN | RBSYS_PEG_UM_EN | RBSYS_PEG_RD_EN;
+        GUARD_PE0CL0PEGBAD1   = 0xFFFC4000u & RBSYS_PEG_BAD_VALID_BITS;                                 // access base address for INTC1
+        GUARD_PE0CL0PEGADV1   = RBSYS_PEG_ADV_16KB;                                                     // access address valid bits -> 16KB
+
+        RBSYS_LockAccessToHwModule(&GUARD_PE0CL0PEGKCPROT);                                             // disable writing protected registers
+      }
+      else
+      {
+        /** PE1 Guard for LRAM 0xFDA00000 to 0xFDA0FFFF (+ PE1.INTC1) */
+        /*  Attention: allow read for all bus masters -> needed by HSM */
+        RBSYS_UnlockAccessToHwModule(&GUARD_PE1CL0PEGKCPROT);                                           // enable writing protected registers
+        GUARD_PE1CL0PEGSPID0  = RBSYS_SPID_SAFE_MASK;
+        GUARD_PE1CL0PEGPROT0  = RBSYS_PEG_EN | RBSYS_PEG_DBG_EN | RBSYS_PEG_UM_EN | RBSYS_PEG_RD_EN;
+        GUARD_PE1CL0PEGBAD0   = 0xFDA00000u & RBSYS_PEG_BAD_VALID_BITS;                                 // access base address for LRAM 1
+        GUARD_PE1CL0PEGADV0   = RBSYS_PEG_ADV_64KB;                                                     // access address valid bits -> all
+
+        /** Guard PE1 INTC1 */
+        GUARD_PE1CL0PEGSPID1  = RBSYS_SPID_SAFE_MASK;
+        GUARD_PE1CL0PEGPROT1  = RBSYS_PEG_EN | RBSYS_PEG_DBG_EN | RBSYS_PEG_UM_EN | RBSYS_PEG_RD_EN;
+        GUARD_PE1CL0PEGBAD1   = 0xFFFC8000u & RBSYS_PEG_BAD_VALID_BITS;                                 // access base address for INTC1
+        GUARD_PE1CL0PEGADV1   = RBSYS_PEG_ADV_16KB;                                                     // access address valid bits -> 16KB
+
+        RBSYS_LockAccessToHwModule(&GUARD_PE1CL0PEGKCPROT);                                             // disable writing protected registers
+      }
+      // Hint for D7: As long as Core2/3 are disabled, LRAM2/3 and the corresponding INTC1-Controller are not accessible.
+  }
+#endif

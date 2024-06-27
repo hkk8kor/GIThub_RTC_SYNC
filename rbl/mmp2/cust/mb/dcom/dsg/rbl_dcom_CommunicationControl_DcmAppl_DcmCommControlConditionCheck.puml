@@ -1,0 +1,7 @@
+start    
+if (Check if DataCommType_u8  is equal to DCOM_COMMUNICATION_MESSAGES_NORMAL) then (yes)
+     :return Value is updated with E_OK;
+else (no)
+     :dataNegRespCode_u8 is is updated with DCM_E_REQUESTOUTOFRANGE ;  
+endif
+stop

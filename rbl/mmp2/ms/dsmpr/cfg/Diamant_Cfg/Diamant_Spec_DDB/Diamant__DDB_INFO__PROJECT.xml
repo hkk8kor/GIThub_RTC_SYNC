@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<DIAGNOSIS INFO="DiamantPro 4.1.257.1682" CHECK="A83F1C339AA7BD4F1D8904839D9F0735ICAgICAgICAgICAgICAgICAgICAgIERpYW1hbnRQcm8gICAgICAgICAgICAgICAgICAgIDQuMS4yNTcuMTY4MiAgICAgICAgICAgIC04NTg1ODc4OTIzNDk2Mzk1NjI3ICAgICAgICAgICAgICAgICAgICBCQU5JLUMtMDAwMk0gICAgICAgICAgICAgICAgICAgIEFQQUNcQVdFMUtPUiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg">
+  <DDB_INFOS>
+    <DDB_INFO key="PROJECT">
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <PROJECT_REF>Prj_System9</PROJECT_REF>
+      <KEYLIST>
+        <ITEM key="GoodCheck_Concept">Event base</ITEM>
+        <ITEM key="FMHOBD_DTCS_OBD_SPECIFIC">false</ITEM>
+        <ITEM key="DemAvailabilitySupport">DEM_EVENT_AVAILABILITY</ITEM>
+        <ITEM key="DemSuppressionSupport">DEM_DTC_SUPPRESSION</ITEM>
+        <ITEM key="DemStatusBitHandlingTestFailedSinceLastClear">DEM_STATUS_BIT_NORMAL</ITEM>
+        <ITEM key="DemRbClearDtcClearsAllBits">true</ITEM>
+        <ITEM key="DemClearDTCLimitation">DEM_ALL_SUPPORTED_DTCS</ITEM>
+        <ITEM key="DemRbMirrorMemoryDtcStatusStored">false</ITEM>
+        <ITEM key="DemRbCustomizableDTCStatusByte">false</ITEM>
+        <ITEM key="DemRbDTCSettingBlocksReporting">true</ITEM>
+        <ITEM key="DemRbPrestoreFreezeFrameNonVolatile">false</ITEM>
+        <ITEM key="DemOBDCompliancy">1</ITEM>
+        <ITEM key="DemRbEvMemProjectExtension">false</ITEM>
+        <ITEM key="DemRbEvtProjectExtension">false</ITEM>
+        <ITEM key="DemRbClearDTCNumberOfEventsPerCycle">20</ITEM>
+        <ITEM key="DemRbAgingCounterType">COUNT_UP</ITEM>
+        <ITEM key="DemRbUserDefinedEventMemoryStorageStrategyEnabled">false</ITEM>
+        <ITEM key="DemRbEnableReportingChronologicalOrderHooks">false</ITEM>
+        <ITEM key="DemRbSupportDebouncerResetAfterStorageCondition">OFF</ITEM>
+        <ITEM key="DemRbBfmEventCategoryPrioritySupported">false</ITEM>
+        <ITEM key="DemRbFailureDependencyRecheckLimit">80</ITEM>
+        <ITEM key="DemRbSupportDebouncerResetAfterStorageCondition">OFF</ITEM>
+        <ITEM key="DemAllowDisableDTCSettingCallback" />
+        <ITEM key="DemRbOBDSupportObdVariantCoding">false</ITEM>
+        <ITEM key="DemRbOBDSupportBlockingPermanentDTC">false</ITEM>
+        <ITEM key="STM_CFG_DevelopmentErrorDetect">true</ITEM>
+        <ITEM key="DemRbStoreWaitingForMonitoringEvent">true</ITEM>
+        <ITEM key="DemRbStoreWaitingForMonBufferDelayTime">255</ITEM>
+        <ITEM key="RBCBDSDemTriggerOnEventStatus">false</ITEM>
+        <ITEM key="DemRbProjectSpecificClearDtcNotification">false</ITEM>
+        <ITEM key="DemEnvironmentDataCapture">DEM_CAPTURE_SYNCHRONOUS_TO_REPORTING</ITEM>
+        <ITEM key="DemEventDisplacementStrategy">DEM_DISPLACEMENT_FULL</ITEM>
+        <ITEM key="DemRbDisturbanceMemoryCallbackOnDisturbance">false</ITEM>
+        <ITEM key="DemUserDefinedMemoryIdentifier" />
+        <ITEM key="DemRbAdvanceOperationCycleEventsPerLock">16</ITEM>
+        <ITEM key="DemOBDSupport">DEM_OBD_NO_OBD_SUPPORT</ITEM>
+        <ITEM key="DemRbAllowDisableDTCSettingCallback" />
+        <ITEM key="DemRbDtcStateManagerNumberOfDTCsPerCycle">10</ITEM>
+        <ITEM key="DemRbDtcFilterRetrieveNumberOfDTCsPerCycle">50</ITEM>
+        <ITEM key="DemRbNumberOfDTCsToProcessPerLOCK">1</ITEM>
+        <ITEM key="DemOBDSupportOfPID21">false</ITEM>
+        <ITEM key="DemOBDSupportOfPID31">false</ITEM>
+        <ITEM key="DemRbOBDLeadingCycleActivationForDCY">true</ITEM>
+        <ITEM key="RBDSM_EraseAllNvMBlock_ProjectSpecific">false</ITEM>
+        <ITEM key="DemImmediateNvStorageLimit">10</ITEM>
+        <ITEM key="DemRbDtcStatusChangedCallbackNONAR">false</ITEM>
+        <ITEM key="DemRbDataStructureRAMOptimizationSupported">true</ITEM>
+        <ITEM key="DemRbSupportEvBuffStorageEnvDataOptimisation">false</ITEM>
+        <ITEM key="DemRbOBDDrivingCycleStart">DCYStartOnBusTrigger</ITEM>
+      </KEYLIST>
+      <SERVICE_CONFIGURATION>
+        <DIAGNOSTIC_CONFIGURATION_REF>all</DIAGNOSTIC_CONFIGURATION_REF>
+        <REPAIR_CONFIGURATION_REF>all</REPAIR_CONFIGURATION_REF>
+        <VEHICLE_CONFIGURATION_REF>all</VEHICLE_CONFIGURATION_REF>
+      </SERVICE_CONFIGURATION>
+      <STM_Config>
+        <EnableVirtualNode>true</EnableVirtualNode>
+      </STM_Config>
+      <SMM_Config />
+    </DDB_INFO>
+  </DDB_INFOS>
+</DIAGNOSIS>

@@ -1,0 +1,19 @@
+Start
+:Read the **RBMESG_Ign_Stat_ST3** signal;
+if(Ign_Stat_ST3 pdu is received without timeout) then (Yes)
+:Validate the Received the received **ISw_Stat_ST3** signal;
+note right
+ invalid value include any other value
+ other than valid values mentioned
+end note
+if(ISw_Stat_ST3 Signal is valid ?) then (Yes) 
+: Report to dem that \n **RBL_CUSTIF_SIGNAL_INVALID_Ign_Stat_ST3** \n dem event is PREPASSED ;
+else (No) 
+: Report to dem that \n **RBL_CUSTIF_SIGNAL_INVALID_Ign_Stat_ST3** \n dem event is PREFAILED ; 
+: Update the ISw_Stat_ST3 signal with \n **I_C03_ISW_STAT_SNA** value;
+endif
+else (No)
+: Update the ISw_Stat_ST3 signal with \n **I_C03_ISW_STAT_SNA** value;
+endif
+: Transmit the recieved signals \n via **RBMESG_rbl_CustIf_Ign_Stat_ST3** Variable;
+Stop

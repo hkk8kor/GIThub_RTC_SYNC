@@ -1,0 +1,32 @@
+#
+# Cantata Test-Level Options
+#
+# Any options set in this file will override the options set in the
+# project-level options file.
+#
+# WARNING: Do not alter this file manually.
+#
+#tool.testid=3703ceb7-3350-42bd-ab6a-3c573c8d316e
+"--ci:--instr:stmt;func;decn;log;"
+"--sa:--calc:*#*"
+"--sm:--access_function:"rbl_CustIf_TiSync_AMG.c":Bfx_Prv_GetBit_u8u8_u8_Inl(uint8, uint8)"
+"--sm:--access_function:"rbl_CustIf_TiSync_AMG.c":RBSYS_EnterCorelocalIntlock()"
+"--sm:--access_function:"rbl_CustIf_TiSync_AMG.c":RBSYS_ExitCorelocalIntlock()"
+"--sm:--access_function:"rbl_CustIf_TiSync_AMG.c":RBSYS_getRealtimeTickCtr()"
+"--sm:--access_function:"rbl_CustIf_TiSync_AMG.c":rbl_TiSync_StbMAddNanoSeconds_AMG(StbM_TimeStampType *,uint32 )"
+"--sm:--wrap:Bfx_Prv_GetBit_u8u8_u8_Inl(uint8, uint8)#Bfx_Prv_CopyBit_u8u8u8u8_Inl(uint8 *,uint8 ,uint8 ,uint8 )"
+"--sm:--wrap:Bfx_Prv_GetBit_u8u8_u8_Inl(uint8, uint8)#rbl_TiSync_convertSystemTickstoGTS_AMG(uint32 ,StbM_TimeStampType *)"
+"--sm:--wrap:RBSYS_EnterCorelocalIntlock()#rbl_TiSync_convertSystemTickstoGTS_AMG(uint32 ,StbM_TimeStampType *)"
+"--sm:--wrap:RBSYS_ExitCorelocalIntlock()#rbl_TiSync_convertSystemTickstoGTS_AMG(uint32 ,StbM_TimeStampType *)"
+"--sm:--wrap:RBSYS_getRealtimeTickCtr()#RBSYS_isUsecTimerElapsed(const uint32 *const ,uint16 )"
+"--sm:--wrap:RBSYS_getRealtimeTickCtr()#RBSYS_isUsecTimerElapsed_ExtendedRange(const uint32 *const ,uint32 )"
+"--sm:--wrap:RBSYS_getRealtimeTickCtr()#RBSYS_startUsecTimer(uint32 *const )"
+"--sm:--wrap:RBSYS_getRealtimeTickCtr()#rbl_TiSync_convertSystemTickstoGTS_AMG(uint32 ,StbM_TimeStampType *)"
+"--sm:--wrap:rbl_TiSync_StbMAddNanoSeconds_AMG(StbM_TimeStampType *,uint32 )#rbl_TiSync_convertSystemTickstoGTS_AMG(uint32 ,StbM_TimeStampType *)"
+
+#User Section
+"--dont_ci:*"
+"--do_ci:rbl_CustIf_TiSync_AMG.c"
+"--ci:--no_instr:all"
+"--ci:--instr:stmt;func;decn;log;#rbl_TiSync_convertSystemTickstoGTS_AMG"
+"--ci:--instr:stmt;func;decn;log;#rbl_TiSync_StbMAddNanoSeconds_AMG"

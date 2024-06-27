@@ -1,0 +1,44 @@
+!pragma useVerticalIf on
+title State: dcom_NvMGetErrorStatus_BeforeReadOrWriteRequest
+start
+:At Init State machine dcom_EepromWriteByPdmState will be in State of <b>dcom_NvMGetErrorStatus_BeforeReadOrWriteRequest
+<plain>Return Value updated with <b>DCM_E_PENDING
+ l_EEPROMRetryLimit counter to zero ;
+
+if(check state machine dcom_EepromWriteByPdmState state is <b>dcom_NvMGetErrorStatus_BeforeReadOrWriteRequest) then (yes)
+ : Check Error Status for requested NVM BLOCK ID by calling function NvM_GetErrorStatus and update Error Status to Local variable l_NvM_Result;
+     if(if error status for Requested block is not NVM_REQ_PENDING) then (yes)
+       :Write the Data to requested NVM Block using function NvM_WriteBlock;
+           if (if NvM_WriteBlock result after writing is E_OK) then (E_OK)
+            :Reset the local counter l_EEPROMRetryLimit to 0
+             and change the the state machine dcom_EepromWriteByPdmState to next state to 
+             <b> dcom_NvMGetErrorStatus_AfterReadOrWriteRequest;
+            :Return Value will be updated to <b>DCM_E_PENDING;
+              stop
+           else ( E_NOT_OK)
+           :increment the local counter l_EEPROMRetryLimit by 1;
+               if(check if local counter  l_EEPROMRetryLimit not exceed limit 2) then (yes)
+               :change the the state machine state dcom_EepromWriteByPdmState  to <b>dcom_Error_ReadOrWriteNVMBlock;
+               :Return Value will be updated to <b>DCM_E_PENDING;
+                 stop
+              else  
+                :Return Value will be updated to <b>DCM_E_PENDING;
+                stop 
+           endif
+        endif
+     else
+      :increment the local counter l_EEPROMRetryLimit by 1;
+         if(check if local counter  l_EEPROMRetryLimit not exceed limit 5) then (yes)
+          :change the the state machine state to dcom_EepromWriteByPdmState  <b>dcom_Error_ReadOrWriteNVMBlock;
+          :Return Value will be updated to <b>DCM_E_PENDING;
+           stop
+        else
+           :Return Value will be updated to <b>DCM_E_PENDING;
+           stop
+          endif
+endif
+ else
+           :Return Value will be updated to <b>DCM_E_PENDING;
+           stop
+endif
+

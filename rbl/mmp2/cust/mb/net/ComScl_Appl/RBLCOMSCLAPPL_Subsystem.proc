@@ -1,0 +1,33 @@
+/* ************************************************************************** *
+ *
+ *  Copyright (c) 2018 Robert Bosch GmbH, Germany
+ *  All rights reserved.
+ *
+ * ************************************************************************** */
+
+#include "ComScl_SubSystemProc.h"
+#include "RB_Prj_GlobalSettings.h"
+
+/******************************************************************************/
+/* header includes                                                            */
+/******************************************************************************/
+
+/*PROC_SECTION: RBLCOMSCLAPPL_Subsystem */
+ComScl_SubSystemProc.h
+
+/*PROC_SECTION_END: */
+
+/******************************************************************************/
+/* processes entries                                                          */
+/******************************************************************************/
+/*PROC_SECTION: SPG_RBLCOMSCLAPPL_Init */
+ComScl_Proc_Init
+/*PROC_SECTION_END: */
+
+/*PROC_SECTION: SPG_RBLCOMSCLAPPL_Cycx1 */
+ComScl_Tx_Proc_5ms
+/*PROC_SECTION_END: */
+
+/*PROC_SECTION: SPG_RBLCOMSCLAPPL_Cycx4 */
+ComScl_Rx_Proc_20ms
+/*PROC_SECTION_END: */

@@ -1,0 +1,14 @@
+#
+# Cantata Options
+#
+# WARNING: Do not alter this file manually.
+#
+#tool.testid=a415a5df-aeaf-4de6-856e-ca0eab6a86ef
+"--ci:--instr:stmt;func;call;decn;log;"
+"--sa:--calc:*#*"
+
+#User Section
+"--dont_ci:*"
+"--do_ci:DcmAppl_DcmConfirmation_GeneralReject.c"
+"--ci:--no_instr:all"
+"--ci:--instr:stmt;func;call;decn;log;#DcmAppl_DcmConfirmation_GeneralReject"

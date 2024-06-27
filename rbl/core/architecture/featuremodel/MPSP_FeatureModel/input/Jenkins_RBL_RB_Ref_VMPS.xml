@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<mappings>
+		<mapping>
+			<streamNamePattern>(?i)RBL_RB_REF_VMPS_(int|stable).*</streamNamePattern>
+			<config>RBL_RB_REF_VMPS_Int.xml</config>
+		</mapping>
+	</mappings>
+	<deliveries>
+		<deliver>
+			<stream>RBL_RB_REF_VMPS_Int</stream>
+			<deliverTo>
+				<stream>RBL_RB_REF_VMPS_Stable</stream>
+			</deliverTo>
+		</deliver>
+	</deliveries>
+	<callOfflineTool>
+		<evaluate>false</evaluate>
+		<stream>
+			<streamNamePattern>(?i)RBL_RB_REF_VMPS_int.*</streamNamePattern>
+			<usedServices>
+				<name>Trimble</name>
+			</usedServices>
+		</stream>
+	</callOfflineTool>
+	<testing>Testing_RBL_RB_Ref_VMPS.xml</testing>
+</config>
+
+

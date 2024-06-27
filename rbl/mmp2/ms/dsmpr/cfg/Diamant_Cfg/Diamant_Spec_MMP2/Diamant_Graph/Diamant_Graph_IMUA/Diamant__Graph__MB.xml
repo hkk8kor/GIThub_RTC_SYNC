@@ -1,0 +1,490 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DIAGNOSIS>
+  <PRJ_NODES>
+    <PRJ_NODE>
+      <COORDS>100,100</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_AswSysPas</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>100,100</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_BoostRegulator</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>361,7</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_ChargePump</NODE_REF>
+      <FW_REFS>
+        <FW_REF ctl="-" prio="11">FW_RBChargePumpUndervoltage</FW_REF>
+      </FW_REFS>
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>100,100</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_ChargePump2</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>787,7</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_Det</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>251,154</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_Ecu</NODE_REF>
+      <FW_REFS>
+        <FW_REF ctl="-" prio="228">FW_RBSUPPLYIREFOutOfRange</FW_REF>
+        <FW_REF ctl="-" prio="223">FW_RBChargePumpFailure</FW_REF>
+        <FW_REF ctl="-" prio="53">FW_RBEcuBandgap</FW_REF>
+        <FW_REF ctl="-" prio="49">FW_RBAdcPinTest</FW_REF>
+        <FW_REF ctl="-" prio="47">FW_RBAdcSelftestC5P</FW_REF>
+        <FW_REF ctl="-" prio="46">FW_RBAdcPeripheralFault</FW_REF>
+        <FW_REF ctl="-" prio="22">FW_RBMICSYS_OC_AsicMalfunction</FW_REF>
+        <FW_REF ctl="-" prio="11">FW_RBNvM_WriteCycleExceed</FW_REF>
+      </FW_REFS>
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>100,100</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_EcuSupply</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>100,100</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_EMM</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>1224,113</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_MMP_BCS_Whl_Msg1_BTC_ST3</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>49,416</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_MMP_CommunicationFailure</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>1395,0</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_MMP_DI_OdoSpeedometer_Signal</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>1132,3</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_MMP_DI_OdoSpeedometer_ST3</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>1293,177</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_MMP_DIAG_Stat_ST3</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>1185,53</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_MMP_FBL_Cfg_Star3_ST3</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>1217,560</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_MMP_GTS_Cloning</NODE_REF>
+      <FW_REFS>
+        <FW_REF ctl="+" prio="20">FW_RBL_STBM_TIME_COPY</FW_REF>
+        <FW_REF ctl="+" prio="10">FW_RBL_STBM_RATE_COPY</FW_REF>
+      </FW_REFS>
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>841,498</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_MMP_HAD_Stat_IDC_S_FSI_Bckp_Pr5_ST3</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>1215,369</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_MMP_Ign_Stat_ST3</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>218,9</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_MMP_NoDTC</NODE_REF>
+      <FW_REFS>
+        <FW_REF ctl="+" prio="228">FW_RBSUPPLYIREFOutOfRange</FW_REF>
+        <FW_REF ctl="+" prio="223">FW_RBChargePumpFailure</FW_REF>
+        <FW_REF ctl="+" prio="53">FW_RBEcuBandgap</FW_REF>
+        <FW_REF ctl="+" prio="49">FW_RBAdcPinTest</FW_REF>
+        <FW_REF ctl="+" prio="47">FW_RBAdcSelftestC5P</FW_REF>
+        <FW_REF ctl="+" prio="46">FW_RBAdcPeripheralFault</FW_REF>
+        <FW_REF ctl="+" prio="22">FW_RBMICSYS_OC_AsicMalfunction</FW_REF>
+        <FW_REF ctl="+" prio="11">FW_RBNvM_WriteCycleExceed</FW_REF>
+        <FW_REF ctl="+" prio="10">FW_RBChargePumpUndervoltage</FW_REF>
+      </FW_REFS>
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>334,414</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_MMP_Nvm_SigChnMonContents</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>1238,302</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_MMP_PN14_Master_Stat1_ST3</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>1278,243</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_MMP_PT4_PTCoor4_ST3</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>185,339</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_MMP_ReInitError</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>19,491</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_MMP_SensorModuleError</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>493,314</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_MMP_SignalChain</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>357,480</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_MMP_SignalChainMonitors</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>1125,419</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_MMP_StbM</NODE_REF>
+      <FW_REFS>
+        <FW_REF ctl="-" prio="20">FW_RBL_STBM_TIME_COPY</FW_REF>
+        <FW_REF ctl="-" prio="10">FW_RBL_STBM_RATE_COPY</FW_REF>
+      </FW_REFS>
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>187,251</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_MMP_SyncError</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>243,541</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_MMP_TPSW</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>479,253</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_MMP_TracebilityData</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>115,584</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_MMP_Variant_Coding</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>0,68</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_MMP2_NetConfig</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>411,95</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_Network</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>602,98</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_NetworkCAN</NODE_REF>
+      <FW_REFS>
+        <FW_REF ctl="-" prio="98">FW_CANTRCV_TJA_E_NO_TRCV_CONTROL_CH0</FW_REF>
+        <FW_REF ctl="-" prio="97">FW_CANTRCV_TJA_E_NO_TRCV_CONTROL_CH1</FW_REF>
+      </FW_REFS>
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>941,71</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_NetworkCAN0</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>867,174</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_NetworkCAN1</NODE_REF>
+      <FW_REFS>
+        <FW_REF ctl="+" prio="250">FW_CANTRCV_TJA_E_NO_TRCV_CONTROL_CH0</FW_REF>
+      </FW_REFS>
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>740,243</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_NetworkCAN2</NODE_REF>
+      <FW_REFS>
+        <FW_REF ctl="+" prio="250">FW_CANTRCV_TJA_E_NO_TRCV_CONTROL_CH1</FW_REF>
+      </FW_REFS>
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>100,100</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_NetworkCAN3</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>100,100</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_NetworkFlexray</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>100,100</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_NetworkFlexrayA</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>100,100</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_NetworkFlexrayB</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>100,100</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_NetworkLin</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>100,100</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_OvercurrentMonitoringInfo</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>515,13</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_ReplacementFault</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>100,100</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_Security</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>27,11</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_SMM_DegradeSystem</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>443,154</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_SSA</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>100,100</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_SysAsic1</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>807,686</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_SysAsic1Hydraulic</NODE_REF>
+      <FW_REFS>
+        <FW_REF ctl="-" prio="123">FW_RBChargePumpFailure</FW_REF>
+      </FW_REFS>
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>171,756</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_SysAsic2</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>410,754</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_SysAsic2Hydraulic</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>628,724</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_U5VExt</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>816,51</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_U5VExt2</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>29,345</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_ub6Periphery</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>604,374</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_UBExt</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>157,49</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_UBMR</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>609,208</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_UBVR</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>683,429</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_UbvrHsw</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>68,143</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_uC</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>39,659</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_uCInterCom</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>18,237</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_uCMemoryGuard</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>262,637</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_uCPeriphery</NODE_REF>
+      <FW_REFS>
+        <FW_REF ctl="-" prio="228">FW_RBSUPPLYIREFOutOfRange</FW_REF>
+        <FW_REF ctl="-" prio="53">FW_RBEcuBandgap</FW_REF>
+        <FW_REF ctl="-" prio="49">FW_RBAdcPinTest</FW_REF>
+        <FW_REF ctl="-" prio="47">FW_RBAdcSelftestC5P</FW_REF>
+        <FW_REF ctl="-" prio="46">FW_RBAdcPeripheralFault</FW_REF>
+        <FW_REF ctl="-" prio="22">FW_RBMICSYS_OC_AsicMalfunction</FW_REF>
+        <FW_REF ctl="-" prio="11">FW_RBNvM_WriteCycleExceed</FW_REF>
+      </FW_REFS>
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>615,539</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_uCSoftwareRuntime</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>521,590</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_Xpass</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+  </PRJ_NODES>
+</DIAGNOSIS>

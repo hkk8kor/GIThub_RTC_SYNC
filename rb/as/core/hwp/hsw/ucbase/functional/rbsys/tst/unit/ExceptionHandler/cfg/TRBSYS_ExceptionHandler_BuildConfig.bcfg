@@ -1,0 +1,70 @@
+module "TRBSYSExceptionHandler"
+{
+  module "TestCase" {
+    files {
+      c {
+        /** files containing tests */
+        "/rb/as/core/hwp/hsw/ucbase/functional/RBSYS/tst/unit/ExceptionHandler/TRBSYS_ExceptionHandler.c";
+      }
+    }
+  } // TestCase
+
+  module "UnitUnderTest" {
+    export {
+      /** export headers */
+      "/rb/as/core/hwp/hsw/ucbase/functional/RBSYS/api/**";
+      "/rb/as/core/hwp/hsw/ucbase/functional/RBSYS/src/**";
+      "/rb/as/core/hwp/hsw/ucbase/functional/RBSYS/rtaos/api";
+      "/rb/as/core/hwp/hsw/ucbase/functional/RBSYS/rtaos/src";
+      "/rb/as/core/hwp/hsw/ucbase/functional/RBSYS/lib_ghs/api";
+    }
+
+    files {
+      c {
+        // effectively: "/rb/as/core/hwp/hsw/ucbase/functional/RBSYS/src/RBSYS_ExceptionHandler.c";
+        "/rb/as/core/hwp/hsw/ucbase/functional/RBSYS/tst/unit/ExceptionHandler/TRBSYS_ExceptionHandler_Adaptor.c";
+      }
+    }
+  } // UnitUnderTest
+
+  module "DiamantConfig" {
+    files {
+      diamant {
+        "/rb/as/core/hwp/hsw/ucbase/functional/rbsys/cfg/Diamant/Diamant_*.xml";
+      }
+
+      diamant_used_failure_words {
+        "/rb/as/core/hwp/hsw/ucbase/functional/rbsys/cfg/Diamant/*DiamantFailureWordsUsage*.txt";
+      }
+    }
+  }
+
+  #include "../../stubs/TRB_Prj_ConfigStub.bcfg"
+
+  module "Stub" {
+    export {
+      /** export the stubs */
+      "/rb/as/core/hwp/hsw/ucbase/functional/RBSYS/tst/unit/stubs/**";
+      "/rb/as/core/hwp/hsw/ucbase/functional/RBSYS/tst/unit/ExceptionHandler/stubs/**";
+
+      /** now map the header stub name to the original header file names */
+      /** stub "RBSYS_Intrinsics.h"           with "TRBSYS_Intrinsics.h" */
+      /** stub "RBSYS_uCRegisters.h"          with "TRBSYS_uCRegisters.h" */
+      /** stub "Os.h"                         with "TRBSYS_Os.h" */
+      /** stub "Os_ConfigInterrupts.h"        with "TRBSYS_Os_ConfigInterrupts.h" */
+
+      /** stub "RBLCF_MemoryRemap.h"          with "TRBLCF_MemoryRemap.h" */
+      /** stub "RBLCF_MemoryMap.h"            with "TRBLCF_MemoryMap.h" */
+    }
+    files {
+      c {
+        /** stubs */
+        "/rb/as/core/hwp/hsw/ucbase/functional/RBSYS/tst/unit/ExceptionHandler/stubs/*.c";
+        "/rb/as/core/hwp/hsw/ucbase/functional/RBSYS/tst/unit/stubs/*.c";
+        "/rb/as/core/hwp/hsw/ucbase/functional/rbsys/src/Monitorings/RBSYS_ErrorHooks.c";
+        "/rb/as/core/hwp/hsw/ucbase/functional/rbsys/src/RBSYS_InvalidInt.c";
+
+      }
+    }
+  } // Stub
+} // TRBSYSExceptionHandler

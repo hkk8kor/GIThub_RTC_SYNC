@@ -1,0 +1,22 @@
+if (Cdd Initialisation is complete) then (yes)
+
+    :Update Filter;
+    :Apply PhaseCorrection;
+    :Update Derivation;
+    :Update Status;
+
+else (no)
+    :Update FilVal and Filtered Output (signalSetFil) with the Raw signals;
+    :Set the Derived output (signalSetDer) with 0;
+    partition UpdateFilTab {
+    :FilTab of acc and rate = FilVal; 
+    }
+    partition UpdateFilTab {
+    :Phasecorrection Tab of acc and rate = FilVal; 
+    }
+    partition UpdateFilTab {
+    :Derived Tab of acc and rate = FilVal; 
+    }
+    :Update Status;
+endif
+

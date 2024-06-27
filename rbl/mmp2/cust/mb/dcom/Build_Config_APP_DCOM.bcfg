@@ -1,0 +1,107 @@
+/**
+ * \brief Build configuration of DCOM project - part of overall build configuration
+ *
+ * For details see Cfg_build_master.bcfg in project root folder
+ */
+
+
+module "rbl/mmp2/cust/mb/rbl_dcom"
+{
+	
+	export
+	{
+		"api";
+        "src/cubas";
+        "src/cubas/rba_pma";
+        "cfg";
+		"src";
+		
+		#if(RBFS_HSWSimulation == RBFS_HSWSimulation_ON)
+		    "api/HSWSim_Stubs";
+		#endif	
+	}
+	files
+	{
+		
+		c
+		{		
+			"src/common/*.c";
+			"src/cubas/*.c";
+            "src/cubas/rba_pma/*.c";
+            "src/*.c";
+			    
+			#if ((RBFS_MMP2 == RBFS_MMP2_IMUB) || (RBFS_MMP2 == RBFS_MMP2_IMUD))
+			   exclude "src/rbl_dcom_MB_AdjustISOParam_WRDBI.c";
+			  
+			#endif	
+			
+			#if (RBFS_MMP2 == RBFS_MMP2_IMUA)
+			   exclude "src/rbl_dcom_MB_WDBI_VariantCoding.c";
+               exclude "src/rbl_dcom_MB_RDBI_VariantCoding.c";	   
+            #endif 		
+                       
+            #if(RBFS_ThirdPartySoftware != RBFS_ThirdPartySoftware_ON)
+             exclude "src/rbl_dcom_MB_SSA_Functions.c";
+            #endif
+		}
+		
+		genprodb
+		{
+			"api/**/*.h";
+			"api/cfg/*.cfg";
+			"src/common/*.h";
+			"src/*.[hc]";
+			
+			#if(RBFS_HSWSimulation != RBFS_HSWSimulation_ON)
+			    exclude "api/HSWSim_Stubs/*.h";
+			#endif
+		}	
+		
+		#if (RBFS_ComStackOnlineGeneration == RBFS_ComStackOnlineGeneration_YES)
+		bct_input
+		{
+		    
+            #if(RBFS_ThirdPartySoftware == RBFS_ThirdPartySoftware_OFF)
+                "cfg/rbl_dcom_MB_Diag_EcucValues.arxml";
+            #endif
+			
+			#if(RBFS_ThirdPartySoftware == RBFS_ThirdPartySoftware_ON)
+				"cfg/rbl_dcom_MB_Diag_EcucValues_HSM.arxml";
+				"cfg/rbl_dcom_MB_SSA_Diag_EcucValues.arxml";
+            #endif
+			
+            #if (RBFS_MMP2 == RBFS_MMP2_IMUA)
+               "cfg/rbl_dcom_MB_IMUA_Diag_EcucValues.arxml";
+               "cfg/rbl_dcom_MB_IMUA_DiagGateway_EcucValues.arxml";
+			  
+			#elif ((RBFS_ThirdPartySoftware == RBFS_ThirdPartySoftware_ON) && (RBFS_MMP2 == RBFS_MMP2_IMUB))
+               "cfg/rbl_dcom_MB_IMUB_Diag_EcucValues_HSM.arxml";  
+                  
+            #elif ((RBFS_ThirdPartySoftware == RBFS_ThirdPartySoftware_OFF) && (RBFS_MMP2 == RBFS_MMP2_IMUB))
+               "cfg/rbl_dcom_MB_IMUB_Diag_EcucValues.arxml";
+			   
+			#elif (RBFS_MMP2 == RBFS_MMP2_IMUD)
+               "cfg/rbl_dcom_MB_IMUD_Diag_EcucValues.arxml";   
+			   
+            #else
+                #error (" RBFS_MMP2 type configuration missing!")
+				
+            #endif                            
+		}
+        #endif
+
+		proc
+		{
+			"*.proc"
+		}
+		pdm
+		{
+			"cfg/rbl_dcom_MB.pdm"
+		}
+		
+	}
+	
+}
+  
+
+

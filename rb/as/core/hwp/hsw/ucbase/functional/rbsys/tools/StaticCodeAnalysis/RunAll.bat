@@ -1,0 +1,7 @@
+pushd %~dp0
+
+start AssertSwitchSettingChecker\AssertSwitchSettingParser.bat
+start ConfigIncludeChecker\ConfigIncludeChecker.bat
+REM start RedundantCodeChecker\RedundantCodeChecker.bat
+
+popd

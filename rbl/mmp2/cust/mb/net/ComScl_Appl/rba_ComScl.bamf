@@ -1,0 +1,1548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BUILD-ACTION-MANIFEST xsi:schemaLocation="http://bosch.com/schema/buildActionManifest/r1.0 BuildActionManifest_1-0-2.xsd" xmlns="http://bosch.com/schema/buildActionManifest/r1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SHORT-NAME>RB_Manifest</SHORT-NAME>
+  <BUILD-ACTIONS>
+    <BUILD-ACTION>
+      <SHORT-NAME>rba_ComScl_Generate</SHORT-NAME>
+      <CATEGORY>GENERATOR</CATEGORY>
+      <INVOCATION>
+        <SDGS>
+          <SDG>
+            <SD GID="ACTION_ATTRIBUTE_singleExecutable">true</SD>
+            <SD GID="STOP_ON_ERROR">true</SD>
+            <SD GID="SUPPLIER">RBA-BSW</SD>
+          </SDG>
+        </SDGS>
+      </INVOCATION>
+      <PREDECESSOR-ACTION-REFS>
+        <PREDECESSOR-ACTION-REF DEST="BUILD-ACTION">/RB_Manifest/Com_Validate</PREDECESSOR-ACTION-REF>
+      </PREDECESSOR-ACTION-REFS>
+      <CREATED-DATAS>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>ARTIFACT</CATEGORY>
+          <SDGS>
+            <SDG>
+              <SD GID="ROLE_PROVIDER_TYPE">MDF</SD>
+              <SD GID="USED_ACTION_ROLE">DEFAULT_OUT</SD>
+            </SDG>
+          </SDGS>
+          <ENGINEERING-OBJECTS>
+            <BUILD-ENGINEERING-OBJECT>
+              <SHORT-LABEL>*</SHORT-LABEL>
+              <CATEGORY>PJTSRC</CATEGORY>
+              <DOMAIN>CUBAS</DOMAIN>
+              <FILE-TYPE>c</FILE-TYPE>
+            </BUILD-ENGINEERING-OBJECT>
+          </ENGINEERING-OBJECTS>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>ARTIFACT</CATEGORY>
+          <SDGS>
+            <SDG>
+              <SD GID="ROLE_PROVIDER_TYPE">MDF</SD>
+              <SD GID="USED_ACTION_ROLE">DEFAULT_OUT</SD>
+            </SDG>
+          </SDGS>
+          <ENGINEERING-OBJECTS>
+            <BUILD-ENGINEERING-OBJECT>
+              <SHORT-LABEL>*</SHORT-LABEL>
+              <CATEGORY>PJTHDR</CATEGORY>
+              <DOMAIN>CUBAS</DOMAIN>
+              <FILE-TYPE>h</FILE-TYPE>
+            </BUILD-ENGINEERING-OBJECT>
+          </ENGINEERING-OBJECTS>
+        </BUILD-ACTION-IO-ELEMENT>
+      </CREATED-DATAS>
+      <INPUT-DATAS>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>ARTIFACT</CATEGORY>
+          <SDGS>
+            <SDG>
+              <SD GID="USED_ACTION_ROLE">PROCESSOR</SD>
+            </SDG>
+          </SDGS>
+          <ENGINEERING-OBJECTS>
+            <BUILD-ENGINEERING-OBJECT>
+              <SHORT-LABEL>rba_ComScl_generator</SHORT-LABEL>
+              <CATEGORY>CONFWF</CATEGORY>
+              <DOMAIN>CUBAS</DOMAIN>
+              <FILE-TYPE>mwe</FILE-TYPE>
+            </BUILD-ENGINEERING-OBJECT>
+          </ENGINEERING-OBJECTS>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_ComScl/EcucModuleDefs/rba_ComScl</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/AUTOSAR_CanIf/EcucModuleDefs/CanIf</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/AUTOSAR_Com/EcucModuleDefs/Com</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile1/rba_E2EWP_RbConfig</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile2/rba_E2EWP_RbConfig</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile4/rba_E2EWP_RbConfig</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile6/rba_E2EWP_RbConfig</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile7/rba_E2EWP_RbConfig</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Swc/EcucModuleDefs/rba_Nds_Swc</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/AUTOSAR_Os/EcucModuleDefs/Os/OsTask</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/AUTOSAR_Os/EcucModuleDefs/Os/OsApplication</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/AUTOSAR_EcuC/EcucModuleDefs/EcuC/EcucHardware/EcucCoreDefinition</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+      </INPUT-DATAS>
+      <REQUIRED-ENVIRONMENT-REF DEST="BUILD-ACTION-ENVIRONMENT">/RB_Manifest/com_bosch_configfw_bfwaction_oaw</REQUIRED-ENVIRONMENT-REF>
+    </BUILD-ACTION>
+    <BUILD-ACTION>
+      <SHORT-NAME>rba_ComScl_ForwardComCbk</SHORT-NAME>
+      <CATEGORY>FORWARDER</CATEGORY>
+      <INVOCATION>
+        <SDGS>
+          <SDG>
+            <SD GID="STOP_ON_ERROR">true</SD>
+            <SD GID="ACTION_ATTRIBUTE_singleExecutable">true</SD>
+            <SD GID="SUPPLIER">RBA-BSW</SD>
+          </SDG>
+        </SDGS>
+      </INVOCATION>
+      <PREDECESSOR-ACTION-REFS>
+        <PREDECESSOR-ACTION-REF DEST="BUILD-ACTION">/RB_Manifest/rba_Nds_ForwardCom</PREDECESSOR-ACTION-REF>
+      </PREDECESSOR-ACTION-REFS>
+      <CREATED-DATAS>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/AUTOSAR_Com/EcucModuleDefs/Com/ComConfig/ComIPdu/ComIPduCallout</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/AUTOSAR_Com/EcucModuleDefs/Com/ComConfig/ComSignalGroup/ComTimeoutNotification</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/AUTOSAR_Com/EcucModuleDefs/Com/ComGeneral/ComIPduControlViaRbaNdsEcuVariant</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/AUTOSAR_Com/EcucModuleDefs/Com/ComConfig/ComSignalGroup/ComFirstTimeout</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/AUTOSAR_Com/EcucModuleDefs/Com/ComConfig/ComSignalGroup/ComTimeout</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/AUTOSAR_Com/EcucModuleDefs/Com/ComConfig/ComIPdu/ComIPduTriggerTransmitCallout</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/AUTOSAR_Com/EcucModuleDefs/Com/ComConfig/ComIPdu/ComIpduNotificationCallback</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/AUTOSAR_Com/EcucModuleDefs/Com/ComConfig/ComIPdu/ComTimeout</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/AUTOSAR_Com/EcucModuleDefs/Com/ComConfig/ComIPdu/ComFirstTimeout</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/AUTOSAR_Com/EcucModuleDefs/Com/ComConfig/ComIPdu/ComIPduTimeoutNotification</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/AUTOSAR_Com/EcucModuleDefs/Com/ComGeneral/ComTxScheduledInDiffTimebase</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/AUTOSAR_Com/EcucModuleDefs/Com/ComConfig/ComSignal/ComTimeout</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/AUTOSAR_Com/EcucModuleDefs/Com/ComConfig/ComSignal/ComNotification</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/AUTOSAR_Com/EcucModuleDefs/Com/ComConfig/ComSignal/ComTimeoutNotification</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/AUTOSAR_Com/EcucModuleDefs/Com/ComConfig/ComSignal/ComFirstTimeout</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/AUTOSAR_Com/EcucModuleDefs/Com/ComGeneral/ComUserCbkHeaderFile</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+      </CREATED-DATAS>
+      <INPUT-DATAS>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>ARTIFACT</CATEGORY>
+          <SDGS>
+            <SDG>
+              <SD GID="USED_ACTION_ROLE">PROCESSOR</SD>
+            </SDG>
+          </SDGS>
+          <ENGINEERING-OBJECTS>
+            <BUILD-ENGINEERING-OBJECT>
+              <SHORT-LABEL>rba_ComScl_ForwardComCbk</SHORT-LABEL>
+              <CATEGORY>CONFWF</CATEGORY>
+              <DOMAIN>CUBAS</DOMAIN>
+              <FILE-TYPE>mwe</FILE-TYPE>
+            </BUILD-ENGINEERING-OBJECT>
+          </ENGINEERING-OBJECTS>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_PduMonitorings/rba_Nds_Dgs_TransmitPduMonitoring/rba_Nds_Dgs_Checksum</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_SignalGroupProtections/rba_Nds_Dgs_TransmitSignalGroupProtection/rba_Nds_Dgs_Counter/rba_Nds_Dgs_Function</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_PduMonitorings/rba_Nds_Dgs_TransmitPduMonitoring/rba_Nds_Dgs_AliveCounter</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_SignalGroupProtections/rba_Nds_Dgs_TransmitSignalGroupProtection</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_PduMonitorings/rba_Nds_Dgs_TransmitPduMonitoring</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/AUTOSAR_Com/EcucModuleDefs/Com/ComGeneral/ComIPduControlViaRbaNdsEcuVariant</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_SignalEvaluations/rba_Nds_Dgs_ReceiveSignalEvaluations</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_SignalEvaluations/rba_Nds_Dgs_ReceiveSignalEvaluations/rba_Nds_Dgs_ReceiveSignalEvaluation/rba_Nds_Dgs_SignalValues/rba_Nds_Dgs_OutputStrategy/rba_Nds_Dgs_DfcReporting</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/AUTOSAR_Com/EcucModuleDefs/Com/ComConfig/ComIPdu/ComTimeout</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_PduProtections/rba_Nds_Cc_TransmitPduProtection/rba_Nds_Cc_Checksum/rba_Nds_Cc_Function</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_PduProtections/rba_Nds_Cc_TransmitPduProtection/rba_Nds_Cc_Counter/rba_Nds_Cc_Function</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluation/rba_Nds_Cc_SignalValues/rba_Nds_Cc_OutputStrategy/rba_Nds_Cc_DemReporting</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalGroupProtections/rba_Nds_Cc_TransmitSignalGroupProtection/rba_Nds_Cc_Counter/rba_Nds_Cc_Function</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_PduProtections/rba_Nds_Cc_TransmitPduProtection</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluations</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalGroupProtections/rba_Nds_Cc_TransmitSignalGroupProtection</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_Msr/rba_Nds_Dgs_SwSystem/rba_Nds_Dgs_SwDataDictionarySpec/rba_Nds_Dgs_SwCalprm</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_Msr/rba_Nds_Dgs_SwSystem/rba_Nds_Dgs_SwDataDictionarySpec/rba_Nds_Dgs_SwVariable</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_ComScl/EcucModuleDefs/rba_ComScl/rba_ComScl_General</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/AUTOSAR_Com/EcucModuleDefs/Com/ComGeneral/ComRxIpduTimeoutCalibration</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_ComScl/EcucModuleDefs/rba_ComScl</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+      </INPUT-DATAS>
+      <REQUIRED-ENVIRONMENT-REF DEST="BUILD-ACTION-ENVIRONMENT">/RB_Manifest/com_bosch_configfw_bfwaction_oaw</REQUIRED-ENVIRONMENT-REF>
+    </BUILD-ACTION>
+    <BUILD-ACTION>
+      <SHORT-NAME>rba_ComScl_Forward_BSWMD</SHORT-NAME>
+      <CATEGORY>FORWARDER</CATEGORY>
+      <INVOCATION>
+        <SDGS>
+          <SDG>
+            <SD GID="ACTION_ATTRIBUTE_singleExecutable">true</SD>
+            <SD GID="STOP_ON_ERROR">true</SD>
+            <SD GID="SUPPLIER">RBA-BSW</SD>
+          </SDG>
+        </SDGS>
+      </INVOCATION>
+      <CREATED-DATAS>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_ArxmlGen/EcucModuleDefs/rba_ArxmlGen</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+      </CREATED-DATAS>
+      <INPUT-DATAS>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>ARTIFACT</CATEGORY>
+          <SDGS>
+            <SDG>
+              <SD GID="USED_ACTION_ROLE">PROCESSOR</SD>
+            </SDG>
+          </SDGS>
+          <ENGINEERING-OBJECTS>
+            <BUILD-ENGINEERING-OBJECT>
+              <SHORT-LABEL>rba_ComScl_ForwardBSWMD</SHORT-LABEL>
+              <CATEGORY>CONFWF</CATEGORY>
+              <DOMAIN>CUBAS</DOMAIN>
+              <FILE-TYPE>mwe</FILE-TYPE>
+            </BUILD-ENGINEERING-OBJECT>
+          </ENGINEERING-OBJECTS>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_Msr/rba_Nds_Dgs_SwSystem/rba_Nds_Dgs_SwDataDictionarySpec/rba_Nds_Dgs_SwCalprm</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_Msr/rba_Nds_Dgs_SwSystem/rba_Nds_Dgs_SwDataDictionarySpec/rba_Nds_Dgs_SwVariable</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_ComScl/EcucModuleDefs/rba_ComScl</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+      </INPUT-DATAS>
+      <REQUIRED-ENVIRONMENT-REF DEST="BUILD-ACTION-ENVIRONMENT">/RB_Manifest/com_bosch_configfw_bfwaction_oaw</REQUIRED-ENVIRONMENT-REF>
+    </BUILD-ACTION>
+    <BUILD-ACTION>
+      <SHORT-NAME>rba_ComScl_ForwardCanIfDlcNotification</SHORT-NAME>
+      <CATEGORY>FORWARDER</CATEGORY>
+      <INVOCATION>
+        <SDGS>
+          <SDG>
+            <SD GID="ACTION_ATTRIBUTE_singleExecutable">true</SD>
+            <SD GID="STOP_ON_ERROR">true</SD>
+            <SD GID="SUPPLIER">RBA-BSW</SD>
+          </SDG>
+        </SDGS>
+      </INVOCATION>
+      <CREATED-DATAS>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/AUTOSAR_CanIf/EcucModuleDefs/CanIf/CanIfPublicCfg/CanIfRbPublicDlcErrorNotifHeaderFile</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/AUTOSAR_CanIf/EcucModuleDefs/CanIf/CanIfPublicCfg/CanIfPublicUserDlcErrorNotificationName</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/AUTOSAR_CanIf/EcucModuleDefs/CanIf/CanIfPrivateCfg/CanIfPrivateDataLengthCheck</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+      </CREATED-DATAS>
+      <INPUT-DATAS>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>ARTIFACT</CATEGORY>
+          <SDGS>
+            <SDG>
+              <SD GID="USED_ACTION_ROLE">PROCESSOR</SD>
+            </SDG>
+          </SDGS>
+          <ENGINEERING-OBJECTS>
+            <BUILD-ENGINEERING-OBJECT>
+              <SHORT-LABEL>rba_ComScl_ForwardCanIfDlcNotification</SHORT-LABEL>
+              <CATEGORY>CONFWF</CATEGORY>
+              <DOMAIN>CUBAS</DOMAIN>
+              <FILE-TYPE>mwe</FILE-TYPE>
+            </BUILD-ENGINEERING-OBJECT>
+          </ENGINEERING-OBJECTS>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/AUTOSAR_CanIf/EcucModuleDefs/CanIf/CanIfPrivateCfg/CanIfPrivateDataLengthCheck</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/AUTOSAR_CanIf/EcucModuleDefs/CanIf/CanIfPublicCfg/CanIfPublicUserDlcErrorNotificationName</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_ComScl/EcucModuleDefs/rba_ComScl/rba_ComScl_General/rba_ComScl_ReceiveCodeGenerationMethod</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_ComScl/EcucModuleDefs/rba_ComScl/rba_ComScl_General/rba_ComScl_ComponentPrefix</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_Msr/rba_Nds_Dgs_SwSystem/rba_Nds_Dgs_SwDataDictionarySpec/rba_Nds_Dgs_SwVariable</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_Msr/rba_Nds_Dgs_SwSystem/rba_Nds_Dgs_SwDataDictionarySpec/rba_Nds_Dgs_SwCalprm</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+      </INPUT-DATAS>
+      <REQUIRED-ENVIRONMENT-REF DEST="BUILD-ACTION-ENVIRONMENT">/RB_Manifest/com_bosch_configfw_bfwaction_oaw</REQUIRED-ENVIRONMENT-REF>
+    </BUILD-ACTION>
+    <BUILD-ACTION>
+      <SHORT-NAME>rba_ComScl_ForwardDem</SHORT-NAME>
+      <CATEGORY>FORWARDER</CATEGORY>
+      <INVOCATION>
+        <SDGS>
+          <SDG>
+            <SD GID="ACTION_ATTRIBUTE_singleExecutable">true</SD>
+            <SD GID="STOP_ON_ERROR">true</SD>
+            <SD GID="SUPPLIER">RBA-BSW</SD>
+          </SDG>
+        </SDGS>
+      </INVOCATION>
+      <CREATED-DATAS>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalGroupProtections/rba_Nds_Cc_ReceiveSignalGroupProtection/rba_Nds_Cc_Checksum/rba_Nds_Cc_DemReporting</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalGroupProtections/rba_Nds_Cc_ReceiveSignalGroupProtection/rba_Nds_Cc_Timeout/rba_Nds_Cc_DemReporting/rba_Nds_Cc_DemEventRef</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_PduProtections/rba_Nds_Cc_ReceivePduProtection/rba_Nds_Cc_Counter/rba_Nds_Cc_DemReporting/rba_Nds_Cc_DemEventRef</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluation/rba_Nds_Cc_SignalValues/rba_Nds_Cc_OutputStrategy/rba_Nds_Cc_DemReporting</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluation/rba_Nds_Cc_UserEvaluation/rba_Nds_Cc_OutputStrategy/rba_Nds_Cc_DemReporting</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_PduProtections/rba_Nds_Cc_ReceivePduProtection/rba_Nds_Cc_DataLengthCode/rba_Nds_Cc_DemReporting</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_PduProtections/rba_Nds_Cc_ReceivePduProtection/rba_Nds_Cc_Counter/rba_Nds_Cc_DemReporting</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_PduProtections/rba_Nds_Cc_TransmitPduProtection/rba_Nds_Cc_Timeout/rba_Nds_Cc_DemReporting</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluation/rba_Nds_Cc_UserEvaluation/rba_Nds_Cc_OutputStrategy/rba_Nds_Cc_DemReporting/rba_Nds_Cc_DemEventRef</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalGroupProtections/rba_Nds_Cc_ReceiveSignalGroupProtection/rba_Nds_Cc_Counter/rba_Nds_Cc_DemReporting/rba_Nds_Cc_DemEventRef</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluation/rba_Nds_Cc_QualifierSignalValues/rba_Nds_Cc_OutputStrategy/rba_Nds_Cc_DemReporting</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalGroupProtections/rba_Nds_Cc_ReceiveSignalGroupProtection/rba_Nds_Cc_Checksum/rba_Nds_Cc_DemReporting/rba_Nds_Cc_DemEventRef</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluation/rba_Nds_Cc_SignalValues/rba_Nds_Cc_OutputStrategy/rba_Nds_Cc_DemReporting/rba_Nds_Cc_DemEventRef</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalGroupProtections/rba_Nds_Cc_ReceiveSignalGroupProtection/rba_Nds_Cc_Counter/rba_Nds_Cc_DemReporting</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_PduProtections/rba_Nds_Cc_ReceivePduProtection/rba_Nds_Cc_Checksum/rba_Nds_Cc_DemReporting/rba_Nds_Cc_DemEventRef</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalGroupProtections/rba_Nds_Cc_ReceiveSignalGroupProtection/rba_Nds_Cc_Timeout/rba_Nds_Cc_DemReporting</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_PduProtections/rba_Nds_Cc_ReceivePduProtection/rba_Nds_Cc_DataLengthCode/rba_Nds_Cc_DemReporting/rba_Nds_Cc_DemEventRef</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_PduProtections/rba_Nds_Cc_TransmitPduProtection/rba_Nds_Cc_Timeout/rba_Nds_Cc_DemReporting/rba_Nds_Cc_DemEventRef</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_PduProtections/rba_Nds_Cc_ReceivePduProtection/rba_Nds_Cc_Checksum/rba_Nds_Cc_DemReporting</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluation/rba_Nds_Cc_QualifierSignalValues/rba_Nds_Cc_OutputStrategy/rba_Nds_Cc_DemReporting/rba_Nds_Cc_DemEventRef</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_PduProtections/rba_Nds_Cc_ReceivePduProtection/rba_Nds_Cc_Timeout/rba_Nds_Cc_DemReporting/rba_Nds_Cc_DemEventRef</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_PduProtections/rba_Nds_Cc_ReceivePduProtection/rba_Nds_Cc_Timeout/rba_Nds_Cc_DemReporting</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/AUTOSAR_Dem/EcucModuleDefs/Dem</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluation/rba_Nds_Cc_SignalTimeout/rba_Nds_Cc_OutputStrategy/rba_Nds_Cc_DemReporting/rba_Nds_Cc_DemEventRef</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+      </CREATED-DATAS>
+      <INPUT-DATAS>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>ARTIFACT</CATEGORY>
+          <SDGS>
+            <SDG>
+              <SD GID="USED_ACTION_ROLE">PROCESSOR</SD>
+            </SDG>
+          </SDGS>
+          <ENGINEERING-OBJECTS>
+            <BUILD-ENGINEERING-OBJECT>
+              <SHORT-LABEL>rba_ComScl_ForwardDem</SHORT-LABEL>
+              <CATEGORY>CONFWF</CATEGORY>
+              <DOMAIN>CUBAS</DOMAIN>
+              <FILE-TYPE>mwe</FILE-TYPE>
+            </BUILD-ENGINEERING-OBJECT>
+          </ENGINEERING-OBJECTS>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_ComScl/EcucModuleDefs/rba_ComScl/rba_ComScl_General</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_PduProtections/rba_Nds_Cc_ReceivePduProtection/rba_Nds_Cc_Checksum/rba_Nds_Cc_DemReporting</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_PduProtections/rba_Nds_Cc_ReceivePduProtection/rba_Nds_Cc_Counter/rba_Nds_Cc_DemReporting</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_PduProtections/rba_Nds_Cc_ReceivePduProtection/rba_Nds_Cc_DataLengthCode/rba_Nds_Cc_DemReporting</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_PduProtections/rba_Nds_Cc_ReceivePduProtection/rba_Nds_Cc_Timeout/rba_Nds_Cc_DemReporting</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_PduProtections/rba_Nds_Cc_TransmitPduProtection/rba_Nds_Cc_Timeout/rba_Nds_Cc_DemReporting</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluation/rba_Nds_Cc_QualifierSignalValues/rba_Nds_Cc_OutputStrategy/rba_Nds_Cc_DemReporting</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluation/rba_Nds_Cc_SignalValues/rba_Nds_Cc_OutputStrategy/rba_Nds_Cc_DemReporting</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluation/rba_Nds_Cc_UserEvaluation/rba_Nds_Cc_OutputStrategy/rba_Nds_Cc_DemReporting</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalGroupProtections/rba_Nds_Cc_ReceiveSignalGroupProtection/rba_Nds_Cc_Checksum/rba_Nds_Cc_DemReporting</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalGroupProtections/rba_Nds_Cc_ReceiveSignalGroupProtection/rba_Nds_Cc_Counter/rba_Nds_Cc_DemReporting</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalGroupProtections/rba_Nds_Cc_ReceiveSignalGroupProtection/rba_Nds_Cc_Timeout/rba_Nds_Cc_DemReporting</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluations</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_PduProtections/rba_Nds_Cc_ReceivePduProtection</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_PduProtections/rba_Nds_Cc_TransmitPduProtection</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+      </INPUT-DATAS>
+      <REQUIRED-ENVIRONMENT-REF DEST="BUILD-ACTION-ENVIRONMENT">/RB_Manifest/com_bosch_configfw_bfwaction_oaw</REQUIRED-ENVIRONMENT-REF>
+    </BUILD-ACTION>
+    <BUILD-ACTION>
+      <SHORT-NAME>rba_ComScl_Prepare</SHORT-NAME>
+      <CATEGORY>FORWARDER</CATEGORY>
+      <INVOCATION>
+        <SDGS>
+          <SDG>
+            <SD GID="STOP_ON_ERROR">true</SD>
+            <SD GID="ACTION_ATTRIBUTE_singleExecutable">true</SD>
+            <SD GID="SUPPLIER">RBA-BSW</SD>
+          </SDG>
+        </SDGS>
+      </INVOCATION>
+      <FOLLOW-UP-ACTION-REFS>
+        <FOLLOW-UP-ACTION-REF DEST="BUILD-ACTION">/RB_Manifest/rba_ComScl_Forward_BSWMD</FOLLOW-UP-ACTION-REF>
+        <FOLLOW-UP-ACTION-REF DEST="BUILD-ACTION">/RB_Manifest/rba_ComScl_GenerateBSWMD</FOLLOW-UP-ACTION-REF>
+        <FOLLOW-UP-ACTION-REF DEST="BUILD-ACTION">/RB_Manifest/rba_ComScl_GenerateEOC</FOLLOW-UP-ACTION-REF>
+      </FOLLOW-UP-ACTION-REFS>
+      <CREATED-DATAS>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalGroupProtections/rba_Nds_Cc_ReceiveSignalGroupProtection/rba_Nds_Cc_Counter/rba_Nds_Cc_Function/rba_Nds_Cc_Name</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalGroupProtections/rba_Nds_Cc_ReceiveSignalGroupProtection/rba_Nds_Cc_Checksum/rba_Nds_Cc_Function/rba_Nds_Cc_Name</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalGroupProtections/rba_Nds_Cc_ReceiveSignalGroupProtection/rba_Nds_Cc_Checksum/rba_Nds_Cc_Function</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalGroupProtections/rba_Nds_Cc_TransmitSignalGroupProtection/rba_Nds_Cc_Checksum/rba_Nds_Cc_Function</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalGroupProtections/rba_Nds_Cc_TransmitSignalGroupProtection/rba_Nds_Cc_Checksum/rba_Nds_Cc_Function/rba_Nds_Cc_Name</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_PduProtections/rba_Nds_Cc_ReceivePduProtection/rba_Nds_Cc_Checksum/rba_Nds_Cc_Function</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_PduProtections/rba_Nds_Cc_TransmitPduProtection/rba_Nds_Cc_Checksum/rba_Nds_Cc_Function</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalGroupProtections/rba_Nds_Cc_TransmitSignalGroupProtection/rba_Nds_Cc_Counter/rba_Nds_Cc_Function</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalGroupProtections/rba_Nds_Cc_ReceiveSignalGroupProtection/rba_Nds_Cc_Counter/rba_Nds_Cc_Function</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_PduProtections/rba_Nds_Cc_ReceivePduProtection/rba_Nds_Cc_Counter/rba_Nds_Cc_Function/rba_Nds_Cc_Name</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_PduProtections/rba_Nds_Cc_TransmitPduProtection/rba_Nds_Cc_Counter/rba_Nds_Cc_Function/rba_Nds_Cc_Name</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_PduProtections/rba_Nds_Cc_ReceivePduProtection/rba_Nds_Cc_Checksum/rba_Nds_Cc_Function/rba_Nds_Cc_Name</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_PduProtections/rba_Nds_Cc_ReceivePduProtection/rba_Nds_Cc_Counter/rba_Nds_Cc_Function</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_PduProtections/rba_Nds_Cc_TransmitPduProtection/rba_Nds_Cc_Checksum/rba_Nds_Cc_Function/rba_Nds_Cc_Name</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_PduProtections/rba_Nds_Cc_TransmitPduProtection/rba_Nds_Cc_Counter/rba_Nds_Cc_Function</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalGroupProtections/rba_Nds_Cc_TransmitSignalGroupProtection/rba_Nds_Cc_Counter/rba_Nds_Cc_Function/rba_Nds_Cc_Name</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_SignalGroupProtections/rba_Nds_Dgs_ReceiveSignalGroupProtection/rba_Nds_Dgs_Counter/rba_Nds_Dgs_Function</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_PduMonitorings/rba_Nds_Dgs_TransmitPduMonitoring/rba_Nds_Dgs_AliveCounter</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_SignalGroupProtections/rba_Nds_Dgs_ReceiveSignalGroupProtection/rba_Nds_Dgs_Checksum/rba_Nds_Dgs_Function/rba_Nds_Dgs_Name</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_SignalGroupProtections/rba_Nds_Dgs_TransmitSignalGroupProtection/rba_Nds_Dgs_Counter/rba_Nds_Dgs_Function/rba_Nds_Dgs_Name</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_SignalGroupProtections/rba_Nds_Dgs_ReceiveSignalGroupProtection/rba_Nds_Dgs_Counter/rba_Nds_Dgs_Function/rba_Nds_Dgs_Name</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_SignalGroupProtections/rba_Nds_Dgs_TransmitSignalGroupProtection/rba_Nds_Dgs_Checksum/rba_Nds_Dgs_Function/rba_Nds_Dgs_Name</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_SignalGroupProtections/rba_Nds_Dgs_TransmitSignalGroupProtection/rba_Nds_Dgs_Checksum/rba_Nds_Dgs_Function</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_SignalGroupProtections/rba_Nds_Dgs_TransmitSignalGroupProtection/rba_Nds_Dgs_Counter/rba_Nds_Dgs_Function</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_PduMonitorings/rba_Nds_Dgs_ReceivePduMonitoring/rba_Nds_Dgs_AliveCounter</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_PduMonitorings/rba_Nds_Dgs_TransmitPduMonitoring/rba_Nds_Dgs_AliveCounter/rba_Nds_Dgs_Name</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_PduMonitorings/rba_Nds_Dgs_ReceivePduMonitoring/rba_Nds_Dgs_Checksum/rba_Nds_Dgs_Name</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_PduMonitorings/rba_Nds_Dgs_TransmitPduMonitoring/rba_Nds_Dgs_Checksum/rba_Nds_Dgs_Name</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_SignalGroupProtections/rba_Nds_Dgs_ReceiveSignalGroupProtection/rba_Nds_Dgs_Checksum/rba_Nds_Dgs_Function</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_PduMonitorings/rba_Nds_Dgs_ReceivePduMonitoring/rba_Nds_Dgs_AliveCounter/rba_Nds_Dgs_Name</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+      </CREATED-DATAS>
+      <INPUT-DATAS>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile1/rba_E2EWP_RbConfig</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile2/rba_E2EWP_RbConfig</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile5/rba_E2EWP_RbConfig</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile6/rba_E2EWP_RbConfig</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Communication/rba_Nds_Pdu/rba_Nds_ContainerPdu</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Communication/rba_Nds_Pdu/rba_Nds_MultiplexedPdu</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Communication/rba_Nds_Pdu/rba_Nds_SecuredPdu</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Communication/rba_Nds_Pdu/rba_Nds_SignalPdu</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Communication/rba_Nds_Pdu/rba_Nds_SignalPdu/rba_Nds_SignalGroupInstance</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Communication/rba_Nds_SignalGroup</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_Connectors/rba_Nds_CanConnector/rba_Nds_CanReceiveFrame</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_Connectors/rba_Nds_CanConnector/rba_Nds_CanReceivePduLinkage</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_Connectors/rba_Nds_CanConnector/rba_Nds_CanTransmitFrame</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_Connectors/rba_Nds_CanConnector/rba_Nds_CanTransmitPduLinkage</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_Connectors/rba_Nds_EthernetConnector/rba_Nds_EthernetReceivePduLinkage</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_Connectors/rba_Nds_EthernetConnector/rba_Nds_EthernetTransmitPduLinkage</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_Connectors/rba_Nds_EthernetConnector/rba_Nds_SocketConnectionReceivePduIdentifier</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_Connectors/rba_Nds_EthernetConnector/rba_Nds_SocketConnectionTransmitPduIdentifier</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_Connectors/rba_Nds_FlexRayConnector/rba_Nds_FlexRayReceiveFrame</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_Connectors/rba_Nds_FlexRayConnector/rba_Nds_FlexRayReceivePduLinkage</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_Connectors/rba_Nds_FlexRayConnector/rba_Nds_FlexRayTransmitFrame</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_Connectors/rba_Nds_FlexRayConnector/rba_Nds_FlexRayTransmitPduLinkage</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_Connectors/rba_Nds_LinConnector/rba_Nds_LinReceiveFrame</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_Connectors/rba_Nds_LinConnector/rba_Nds_LinReceivePduLinkage</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_Connectors/rba_Nds_LinConnector/rba_Nds_LinTransmitFrame</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_Connectors/rba_Nds_LinConnector/rba_Nds_LinTransmitPduLinkage</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_EcuPdus/rba_Nds_ReceivePdu</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_EcuPdus/rba_Nds_ReceivePdu/rba_Nds_ReceiveContainerPdu</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_EcuPdus/rba_Nds_ReceivePdu/rba_Nds_ReceiveGatewayPdu</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_EcuPdus/rba_Nds_ReceivePdu/rba_Nds_ReceiveMultiplexedPdu</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_EcuPdus/rba_Nds_ReceivePdu/rba_Nds_ReceiveSecuredPdu</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_EcuPdus/rba_Nds_ReceivePdu/Rba_Nds_ReceiveSignalPdu</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_EcuPdus/rba_Nds_ReceivePdu/rba_Nds_ReceiveSignalPdu</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_EcuPdus/rba_Nds_ReceivePdu/rba_Nds_ReceiveSignalPdu/rba_Nds_ReceiveSignalGroupNetworkPort</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_EcuPdus/rba_Nds_ReceivePdu/rba_Nds_ReceiveSignalPdu/Rba_Nds_ReceiveSignalGroupNetworkPort</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_EcuPdus/rba_Nds_TransmitPdu</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_EcuPdus/rba_Nds_TransmitPdu/rba_Nds_TransmitContainerPdu</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_EcuPdus/rba_Nds_TransmitPdu/rba_Nds_TransmitGatewayPdu</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_EcuPdus/rba_Nds_TransmitPdu/rba_Nds_TransmitMultiplexedPdu</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_EcuPdus/rba_Nds_TransmitPdu/rba_Nds_TransmitSecuredPdu</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_EcuPdus/rba_Nds_TransmitPdu/Rba_Nds_TransmitSignalPdu</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_EcuPdus/rba_Nds_TransmitPdu/rba_Nds_TransmitSignalPdu</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_EcuPdus/rba_Nds_TransmitPdu/rba_Nds_TransmitSignalPdu/Rba_Nds_TransmitSignalGroupNetworkPort</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_EcuPdus/rba_Nds_TransmitPdu/rba_Nds_TransmitSignalPdu/rba_Nds_TransmitSignalGroupNetworkPort</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_PduProtections/rba_Nds_Cc_ReceivePduProtection/rba_Nds_Cc_Checksum/rba_Nds_Cc_Function</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_PduProtections/rba_Nds_Cc_ReceivePduProtection/rba_Nds_Cc_Counter/rba_Nds_Cc_Function</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_PduProtections/rba_Nds_Cc_TransmitPduProtection/rba_Nds_Cc_Checksum/rba_Nds_Cc_Function</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_PduProtections/rba_Nds_Cc_TransmitPduProtection/rba_Nds_Cc_Counter/rba_Nds_Cc_Function</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalGroupProtections/rba_Nds_Cc_ReceiveSignalGroupProtection/rba_Nds_Cc_Checksum/rba_Nds_Cc_Function</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalGroupProtections/rba_Nds_Cc_ReceiveSignalGroupProtection/rba_Nds_Cc_Counter/rba_Nds_Cc_Function</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalGroupProtections/rba_Nds_Cc_TransmitSignalGroupProtection/rba_Nds_Cc_Checksum/rba_Nds_Cc_Function</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalGroupProtections/rba_Nds_Cc_TransmitSignalGroupProtection/rba_Nds_Cc_Counter/rba_Nds_Cc_Function</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>ARTIFACT</CATEGORY>
+          <SDGS>
+            <SDG>
+              <SD GID="USED_ACTION_ROLE">PROCESSOR</SD>
+            </SDG>
+          </SDGS>
+          <ENGINEERING-OBJECTS>
+            <BUILD-ENGINEERING-OBJECT>
+              <SHORT-LABEL>rba_ComScl_ForwardE2EFunction</SHORT-LABEL>
+              <CATEGORY>CONFWF</CATEGORY>
+              <DOMAIN>CUBAS</DOMAIN>
+              <FILE-TYPE>mwe</FILE-TYPE>
+            </BUILD-ENGINEERING-OBJECT>
+          </ENGINEERING-OBJECTS>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_PduMonitorings/rba_Nds_Dgs_ReceivePduMonitoring/rba_Nds_Dgs_AliveCounter</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_PduMonitorings/rba_Nds_Dgs_ReceivePduMonitoring/rba_Nds_Dgs_Checksum</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_PduMonitorings/rba_Nds_Dgs_TransmitPduMonitoring/rba_Nds_Dgs_AliveCounter</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_PduMonitorings/rba_Nds_Dgs_TransmitPduMonitoring/rba_Nds_Dgs_Checksum</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_SignalGroupProtections/rba_Nds_Dgs_ReceiveSignalGroupProtection/rba_Nds_Dgs_Checksum/rba_Nds_Dgs_Function</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_SignalGroupProtections/rba_Nds_Dgs_ReceiveSignalGroupProtection/rba_Nds_Dgs_Counter/rba_Nds_Dgs_Function</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_SignalGroupProtections/rba_Nds_Dgs_TransmitSignalGroupProtection/rba_Nds_Dgs_Checksum/rba_Nds_Dgs_Function</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_SignalGroupProtections/rba_Nds_Dgs_TransmitSignalGroupProtection/rba_Nds_Dgs_Counter/rba_Nds_Dgs_Function</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_PduMonitorings/rba_Nds_Dgs_ReceivePduMonitoring</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_PduMonitorings/rba_Nds_Dgs_TransmitPduMonitoring</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_SignalGroupProtections/rba_Nds_Dgs_ReceiveSignalGroupProtection</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>MSR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_SignalGroupProtections/rba_Nds_Dgs_TransmitSignalGroupProtection</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_E2EWP/EcucModuleDefs/rba_E2EWP/rba_E2EWPRbProfile4</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalGroupProtections/rba_Nds_Cc_ReceiveSignalGroupProtection/rba_Nds_Cc_ReceiveSignalGroupNetworkPortRef</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalGroupProtections/rba_Nds_Cc_TransmitSignalGroupProtection/rba_Nds_Cc_TransmitSignalGroupNetworkPortRef</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_PduProtections/rba_Nds_Cc_ReceivePduProtection/rba_Nds_Cc_ReceiveSignalPduRef</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_PduProtections/rba_Nds_Cc_TransmitPduProtection/rba_Nds_Cc_TransmitSignalPduRef</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+      </INPUT-DATAS>
+      <REQUIRED-ENVIRONMENT-REF DEST="BUILD-ACTION-ENVIRONMENT">/RB_Manifest/com_bosch_configfw_bfwaction_oaw</REQUIRED-ENVIRONMENT-REF>
+    </BUILD-ACTION>
+    <BUILD-ACTION>
+      <SHORT-NAME>rba_ComScl_GenerateEOC</SHORT-NAME>
+      <CATEGORY>GENERATOR</CATEGORY>
+      <INVOCATION>
+        <SDGS>
+          <SDG>
+            <SD GID="ACTION_ATTRIBUTE_singleExecutable">true</SD>
+            <SD GID="STOP_ON_ERROR">true</SD>
+            <SD GID="SUPPLIER">RBA-BSW</SD>
+          </SDG>
+        </SDGS>
+      </INVOCATION>
+      <CREATED-DATAS>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>ARTIFACT</CATEGORY>
+          <SDGS>
+            <SDG>
+              <SD GID="ROLE_PROVIDER_TYPE">MDF</SD>
+              <SD GID="USED_ACTION_ROLE">DEFAULT_OUT</SD>
+            </SDG>
+          </SDGS>
+          <ENGINEERING-OBJECTS>
+            <BUILD-ENGINEERING-OBJECT>
+              <SHORT-LABEL>*</SHORT-LABEL>
+              <CATEGORY>PJTEOC</CATEGORY>
+              <DOMAIN>CUBAS</DOMAIN>
+              <FILE-TYPE>*</FILE-TYPE>
+            </BUILD-ENGINEERING-OBJECT>
+          </ENGINEERING-OBJECTS>
+        </BUILD-ACTION-IO-ELEMENT>
+      </CREATED-DATAS>
+      <INPUT-DATAS>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>ARTIFACT</CATEGORY>
+          <SDGS>
+            <SDG>
+              <SD GID="USED_ACTION_ROLE">PROCESSOR</SD>
+            </SDG>
+          </SDGS>
+          <ENGINEERING-OBJECTS>
+            <BUILD-ENGINEERING-OBJECT>
+              <SHORT-LABEL>rba_ComScl_GenerateEOC</SHORT-LABEL>
+              <CATEGORY>CONFWF</CATEGORY>
+              <DOMAIN>CUBAS</DOMAIN>
+              <FILE-TYPE>mwe</FILE-TYPE>
+            </BUILD-ENGINEERING-OBJECT>
+          </ENGINEERING-OBJECTS>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_ComScl/EcucModuleDefs/rba_ComScl/rba_ComScl_General</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+      </INPUT-DATAS>
+      <REQUIRED-ENVIRONMENT-REF DEST="BUILD-ACTION-ENVIRONMENT">/RB_Manifest/com_bosch_configfw_bfwaction_oaw</REQUIRED-ENVIRONMENT-REF>
+    </BUILD-ACTION>
+    <BUILD-ACTION>
+      <SHORT-NAME>rba_ComScl_GenerateBSWMD</SHORT-NAME>
+      <CATEGORY>GENERATOR</CATEGORY>
+      <INVOCATION>
+        <SDGS>
+          <SDG>
+            <SD GID="ACTION_ATTRIBUTE_singleExecutable">true</SD>
+            <SD GID="STOP_ON_ERROR">true</SD>
+            <SD GID="SUPPLIER">RBA-BSW</SD>
+          </SDG>
+        </SDGS>
+      </INVOCATION>
+      <CREATED-DATAS>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>ARTIFACT</CATEGORY>
+          <SDGS>
+            <SDG>
+              <SD GID="ROLE_PROVIDER_TYPE">MDF</SD>
+              <SD GID="USED_ACTION_ROLE">DEFAULT_OUT</SD>
+            </SDG>
+          </SDGS>
+          <ENGINEERING-OBJECTS>
+            <BUILD-ENGINEERING-OBJECT>
+              <SHORT-LABEL>*</SHORT-LABEL>
+              <CATEGORY>PJTBSWMD</CATEGORY>
+              <DOMAIN>CUBAS</DOMAIN>
+              <FILE-TYPE>*</FILE-TYPE>
+            </BUILD-ENGINEERING-OBJECT>
+          </ENGINEERING-OBJECTS>
+        </BUILD-ACTION-IO-ELEMENT>
+      </CREATED-DATAS>
+      <INPUT-DATAS>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>ARTIFACT</CATEGORY>
+          <SDGS>
+            <SDG>
+              <SD GID="USED_ACTION_ROLE">PROCESSOR</SD>
+            </SDG>
+          </SDGS>
+          <ENGINEERING-OBJECTS>
+            <BUILD-ENGINEERING-OBJECT>
+              <SHORT-LABEL>rba_ComScl_GenerateBSWMD</SHORT-LABEL>
+              <CATEGORY>CONFWF</CATEGORY>
+              <DOMAIN>CUBAS</DOMAIN>
+              <FILE-TYPE>mwe</FILE-TYPE>
+            </BUILD-ENGINEERING-OBJECT>
+          </ENGINEERING-OBJECTS>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_ComScl/EcucModuleDefs/rba_ComScl/rba_ComScl_General</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_Msr/rba_Nds_Dgs_SwSystem/rba_Nds_Dgs_SwDataDictionarySpec/rba_Nds_Dgs_SwCalprm</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_Msr/rba_Nds_Dgs_SwSystem/rba_Nds_Dgs_SwDataDictionarySpec/rba_Nds_Dgs_SwVariable</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_ComScl/EcucModuleDefs/rba_ComScl</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+      </INPUT-DATAS>
+      <REQUIRED-ENVIRONMENT-REF DEST="BUILD-ACTION-ENVIRONMENT">/RB_Manifest/com_bosch_configfw_bfwaction_oaw</REQUIRED-ENVIRONMENT-REF>
+    </BUILD-ACTION>
+    <BUILD-ACTION>
+      <SHORT-NAME>rba_ComScl_Generate_RteCfg</SHORT-NAME>
+      <CATEGORY>GENERATOR</CATEGORY>
+      <INVOCATION>
+        <SDGS>
+          <SDG>
+            <SD GID="STOP_ON_ERROR">true</SD>
+            <SD GID="SUPPLIER">RB-BSW</SD>
+          </SDG>
+        </SDGS>
+      </INVOCATION>
+      <CREATED-DATAS>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>ARTIFACT</CATEGORY>
+          <SDGS>
+            <SDG>
+              <SD GID="ROLE_PROVIDER_TYPE">MDF</SD>
+              <SD GID="USED_ACTION_ROLE">DEFAULT_OUT</SD>
+            </SDG>
+          </SDGS>
+          <ENGINEERING-OBJECTS>
+            <BUILD-ENGINEERING-OBJECT>
+              <SHORT-LABEL>*</SHORT-LABEL>
+              <CATEGORY>PJTSWCD</CATEGORY>
+              <DOMAIN>CUBAS</DOMAIN>
+              <FILE-TYPE>arxml</FILE-TYPE>
+            </BUILD-ENGINEERING-OBJECT>
+          </ENGINEERING-OBJECTS>
+        </BUILD-ACTION-IO-ELEMENT>
+      </CREATED-DATAS>
+      <INPUT-DATAS>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>ARTIFACT</CATEGORY>
+          <SDGS>
+            <SDG>
+              <SD GID="USED_ACTION_ROLE">PROCESSOR</SD>
+            </SDG>
+          </SDGS>
+          <ENGINEERING-OBJECTS>
+            <BUILD-ENGINEERING-OBJECT>
+              <SHORT-LABEL>rba_ComScl_GenerateRteCfg</SHORT-LABEL>
+              <CATEGORY>CONFWF</CATEGORY>
+              <DOMAIN>CUBAS</DOMAIN>
+              <FILE-TYPE>mwe</FILE-TYPE>
+            </BUILD-ENGINEERING-OBJECT>
+          </ENGINEERING-OBJECTS>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>ARTIFACT</CATEGORY>
+          <SDGS>
+            <SDG>
+              <SD GID="USED_ACTION_ROLE">PROCESSOR_LIB</SD>
+            </SDG>
+          </SDGS>
+          <ENGINEERING-OBJECTS>
+            <BUILD-ENGINEERING-OBJECT>
+              <SHORT-LABEL>rba_ComScl_*</SHORT-LABEL>
+              <CATEGORY>CONFLIB</CATEGORY>
+              <DOMAIN>CUBAS</DOMAIN>
+              <FILE-TYPE>ext</FILE-TYPE>
+            </BUILD-ENGINEERING-OBJECT>
+          </ENGINEERING-OBJECTS>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>ARTIFACT</CATEGORY>
+          <SDGS>
+            <SDG>
+              <SD GID="USED_ACTION_ROLE">PROCESSOR_LIB</SD>
+            </SDG>
+          </SDGS>
+          <ENGINEERING-OBJECTS>
+            <BUILD-ENGINEERING-OBJECT>
+              <SHORT-LABEL>rba_ComScl_Rte_EcucValues_Arxml</SHORT-LABEL>
+              <CATEGORY>CONFGEN</CATEGORY>
+              <DOMAIN>CUBAS</DOMAIN>
+              <FILE-TYPE>xpt</FILE-TYPE>
+            </BUILD-ENGINEERING-OBJECT>
+          </ENGINEERING-OBJECTS>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_ComScl/EcucModuleDefs/rba_ComScl/rba_ComScl_General</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_Msr/rba_Nds_Dgs_SwSystem/rba_Nds_Dgs_SwDataDictionarySpec/rba_Nds_Dgs_SwCalprm</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs/rba_Nds_Dgs_Msr/rba_Nds_Dgs_SwSystem/rba_Nds_Dgs_SwDataDictionarySpec/rba_Nds_Dgs_SwVariable</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_ComScl/EcucModuleDefs/rba_ComScl</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+      </INPUT-DATAS>
+      <REQUIRED-ENVIRONMENT-REF DEST="BUILD-ACTION-ENVIRONMENT">/RB_Manifest/com_bosch_configfw_bfwaction_oaw</REQUIRED-ENVIRONMENT-REF>
+    </BUILD-ACTION>
+    <BUILD-ACTION>
+      <SHORT-NAME>rba_ComScl_Validate</SHORT-NAME>
+      <CATEGORY>VALIDATOR</CATEGORY>
+      <INVOCATION>
+        <SDGS>
+          <SDG>
+            <SD GID="STOP_ON_ERROR">true</SD>
+            <SD GID="ACTION_ATTRIBUTE_singleExecutable">true</SD>
+            <SD GID="INPUT_VALIDATION1">true</SD>
+            <SD GID="INPUT_VALIDATION2">true</SD>
+            <SD GID="INPUT_VALIDATION3">true</SD>
+            <SD GID="INPUT_VALIDATION4">true</SD>
+            <SD GID="SUPPLIER">RBA-BSW</SD>
+            <SD GID="ACTION_ATTRIBUTE_specialTarget">false</SD>
+          </SDG>
+        </SDGS>
+      </INVOCATION>
+      <FOLLOW-UP-ACTION-REFS>
+        <FOLLOW-UP-ACTION-REF DEST="BUILD-ACTION">/RB_Manifest/rba_ComScl_Generate_RteCfg</FOLLOW-UP-ACTION-REF>
+        <FOLLOW-UP-ACTION-REF DEST="BUILD-ACTION">/RB_Manifest/rba_ComScl_GenerateEOC</FOLLOW-UP-ACTION-REF>
+        <FOLLOW-UP-ACTION-REF DEST="BUILD-ACTION">/RB_Manifest/rba_ComScl_ForwardComCbk</FOLLOW-UP-ACTION-REF>
+        <FOLLOW-UP-ACTION-REF DEST="BUILD-ACTION">/RB_Manifest/rba_ComScl_Forward_BSWMD</FOLLOW-UP-ACTION-REF>
+        <FOLLOW-UP-ACTION-REF DEST="BUILD-ACTION">/RB_Manifest/rba_ComScl_GenerateBSWMD</FOLLOW-UP-ACTION-REF>
+        <FOLLOW-UP-ACTION-REF DEST="BUILD-ACTION">/RB_Manifest/rba_ComScl_ForwardCanIfDlcNotification</FOLLOW-UP-ACTION-REF>
+      </FOLLOW-UP-ACTION-REFS>
+      <INPUT-DATAS>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>ARTIFACT</CATEGORY>
+          <SDGS>
+            <SDG>
+              <SD GID="USED_ACTION_ROLE">PROCESSOR</SD>
+            </SDG>
+          </SDGS>
+          <ENGINEERING-OBJECTS>
+            <BUILD-ENGINEERING-OBJECT>
+              <SHORT-LABEL>rba_ComScl_Validator</SHORT-LABEL>
+              <CATEGORY>CONFWF</CATEGORY>
+              <DOMAIN>CUBAS</DOMAIN>
+              <FILE-TYPE>mwe</FILE-TYPE>
+            </BUILD-ENGINEERING-OBJECT>
+          </ENGINEERING-OBJECTS>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_ComScl/EcucModuleDefs/rba_ComScl/rba_ComScl_General</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Dgs/EcucModuleDefs/rba_Nds_Dgs</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_UnitProcessing</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_ApplicationPorts</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_SignalProcessing</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Communication</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_EcuPdus</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_Connectors</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/AUTOSAR_EcuC/EcucModuleDefs/EcuC/EcucHardware/EcucCoreDefinition</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/AUTOSAR_Os/EcucModuleDefs/Os/OsApplication</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/AUTOSAR_Os/EcucModuleDefs/Os/OsTask</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_EcuProcesses/rba_Nds_ProcessingAllocation</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds/EcucModuleDefs/rba_Nds/rba_Nds_Ecu/rba_Nds_EcuProcesses/Rba_Nds_ProcessingAllocation</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_PduProtections/rba_Nds_Cc_ReceivePduProtection</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_PduProtections/rba_Nds_Cc_ReceivePduProtection/rba_Nds_Cc_Checksum/rba_Nds_Cc_DemReporting</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_PduProtections/rba_Nds_Cc_ReceivePduProtection/rba_Nds_Cc_Counter/rba_Nds_Cc_DemReporting</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_PduProtections/rba_Nds_Cc_ReceivePduProtection/rba_Nds_Cc_DataLengthCode/rba_Nds_Cc_DemReporting</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_PduProtections/rba_Nds_Cc_TransmitPduProtection</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_PduProtections/rba_Nds_Cc_TransmitPduProtection/rba_Nds_Cc_Counter/rba_Nds_Cc_Function</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluations</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluation</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluation/rba_Nds_Cc_QualifierSignalValues/rba_Nds_Cc_InputEvaluationCriteria</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluation/rba_Nds_Cc_QualifierSignalValues/rba_Nds_Cc_InputEvaluationCriteria/rba_Nds_Cc_InputType/rba_Nds_Cc_NetworkRepresentationInput</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluation/rba_Nds_Cc_QualifierSignalValues/rba_Nds_Cc_InputEvaluationCriteria/rba_Nds_Cc_InputType/rba_Nds_Cc_ValueInput</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluation/rba_Nds_Cc_QualifierSignalValues/rba_Nds_Cc_InputEvaluationCriteria/rba_Nds_Cc_InputType/rba_Nds_Cc_ValueInput/rba_Nds_Cc_InputValueRange</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluation/rba_Nds_Cc_QualifierSignalValues/rba_Nds_Cc_OutputStrategy/rba_Nds_Cc_DemReporting</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluation/rba_Nds_Cc_QualifierSignalValues/rba_Nds_Cc_OutputStrategy/rba_Nds_Cc_OutputType/rba_Nds_Cc_ApplicationRepresentationOutput</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluation/rba_Nds_Cc_QualifierSignalValues/rba_Nds_Cc_OutputStrategy/rba_Nds_Cc_OutputType/rba_Nds_Cc_ValueOutput</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluation/rba_Nds_Cc_SignalValues/rba_Nds_Cc_InputEvaluationCriteria/rba_Nds_Cc_InputType/rba_Nds_Cc_NetworkRepresentationInput</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluation/rba_Nds_Cc_SignalValues/rba_Nds_Cc_InputEvaluationCriteria/rba_Nds_Cc_InputType/rba_Nds_Cc_ValueInput</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluation/rba_Nds_Cc_SignalValues/rba_Nds_Cc_InputEvaluationCriteria/rba_Nds_Cc_InputType/rba_Nds_Cc_ValueInput/rba_Nds_Cc_InputValueRange</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluation/rba_Nds_Cc_SignalValues/rba_Nds_Cc_OutputStrategy/rba_Nds_Cc_DemReporting</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluation/rba_Nds_Cc_SignalValues/rba_Nds_Cc_OutputStrategy/rba_Nds_Cc_OutputType/rba_Nds_Cc_ApplicationRepresentationOutput</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluation/rba_Nds_Cc_SignalValues/rba_Nds_Cc_OutputStrategy/rba_Nds_Cc_OutputType/rba_Nds_Cc_ValueOutput</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluation/rba_Nds_Cc_UserEvaluation/rba_Nds_Cc_InputEvaluationCriteria/rba_Nds_Cc_QualifierReceiveNetworkPortEntry</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluations/rba_Nds_Cc_ReceiveSignalEvaluation/rba_Nds_Cc_UserEvaluation/rba_Nds_Cc_OutputStrategy/rba_Nds_Cc_DemReporting</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalEvaluations/rba_Nds_Cc_TransmitSignalEvaluations</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalEvaluations/rba_Nds_Cc_TransmitSignalEvaluations/rba_Nds_Cc_TransmitSignalEvaluation/rba_Nds_Cc_QualifierSignalValues/rba_Nds_Cc_InputEvaluationCriteria</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalEvaluations/rba_Nds_Cc_TransmitSignalEvaluations/rba_Nds_Cc_TransmitSignalEvaluation/rba_Nds_Cc_QualifierSignalValues/rba_Nds_Cc_InputEvaluationCriteria/rba_Nds_Cc_InputType/rba_Nds_Cc_ApplicationRepresentationInput</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalEvaluations/rba_Nds_Cc_TransmitSignalEvaluations/rba_Nds_Cc_TransmitSignalEvaluation/rba_Nds_Cc_QualifierSignalValues/rba_Nds_Cc_InputEvaluationCriteria/rba_Nds_Cc_InputType/rba_Nds_Cc_ValueInput</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalEvaluations/rba_Nds_Cc_TransmitSignalEvaluations/rba_Nds_Cc_TransmitSignalEvaluation/rba_Nds_Cc_QualifierSignalValues/rba_Nds_Cc_InputEvaluationCriteria/rba_Nds_Cc_InputType/rba_Nds_Cc_ValueInput/rba_Nds_Cc_InputValueRange</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalEvaluations/rba_Nds_Cc_TransmitSignalEvaluations/rba_Nds_Cc_TransmitSignalEvaluation/rba_Nds_Cc_QualifierSignalValues/rba_Nds_Cc_OutputStrategy/rba_Nds_Cc_OutputType/rba_Nds_Cc_NetworkRepresentationOutput</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalEvaluations/rba_Nds_Cc_TransmitSignalEvaluations/rba_Nds_Cc_TransmitSignalEvaluation/rba_Nds_Cc_QualifierSignalValues/rba_Nds_Cc_OutputStrategy/rba_Nds_Cc_OutputType/rba_Nds_Cc_ValueOutput</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/RB/RBA/rba_Nds_Cc/EcucModuleDefs/rba_Nds_Cc/rba_Nds_Cc_SignalGroupProtections/rba_Nds_Cc_TransmitSignalGroupProtection</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+        <BUILD-ACTION-IO-ELEMENT>
+          <CATEGORY>AR_OBJECT</CATEGORY>
+          <ECUC-DEFINITION-REF DEST="ECUC-DEFINITION-ELEMENT">/AUTOSAR_Com/EcucModuleDefs/Com/ComGeneral/ComRxDualCycleSupport</ECUC-DEFINITION-REF>
+        </BUILD-ACTION-IO-ELEMENT>
+      </INPUT-DATAS>
+      <REQUIRED-ENVIRONMENT-REF DEST="BUILD-ACTION-ENVIRONMENT">/RB_Manifest/com_bosch_configfw_bfwaction_oaw</REQUIRED-ENVIRONMENT-REF>
+    </BUILD-ACTION>
+  </BUILD-ACTIONS>
+</BUILD-ACTION-MANIFEST>

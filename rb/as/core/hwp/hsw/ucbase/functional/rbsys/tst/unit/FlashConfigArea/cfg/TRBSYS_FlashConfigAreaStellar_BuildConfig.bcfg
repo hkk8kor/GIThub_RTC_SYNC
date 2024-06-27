@@ -1,0 +1,53 @@
+module "TRBSYSFlashConfigArea"
+{
+  module "TestCase" {
+    files {
+      c {
+        /** files containing tests */
+        "/rb/as/core/hwp/hsw/ucbase/functional/rbsys/tst/unit/FlashConfigArea/TRBSYS_FlashConfigArea.c";
+      }
+    }
+  } // TestCase
+
+  module "UnitUnderTest" {
+    export {
+      /** export headers */
+      "/rb/as/core/hwp/hsw/ucbase/functional/RBSYS/api/**";
+      "/rb/as/core/hwp/hsw/ucbase/functional/RBSYS/src/**";
+      "/rb/as/core/hwp/hsw/ucbase/functional/RBSYS/rtaos/api";
+      "/rb/as/core/hwp/hsw/ucbase/functional/RBSYS/rtaos/src";
+    }
+
+    files {
+      c {
+        "/rb/as/core/hwp/hsw/ucbase/functional/rbsys/tst/unit/FlashConfigArea/TRBSYS_FlashConfigArea_Adaptor.c";
+      }
+    }
+  } // UnitUnderTest
+
+  #include "../../stubs/TRB_Prj_ConfigStub.bcfg"
+
+  module "Stub" {
+    export {
+      /** export the stubs */
+      "/rb/as/core/hwp/hsw/ucbase/functional/RBSYS/tst/unit/stubs/**";
+      "/rb/as/core/hwp/hsw/ucbase/functional/RBSYS/tst/unit/FlashConfigArea/stubs/**";
+
+      /** now map the header stub name to the original header file names */
+      /** stub "RBSYS_Intrinsics.h"           with "TRBSYS_Intrinsics.h" */
+      /** stub "RBSYS_uCRegisters.h"          with "TRBSYS_uCRegisters.h" */
+      /** stub "Os.h"                         with "TRBSYS_Os.h" */
+      /** stub "Os_ConfigInterrupts.h"        with "TRBSYS_Os_ConfigInterrupts.h" */
+
+      /** stub "RBLCF_MemoryRemap.h"          with "TRBLCF_MemoryRemap.h" */
+      /** stub "RBLCF_Hexblocks_Layout.h"     with "TRBLCF_Hexblocks_Layout.h" */
+    }
+    files {
+      c {
+        /** stubs */
+        "/rb/as/core/hwp/hsw/ucbase/functional/RBSYS/tst/unit/FlashConfigArea/stubs/*.c";
+        "/rb/as/core/hwp/hsw/ucbase/functional/RBSYS/tst/unit/stubs/*.c";
+      }
+    }
+  } // Stub
+} // TRBSYSFlashConfigArea

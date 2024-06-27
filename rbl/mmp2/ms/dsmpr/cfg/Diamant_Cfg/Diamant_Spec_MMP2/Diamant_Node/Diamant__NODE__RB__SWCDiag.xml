@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<DIAGNOSIS INFO="DiamantPro Core Library 4.2.257.1692" CHECK="25C06CE4D56AFBAC67A83DC30D1DA8FCICAgICAgICAgRGlhbWFudFBybyBDb3JlIExpYnJhcnkgICAgICAgICAgICAgICAgICAgIDQuMi4yNTcuMTY5MiAgICAgICAgICAgIC04NTg0OTkwODA2NDUxODY0MTM0ICAgICAgICAgICAgICAgICAgICBCQU5JLUMtMDA2OFIgICAgICAgICAgICAgICAgICAgIEFQQUNcUFpSMktPUiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg">
+  <NODES>
+    <NODE>
+      <NAME>Node_MMP_TPSW</NAME>
+      <CUSTOMER_REF />
+      <PROJECT_REF />
+      <SW_GROUP_REF>SwGrp_SWCDiag</SW_GROUP_REF>
+      <KEYLIST>
+        <ITEM key="STATUSEXPORTTOASW">false</ITEM>
+        <ITEM key="ASWSETSINIT">false</ITEM>
+        <ITEM key="FW_Priorities_Disabled">true</ITEM>
+        <ITEM key="Desc">Node for Third part software memory violation</ITEM>
+        <ITEM key="ALLOWEDRECOVERIES">0xFF</ITEM>
+        <ITEM key="HWShutdown">NoHWShutdown</ITEM>
+      </KEYLIST>
+      <FUNCTION_ID_REFS />
+      <FW_REFS>
+        <FW_REF prio="10">FW_RBL_SwcDiag_MemoryViolation</FW_REF>
+      </FW_REFS>
+    </NODE>
+  </NODES>
+</DIAGNOSIS>

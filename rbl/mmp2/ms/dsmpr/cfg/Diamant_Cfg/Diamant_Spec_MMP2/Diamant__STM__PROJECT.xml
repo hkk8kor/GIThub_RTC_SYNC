@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<DIAGNOSIS INFO="DiamantPro Core Library 4.2.257.1692" CHECK="93B32E7BA623D20BA10FFE2014D18019ICAgICAgICAgRGlhbWFudFBybyBDb3JlIExpYnJhcnkgICAgICAgICAgICAgICAgICAgIDQuMi4yNTcuMTY5MiAgICAgICAgICAgIC04NTg0OTY4MDM2NDMzMjE0NjQ1ICAgICAgICAgICAgICAgICAgICAgQUJULUMtMDAzQ0MgICAgICAgICAgICAgICAgICAgICAgREVcTkRFMkFCVCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg">
+  <STM_PRJSTATELIMITERS>
+    <STM_PRJSTATELIMITER>
+      <LIMITER_REF>DiagnosisRollerbench</LIMITER_REF>
+      <VARIANT_CODE_REFS />
+      <USED>true</USED>
+    </STM_PRJSTATELIMITER>
+    <STM_PRJSTATELIMITER>
+      <LIMITER_REF>DiagnosisExtended</LIMITER_REF>
+      <VARIANT_CODE_REFS />
+      <USED>true</USED>
+    </STM_PRJSTATELIMITER>
+    <STM_PRJSTATELIMITER>
+      <LIMITER_REF>SMMLimit2ABS</LIMITER_REF>
+      <VARIANT_CODE_REFS />
+      <USED>true</USED>
+    </STM_PRJSTATELIMITER>
+    <STM_PRJSTATELIMITER>
+      <LIMITER_REF>SMMLimit2OFF</LIMITER_REF>
+      <VARIANT_CODE_REFS />
+      <USED>true</USED>
+    </STM_PRJSTATELIMITER>
+  </STM_PRJSTATELIMITERS>
+  <STM_PROJECTLINKS>
+    <STM_PROJECTLINK used="true" stm_ref="ESPBase">
+      <STM_VAR_MERGE_HASH_CODE>D83E200162C8CF7BD869791084A7E876</STM_VAR_MERGE_HASH_CODE>
+      <STM_VAR>
+        <STM_DRIVER_INFO_STATE state_ref="On" />
+        <STM_VAR_STATES>
+          <STM_VAR_STATE state_ref="Off">
+            <STM_SUBSTATES>
+              <STM_SUBSTATE substm_ref="ESPHardware">Off</STM_SUBSTATE>
+            </STM_SUBSTATES>
+            <STM_DEPSTATES />
+          </STM_VAR_STATE>
+          <STM_VAR_STATE state_ref="On">
+            <STM_SUBSTATES>
+              <STM_SUBSTATE substm_ref="ESPHardware">Normal</STM_SUBSTATE>
+            </STM_SUBSTATES>
+            <STM_DEPSTATES />
+          </STM_VAR_STATE>
+          <STM_VAR_STATE state_ref="FunctionSet1">
+            <STM_SUBSTATES>
+              <STM_SUBSTATE substm_ref="ESPHardware">Normal</STM_SUBSTATE>
+            </STM_SUBSTATES>
+            <STM_DEPSTATES />
+          </STM_VAR_STATE>
+          <STM_VAR_STATE state_ref="FunctionSet2">
+            <STM_SUBSTATES>
+              <STM_SUBSTATE substm_ref="ESPHardware">Normal</STM_SUBSTATE>
+            </STM_SUBSTATES>
+            <STM_DEPSTATES />
+          </STM_VAR_STATE>
+          <STM_VAR_STATE state_ref="FunctionSet3">
+            <STM_SUBSTATES>
+              <STM_SUBSTATE substm_ref="ESPHardware">Normal</STM_SUBSTATE>
+            </STM_SUBSTATES>
+            <STM_DEPSTATES />
+          </STM_VAR_STATE>
+          <STM_VAR_STATE state_ref="FunctionSet4">
+            <STM_SUBSTATES>
+              <STM_SUBSTATE substm_ref="ESPHardware">Normal</STM_SUBSTATE>
+            </STM_SUBSTATES>
+            <STM_DEPSTATES />
+          </STM_VAR_STATE>
+          <STM_VAR_STATE state_ref="RollerBenchMode">
+            <STM_SUBSTATES>
+              <STM_SUBSTATE substm_ref="ESPHardware">Normal</STM_SUBSTATE>
+            </STM_SUBSTATES>
+            <STM_DEPSTATES />
+          </STM_VAR_STATE>
+          <STM_VAR_STATE state_ref="DiagnosisExtended">
+            <STM_SUBSTATES>
+              <STM_SUBSTATE substm_ref="ESPHardware">ExtendedDiag</STM_SUBSTATE>
+            </STM_SUBSTATES>
+            <STM_DEPSTATES />
+          </STM_VAR_STATE>
+        </STM_VAR_STATES>
+        <STM_NODES>
+          <STM_NODE state_ref="FunctionSet1" delay_degradation="false" node_ref="Node_SMM_DegradeSystem" />
+          <STM_NODE state_ref="Off" delay_degradation="false" node_ref="Node_uC" />
+          <STM_NODE state_ref="On" delay_degradation="false" mod="true" node_ref="Node_Network" />
+          <STM_NODE state_ref="On" delay_degradation="false" node_ref="Node_NetworkCAN" />
+          <STM_NODE state_ref="On" delay_degradation="false" node_ref="Node_NetworkCAN1" />
+          <STM_NODE state_ref="On" delay_degradation="false" node_ref="Node_NetworkCAN0" />
+          <STM_NODE state_ref="FunctionSet1" delay_degradation="false" node_ref="Node_Det" />
+        </STM_NODES>
+        <STM_VIRTUALNODES />
+        <STM_FWS />
+      </STM_VAR>
+    </STM_PROJECTLINK>
+    <STM_PROJECTLINK stm_ref="ESPHardware" used="true">
+      <STM_VAR>
+        <STM_DRIVER_INFO_STATE state_ref="Normal" />
+        <STM_VAR_STATES>
+          <STM_VAR_STATE state_ref="Off">
+            <STM_SUBSTATES />
+            <STM_DEPSTATES />
+          </STM_VAR_STATE>
+          <STM_VAR_STATE state_ref="ExtendedDiag">
+            <STM_SUBSTATES />
+            <STM_DEPSTATES />
+          </STM_VAR_STATE>
+          <STM_VAR_STATE state_ref="Diag">
+            <STM_SUBSTATES />
+            <STM_DEPSTATES />
+          </STM_VAR_STATE>
+          <STM_VAR_STATE state_ref="Normal">
+            <STM_SUBSTATES />
+            <STM_DEPSTATES />
+          </STM_VAR_STATE>
+        </STM_VAR_STATES>
+        <STM_NODES>
+          <STM_NODE node_ref="Node_uC" state_ref="Off" />
+        </STM_NODES>
+        <STM_VIRTUALNODES />
+        <STM_FWS />
+      </STM_VAR>
+    </STM_PROJECTLINK>
+    <STM_PROJECTLINK used="true" stm_ref="RBUBase">
+      <STM_VAR_MERGE_HASH_CODE>D5A8C9D4B0CD189EF191CD51680D4312</STM_VAR_MERGE_HASH_CODE>
+      <STM_VAR>
+        <STM_DRIVER_INFO_STATE state_ref="FullSys" />
+        <STM_VAR_STATES>
+          <STM_VAR_STATE state_ref="Off">
+            <STM_SUBSTATES>
+              <STM_SUBSTATE substm_ref="RBUFunctions">Off</STM_SUBSTATE>
+              <STM_SUBSTATE substm_ref="RBUHardware">Off</STM_SUBSTATE>
+            </STM_SUBSTATES>
+            <STM_DEPSTATES />
+          </STM_VAR_STATE>
+          <STM_VAR_STATE state_ref="DiagnosisExtended">
+            <STM_SUBSTATES>
+              <STM_SUBSTATE substm_ref="RBUFunctions">Diagnosis</STM_SUBSTATE>
+              <STM_SUBSTATE substm_ref="RBUHardware">ExtendedDiag</STM_SUBSTATE>
+            </STM_SUBSTATES>
+            <STM_DEPSTATES />
+          </STM_VAR_STATE>
+          <STM_VAR_STATE state_ref="Diagnosis">
+            <STM_SUBSTATES>
+              <STM_SUBSTATE substm_ref="RBUFunctions">Diagnosis</STM_SUBSTATE>
+              <STM_SUBSTATE substm_ref="RBUHardware">Normal</STM_SUBSTATE>
+            </STM_SUBSTATES>
+            <STM_DEPSTATES />
+          </STM_VAR_STATE>
+          <STM_VAR_STATE state_ref="Standby">
+            <STM_SUBSTATES>
+              <STM_SUBSTATE substm_ref="RBUFunctions">Standby</STM_SUBSTATE>
+              <STM_SUBSTATE substm_ref="RBUHardware">Normal</STM_SUBSTATE>
+            </STM_SUBSTATES>
+            <STM_DEPSTATES />
+          </STM_VAR_STATE>
+          <STM_VAR_STATE state_ref="FullSys">
+            <STM_SUBSTATES>
+              <STM_SUBSTATE substm_ref="RBUFunctions">FullSys</STM_SUBSTATE>
+              <STM_SUBSTATE substm_ref="RBUHardware">Normal</STM_SUBSTATE>
+            </STM_SUBSTATES>
+            <STM_DEPSTATES />
+          </STM_VAR_STATE>
+          <STM_VAR_STATE state_ref="KeepAlive">
+            <STM_SUBSTATES>
+              <STM_SUBSTATE substm_ref="RBUFunctions">KeepAlive</STM_SUBSTATE>
+              <STM_SUBSTATE substm_ref="RBUHardware">Normal</STM_SUBSTATE>
+            </STM_SUBSTATES>
+            <STM_DEPSTATES />
+          </STM_VAR_STATE>
+          <STM_VAR_STATE state_ref="RollerBenchMode">
+            <STM_SUBSTATES>
+              <STM_SUBSTATE substm_ref="RBUFunctions">Standby</STM_SUBSTATE>
+              <STM_SUBSTATE substm_ref="RBUHardware">Normal</STM_SUBSTATE>
+            </STM_SUBSTATES>
+            <STM_DEPSTATES />
+          </STM_VAR_STATE>
+          <STM_VAR_STATE state_ref="KeepAlive_SBS">
+            <STM_SUBSTATES>
+              <STM_SUBSTATE substm_ref="RBUFunctions">KeepAlive_SBS</STM_SUBSTATE>
+              <STM_SUBSTATE substm_ref="RBUHardware">Normal</STM_SUBSTATE>
+            </STM_SUBSTATES>
+            <STM_DEPSTATES />
+          </STM_VAR_STATE>
+        </STM_VAR_STATES>
+        <STM_NODES>
+          <STM_NODE state_ref="Standby" delay_degradation="false" node_ref="Node_Ecu" />
+          <STM_NODE state_ref="Standby" delay_degradation="false" node_ref="Node_HydraulicSupply" />
+          <STM_NODE state_ref="Standby" delay_degradation="false" node_ref="Node_UBMR" />
+          <STM_NODE state_ref="Standby" delay_degradation="false" node_ref="Node_UBVR" />
+          <STM_NODE state_ref="Standby" delay_degradation="false" node_ref="Node_ValveRelay" />
+          <STM_NODE state_ref="Standby" delay_degradation="false" node_ref="Node_ValveGeneric" />
+          <STM_NODE state_ref="Standby" delay_degradation="false" node_ref="Node_ValveCoilPath_MV8" />
+          <STM_NODE state_ref="Standby" delay_degradation="false" node_ref="Node_ValveCoilPath_MV7" />
+          <STM_NODE state_ref="Standby" delay_degradation="false" node_ref="Node_ValveCoilPath_MV6" />
+          <STM_NODE state_ref="Standby" delay_degradation="false" node_ref="Node_ValveCoilPath_MV5" />
+          <STM_NODE state_ref="KeepAlive_SBS" delay_degradation="false" node_ref="Node_PressureSensor1" />
+          <STM_NODE state_ref="KeepAlive" delay_degradation="false" node_ref="Node_WssUndervoltage" />
+          <STM_NODE state_ref="Standby" delay_degradation="false" node_ref="Node_Det" />
+          <STM_NODE state_ref="Standby" delay_degradation="false" node_ref="Node_Rfp" />
+          <STM_NODE state_ref="Off" delay_degradation="false" node_ref="Node_uC" />
+          <STM_NODE state_ref="Standby" delay_degradation="false" node_ref="Node_ChargePump" />
+          <STM_NODE state_ref="KeepAlive" delay_degradation="false" node_ref="Node_WssGenericHSW" />
+        </STM_NODES>
+        <STM_VIRTUALNODES />
+        <STM_FWS />
+      </STM_VAR>
+    </STM_PROJECTLINK>
+    <STM_PROJECTLINK used="true" stm_ref="RBUHardware">
+      <STM_VAR_MERGE_HASH_CODE>6E04CD8AFB45662EE8462C176AA76B88</STM_VAR_MERGE_HASH_CODE>
+      <STM_VAR>
+        <STM_DRIVER_INFO_STATE state_ref="Normal" />
+        <STM_VAR_STATES>
+          <STM_VAR_STATE state_ref="Off">
+            <STM_SUBSTATES />
+            <STM_DEPSTATES />
+          </STM_VAR_STATE>
+          <STM_VAR_STATE state_ref="ExtendedDiag">
+            <STM_SUBSTATES />
+            <STM_DEPSTATES />
+          </STM_VAR_STATE>
+          <STM_VAR_STATE state_ref="Normal">
+            <STM_SUBSTATES />
+            <STM_DEPSTATES />
+          </STM_VAR_STATE>
+        </STM_VAR_STATES>
+        <STM_NODES />
+        <STM_VIRTUALNODES />
+        <STM_FWS />
+      </STM_VAR>
+    </STM_PROJECTLINK>
+  </STM_PROJECTLINKS>
+</DIAGNOSIS>

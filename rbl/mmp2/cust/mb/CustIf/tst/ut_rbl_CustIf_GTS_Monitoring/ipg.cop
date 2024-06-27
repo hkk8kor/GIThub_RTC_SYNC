@@ -1,0 +1,38 @@
+#
+# Cantata Test-Level Options
+#
+# Any options set in this file will override the options set in the
+# project-level options file.
+#
+# WARNING: Do not alter this file manually.
+#
+#tool.testid=dd43b26e-fedd-4735-9633-f008d67fbeab
+"--ci:--instr:stmt;func;decn;log;"
+"--sa:--calc:*#*"
+"--sm:--access_function:"rbl_CustIf_GTS_Monitoring.c":Bfx_Prv_GetBit_u8u8_u8_Inl(uint8 ,uint8 )"
+"--sm:--access_function:"rbl_CustIf_GTS_Monitoring.c":rbl_CustIf_StbM_Init_Base_Time()"
+"--sm:--access_function:"rbl_CustIf_GTS_Monitoring.c":rbl_CustIf_StbM_Monitor_Init_Timeout()"
+"--sm:--access_variable:"rbl_CustIf_GTS_Monitoring.c":rbl_CustIf_TimeStampBaseInit"
+"--sm:--access_variable:"rbl_CustIf_GTS_Monitoring.c":rbl_CustIf_initTimeoutTime"
+"--sm:--wrap:Bfx_Prv_GetBit_u8u8_u8_Inl(uint8 ,uint8 )#Bfx_Prv_CopyBit_u8u8u8u8_Inl(uint8 *,uint8 ,uint8 ,uint8 )"
+"--sm:--wrap:Bfx_Prv_GetBit_u8u8_u8_Inl(uint8 ,uint8 )#rbl_CustIf_StbM_Check_Init_Sync()"
+"--sm:--wrap:Bfx_Prv_GetBit_u8u8_u8_Inl(uint8 ,uint8 )#rbl_CustIf_StbM_Check_Lost_Sync()"
+"--sm:--wrap:Bfx_Prv_GetBit_u8u8_u8_Inl(uint8 ,uint8 )#rbl_CustIf_StbM_Check_TimeLeap()"
+"--sm:--wrap:rbl_CustIf_StbM_Check_Init_Sync()#rbl_CustIf_GTS_Monitoring()"
+"--sm:--wrap:rbl_CustIf_StbM_Check_Lost_Sync()#rbl_CustIf_GTS_Monitoring()"
+"--sm:--wrap:rbl_CustIf_StbM_Check_TimeLeap()#rbl_CustIf_GTS_Monitoring()"
+"--sm:--wrap:rbl_CustIf_StbM_Init_Base_Time()#rbl_CustIf_GTS_Monitoring()"
+"--sm:--wrap:rbl_CustIf_StbM_Monitor_Init_Timeout()#rbl_CustIf_GTS_Monitoring()"
+"--sm:--access_local_variable:"rbl_CustIf_GTS_Monitoring.c":StbM_Monitor_State#rbl_CustIf_GTS_Monitoring" 
+
+#User Section
+"--dont_ci:*"
+"--ci:--no_instr:all"
+"--do_ci:rbl_CustIf_GTS_Monitoring.c"
+"--ci:--instr:stmt;func;call;decn;log;#rbl_CustIf_GTS_Monitoring"
+"--ci:--instr:stmt;func;call;decn;log;#rbl_CustIf_StbM_Init_Base_Time"
+"--ci:--instr:stmt;func;call;decn;log;#rbl_CustIf_StbM_Check_Init_Sync"
+"--ci:--instr:stmt;func;call;decn;log;#rbl_CustIf_StbM_Check_Lost_Sync"
+"--ci:--instr:stmt;func;call;decn;log;#rbl_CustIf_StbM_Check_TimeLeap"
+"--ci:--instr:stmt;func;call;decn;log;#rbl_CustIf_StbM_Monitor_Init_Timeout"
+"--ci:--instr:stmt;func;call;decn;log;#rbl_CustIf_StbM_Monitor_Time_Rate_Copy"

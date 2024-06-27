@@ -1,0 +1,38 @@
+start
+switch (rbl_Custif_GtslocalfallbackStatus)
+
+case (GTS_LOCALFALLBACK_IDLE)
+group . 
+!pragma useVerticalIf on
+start
+if (Check if I_C02_GTS_ESP_CLK_STAT_ST3_INTERNAL_ESP_CLOCK_OK is equal to \nl_rbl_CustIf_GTS_ESP_Clk_Stat_Bckp_ST3 \nAND \nCheck if rbl_CustIf_StbM_Check_Init_Sync function is equal to TRUE) then (yes)
+  :Update rbl_Custif_GtslocalfallbackStatus \nas GTS_LOCALFALLBACK_CHECK;
+endif
+stop
+end group;
+
+case (GTS_LOCALFALLBACK_CHECK) 
+group .
+!pragma useVerticalIf on
+start
+if (Check if I_C02_GTS_ESP_CLK_STAT_ST3_INTERNAL_ESP_CLOCK_OK is not equal to \nl_rbl_CustIf_GTS_ESP_Clk_Stat_Bckp_ST3 \nOR \nCheck if rbl_CustIf_StbM_Check_Lost_Sync function is equal to TRUE \nOR \nCheck if rbl_CustIf_StbM_Check_TimeLeap function is equal to TRUE ) then (yes)
+  :Update rbl_Custif_GtslocalfallbackStatus \nas GTS_LOCALFALLBACK_CHECK and \nUpdate rbl_Custif_Gtslocalfallback as TRUE;
+endif
+stop
+end group;
+
+case (GTS_LOCALFALLBACK_WAIT)
+group .
+!pragma useVerticalIf on
+start
+if (Check if RBL_CUSTIF_PLOCWAITTIME is equal to cnt) then (yes)
+  :Update rbl_Custif_GtslocalfallbackStatus \nas GTS_LOCALFALLBACK_CHECK and \nUpdate rbl_Custif_Gtslocalfallback as FALSE;
+endif
+stop
+end group;
+
+case ( Default )
+  :Update rbl_Custif_GtslocalfallbackStatus \nas GTS_LOCALFALLBACK_IDLE;
+endswitch
+
+stop

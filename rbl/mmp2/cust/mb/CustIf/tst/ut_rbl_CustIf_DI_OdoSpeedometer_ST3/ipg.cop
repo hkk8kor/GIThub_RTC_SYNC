@@ -1,0 +1,24 @@
+#
+# Cantata Test-Level Options
+#
+# Any options set in this file will override the options set in the
+# project-level options file.
+#
+# WARNING: Do not alter this file manually.
+#
+#tool.testid=09b4bfb2-35ff-474d-95cd-a78a430ebbda
+"--ci:--instr:stmt;func;decn;log;"
+"--sa:--calc:*#*"
+"--sm:--access_function:"rbl_CustIf_DI_OdoSpeedometer_ST3.c":RBSYS_EnterCommonLockSysfast()"
+"--sm:--access_function:"rbl_CustIf_DI_OdoSpeedometer_ST3.c":RBSYS_ExitCommonLockSysfast()"
+"--sm:--access_variable:"rbl_CustIf_DI_OdoSpeedometer_ST3.c":rbl_CustIf_DI_OdoSpeedometer_ST3_Timeout"
+"--sm:--wrap:RBSYS_EnterCommonLockSysfast()#rbl_CustIf_DI_OdoSpeedometer_ST3_PDU_Receive()"
+"--sm:--wrap:RBSYS_ExitCommonLockSysfast()#rbl_CustIf_DI_OdoSpeedometer_ST3_PDU_Receive()"
+
+#User Section
+"--dont_ci:*"
+"--ci:--no_instr:all"
+"--do_ci:rbl_CustIf_DI_OdoSpeedometer_ST3.c"
+"--ci:--instr:stmt;func;call;decn;log;#rbl_CustIf_TimeOut_Cbk_DI_OdoSpeedometer_ST3"
+"--ci:--instr:stmt;func;call;decn;log;#rbl_CustIf_DI_OdoSpeedometer_ST3_PDU_Receive"
+

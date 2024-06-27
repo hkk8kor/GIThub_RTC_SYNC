@@ -1,0 +1,14 @@
+start
+if (Check if dcom_MB_MeasurementDataIndex is set to 0) then (yes)
+     :timerecordblock1_fill_retval is updated with record table block of dcom_MB_GTS_Measurement_Fill_TimeRecordBlock_Type1;  
+else 
+     :timerecordblock2_fill_retval is updated with record table block of dcom_MB_GTS_Measurement_Fill_TimeRecordBlock_Type2;
+endif
+if (Check if dcom_MB_MeasurementDataIndex is greater than DCOM_MB_GTS_MEASUREMENT_SETS_TYPE2 ) then (yes)
+     :dcom_MB_MeasurementDataIndex is updated to 0;
+endif
+     :Increase index till maximum of measurement sets defined by Daimler;
+if (check if timerecordheader_fill_retval or timerecordblock1_fill_retval or timerecordblock2_fill_retval is not equal to 0 ) then (yes)
+     :return value is set to E_NOT_OK;
+endif
+stop

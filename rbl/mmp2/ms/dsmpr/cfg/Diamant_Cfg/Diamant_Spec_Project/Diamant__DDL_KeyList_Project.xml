@@ -1,0 +1,336 @@
+<KEYLIST>
+  <!-- The keys define the columns and their order within the Diagnostic Data List (DDL). -->
+  <!-- Every used key will produce a column in the DDL. -->
+  <!-- -->
+  <!-- RULES: -->
+  <!-- Unused keys must be deleted. -->
+  <!-- The order of keys may be changed. -->
+  <!-- The elements' SHORT-NAME must not be changed. -->
+  <!-- The elements' description (DESC) is used as the columns' headers and may be modified. -->
+  <KEYS>
+    <KEY>
+      <SHORT-NAME>DTC_NAME</SHORT-NAME>
+      <DESC>DTC name</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>DTC_VALUE</SHORT-NAME>
+      <DESC>DTC value</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>DTC_DESCRIPTION</SHORT-NAME>
+      <DESC>DTC description</DESC>
+    </KEY>
+	<KEY>
+      <SHORT-NAME>DTC_SIGNIFICANCE</SHORT-NAME>
+      <DESC>Dem DTC Significance</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>EVENTID</SHORT-NAME>
+      <DESC>EventId</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>FW_NAME</SHORT-NAME>
+      <DESC>Event Name</DESC>
+    </KEY>
+	<KEY>
+      <SHORT-NAME>FW_CATEGORY</SHORT-NAME>
+      <DESC>Event category</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>FW_DESC</SHORT-NAME>
+      <DESC>Event description</DESC>
+    </KEY>
+	<KEY>
+      <SHORT-NAME>FW_CURABLE</SHORT-NAME>
+      <DESC>Curable current OC</DESC>
+    </KEY>
+	<KEY>
+      <SHORT-NAME>MON_DESC</SHORT-NAME>
+      <DESC>Monitoring description</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>MON_ROOTCAUSE</SHORT-NAME>
+      <DESC>Root cause</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>MON_DETECT_SITUATION</SHORT-NAME>
+      <DESC>Detection situation</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>MON_DETECT_TIME</SHORT-NAME>
+      <DESC>Detection time</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>MON_GOOD_CHECK_DESCRIPTION</SHORT-NAME>
+      <DESC>Goodcheck maneuver description</DESC>
+    </KEY>
+	 <KEY>
+      <SHORT-NAME>FW_SWUNIT</SHORT-NAME>
+      <DESC>SwUnit</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>FW_SWGROUP</SHORT-NAME>
+      <DESC>SwGroup</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>UMID</SHORT-NAME>
+      <DESC>Umid</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>FW_RESTOREEVENTNEXTOC</SHORT-NAME>
+      <DESC>TF Restore</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>NODE_ALLOWEDRECOVERIES</SHORT-NAME>
+      <DESC>Allowed recoveries</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>FW_SYSTEM_RECOVERABLE</SHORT-NAME>
+      <DESC>System recoverable</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>DEBOUNCER_TYPE</SHORT-NAME>
+      <DESC>Debouncer type</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>DEBOUNCER_METHOD</SHORT-NAME>
+      <DESC>Debounce method</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>DEBOUNCER_THRESHOLD_FAULT</SHORT-NAME>
+      <DESC>CDB fault limit</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>DEBOUNCER_THRESHOLD_ROBUSTNESS</SHORT-NAME>
+      <DESC>CDB robustness limit</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>DEBOUNCER_THRESHOLD_SUSPICION</SHORT-NAME>
+      <DESC>CDB suspicious limit</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>FW_TASK</SHORT-NAME>
+      <DESC>Event Task</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>TEST_COMPLETE_MANEUVER</SHORT-NAME>
+      <DESC>TC maneuver</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>TEST_COMPLETE_MANEUVER_DESC</SHORT-NAME>
+      <DESC>TC maneuver description</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>SFB_COUNT</SHORT-NAME>
+      <DESC>SFB cycles</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>SFB_TIME</SHORT-NAME>
+      <DESC>SFB time</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>DTC_KIND</SHORT-NAME>
+      <DESC>DTC kind</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>NODE_NAME</SHORT-NAME>
+      <DESC>Node name</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>NODE_DESC</SHORT-NAME>
+      <DESC>Node description</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>IMUSTATUS_MMP</SHORT-NAME>
+      <DESC>Imu Stat ST3</DESC>
+    </KEY>
+     <KEY>
+      <SHORT-NAME>IMUSTATUS_SPEC_FORCE</SHORT-NAME>
+      <DESC>Imu SpecForce Stat ST3</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>IMUSTATUS_RATE</SHORT-NAME>
+      <DESC>Imu AngRates Stat ST3/Imu AngAcc Stat ST3</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>NODE_HWSHUTDOWN_MMP</SHORT-NAME>
+      <DESC>HWShutdown MMP</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>FW_OPERATIONCYC</SHORT-NAME>
+      <DESC>Operation cycle</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>FAILURE_CLASS</SHORT-NAME>
+      <DESC>Failure class</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>CLEARNOTALLOWREASON</SHORT-NAME>
+      <DESC>Clear Not Allowed Reason</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>FW_PRODUCT_LINE</SHORT-NAME>
+      <DESC>Product</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>FW_CUSTOMER</SHORT-NAME>
+      <DESC>Customer</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>FW_PROJECT</SHORT-NAME>
+      <DESC>Project</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>MON_DESC_RB</SHORT-NAME>
+      <DESC>RB Monitoring description</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>MON_GOOD_CHECK_STARTS</SHORT-NAME>
+      <DESC>Goodcheck starts</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>FW_ARTYPE</SHORT-NAME>
+      <DESC>Autosar debouncer type</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>AR_DEBOUNCER_STEPS_UP</SHORT-NAME>
+      <DESC>AR step up</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>AR_DEBOUNCER_STEPS_DOWN</SHORT-NAME>
+      <DESC>AR step down</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>AR_DEBOUNCER_FAILED_THR</SHORT-NAME>
+      <DESC>AR failed limit</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>AR_DEBOUNCER_PASSED_THR</SHORT-NAME>
+      <DESC>AR passed limit</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>AR_JUMP_UP_USED</SHORT-NAME>
+      <DESC>AR jump up used</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>AR_JUMP_UP_VALUE</SHORT-NAME>
+      <DESC>AR jump up</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>AR_JUMP_DOWN_USED</SHORT-NAME>
+      <DESC>AR jump down used</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>AR_JUMP_DOWN_VALUE</SHORT-NAME>
+      <DESC>AR jump down</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>DETECTION_TIME</SHORT-NAME>
+      <DESC>Detection time calculated</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>RECOVERY_TIME</SHORT-NAME>
+      <DESC>Recovery time calculated</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>AR_EVENT_KIND</SHORT-NAME>
+      <DESC>Event Kind</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>AR_EVENT_PRIORITY</SHORT-NAME>
+      <DESC>Event priority</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>FW_COMPONENT_GOODCHECK</SHORT-NAME>
+      <DESC>Component goodcheck</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>AR_DEM_DEBOUNCE_BEHAVIOR</SHORT-NAME>
+      <DESC>Dem debounce behavior</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>AR_DEM_REPORT_BEHAVIOR</SHORT-NAME>
+      <DESC>Dem report behavior</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>FW_ASW_SUPPORTS_DEBUGDATA</SHORT-NAME>
+      <DESC>ASW supports debug data</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>FW_BACKUP_TF</SHORT-NAME>
+      <DESC>TF backup storage</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>AR_EVMEM_FDC_THR</SHORT-NAME>
+      <DESC>FDC threshold</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>FW_COUNTERBASE_SUSP</SHORT-NAME>
+      <DESC>Counter based suspicious</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>FW_TIMEBASE_SUSP</SHORT-NAME>
+      <DESC>Time based suspicious</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>FW_STORAGECONDITION</SHORT-NAME>
+      <DESC>Storage condition list</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>FW_ENABLECONDITION</SHORT-NAME>
+      <DESC>Enable condition list</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>FW_VARIANTS</SHORT-NAME>
+      <DESC>Variant list</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>FW_LAST_MODIFIED_USER</SHORT-NAME>
+      <DESC>Last modified</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>DTC_SEVERITY</SHORT-NAME>
+      <DESC>DTC severity</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>DTC_IMM_STORAGE</SHORT-NAME>
+      <DESC>DTC immediate storage</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>DTC_DESTINATION</SHORT-NAME>
+      <DESC>DTC destination</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>DTC_COPY_TO_MIRRORMEM</SHORT-NAME>
+      <DESC>DTC copy to mirror memory</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>FW_FAILURE_CYC_THR</SHORT-NAME>
+      <DESC>Failure cycle threshold</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>FW_AGING_CYC</SHORT-NAME>
+      <DESC>Aging cycle</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>FW_AGING_CYC_THR</SHORT-NAME>
+      <DESC>Aging cycle threshold</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>DTC_AGING_ALLOWED</SHORT-NAME>
+      <DESC>DTC aging allowed</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>DTC_EXTENDEDDATACLASS</SHORT-NAME>
+      <DESC>DTC Extended Data</DESC>
+    </KEY>
+    <KEY>
+      <SHORT-NAME>DTC_FREEZEFRAMECLASS</SHORT-NAME>
+      <DESC>DTC Freeze Frame</DESC>
+    </KEY> 	
+    <KEY>
+      <SHORT-NAME>NODE_FW_RIO_DISABLED</SHORT-NAME>
+      <DESC>FW prio disabled</DESC>
+    </KEY>
+  </KEYS>
+</KEYLIST>

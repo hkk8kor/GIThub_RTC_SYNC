@@ -1,0 +1,627 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<DIAGNOSIS INFO="DiamantPro Core Library 4.2.257.1692" CHECK="249BE39AD8CE139BF000CB82B0DF9033ICAgICAgICAgRGlhbWFudFBybyBDb3JlIExpYnJhcnkgICAgICAgICAgICAgICAgICAgIDQuMi4yNTcuMTY5MiAgICAgICAgICAgIC04NTg0ODk0ODQ2NTU2NzE1NTc3ICAgICAgICAgICAgICAgICAgICAgS09SLUMtMDA4WDcgICAgICAgICAgICAgICAgICAgIEFQQUNcUFFMMUtPUiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg">
+  <FAILURE_WORDS>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_NVM_Variant_handler</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="RecoveryTime">Immediate</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+        <ITEM key="IumprEventExecutionConditions">unassigned</ITEM>
+        <ITEM key="IumprEventFilterTimes">unassigned</ITEM>
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>AttachedEcu</CATEGORY>
+      <FSC_DESC>If no variant has been Configure either MB and AMG or NVM item is empty</FSC_DESC>
+      <TASK_REF>Task_Init</TASK_REF>
+      <CUSTOMER_REF>Cus_Daimler</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\PZR2KOR">3 Jan 2024 09:17</LAST_MODIFIED>
+      <MONITORING>
+        <DESCRIPTION>The NVM item for variant shall be read at startup to check if ECU has been coded with valid variant i.e. MB and AMG 
+if no variant has been configured means NVM item for variant coding is empty the DTC shall be logged with active state</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>ECU has been coded with valid variant</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>If no varinat has been Configure either MB and AMG or NVM item is empty</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>initalization if Nvm block for variant handle is empty</DETECTION_SIT>
+          <DETECTION_TIME>Immediate</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_SSA</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>PowerCycle</OPERATION_CYCLE_REF>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_SSA_Event_DTC_D12083</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="RecoveryTime">[10ms]Soon after all the secured PDU Mac verification counters falls below threshold value (100) or If their is ignition cycle change</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">RTE</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+        <ITEM key="IumprEventExecutionConditions">unassigned</ITEM>
+        <ITEM key="IumprEventFilterTimes">unassigned</ITEM>
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>ExternalFault</CATEGORY>
+      <FSC_DESC>SSA failure - SecOC calculation incorrect</FSC_DESC>
+      <TASK_REF>Task_10ms</TASK_REF>
+      <CUSTOMER_REF>Cus_Daimler</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\PQL1KOR">5 Sep 2023 16:39</LAST_MODIFIED>
+      <MONITORING>
+        <DESCRIPTION>The security module of the control unit has detected a communication error. Value of signal protection calculation incorrect.</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>If all the secured PDU Mac verification counters are below threshold value (100) or If their is ignition cycle change</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>If any one of the PDU-specific failed counters reaches the configured fthreshold th1 (100)</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>The monitoring is always active.Ignition is ON</DETECTION_SIT>
+          <DETECTION_TIME>1000ms -100s (Detection time corresponds to Periodicity of each PDU ranges from 10ms-1Sec)</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_IgnitionOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventKind>EVENT_KIND_SWC</EventKind>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_SSA</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>PowerCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>true</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_SSA_Event_DTC_D12081</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="RecoveryTime">[10ms] Soon after receiving a secured tick-count message with right tick count information</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">RTE</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+        <ITEM key="IumprEventExecutionConditions">unassigned</ITEM>
+        <ITEM key="IumprEventFilterTimes">unassigned</ITEM>
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>ExternalFault</CATEGORY>
+      <FSC_DESC>SSA failure - The security module of the control unit has detected a communication error. Invalid serial data received.</FSC_DESC>
+      <TASK_REF>Task_10ms</TASK_REF>
+      <CUSTOMER_REF>Cus_Daimler</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\PQL1KOR">5 Sep 2023 16:39</LAST_MODIFIED>
+      <MONITORING>
+        <ADD_RB_DESCRIPTION> When ECU receives new Secure_tick_count broadcast message with a value lesser than 40% of current local_tick_count value [i.e Secure_tick_count &lt; (local_tick_count - (40%) local_tick_count)]</ADD_RB_DESCRIPTION>
+        <DESCRIPTION>The security module of the control unit has detected a communication error. Invalid serial data received.</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>At least one secured tick-count message is accepted within 40% deviation.</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>If the secured tick-count message is not accepted by the receiving ECU.</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>The monitoring is always active.Ignition is ON</DETECTION_SIT>
+          <DETECTION_TIME>10ms</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_IgnitionOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventKind>EVENT_KIND_SWC</EventKind>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_SSA</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>PowerCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>true</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_SSA_Event_DTC_9a6857</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="RecoveryTime">In init function soon after Reprogramming software with right ACL information </ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">RTE</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+        <ITEM key="IumprEventExecutionConditions">unassigned</ITEM>
+        <ITEM key="IumprEventFilterTimes">unassigned</ITEM>
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>ExternalFault</CATEGORY>
+      <FSC_DESC>SSA failure - Access Control List (ACL) invalid</FSC_DESC>
+      <TASK_REF>Task_10ms</TASK_REF>
+      <CUSTOMER_REF>Cus_Daimler</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\PQL1KOR">5 Sep 2023 16:39</LAST_MODIFIED>
+      <MONITORING>
+        <DESCRIPTION>The access protection of the control unit has a malfunction. Invalid / Incompatible Software Component.</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>After Reprogramming software with right ACL information </GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>If the ECU-individual AccessControlList does not match to the ECU's Diagnostic Variant and Diagnostic Version</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>The monitoring is always active.Ignition is ON</DETECTION_SIT>
+          <DETECTION_TIME>Immediate</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_IgnitionOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventKind>EVENT_KIND_SWC</EventKind>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_SSA</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>PowerCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>true</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_SSA_Event_DTC_D12087</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="RecoveryTime">10ms</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">RTE</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+        <ITEM key="IumprEventExecutionConditions">unassigned</ITEM>
+        <ITEM key="IumprEventFilterTimes">unassigned</ITEM>
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>ExternalFault</CATEGORY>
+      <FSC_DESC>SSA failure - Time sync message missing</FSC_DESC>
+      <TASK_REF>Task_10ms</TASK_REF>
+      <CUSTOMER_REF>Cus_Daimler</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\PQL1KOR">5 Sep 2023 16:39</LAST_MODIFIED>
+      <MONITORING>
+        <ADD_RB_DESCRIPTION>Periodicity of secure tick count message is 1sec.Hence for a threshould of 3 detection time would be 3000ms.</ADD_RB_DESCRIPTION>
+        <DESCRIPTION>The security module of the control unit has detected a communication error. Missing message.</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>At least one secured tick-count message is received.</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>If the event log counter for the secured tick-count message exceeds the threshold of 3. </ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>The monitoring is always active.Ignition is ON</DETECTION_SIT>
+          <DETECTION_TIME>3000 ms</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_IgnitionOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventKind>EVENT_KIND_SWC</EventKind>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>CounterBased</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize>1</DebouncecounterIncrementstepsize>
+            <DebouncecounterDecrementstepsize>1</DebouncecounterDecrementstepsize>
+            <DebouncecounterFailedthreshold>3</DebouncecounterFailedthreshold>
+            <DebouncecounterPassedthreshold>-1</DebouncecounterPassedthreshold>
+            <DebouncecounterJumpup>true</DebouncecounterJumpup>
+            <DebouncecounterJumpdown>true</DebouncecounterJumpdown>
+            <DebouncecounterJumpdownvalue>0</DebouncecounterJumpdownvalue>
+            <DebouncecounterJumpupvalue>0</DebouncecounterJumpupvalue>
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_SSA</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>PowerCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>true</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_SSA_Event_DTC_164456</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="RecoveryTime">[10ms] When the VIN Status is set to "VIN correct received" or successful variant coding is performed</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">RTE</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+        <ITEM key="IumprEventExecutionConditions">unassigned</ITEM>
+        <ITEM key="IumprEventFilterTimes">unassigned</ITEM>
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>ExternalFault</CATEGORY>
+      <FSC_DESC>SSA Failure - Variant Coding incorrect</FSC_DESC>
+      <TASK_REF>Task_10ms</TASK_REF>
+      <CUSTOMER_REF>Cus_Daimler</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\PQL1KOR">3 Apr 2024 11:00</LAST_MODIFIED>
+      <MONITORING>
+        <ADD_RB_DESCRIPTION>Set an Event Status to failed if coding data does not match the current VIN.</ADD_RB_DESCRIPTION>
+        <DESCRIPTION>If the VIN Status is set to "new VIN received" or if the VIN Status is set to "VIN not
+received", the Standard Security Architecture shall set the corresponding DTC "An
+incorrect variant coding or configuration was detected" (0x164456) to TestFailed equal
+to TRUE".
+If the VIN Status is set to "VIN correct received", the Standard Security Architecture
+shall set the corresponding DTC "An incorrect variant coding or configuration was
+detected" (0x164456) to TestFailed equal to FALSE</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>If all the secured PDU Mac verification counters are below threshold value (100) or If their is ignition cycle change</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>If the VIN Status is set to "new VIN received" or if the VIN Status is set to "VIN not received</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>The monitoring is always active.Ignition is ON</DETECTION_SIT>
+          <DETECTION_TIME>10ms</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventKind>EVENT_KIND_SWC</EventKind>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_SSA</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>PowerCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>false</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+  </FAILURE_WORDS>
+</DIAGNOSIS>

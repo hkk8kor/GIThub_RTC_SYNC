@@ -1,0 +1,196 @@
+/**
+ * \brief Build configuration of IMU - part of overall build configuration
+ *
+ * For details see Cfg_build_master.bcfg in project root folder
+ */
+
+#include "rbl/mmp2/ms/cswpr/cfg/RB_Prj_ConfigSettings.h" // must preceed RB_Config.h inclusion in order to make RB_Config.h work in BCFG context
+
+module "rbl/mmp2/cust/mb/rbl_net"
+{
+		
+	export
+	{
+		"api";
+		"cfg";
+	}
+
+	files
+	{
+		c
+		{		
+            "src/*.c";
+		}
+		genprodb
+		{
+			"api/*.h";
+            "src/*.[hc]"; 
+		}
+		bct_input
+		{
+	
+			"cfg/MB_CommunicationTest_EcucValues.arxml"; 
+			"cfg/MB_CoreNds_Can_EcucValues.arxml";
+			
+			#if(RBFS_NetworkManagement == RBFS_NetworkManagement_On)
+				"cfg/Os_Prot_EcucValues.arxml";
+				"cfg/rba_EcuM_FixedCompatibility_Cfg_EcucValues.arxml";
+
+			#if ((RBFS_HSWProjectVariant == RBFS_HSWProjectVariant_MMP211xB0xDevBoard) || (RBFS_HSWProjectVariant == RBFS_HSWProjectVariant_MMP211xB0xTargetBoard ) || (RBFS_MMP2 == RBFS_MMP2_IMUA))
+				"cfg/MB_IMU_VehiNetExtnd_Can_EcucValues.arxml";
+			#endif
+			#else
+				"cfg/MB_IMU_VehiNetBasic_Can_EcucValues.arxml";
+			#endif	
+			
+			#if (RBFS_MMP2 == RBFS_MMP2_IMUA)
+							
+				#if(RBFS_NetworkManagement == RBFS_NetworkManagement_On)
+				    "cfg/MB_IMUA_EcuM_CANWakeup.arxml";
+				    "cfg/MB_IMUA_BswM_EcucValues.arxml";
+					"cfg/MB_IMUA_BswM_PNC_EcucValues.arxml";
+					"cfg/MB_IMUA_VehiNetExtnd_Can_EcucValues.arxml";
+				#else
+					"cfg/MB_IMUA_VehiNet_Can_EcucValues.arxml";
+				#endif
+				
+				#if(RBFS_TimeSync == RBFS_TimeSync_TSCan)
+					"cfg/MB_IMUA_TimeSync_Can_EcucValues.arxml";
+				#endif
+				
+				#if (RBFS_CyberSecuritySecOC != RBFS_CyberSecuritySecOC_Off)
+				    #if (RBFS_SecOCRxVerification != RBFS_SecOCRxVerification_OFF)
+						"cfg/MB_IMUA_SecOC_Can_EcucValues.arxml";   
+					#else
+						"cfg/MB_IMUA_SecOC_RxOff_Can_EcucValues.arxml"; 
+					#endif
+					"cfg/MB_IMUA_E2EWP_Can_EcucValues.arxml";
+					"cfg/MB_IMUA_Nds_Can_EcucValues.arxml";
+				#else
+					"cfg/MB_IMUA_E2EWP_Can_EcucValues_NonHsm.arxml";
+					"cfg/MB_IMUA_Nds_Can_EcucValues_NonHsm.arxml";
+				#endif
+				
+			#elif (RBFS_MMP2 == RBFS_MMP2_IMUB)
+				#if(RBFS_DrivingCANSignals == RBFS_DrivingCANSignals_ON)					
+					#if(RBFS_CyberSecuritySecOC != RBFS_CyberSecuritySecOC_Off)
+                        "cfg/MB_AMG_IMUB_SecOC_Can_EcucValues.arxml";  
+                        "cfg/MB_AMG_IMUB_Nds_Can_EcucValues.arxml"; 
+                   #else 
+				        "cfg/MB_AMG_IMUB_Nds_Can_EcucValues_NonHsm.arxml"; 
+				  #endif
+				#endif
+
+				
+				#if(RBFS_NetworkManagement == RBFS_NetworkManagement_On)
+					
+					#if ((RBFS_HSWProjectVariant == RBFS_HSWProjectVariant_MMP211xB1xDevBoard) || (RBFS_HSWProjectVariant == RBFS_HSWProjectVariant_MMP211xB1xTargetBoard ))
+					    "cfg/MB_IMUA_EcuM_CANWakeup.arxml";
+						"cfg/MB_IMUB_BswM_EcucValues.arxml";
+						"cfg/MB_AMG_IMU_VehiNetExtnd_Can_EcucValues.arxml";
+						"cfg/MB_AMG_IMUB_VehiNetExtnd_Can_EcucValues.arxml";
+						"cfg/MB_IMUB_VehiNetExtnd_Can_EcucValues.arxml";
+					#elif((RBFS_HSWProjectVariant == RBFS_HSWProjectVariant_MMP211xC0xDevBoard) || (RBFS_HSWProjectVariant == RBFS_HSWProjectVariant_MMP211xC0xTargetBoard ))
+					    "cfg/MB_IMUB_EcuM_CANWakeup.arxml";
+						"cfg/MB_IMUB_BswM_EcucValues.arxml";
+						"cfg/MB_IMUB_BswM_PNC_EcucValues.arxml";				
+						"cfg/MB_AMG_IMU_CSample_VehiNetExtnd_Can_EcucValues.arxml";
+						"cfg/MB_AMG_IMUB_VehiNetExtnd_Can_EcucValues.arxml";	
+						"cfg/MB_IMUB_CSample_VehiNetExtnd_Can_EcucValues.arxml";						
+					#endif	
+				#else
+					"cfg/MB_IMUB_VehiNet_Can_EcucValues.arxml";
+					#if ((RBFS_HSWProjectVariant == RBFS_HSWProjectVariant_MMP211xB1xDevBoard) || (RBFS_HSWProjectVariant == RBFS_HSWProjectVariant_MMP211xB1xTargetBoard ))
+						"cfg/MB_AMG_IMU_VehiNetBasic_Can_EcucValues.arxml";
+						"cfg/MB_AMG_IMUB_VehiNet_Can_EcucValues.arxml";
+					#elif((RBFS_HSWProjectVariant == RBFS_HSWProjectVariant_MMP211xC0xDevBoard) || (RBFS_HSWProjectVariant == RBFS_HSWProjectVariant_MMP211xC0xTargetBoard ))
+						"cfg/MB_AMG_IMU_VehiNetBasic_Can_EcucValues.arxml";
+						"cfg/MB_AMG_IMUB_VehiNet_Can_EcucValues.arxml";						
+                    #endif 					
+				#endif
+				
+				#if(RBFS_TimeSync == RBFS_TimeSync_TSCan)
+					"cfg/MB_IMUB_TimeSync_Can_EcucValues.arxml";  
+			         #if ((RBFS_HSWProjectVariant == RBFS_HSWProjectVariant_MMP211xB1xDevBoard) || (RBFS_HSWProjectVariant == RBFS_HSWProjectVariant_MMP211xB1xTargetBoard ) \
+			           || (RBFS_HSWProjectVariant == RBFS_HSWProjectVariant_MMP211xC0xDevBoard) || (RBFS_HSWProjectVariant == RBFS_HSWProjectVariant_MMP211xC0xTargetBoard ))
+                        	"cfg/MB_IMUB_AMG_TimeSync_Can_EcucValues.arxml";  
+                     #endif              
+				#endif
+				
+				#if(RBFS_CyberSecuritySecOC != RBFS_CyberSecuritySecOC_Off)
+				    #if (RBFS_SecOCRxVerification != RBFS_SecOCRxVerification_OFF)
+						"cfg/MB_IMUB_SecOC_Can_EcucValues.arxml";   
+					#else
+						"cfg/MB_IMUB_SecOC_RxOff_Can_EcucValues.arxml"; 
+					#endif 
+					"cfg/MB_IMUB_E2EWP_Can_EcucValues.arxml";
+					"cfg/MB_IMUB_Nds_Can_EcucValues.arxml";
+				#else
+					"cfg/MB_IMUB_E2EWP_Can_EcucValues_NonHsm.arxml";
+					"cfg/MB_IMUB_Nds_Can_EcucValues_NonHsm.arxml";
+				#endif
+				
+			#else
+			
+				#error (" RBFS_MMP2 type configuration missing for MB Network communication!")
+				
+			#endif 
+			
+			#if (RBFS_HSWXCPSupport == RBFS_HSWXCPSupport_ON)
+				"cfg/MB_VehiNet_Xcp_EcucValues.arxml";
+			#endif 
+			
+			#if(RBFS_MMP2 == RBFS_MMP2_IMUA)
+				#if(RBFS_HSWSimulation == RBFS_HSWSimulation_ON)
+					exclude "cfg/MB_IMUA_VehiNet_Can_EcucValues.arxml";
+					"cfg/HSWSim_Stubs/MB_IMUA_VehiNet_Can_EcucValues_HSWSim.arxml";
+				#endif
+			#elif(RBFS_MMP2 == RBFS_MMP2_IMUB)
+				#if(RBFS_HSWSimulation == RBFS_HSWSimulation_ON)
+					exclude "cfg/MB_IMUB_VehiNet_Can_EcucValues.arxml";
+					"cfg/HSWSim_Stubs/MB_IMUB_VehiNet_Can_EcucValues_HSWSim.arxml";
+				#endif
+			#endif
+		}
+		proc
+		{
+			"RBLNET_Subsystem.proc";
+		}
+		 
+	}
+	
+	module "ComScl_Appl"
+	{
+		export
+		{
+			"PostProcessing";
+			"Project";
+		}
+		files
+		{
+			c
+			{
+				"Project/*.c";
+			}
+			genprodb
+			{
+				"Project/*.h";
+				"Project/*.[hc]";
+			}
+			bct_input
+			{
+				#if (RBFS_ComStackOnlineGeneration == RBFS_ComStackOnlineGeneration_YES)
+				"PostProcessing/*";
+				"Project/*";
+				"**/*.bamf";
+				#endif
+			}
+			proc
+			{
+				"**/*.proc";
+			}
+
+		}//files
+	}
+					
+}

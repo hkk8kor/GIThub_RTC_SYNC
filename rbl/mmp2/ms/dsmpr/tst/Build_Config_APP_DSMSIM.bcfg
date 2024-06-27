@@ -1,0 +1,36 @@
+ 
+/**
+ * \brief Build configuration of DSMSim - part of overall build configuration
+ *
+ * For details see Cfg_build_master.bcfg in project root folder
+ */
+
+
+  
+	module "tst"
+     {
+	 
+	export
+     {
+      "Sim/**/hdr";
+	  "ct/api";
+     }
+       files
+	   {
+		   c
+		   {
+		   #if( RBFS_HSWSimulation == RBFS_HSWSimulation_ON )	
+			 "Sim/**/*_SWT_*.c";
+			 #endif
+		   #if(RBFS_DSMSimulation == RBFS_DSMSimulation_ON)
+		     "ct/**/*_SWT_*.c";
+		   #endif
+		   }
+		   genprodb
+		   {
+			#if( RBFS_HSWSimulation == RBFS_HSWSimulation_ON )
+			 "Sim/Hdr/*.h";
+			#endif
+		   }
+		}//files
+	  }//module

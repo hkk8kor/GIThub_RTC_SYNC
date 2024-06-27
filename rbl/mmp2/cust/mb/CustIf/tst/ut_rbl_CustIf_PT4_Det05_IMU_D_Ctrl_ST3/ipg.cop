@@ -1,0 +1,39 @@
+#
+# Cantata Test-Level Options
+#
+# Any options set in this file will override the options set in the
+# project-level options file.
+#
+# WARNING: Do not alter this file manually.
+#
+#tool.testid=7096cafa-42ec-485e-b55b-dd93323a1cb1
+"--ci:--instr:stmt;func;decn;log;"
+"--sa:--calc:*#*"
+"--sm:--access_function:"rbl_CustIf_PT4_Det05_IMU_D_Ctrl_ST3.c":Bfx_Prv_GetBit_u8u8_u8_Inl(uint8, uint8)"
+"--sm:--access_function:"rbl_CustIf_PT4_Det05_IMU_D_Ctrl_ST3.c":RBSYS_EnterCommonLockSysfast()"
+"--sm:--access_function:"rbl_CustIf_PT4_Det05_IMU_D_Ctrl_ST3.c":RBSYS_ExitCommonLockSysfast()"
+"--sm:--access_function:"rbl_CustIf_PT4_Det05_IMU_D_Ctrl_ST3.c":rbl_CustIf_IMU_D_PrepareStatus(uint8 )"
+"--sm:--access_function:"rbl_CustIf_PT4_Det05_IMU_D_Ctrl_ST3.c":rbl_CustIf_Prepare_IMU_D_Signal_Status(const rbl_ImuStdTypes_ImuSignalSet_t *,const rbl_ImuStdTypes_ImuSignalSet_t *)"
+"--sm:--access_function:"rbl_CustIf_PT4_Det05_IMU_D_Ctrl_ST3.c":rbl_CustIf_Prepare_IMU_D_Signal_TimeStamp(uint32 )"
+"--sm:--access_function:"rbl_CustIf_PT4_Det05_IMU_D_Ctrl_ST3.c":rbl_CustIf_Prepare_IMU_D_Signals(const rbl_ImuStdTypes_ImuSignalSet_t *,const rbl_ImuStdTypes_ImuSignalSet_t *,const rbl_ImuStdTypes_ImuSignalSet_t *)"
+"--sm:--access_variable:"rbl_CustIf_PT4_Det05_IMU_D_Ctrl_ST3.c":rbl_CustIf_Driving_compu_param"
+"--sm:--access_variable:"rbl_CustIf_PT4_Det05_IMU_D_Ctrl_ST3.c":rbl_CustIf_ImuDrivingSigData"
+"--sm:--wrap:Bfx_Prv_GetBit_u8u8_u8_Inl(uint8, uint8)#Bfx_Prv_CopyBit_u8u8u8u8_Inl(uint8 *,uint8 ,uint8 ,uint8 )"
+"--sm:--wrap:Bfx_Prv_GetBit_u8u8_u8_Inl(uint8, uint8)#rbl_CustIf_IMU_D_PrepareStatus(uint8 )"
+"--sm:--wrap:RBSYS_EnterCommonLockSysfast()#rbl_CustIf_IMU_D_DRIVING_Det05_ST3_PT4_Det05_IMU_D_Ctrl_ST3_PDU_Update(const rbl_ImuStdTypes_ImuSignalSet_t *,const rbl_ImuStdTypes_ImuSignalSet_t *)"
+"--sm:--wrap:RBSYS_ExitCommonLockSysfast()#rbl_CustIf_IMU_D_DRIVING_Det05_ST3_PT4_Det05_IMU_D_Ctrl_ST3_PDU_Update(const rbl_ImuStdTypes_ImuSignalSet_t *,const rbl_ImuStdTypes_ImuSignalSet_t *)"
+"--sm:--wrap:rbl_CustIf_IMU_D_PrepareStatus(uint8 )#rbl_CustIf_Prepare_IMU_D_Signal_Status(const rbl_ImuStdTypes_ImuSignalSet_t *,const rbl_ImuStdTypes_ImuSignalSet_t *)"
+"--sm:--wrap:rbl_CustIf_IMU_D_PrepareStatus(uint8 )#rbl_CustIf_Prepare_IMU_D_Signals(const rbl_ImuStdTypes_ImuSignalSet_t *,const rbl_ImuStdTypes_ImuSignalSet_t *,const rbl_ImuStdTypes_ImuSignalSet_t *)"
+"--sm:--wrap:rbl_CustIf_Prepare_IMU_D_Signal_Status(const rbl_ImuStdTypes_ImuSignalSet_t *,const rbl_ImuStdTypes_ImuSignalSet_t *)#rbl_CustIf_IMU_D_DRIVING_Det05_ST3_PT4_Det05_IMU_D_Ctrl_ST3_PDU_Update(const rbl_ImuStdTypes_ImuSignalSet_t *,const rbl_ImuStdTypes_ImuSignalSet_t *)"
+"--sm:--wrap:rbl_CustIf_Prepare_IMU_D_Signal_TimeStamp(uint32 )#rbl_CustIf_IMU_D_DRIVING_Det05_ST3_PT4_Det05_IMU_D_Ctrl_ST3_PDU_Update(const rbl_ImuStdTypes_ImuSignalSet_t *,const rbl_ImuStdTypes_ImuSignalSet_t *)"
+"--sm:--wrap:rbl_CustIf_Prepare_IMU_D_Signals(const rbl_ImuStdTypes_ImuSignalSet_t *,const rbl_ImuStdTypes_ImuSignalSet_t *,const rbl_ImuStdTypes_ImuSignalSet_t *)#rbl_CustIf_IMU_D_DRIVING_Det05_ST3_PT4_Det05_IMU_D_Ctrl_ST3_PDU_Update(const rbl_ImuStdTypes_ImuSignalSet_t *,const rbl_ImuStdTypes_ImuSignalSet_t *)"
+
+#User Section
+"--dont_ci:*"
+"--ci:--no_instr:all"
+"--do_ci:rbl_CustIf_PT4_Det05_IMU_D_Ctrl_ST3.c"
+"--ci:--instr:stmt;func;call;decn;log;#rbl_CustIf_IMU_D_PrepareStatus"
+"--ci:--instr:stmt;func;call;decn;log;#rbl_CustIf_Prepare_IMU_D_Signal_Status"
+"--ci:--instr:stmt;func;call;decn;log;#rbl_CustIf_Prepare_IMU_D_Signals"
+"--ci:--instr:stmt;func;call;decn;log;#rbl_CustIf_Prepare_IMU_D_Signal_TimeStamp"
+"--ci:--instr:stmt;func;call;decn;log;#rbl_CustIf_IMU_D_DRIVING_Det05_ST3_PT4_Det05_IMU_D_Ctrl_ST3_PDU_Update"

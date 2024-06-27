@@ -1,0 +1,21 @@
+#
+# Cantata Test-Level Options
+#
+# Any options set in this file will override the options set in the
+# project-level options file.
+#
+# WARNING: Do not alter this file manually.
+#
+#tool.testid=ba76b628-7f18-46f5-ae5e-f1dc99fceaaa
+"--ci:--instr:stmt;func;decn;log;"
+"--sa:--calc:*#*"
+"--sm:--access_function:"rbl_SigChain_Algn.c":rbl_SigChain_GetTempInterpOrthMtrx(float32 (*)[3],const rbl_ImuStdTypes_ImuSignalSet_t *,const sint16 *,const rbl_SigChain_AlgnMtrx_t *,uint8 ,boolean )"
+"--sm:--access_variable:"rbl_SigChain_Algn.c":rbl_SigChain_AlgnT"
+"--sm:--wrap:rbl_SigChain_GetTempInterpOrthMtrx(float32 (*)[3],const rbl_ImuStdTypes_ImuSignalSet_t *,const sint16 *,const rbl_SigChain_AlgnMtrx_t *,uint8 ,boolean )#rbl_SigChainAlgn(rbl_ImuStdTypes_ImuSignalSet_t *)"
+
+#User Section
+"--dont_ci:*"
+"--do_ci:rbl_SigChain_Algn.c"
+"--ci:--no_instr:all"
+"--ci:--instr:stmt;func;decn;log;#rbl_SigChain_GetTempInterpOrthMtrx"
+"--ci:--instr:stmt;func;decn;log;#rbl_SigChainAlgn"

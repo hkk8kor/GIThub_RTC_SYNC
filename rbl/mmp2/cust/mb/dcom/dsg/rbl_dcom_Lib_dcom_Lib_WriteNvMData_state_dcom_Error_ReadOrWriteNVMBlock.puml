@@ -1,0 +1,9 @@
+!pragma useVerticalIf on
+title State: dcom_Error_ReadOrWriteNVMBlock
+start
+:State machine dcom_EepromWriteByPdmState at State <b>dcom_Error_ReadOrWriteNVMBlock;
+ :Reset the counter l_EEPROMRetryLimit to 0
+ Change state machine to Init state i.e. <b>dcom_NvMGetErrorStatus_BeforeReadOrWriteRequest
+ Update the Error Code to NRC 0x22 <b>CONDITIONS NOT CORRECT
+ Update Return Value with E_NOT_OK;
+stop

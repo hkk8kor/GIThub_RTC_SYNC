@@ -1,0 +1,18 @@
+Start
+:Read the **RBMESG_ADAS_HAD_Stat_IDC_S_FSI_Bckp_ST3** interface;
+if(ADAS_HAD_Stat_IDC_S_FSI_Bckp_ST3pdu is received without timeout) then (Yes)
+:Validate the Received the received **ADAS_HAD_Ext_Stat_S_FSI_Bckp_ST3** signal;
+note right
+ invalid value include any other value
+ other than valid values mentioned
+end note
+if(ADAS_HAD_Ext_Stat_S_FSI_Bckp_ST3 Signal is valid ?) then (Yes) 
+: Report to dem that \n **RBL_CUSTIF_SIGNAL_INVALID_HAD_Stat_IDC_S_FSI_Bckp_Pr5_ST3** \n dem event is PREPASSED ;
+else (No) 
+: Report to dem that \n **RBL_CUSTIF_SIGNAL_INVALID_HAD_Stat_IDC_S_FSI_Bckp_Pr5_ST3** \n dem event is PREFAILED ; 
+: Update the ADAS_HAD_Ext_Stat_S_FSI_Bckp_ST3 signal with \n **I_C3_HAD_EXT_STAT_ST3_SNA** value;
+endif
+else (No)
+: Update the ADAS_HAD_Ext_Stat_S_FSI_Bckp_ST3 signal with \n **I_C3_HAD_EXT_STAT_ST3_SNA** value;
+endif
+Stop

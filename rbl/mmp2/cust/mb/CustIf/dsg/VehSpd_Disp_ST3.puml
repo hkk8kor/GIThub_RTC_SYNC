@@ -1,0 +1,20 @@
+start
+:Read the **RBMESG_VehSpd_Disp_ST3** signal;
+:Validate the Received the received \n **VehSpd_Disp_ST3** signal;
+note left
+ valid values are from 0 to 4094
+end note
+if(**VehSpd_Disp_ST3** signal is valid ? ) then (yes) 
+: Report to dem that \n **RBL_CUSTIF_SIGNAL_INVALID_VEHSPD_DISP_ST3** \n dem event is PREPASSED ;
+: scaled down the received value by **10**;
+if (Scaled value is > 255 ) then (Yes)
+: Update the value to 255 (maximum speed);
+else (No) 
+: Do nothing;
+endif
+else (No) 
+:  Report to dem that \n **RBL_CUSTIF_SIGNAL_INVALID_VEHSPD_DISP_ST3** \n dem event is PREFAILED ; 
+:  update the VehSpd_Disp_ST3 signal with \n **I_C12_KM_P_H_0_409K4_0K1_SNA** value;
+endif
+:  Transmit the updated signal via \n **RBMESG_CustIf_VehSpd_Disp_ST3** Variable;
+stop

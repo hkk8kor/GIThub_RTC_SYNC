@@ -1,0 +1,213 @@
+#include "RBPDMDB_Customer.pdmdb"
+
+#if (RBFS_SoftwarePurpose != RBFS_SoftwarePurpose_EcuPlant)
+
+#if (RBFS_ThirdPartySoftware != RBFS_ThirdPartySoftware_OFF) 
+use dataitem NVM_ID_EVMEM_LOC_36_0 as NVM_ID_EVMEM_LOC_0
+#else
+use dataitem NVM_ID_EVMEM_LOC_36_0 as NVM_ID_EVMEM_LOC_0
+#endif
+{
+	job interface
+	{
+		read_callback = Dem_EvMemNvmReadRamBlockFromNvCallback0;
+		write_callback = Dem_EvMemNvMWriteRamBlockToNvCallback0;
+	}
+	startup read;
+    shutdown write;
+
+	plant eol preserve;
+	writecycles = WakeUpCycles;
+}
+
+#if (RBFS_ThirdPartySoftware != RBFS_ThirdPartySoftware_OFF) 
+use dataitem NVM_ID_EVMEM_LOC_36_1 as NVM_ID_EVMEM_LOC_1
+#else
+use dataitem NVM_ID_EVMEM_LOC_36_1 as NVM_ID_EVMEM_LOC_1
+#endif
+{
+	job interface
+	{
+		read_callback = Dem_EvMemNvmReadRamBlockFromNvCallback1;
+		write_callback = Dem_EvMemNvMWriteRamBlockToNvCallback1;
+	}
+	startup read;
+    shutdown write;
+
+	plant eol preserve;
+	writecycles = WakeUpCycles;
+}
+
+#if (RBFS_ThirdPartySoftware != RBFS_ThirdPartySoftware_OFF) 
+use dataitem NVM_ID_EVMEM_LOC_36_2 as NVM_ID_EVMEM_LOC_2
+#else
+use dataitem NVM_ID_EVMEM_LOC_36_2 as NVM_ID_EVMEM_LOC_2
+#endif
+{
+	job interface
+	{
+		read_callback = Dem_EvMemNvmReadRamBlockFromNvCallback2;
+		write_callback = Dem_EvMemNvMWriteRamBlockToNvCallback2;
+	}
+	startup read;
+    shutdown write;
+
+	plant eol preserve;
+	writecycles = WakeUpCycles;
+}
+
+#if (RBFS_ThirdPartySoftware != RBFS_ThirdPartySoftware_OFF) 
+use dataitem NVM_ID_EVMEM_LOC_36_3 as NVM_ID_EVMEM_LOC_3
+#else
+use dataitem NVM_ID_EVMEM_LOC_36_3 as NVM_ID_EVMEM_LOC_3
+#endif
+{
+	job interface
+	{
+		read_callback = Dem_EvMemNvmReadRamBlockFromNvCallback3;
+		write_callback = Dem_EvMemNvMWriteRamBlockToNvCallback3;
+	}
+	startup read;
+    shutdown write;
+
+	plant eol preserve;
+	writecycles = WakeUpCycles;
+}
+
+#if (RBFS_ThirdPartySoftware != RBFS_ThirdPartySoftware_OFF) 
+use dataitem NVM_ID_EVMEM_LOC_36_4 as NVM_ID_EVMEM_LOC_4
+#else
+use dataitem NVM_ID_EVMEM_LOC_36_4 as NVM_ID_EVMEM_LOC_4
+#endif
+{
+	job interface
+	{
+		read_callback = Dem_EvMemNvmReadRamBlockFromNvCallback4;
+		write_callback = Dem_EvMemNvMWriteRamBlockToNvCallback4;
+	}
+	startup read;
+    shutdown write;
+
+	plant eol preserve;
+	writecycles = WakeUpCycles;
+}
+
+
+#if (RBFS_ThirdPartySoftware != RBFS_ThirdPartySoftware_OFF)
+use dataitem NVM_ID_EVMEM_LOC_36_5 as NVM_ID_EVMEM_LOC_5
+#else
+use dataitem NVM_ID_EVMEM_LOC_36_5 as NVM_ID_EVMEM_LOC_5
+#endif
+{
+	job interface
+	{
+		read_callback = Dem_EvMemNvmReadRamBlockFromNvCallback5;
+		write_callback = Dem_EvMemNvMWriteRamBlockToNvCallback5;
+	}
+	startup read;
+    shutdown write;
+
+	plant eol preserve;
+	writecycles = WakeUpCycles;
+}
+
+#if (RBFS_ThirdPartySoftware != RBFS_ThirdPartySoftware_OFF)
+use dataitem NVM_ID_EVMEM_LOC_36_6 as NVM_ID_EVMEM_LOC_6
+#else
+use dataitem NVM_ID_EVMEM_LOC_36_6 as NVM_ID_EVMEM_LOC_6
+#endif
+{
+	job interface
+	{
+		read_callback = Dem_EvMemNvmReadRamBlockFromNvCallback6;
+		write_callback = Dem_EvMemNvMWriteRamBlockToNvCallback6;
+	}
+	startup read;
+    shutdown write;
+
+	plant eol preserve;
+	writecycles = WakeUpCycles;
+}
+
+#if (RBFS_ThirdPartySoftware != RBFS_ThirdPartySoftware_OFF)
+use dataitem NVM_ID_EVMEM_LOC_36_7 as NVM_ID_EVMEM_LOC_7
+#else
+use dataitem NVM_ID_EVMEM_LOC_36_7 as NVM_ID_EVMEM_LOC_7
+#endif
+{
+	job interface
+	{
+		read_callback = Dem_EvMemNvmReadRamBlockFromNvCallback7;
+		write_callback = Dem_EvMemNvMWriteRamBlockToNvCallback7;
+	}
+	startup read;
+    shutdown write;
+
+	plant eol preserve;
+	writecycles = WakeUpCycles;
+}
+
+#if (RBFS_ThirdPartySoftware != RBFS_ThirdPartySoftware_OFF)
+use dataitem NVM_ID_EVMEM_LOC_36_8 as NVM_ID_EVMEM_LOC_8
+#else
+use dataitem NVM_ID_EVMEM_LOC_36_8 as NVM_ID_EVMEM_LOC_8
+#endif
+{
+	job interface
+	{
+		read_callback = Dem_EvMemNvmReadRamBlockFromNvCallback8;
+		write_callback = Dem_EvMemNvMWriteRamBlockToNvCallback8;
+	}
+	startup read;
+    shutdown write;
+
+	plant eol preserve;
+	writecycles = WakeUpCycles;
+}
+
+#if (RBFS_ThirdPartySoftware != RBFS_ThirdPartySoftware_OFF)
+use dataitem NVM_ID_EVMEM_LOC_36_9 as NVM_ID_EVMEM_LOC_9
+#else
+use dataitem NVM_ID_EVMEM_LOC_36_9 as NVM_ID_EVMEM_LOC_9
+#endif
+{
+	job interface
+	{
+		read_callback = Dem_EvMemNvmReadRamBlockFromNvCallback9;
+		write_callback = Dem_EvMemNvMWriteRamBlockToNvCallback9;
+	}
+	startup read;
+    shutdown write;
+
+	plant eol preserve;
+	writecycles = WakeUpCycles;
+}
+#else
+use dataitem NVM_ID_EVMEM_LOC_PLANTSW_20 as NVM_ID_EVMEM_LOC_0
+{
+    job interface
+    {
+        read_callback = Dem_EvMemNvmReadRamBlockFromNvCallback0;
+        write_callback = Dem_EvMemNvMWriteRamBlockToNvCallback0;
+    }
+    startup read;
+    shutdown write;
+
+    plant eol preserve;
+    writecycles = WakeUpCycles;
+}
+#endif
+
+use dataitem NVM_ID_DEM_GENERIC_NV_DATA_16 as NVM_ID_DEM_GENERIC_NV_DATA
+{
+	job interface
+	{
+		read_callback = Dem_GenericNVDataReadRamBlockFromNvCallback;
+		write_callback = Dem_GenericNVDataWriteRamBlockToNvCallback;
+	}
+	startup read;
+    shutdown write;
+
+	plant eol preserve;
+	writecycles = WakeUpCycles;
+}

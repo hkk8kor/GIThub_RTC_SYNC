@@ -1,0 +1,6 @@
+:get signalSetDer
+Update filVal with tempSignalSet (After Filter update) for all values of Axis and for all Smus;
+:Call Filter Function;
+partition FilterFunction{
+:Calculate the derivation;
+} 

@@ -1,0 +1,41 @@
+object filteredSignal
+object DerivedSignal
+diamond dia
+diamond dia1
+object ImuStats
+object RateStatus
+object AccStatus
+object Tempvalue
+object RateX
+object RateY
+object RateZ
+object AccX
+object AccY
+object AccZ
+object TymsyncStat
+object TempStampnanosec
+object TempStampsec
+object AngAccStat
+object AngAccX
+object AngAccY
+object AngAccZ
+
+filteredSignal --> dia
+DerivedSignal --> dia1
+dia --> ImuStats
+dia --> RateStatus
+dia --> AccStatus
+dia --> Tempvalue
+dia --> RateX
+dia --> RateY
+dia --> RateZ
+dia --> AccX
+dia --> AccY
+dia --> AccZ
+dia --> TymsyncStat
+dia --> TempStampnanosec
+dia --> TempStampsec
+dia1--> AngAccStat
+dia1--> AngAccX
+dia1--> AngAccY
+dia1--> AngAccZ

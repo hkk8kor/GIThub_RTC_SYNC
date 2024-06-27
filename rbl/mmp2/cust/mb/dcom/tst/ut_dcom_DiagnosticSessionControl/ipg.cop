@@ -1,0 +1,15 @@
+#
+# Cantata Options
+#
+# WARNING: Do not alter this file manually.
+#
+#tool.testid=61d079e8-b8ed-4a30-b0d8-a37afb329169
+"--ci:--instr:stmt;func;call;decn;log;"
+"--sa:--calc:*#*"
+
+#User Section
+"--dont_ci:*"
+"--do_ci:dcom_DiagnosticSessionControl.c"
+"--ci:--no_instr:all"
+"--ci:--instr:stmt;func;call;decn;log;#DcmAppl_DcmSesCtrlChangeIndication"
+"--ci:--instr:stmt;func;call;decn;log;#DcmAppl_DcmGetSesChgPermission"

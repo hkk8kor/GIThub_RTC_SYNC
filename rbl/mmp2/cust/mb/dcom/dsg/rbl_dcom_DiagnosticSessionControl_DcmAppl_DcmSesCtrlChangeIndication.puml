@@ -1,0 +1,24 @@
+start
+switch (SesCtrlTypeNew)
+case (DCM_DEFAULT_SESSION)
+     :Update Active diagnostic session **rbl_dcomActiveDiagSession** to FALSE;
+note left 
+FALSE Indicate IMU is not in active diagnostics session
+end note
+case (DCM_EXTENDED_DIAGNOSTIC_SESSION) 
+     :Update Active diagnostic session **rbl_dcomActiveDiagSession** to TRUE; 
+note left 
+TRUE Indicate IMU is in active diagnostics session
+end note
+case (DCM_PROGRAMMING_SESSION)
+group RBFS_DcomReprogResponseType is not equal to RBFS_DcomReprogResponseType_Warm
+     :dcom_SetProgConditions function is called to set the programming conditions;
+end group
+case (DCM_SUPPLIER_SESSION)
+group RBFS_DcomReprogResponseType is not equal to RBFS_DcomReprogResponseType_Warm
+     :No initialization;
+end group
+case (default)
+     :No initialization;
+endswitch
+stop

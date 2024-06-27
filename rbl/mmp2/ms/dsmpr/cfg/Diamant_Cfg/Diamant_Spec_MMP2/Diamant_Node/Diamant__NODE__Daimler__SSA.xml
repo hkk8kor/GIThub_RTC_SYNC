@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<DIAGNOSIS INFO="DiamantPro Core Library 4.2.257.1692" CHECK="08BDEF8EA097F09D5B5CBC9C631E98D9ICAgICAgICAgRGlhbWFudFBybyBDb3JlIExpYnJhcnkgICAgICAgICAgICAgICAgICAgIDQuMi4yNTcuMTY5MiAgICAgICAgICAgIC04NTg0OTkxNTE0NTU3MjU5NzE0ICAgICAgICAgICAgICAgICAgICBCQU5JLUMtMDA2OFIgICAgICAgICAgICAgICAgICAgIEFQQUNcUFpSMktPUiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg">
+  <NODES>
+    <NODE>
+      <NAME>Node_MMP_Variant_Coding</NAME>
+      <CUSTOMER_REF>Cus_Daimler</CUSTOMER_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <SW_GROUP_REF>SwGrp_SSA</SW_GROUP_REF>
+      <KEYLIST>
+        <ITEM key="STATUSEXPORTTOASW">false</ITEM>
+        <ITEM key="ASWSETSINIT">false</ITEM>
+        <ITEM key="ALLOWEDRECOVERIES">0xFF</ITEM>
+        <ITEM key="FW_Priorities_Disabled">true</ITEM>
+        <ITEM key="Desc">Node for Variant Handle Related DTC</ITEM>
+        <ITEM key="HWShutdown">NoHWShutdown</ITEM>
+      </KEYLIST>
+      <FUNCTION_ID_REFS />
+      <PRODUCT_LINE_REF />
+      <FW_REFS>
+        <FW_REF prio="20">FW_SSA_Event_DTC_164456</FW_REF>
+        <FW_REF prio="10">FW_RBL_NVM_Variant_handler</FW_REF>
+      </FW_REFS>
+    </NODE>
+    <NODE>
+      <NAME>Node_SSA</NAME>
+      <CUSTOMER_REF>Cus_Daimler</CUSTOMER_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <SW_GROUP_REF>SwGrp_SSA</SW_GROUP_REF>
+      <KEYLIST>
+        <ITEM key="STATUSEXPORTTOASW">false</ITEM>
+        <ITEM key="ASWSETSINIT">false</ITEM>
+        <ITEM key="ALLOWEDRECOVERIES">0xFF</ITEM>
+        <ITEM key="FW_Priorities_Disabled">true</ITEM>
+        <ITEM key="Desc">SSA related failures</ITEM>
+        <ITEM key="HWShutdown">NoHWShutdown</ITEM>
+      </KEYLIST>
+      <FUNCTION_ID_REFS />
+      <FW_REFS>
+        <FW_REF prio="50">FW_SSA_Event_DTC_D12087</FW_REF>
+        <FW_REF prio="40">FW_SSA_Event_DTC_D12081</FW_REF>
+        <FW_REF prio="30">FW_SSA_Event_DTC_D12083</FW_REF>
+        <FW_REF prio="20">FW_SSA_Event_DTC_9a6857</FW_REF>
+      </FW_REFS>
+    </NODE>
+  </NODES>
+</DIAGNOSIS>

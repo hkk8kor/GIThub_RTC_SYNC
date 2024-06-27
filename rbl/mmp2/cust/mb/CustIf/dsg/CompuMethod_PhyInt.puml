@@ -1,0 +1,13 @@
+start;
+:physical value received ;
+if ((Physical value == Not number) || (Physical value == Infinity )) then (Yes)
+ : return 0;
+endif 
+: physical to integer converted value : phy_value - parameters.Offset / parameters.Scale ;
+if(physical to integer converted value > upper limit ) then (yes)
+:return upper limit;
+else if (physical to integer converted value < lower limit)
+:return  lower limit;
+else
+:return the roundoff value from Mfl_Round_f32 ;
+endif

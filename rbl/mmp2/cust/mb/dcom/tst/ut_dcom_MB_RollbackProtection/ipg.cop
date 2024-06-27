@@ -1,0 +1,19 @@
+#
+# Cantata Test-Level Options
+#
+# Any options set in this file will override the options set in the
+# project-level options file.
+#
+# WARNING: Do not alter this file manually.
+#
+#tool.testid=8dd41fcf-6602-45fb-aa08-a0311bce9ba6
+"--ci:--instr:stmt;func;decn;log;"
+"--sa:--calc:*#*"
+"--sm:--access_variable:"dcom_MB_RollbackProtection.c":dcom_MinSwVer_State"
+"--sm:--access_variable:"dcom_MB_RollbackProtection.c":rbl_dcom_MinSwVer"
+
+#User Section
+"--dont_ci:*"
+"--ci:--no_instr:all"
+"--do_ci:dcom_MB_RollbackProtection.c"
+"--ci:--instr:stmt;func;call;decn;log;#rbl_dcom_DowngradeProtection_Check"

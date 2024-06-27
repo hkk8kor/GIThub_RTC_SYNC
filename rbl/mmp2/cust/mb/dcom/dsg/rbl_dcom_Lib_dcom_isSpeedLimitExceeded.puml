@@ -1,0 +1,10 @@
+start
+if (Check if l_VehSpd_Disp_ST3 is equal to 255) then (yes)
+     :l_Result_B is set to FALSE;
+elseif ( l_VehSpd_Disp_ST3 is set to greater than l_Value) then (yes)
+     :Return value is updated to TRUE;
+else 
+     :Do Nothing;
+endif
+     :Return value is updated to FALSE;
+stop

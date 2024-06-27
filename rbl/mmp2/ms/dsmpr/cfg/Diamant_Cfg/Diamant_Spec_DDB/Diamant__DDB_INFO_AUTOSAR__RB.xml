@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<DIAGNOSIS INFO="DiamantPro 4.1.257.1682" CHECK="AA572A7B05FEBCDECC67AD4E0DFA4917ICAgICAgICAgICAgICAgICAgICAgIERpYW1hbnRQcm8gICAgICAgICAgICAgICAgICAgIDQuMS4yNTcuMTY4MiAgICAgICAgICAgIC04NTg1Mzg1MzgwMTA1MTkxNDU3ICAgICAgICAgICAgICAgICAgICAgICAgQUJUWjBNOEYgICAgICAgICAgICAgICAgICAgICAgREVca2FzNmFidCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg">
+  <AUTOSAR_DDB_INFOS>
+    <DDB_INFO_AUTOSAR>
+      <NAME>Project</NAME>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <MaxNumberEventEntryPrimary>10</MaxNumberEventEntryPrimary>
+      <MaxNumberEventEntryPermanent>0</MaxNumberEventEntryPermanent>
+      <MaxNumberEventBfm>10</MaxNumberEventBfm>
+      <BswErrorBufferSize>100</BswErrorBufferSize>
+      <TriggerDltReports>false</TriggerDltReports>
+      <OBDSupport>false</OBDSupport>
+      <ObdFreezeFrameCapture>TRIGGER_PENDINGDTC</ObdFreezeFrameCapture>
+      <OccurrenceCounterProcessing>DEM_PROCESS_OCCCTR_TF</OccurrenceCounterProcessing>
+      <ImmediateNvStorageLimit>255</ImmediateNvStorageLimit>
+      <EventDisplacementSupport>True</EventDisplacementSupport>
+      <DemTriggerDcmReports>false</DemTriggerDcmReports>
+      <MaxNumberOfPrestoredFF>0</MaxNumberOfPrestoredFF>
+      <ExtendedDataCapture>TRIGGER_TESTFAILED</ExtendedDataCapture>
+      <TypeOfFreezeFrameRecordNumeration>FF_RECNUM_CONFIGURED</TypeOfFreezeFrameRecordNumeration>
+      <EventCombinationSupport>DEM_EVCOMB_TYPE1</EventCombinationSupport>
+      <OperationCycleStatusStorage>false</OperationCycleStatusStorage>
+      <AgingCycleCounterProcessing>PROCESS_AGINGCTR_INTERN</AgingCycleCounterProcessing>
+      <ClearDTCBehavior>CLRRESP_NONVOLATILE_FINISH</ClearDTCBehavior>
+      <ExternalHeaderIncludes>
+        <string>RBEnvData.h</string>
+        <string>DemCSMosar_Debouncer.h</string>
+        <string>RBHardwareEnableAdapter.h</string>
+        <string>RBDiagVariance.h</string>
+        <string>Dcm.h</string>
+        <string>Dcm_Lcfg_DspUds.h</string>
+        <string>Dem_Cfg_HWShutdown.h</string>
+        <string>RBHSW_DemCallbacks.h</string>
+        <string>DemCSMosar_EventLogger_Data.h</string>
+        <string>Dem_Cfg_FWClass.h</string>
+        <string>Dem_CSMosar_ClearDTCNotification.h</string>
+        <string>RBEnvData_Stub.h</string>
+        <string />
+      </ExternalHeaderIncludes>
+      <SupportRobustnessStorage>true</SupportRobustnessStorage>
+      <SupportTestFailed>true</SupportTestFailed>
+      <MaxNumberEventEntryEventBuffer>12</MaxNumberEventEntryEventBuffer>
+      <DTCStatusChangedCallBacks>
+        <DTCStatusChangedCallBack />
+      </DTCStatusChangedCallBacks>
+      <DTCStatusChangedRTEPorts />
+      <DtcStatusAvailabilityMask>0x7B</DtcStatusAvailabilityMask>
+    </DDB_INFO_AUTOSAR>
+  </AUTOSAR_DDB_INFOS>
+</DIAGNOSIS>

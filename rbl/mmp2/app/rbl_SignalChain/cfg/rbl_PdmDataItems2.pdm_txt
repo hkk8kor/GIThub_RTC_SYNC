@@ -1,0 +1,21 @@
+/******************************************************************************/
+/* [COPYRIGHT]                                                                */
+/* Robert Bosch GmbH reserves all rights even in the event of industrial      */
+/* property rights. We reserve all rights of disposal such as copying and     */
+/* passing on to third parties.                                               */
+/* [COPYRIGHT_END]                                                            */
+/******************************************************************************/
+
+#include "RBPDMDB_Customer.pdmdb"
+
+  @desc {todo}
+  use dataitem rbl_SigChain_MntgOffsVal {
+      job interface
+          {         
+            ram_block =  RBMESG_rbl_SigChain_OffsVal; 
+          }
+    startup read;
+    plant eol reset;
+    writecycles = 10;
+    serialized_data;
+  }

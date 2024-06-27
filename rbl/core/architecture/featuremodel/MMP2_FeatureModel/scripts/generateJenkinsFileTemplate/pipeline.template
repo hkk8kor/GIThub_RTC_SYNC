@@ -1,0 +1,81 @@
+//Pipeline for new build
+
+pipeline {
+
+	agent none
+
+	options {
+		preserveStashes(buildCount: 5)
+		buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '3', daysToKeepStr: '15', numToKeepStr: '')
+		timestamps()
+	}
+
+       triggers {
+          pollSCM 'H  * * * *'
+       }
+
+	environment {
+		jsonFile="NULL"
+		JENKINS_NETSHARE='//abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins'
+		RTC = credentials('sey9abt-lidar')
+	}
+
+	parameters {
+		/*%generatedParameters%*/
+	}
+
+	stages {
+		stage ('Download') {
+			agent {
+				label 'MPSP_CI'
+			}
+			steps {
+				script {
+					if (Boolean.parseBoolean(env.personalBuild)) { currentBuild.displayName = String.format('%s by %s', currentBuild.displayName, User.get(env.buildRequesterUserId).getFullName()) }
+				}
+				deleteDir()
+				lock("${env.JOB_BASE_NAME}") {
+					checkout([$class: 'RTCScm', avoidUsingToolkit: false, buildTool: '6.0.3', buildType: [buildDefinition: "${env.JOB_BASE_NAME}", customizedSnapshotName: '', value: 'buildDefinition'], credentialsId: 'sey9abt-lidar', overrideGlobal: false, serverURI: 'https://rb-alm-06-p.de.bosch.com/ccm', timeout: 480])
+				}
+			   	bat "powershell.exe //abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins/OpsLoadJenkinsScriptSources/rb.ps.scripts.dotNet/JenkinsJobsScripts/download/download.ps1"
+			}
+			post {
+				always {
+					bat "powershell.exe //abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins/OpsLoadJenkinsScriptSources/rb.ps.scripts.dotNet/JenkinsJobsScripts/CreateHTMLReport/CreateHTMLReport.ps1 -JSON_input_file //abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins/%JOB_BASE_NAME%/%BUILD_NUMBER%/download/result.json -WorkDirSubfolderName ."
+					script {
+						jsonFile = "//abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins/${env.JOB_BASE_NAME}/${env.BUILD_NUMBER}/download/result.json"
+					}
+					archiveArtifacts 'JobReport.html, Download.cmd'
+				}
+				cleanup {
+					deleteDir()
+				}
+			}
+		} // stage ('Download')
+
+		/*%callOfflineJob%*/
+
+		stage ('Build') {
+			parallel {
+				/*%buildVariant%*/
+			} //parallel
+
+		} //stage ('Build')
+
+		stage ('Test') {
+			parallel {
+				/*%ecuCaplTests%*/
+
+				/*%callSWUTCTJob%*/
+			}
+		} //stage ('Test')
+
+		stage ('Deliver'){
+			parallel{
+				/*%deliverStep%*/
+			}
+		} //stage ('Deliver')
+
+	}
+} //pipeline 
+

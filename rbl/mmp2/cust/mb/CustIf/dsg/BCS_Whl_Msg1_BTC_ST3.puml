@@ -1,0 +1,30 @@
+Start
+: Read the **GTS_ESP_Clk_Stat_Bckp_ST3** signal ;
+if (BCS_Whl_Msg1_BTC_ST3 PDU is received successffully without Timeout) then (Yes)
+: Reset the counter ;
+: Validate the Received the received **GTS_ESP_Clk_Stat_Bckp_ST3** signal ;
+note right
+ Invalid value include any other value
+ Other than valid values mentioned
+end note
+note left
+ Valid value in the range between 0 to 2
+end note
+if (Signal is valid) then (Yes)
+: Report to dem that \n **RBL_CUSTIF_SIGNAL_INVALID_BCS_Whl_Msg1_BTC_ST3** \n dem event is PREPASSED ;
+else (No)
+: Update rbl_CustIf_GTS_ESP_Clk_Stat_Bckp_ST3 signal with I_C02_GTS_ESP_CLK_STAT_ST3_INIT value ;
+: Report to dem that \n **RBL_CUSTIF_SIGNAL_INVALID_BCS_Whl_Msg1_BTC_ST3** \n dem event is PREFAILED ;
+endif
+else (No)
+: Increment the counter ;
+if (Counter value is greater than 10 ) then (Yes)
+: Reset the counter ;
+: Update signal with I_C02_GTS_ESP_CLK_STAT_ST3_INTERNAL_ESP_CLOCK_NOK value ;
+else (No)
+: Do nothing ;
+endif
+: Reset the timeout flag ;
+endif
+: Transmit the signal via \n **RBMESG_rbl_CustIf_GTS_ESP_Clk_Stat_Bckp_ST3** Variable;
+Stop

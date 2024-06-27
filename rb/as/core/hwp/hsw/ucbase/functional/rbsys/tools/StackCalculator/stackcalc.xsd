@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://wwww.bosch.de/stackcalc" xmlns:tns="http://wwww.bosch.de/stackcalc" elementFormDefault="qualified">
+
+    <complexType name="STACK_CALCULATION">
+        <all>
+            <element
+                name="OS_CONFIG"
+                type="tns:OS_CONFIG"
+                maxOccurs="1"
+                minOccurs="0">
+            </element>
+            <element
+                name="CORES"
+                type="tns:CORES"
+                maxOccurs="1"
+                minOccurs="1">
+            </element>
+            <element
+                name="DEFINES"
+                type="tns:DEFINES"
+                maxOccurs="1"
+                minOccurs="0">
+            </element>
+            <element
+                name="SHOWONLY"
+                type="tns:SHOWONLY"
+                maxOccurs="1"
+                minOccurs="0">
+            </element>
+            <element
+                name="UNKNOWN_POINTERS"
+                type="nonNegativeInteger"
+                maxOccurs="1"
+                minOccurs="0">
+            </element>
+        </all>
+    </complexType>
+
+    <complexType name="OS_CONFIG">
+        <sequence>
+            <element
+                name="COMPONENT_NAME"
+                type="tns:COMPONENT_NAME"
+                maxOccurs="1"
+                minOccurs="1">
+            </element>
+            <element
+                name="COMPONENT_VERSION"
+                type="tns:COMPONENT_VERSION"
+                maxOccurs="1"
+                minOccurs="1">
+            </element>
+        </sequence>
+    </complexType>
+    
+    <complexType name="SUM">
+        <choice
+            maxOccurs="unbounded"
+            minOccurs="1">
+            <element
+                name="ENTRY_POINT"
+                type="tns:ENTRY_POINT"
+                maxOccurs="1"
+                minOccurs="0">
+            </element>
+            <element
+                name="SUM"
+                type="tns:SUM"
+                maxOccurs="1"
+                minOccurs="0">
+            </element>
+            <element
+                name="MAX"
+                type="tns:MAX"
+                maxOccurs="1"
+                minOccurs="0">
+            </element>
+            <element
+                name="SAFETY_BUFFER"
+                type="tns:SAFETY_BUFFER"
+                maxOccurs="1"
+                minOccurs="0">
+            </element>
+            <element
+                name="SUB"
+                type="tns:SUB"
+                maxOccurs="1"
+                minOccurs="0">
+            </element>
+            <element
+                name="DEFINE_REF"
+                type="tns:DEFINE_REF"
+                maxOccurs="1"
+                minOccurs="0">
+            </element>
+            <element
+                name="MUL"
+                type="tns:MUL" maxOccurs="1" minOccurs="0">
+            </element>
+        </choice>
+        <attribute
+            name="name"
+            type="string" use="optional">
+        </attribute>
+    </complexType>
+    
+    <complexType name="MAX">
+        <choice
+            maxOccurs="unbounded"
+            minOccurs="1">
+            <element
+                name="SUM"
+                type="tns:SUM"
+                maxOccurs="1"
+                minOccurs="0">
+            </element>
+            <element
+                name="SAFETY_BUFFER"
+                type="tns:SAFETY_BUFFER"
+                maxOccurs="1"
+                minOccurs="0">
+            </element>
+            <element
+                name="MAX"
+                type="tns:MAX"
+                maxOccurs="1"
+                minOccurs="0">
+            </element>
+            <element
+                name="ENTRY_POINT"
+                type="tns:ENTRY_POINT"
+                maxOccurs="1"
+                minOccurs="0">
+            </element>
+            <element
+                name="DEFINE_REF"
+                type="tns:DEFINE_REF"
+                maxOccurs="1"
+                minOccurs="0">
+            </element>
+            <element
+                name="MUL"
+                type="tns:MUL" maxOccurs="1" minOccurs="0">
+            </element>
+        </choice>
+        <attribute
+            name="name"
+            type="string" use="optional">
+        </attribute>
+    </complexType>
+    
+
+
+
+    <simpleType name="ENTRY_POINT">
+        <restriction base="string">
+            <pattern value="[a-zA-Z_][a-zA-Z0-9_]*"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="SAFETY_BUFFER">
+        <restriction base="integer"></restriction>
+    </simpleType>
+
+    <simpleType name="COMPONENT_NAME">
+        <restriction base="string"></restriction>
+    </simpleType>
+
+    <simpleType name="COMPONENT_VERSION">
+        <restriction base="string">
+            <pattern value="(\d+\.)*\d+"/>
+        </restriction>
+    </simpleType>
+
+    <element
+        name="STACK_CALCULATION"
+        type="tns:STACK_CALCULATION">
+    </element>
+
+
+    <complexType name="CORES">
+        <sequence maxOccurs="unbounded" minOccurs="1">
+            <element
+                name="CORE"
+                type="tns:CORE">
+            </element>
+        </sequence>
+    </complexType>
+
+    <complexType name="CORE">
+        <choice
+            maxOccurs="unbounded"
+            minOccurs="0">
+            <element
+                name="SUM"
+                type="tns:SUM">
+            </element>
+
+        </choice>
+        <attribute
+            name="name"
+            type="string" use="optional">
+        </attribute>
+    </complexType>
+
+    
+    <complexType name="SUB">
+        <choice
+            maxOccurs="unbounded"
+            minOccurs="1">
+            <element
+                name="ENTRY_POINT"
+                type="tns:ENTRY_POINT"
+                maxOccurs="1"
+                minOccurs="0">
+            </element>
+            <element
+                name="MAX"
+                type="tns:MAX"
+                maxOccurs="1"
+                minOccurs="0">
+            </element>
+            <element
+                name="SUM"
+                type="tns:SUM"
+                maxOccurs="1"
+                minOccurs="0">
+            </element>
+            <element
+                name="DEFINE_REF"
+                type="tns:DEFINE_REF"
+                maxOccurs="1"
+                minOccurs="0">
+            </element>
+            <element
+                name="MUL"
+                type="tns:MUL" maxOccurs="1" minOccurs="0">
+            </element>
+        </choice>
+        <attribute
+            name="name"
+            type="string">
+        </attribute>
+    </complexType>
+    
+    
+    
+
+    <complexType name="DEFINES">
+        <sequence>
+            <element
+                name="DEFINE"
+                type="tns:DEFINE"
+                maxOccurs="unbounded"
+                minOccurs="0">
+            </element>
+        </sequence>
+    </complexType>
+
+    <complexType name="DEFINE">
+        <choice
+            maxOccurs="unbounded"
+            minOccurs="1">
+            <element
+                name="SUM"
+                type="tns:SUM">
+            </element>
+            <element
+                name="SUB"
+                type="tns:SUB">
+            </element>
+            <element
+                name="MAX"
+                type="tns:MAX">
+            </element>
+            <element
+                name="ENTRY_POINT"
+                type="tns:ENTRY_POINT">
+            </element>
+            <element
+                name="MUL"
+                type="tns:MUL">
+            </element>
+        </choice>
+        <attribute
+            name="name"
+            type="string" use="required">
+        </attribute>
+    </complexType>
+    
+    <simpleType name="DEFINE_REF">
+        <restriction base="string"></restriction>
+    </simpleType>
+
+    <complexType name="SHOWONLY">
+        <sequence
+            maxOccurs="unbounded"
+            minOccurs="1">
+            <element
+                name="ENTRY_POINT"
+                type="tns:ENTRY_POINT">
+            </element>
+        </sequence>
+        <attribute
+            name="name"
+            type="string">
+        </attribute>
+    </complexType>
+
+    <complexType name="MUL">
+        <sequence maxOccurs="1" minOccurs="1">
+            <element
+                name="FACTOR"
+                type="tns:FACTOR"
+                maxOccurs="1"
+                minOccurs="1">
+            </element>
+            <element
+                name="FACTOR"
+                type="tns:FACTOR"
+                maxOccurs="1"
+                minOccurs="1">
+            </element>
+        </sequence>
+        <attribute
+            name="name"
+            type="string" use="optional">
+        </attribute>
+    </complexType>
+    
+    <complexType
+        name="FACTOR"
+        mixed="true">
+        <choice maxOccurs="1" minOccurs="0">
+            <element
+                name="DEFINE_REF"
+                type="tns:DEFINE_REF">
+            </element>
+            <element
+                name="MUL"
+                type="tns:MUL">
+            </element>
+            <element
+                name="MAX"
+                type="tns:MAX">
+            </element>
+            <element
+                name="SUM"
+                type="tns:SUM">
+            </element>
+            <element
+                name="SUB"
+                type="tns:SUB">
+            </element>
+        </choice>
+    </complexType>
+</schema>

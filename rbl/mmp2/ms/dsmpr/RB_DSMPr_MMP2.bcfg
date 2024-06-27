@@ -1,0 +1,122 @@
+/** @brief File defines the build relevant dsmpr files
+
+    And includes the necessary core-bcfgs, which are under DSM_PR responsibility.
+
+*/
+/*---------------------------------------------------------------------------- */
+/* Include DSM specific core bcfg files */
+/*---------------------------------------------------------------------------- */
+/* hint: optional DSM core components can be removed, if bcfg is not included */
+#include "rb/as/core/app/dsm/Build_Config_APP_DSM.bcfg"
+// just empty //#include "rb/as/ms/hwref/app/dsm/Build_Config_APP_Dsm_Project_HWRef.bcfg"
+
+
+module "/rbl/mmp2/ms/dsmpr"
+{
+  //#include "./tst/Build_Config_APP_DSMSIM.bcfg"
+  #include "RBEMM/api/RBEMM_ConfigSettings.h"
+#if( RBFS_DSMSimulation != RBFS_DSMSimulation_ON )
+  module "RBEMM"
+  {
+   export
+    {
+       "api";
+       "src";
+       #if (RBFS_EcuM == RBFS_EcuM_On)
+            "gen/EcuM/api";
+       #endif
+
+       #if (RBFS_BswM == RBFS_BswM_On)
+            "gen/BswM/api";
+       #endif
+
+        /* Handling of EMM Online and Offline Generation */
+        #if (RBFS_EMMExtendedOnlineGenerationForBswMEcuM == RBFS_EMMExtendedOnlineGenerationForBswMEcuM_Off)
+           #if (RBFS_EcuM == RBFS_EcuM_On)
+               "gen/EcuM/api";
+           #else
+               exclude "gen/EcuM/api";
+           #endif
+           #if (RBFS_BswM == RBFS_BswM_On)
+               "gen/BswM/api";
+           #else
+               exclude "gen/BswM/api";
+           #endif
+        #else
+         //  exclude "gen/EcuM/api";
+          // exclude "gen/EcuM/api";
+        #endif
+    } // end of export
+    files
+    {
+      genprodb
+      {
+        "**/*.cfg";
+        "api/*.h";
+        "gen/*.h";        
+        #if (RBFS_EcuM == RBFS_EcuM_Off)
+            exclude "gen/EcuM/api/*.*";
+        #endif
+		
+        #if (RBFS_BswM == RBFS_BswM_Off)
+           exclude "gen/BswM/api/*.*";
+        #endif
+      } // end of genprodb
+      c
+      {
+        "gen/*.c";
+        "src/*.c";
+
+           #if (RBFS_EcuM == RBFS_EcuM_On)
+               "gen/EcuM/src/*.c";
+               exclude "src/RBEMM_Project.c";
+           #else
+               exclude "gen/EcuM/*.*";
+               exclude "src/RBEMM_Extended_Project.c";
+           #endif
+           #if (RBFS_BswM == RBFS_BswM_On)
+               "gen/BswM/src/*.c";
+           #else
+               exclude "gen/BswM/src/*.c";
+           #endif
+
+      } // end of c
+      bct_input
+      {
+      #if (RBFS_EMMExtendedOnlineGenerationForBswMEcuM == RBFS_EMMExtendedOnlineGenerationForBswMEcuM_On)
+        #if ((RBFS_EcuM == RBFS_EcuM_On) && (RBFS_BswM == RBFS_BswM_On))
+        // add EcuC file here
+
+        #endif
+
+        #if ((RBFS_EcuM == RBFS_EcuM_Off) && (RBFS_BswM == RBFS_BswM_On))
+           "cfg/BswM_Configuration_Empty.arxml";
+        #endif
+      #endif
+      } // end of bct_input
+    } // end of files
+
+  } // end of rbemm
+#endif
+  module "cfg"
+  {
+    export
+    {
+       "RBSMM";
+    }
+    files
+    {
+
+      genprodb
+      {
+        "**/*.cfg";
+        "**/*.h";
+      }
+      c
+      {
+          "**/*.c";
+      }
+      
+     }
+   }
+}

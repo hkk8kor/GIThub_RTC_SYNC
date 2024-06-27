@@ -1,0 +1,26 @@
+start
+:Read Raw signal value from signal chain via **RBMESG_SigChain_FinalRaw **;
+:Prepare angular acceleration status;
+:prepare rate status;
+:prepare acceleration staus;
+note left
+refer IMU_X_Prepare_Signal_Status diagram for signaL status preparation
+end note
+:prepare IMU staus;
+note left
+refer ImuStatus_preparation diagram for IMU status preparation
+end note
+:prepare Tempvalue ie, temperature;
+note left
+refer Temp_preparation diagram for temperature preparation
+end note
+:Prepare angular acceleration X,Y,Z signal;
+:Prepare rate X,Y,Z signal;
+:Prepare acc X,Y,Z signal;
+note left
+refer IMU_X_Signal_preparation diagram for all acc,rate,angacc signal preparation
+end note
+:prepare timeStamp signals (TymsyncStat ,TempStampnanosec,TempStampsec);
+:update reserved signals with init values;
+:Trasmit the signal via RBMESG_rbl_CustIf_IMU_OutPutMsg_ST3 to comscl;
+stop

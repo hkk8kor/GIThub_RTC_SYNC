@@ -1,0 +1,12 @@
+start
+if (Check if Data is not equal to null pointer) is (yes) then
+     :Read Number of reprogramming Attempt of the Bootloader Data \nfrom NvM block DCOM_ReprogAttCounter_LB0 of length of 2Bytes \nusing dcom_Lib_ReadNvMData function and \nupdated Return Value using dom_Lib_ReadNvMData function can be E_OK/E_NOT_OK;
+if (Check if retVal is equal to E_OK) is (yes) then
+     :The data array of second index is updated as to DCOM_MAX_REPROG_ATT_MSB\nand the data array of Third  index is equal to DCOM_MAX_REPROG_ATT_LSB of the Bootloader;
+else (no)
+     :Do Nothing;
+endif     
+else (no)
+     :Do Nothing;
+endif
+stop

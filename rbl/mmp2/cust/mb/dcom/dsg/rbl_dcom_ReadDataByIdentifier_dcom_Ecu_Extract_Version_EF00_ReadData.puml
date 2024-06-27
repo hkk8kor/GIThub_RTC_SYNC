@@ -1,0 +1,23 @@
+start
+if (Check if Data is not equal to null pointer) is (yes) then
+     :The array of data is updated with respective number of ECU Extract of Major,Minir,Patch Level and identification Versions;
+while (Loop 10 times to update the variable i) is (It will loop till the 10th bit data is updated)
+     :The array of data is updated with respective number of ECU XDIS Version;
+endwhile (The data till the 10th bit is filled and no more array index is present to update)
+     :No array available to fill the data;
+while (Loop 10 times to update the variable i) is (It will loop till the 10th bit data is updated)
+     :The array of data is updated with respective number of ECU Export Date Version;
+endwhile (The data till the 10th bit is filled and no more array index is present to update)
+     :No array available to fill the data;
+while (Loop 30 times to update the variable i) is (It will loop till the 30th bit data is updated)
+     :The array of data is updated with respective number of ECU Names;
+endwhile (The data till the 30th bit is filled and no more array index is present to update)
+     :No array available to fill the data;
+while (Loop 40 times to update the variable i) is (not empty)
+     :The array of data is updated with respective number of ECU Check sum;
+endwhile (The data till the 40th bit is filled and no more array index is present to update)
+     :No array available to fill the data;
+     :return value is updated to E_OK;
+else (no) 
+endif
+stop

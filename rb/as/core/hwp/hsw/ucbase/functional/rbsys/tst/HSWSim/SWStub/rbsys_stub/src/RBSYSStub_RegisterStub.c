@@ -1,0 +1,166 @@
+#include "RBSYSStub_RegisterStub.h"
+
+#if(RBFS_uCFamily == RBFS_uCFamily_RenesasP1x)
+  uint16 EICn[214];
+  uint32 RESF = ((uint32)1 << 0) | ((uint32)1 << 10); // RBSYS_RESET_FLAG_POWERON | RBSYS_RESET_FLAG_HW_BIST
+  uint32 RESFC;
+  uint8  SINTR0 = 0;
+
+  uint32 MSR_LM3;
+  uint32 SWLRESS3;
+  uint32 MSR_LM5;
+  uint32 SWLRESS5;
+  uint32 MSR_LM7;
+  uint32 SWLRESS7;
+  uint32 MSR_LM10;
+  uint32 SWLRESS10;
+  uint32 MSR_LM11;
+  uint32 SWLRESS11;
+  uint32 MSR_LM12;
+  uint32 SWLRESS12;
+  uint32 MSR_LM4;
+  uint32 SWLRESS4;
+  uint32 MSR_LM6;
+  uint32 SWLRESS6;
+  uint32 MSR_LM8;
+  uint32 SWLRESS8;
+
+  uint32 PFCE0 = 0;
+  uint32 PFC0 = 0;
+  uint32 PM0 = 0;
+  uint32 PMC0 = 0;
+  uint32 PMC4 = 0;
+  uint32 PSR4 = 0;
+
+  uint32 OTS0OTSTCR;
+  uint32 OTS0OTENDCR;
+  uint32 OTS0OTCR;
+  uint32 OTS0OTFCR;
+  uint32 OTS0OTFR;
+  uint32 OTS0OTSTR;
+  uint32 OTS0OTDR;
+  uint32 OTS0HTBRAU;
+  uint32 OTS0HTBRAL;
+  uint32 OTS0HTBRBU;
+  uint32 OTS0HTBRBL;
+  uint32 OTS0LTBRAU;
+  uint32 OTS0LTBRAL;
+  uint32 OTS0TDLR;
+  uint32 OTS0COEFFRA;
+  uint32 OTS0COEFFRB;
+  uint32 OTS0COEFFRC;
+
+  uint32 TMA_MS;
+  uint32 TMB_MS;
+
+  uint32 STM1CNT1;
+  uint32 STM1STC;
+  uint32 STM1TT;
+  uint32 STM1TS;
+  uint32 STM1IS;
+
+  uint32 PRDSEL3 = 0;
+  uint32 PRDNAME2 = 0;
+  uint32 PRDNAME3 = 0;
+
+  uint32 PE2ICUS;
+  uint32 PE2ICUF;
+  uint32 PE2ICUFS;
+  uint32 PE2ICUIE;
+
+  uint32 ICUMACTFLAG;
+  uint32 ICU2PES;
+  uint32 ICU2PEFC;
+  uint32 ICU2PEF;
+  uint32 ICU2PEIE;
+
+#elif( RBFS_uCFamily == RBFS_uCFamily_RenesasU2A )
+
+  uint16 INTC2EICn[685];
+  uint32 SYSCTRLRESF = ((uint32)1 << 0) | ((uint32)1 << 12); // RBSYS_RESET_FLAG_POWERON | RBSYS_RESET_FLAG_HW_BIST_F0
+  uint32 SYSCTRLRESFC;
+  uint8  EINTSINTR0 = 0;
+
+  uint32 SYSCTRLMSR_OSTM;
+  uint32 SYSCTRLSWMRESS_OSTM;
+  uint32 SYSCTRLMSR_RSCFD;
+  uint32 SYSCTRLSWMRESS_RSCFD;
+  uint32 SYSCTRLMSR_GTM;
+  uint32 SYSCTRLSWMRESS_GTM;
+  uint32 SYSCTRLMSR_RSENT;
+  uint32 SYSCTRLSWMRESS_RSENT;
+  uint32 SYSCTRLMSR_MSPI;
+  uint32 SYSCTRLSWMRESS_MSPI;
+  uint32 SYSCTRLMSR_RLIN3;
+  uint32 SYSCTRLSWMRESS_RLIN3;
+  uint32 SYSCTRLMSR_ADCJ_AWO;
+  uint32 SYSCTRLSWMRESS_ADCJ_AWO;
+  uint32 SYSCTRLMSR_ADCJ_ISO;
+  uint32 SYSCTRLSWMRESS_ADCJ_ISO;
+  uint32 SYSCTRLMSR_FLXA;
+  uint32 SYSCTRLSWMRESS_FLXA;
+  uint32 SYSCTRLMSR_ETNB;
+  uint32 SYSCTRLSWMRESS_ETNB;
+  uint32 SYSCTRLMSR_RHSIF;
+  uint32 SYSCTRLSWMRESS_RHSIF;
+  uint32 SYSCTRLMSR_TAUD;
+  uint32 SYSCTRLSWMRESS_TAUD;
+
+  uint32 SCDS0CFMAPSTT;///< used by aplplant.
+
+  uint32 TAUJ1TPS;
+  uint32 TAUJ1BRS;
+  uint32 TAUJ1TOE;
+  uint32 TAUJ1CMOR0;
+  uint32 TAUJ1CMUR0;
+  uint32 TAUJ1TS;
+
+  uint32 TAUJ2TPS;
+  uint32 TAUJ2BRS;
+  uint32 TAUJ2TOE;
+  uint32 TAUJ2CMOR0;
+  uint32 TAUJ2CMUR0;
+  uint32 TAUJ2CMOR1;
+  uint32 TAUJ2CMUR1;
+  uint32 TAUJ2CMOR2;
+  uint32 TAUJ2CMUR2;
+  uint32 TAUJ2CMOR3;
+  uint32 TAUJ2CMUR3;
+  uint32 TAUJ2TS;
+
+  uint32 TAUA0CMOR8;
+  uint32 TAUA0CMUR8;
+  uint32 TAUA0TOE;
+  uint32 TAUA0CDR8;
+  uint32 TAUA0TS;
+  uint32 TAUA0CNT8;
+  uint32 TAUA0CNT9;
+  uint32 TAUA0CDR9 = 14;// avoid endless loop in RFPLowPulseTest
+  uint32 TAUA0TT;
+
+  /// used by rbuctemp on U2A (hexbuilds successful)
+  uint32 OTS0OTSTCR;
+  uint32 OTS0OTENDCR;
+  uint32 OTS0OTCR;
+  uint32 OTS0OTFCR;
+  uint32 OTS0OTFR;
+  uint32 OTS0OTSTR;
+  uint32 OTS0OTDR;
+  uint32 OTS0HTBRAU;
+  uint32 OTS0HTBRAL;
+  uint32 OTS0HTBRBU;
+  uint32 OTS0HTBRBL;
+  uint32 OTS0LTBRAU;
+  uint32 OTS0LTBRAL;
+  uint32 OTS0TDLR;
+  uint32 OTS0COEFFRA;
+  uint32 OTS0COEFFRB;
+  uint32 OTS0COEFFRC;
+
+  uint32 PRDINFFPRDNAME2 = 0;
+  uint32 PRDINFFPRDNAME3 = 0;
+  uint32 PRDINFFPRDNUM = 0;
+
+#else
+    #warning ("RBSYSStub_RegisterStub.c empty for this uCFamily.")
+#endif

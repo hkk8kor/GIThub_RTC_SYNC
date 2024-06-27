@@ -1,0 +1,19 @@
+!pragma useVerticalIf on
+start
+
+if (Check if timeGTS_st of nanoseconds is greater than equal to RBL_CUSTIF_TISYNC_S2NS \nAND \nsigned timeGTS_st of nanoseconds greater than 0) then (yes)
+:Decrement nanoseconds by RBL_CUSTIF_TISYNC_S2NS \nand \nIncrement seconds by 1;
+  if (Check if timeGTS_st of seconds equal to 0) then (yes)
+  :Increment secondsHi by 1;
+  endif
+
+elseif (Check if signed timeGTS_st of nanoseconds lesser than 0) then (yes)
+:Increment nanoseconds by RBL_CUSTIF_TISYNC_S2NS \nand \nDecrement seconds by 1;
+  if (Check if timeGTS_st of seconds equal to 0xFFFFFFFFu) then (yes)
+  :Decrement secondsHi by 1;
+  endif
+
+else
+  :Nothing To do;
+endif
+stop

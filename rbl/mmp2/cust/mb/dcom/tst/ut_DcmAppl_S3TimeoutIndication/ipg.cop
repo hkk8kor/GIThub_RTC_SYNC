@@ -1,0 +1,17 @@
+#
+# Cantata Test-Level Options
+#
+# Any options set in this file will override the options set in the
+# project-level options file.
+#
+# WARNING: Do not alter this file manually.
+#
+#tool.testid=20ce4728-79d6-4947-91e9-e096c5d44084
+"--ci:--instr:stmt;func;decn;log;"
+"--sa:--calc:*#*"
+   
+#User Section
+
+"--do_ci:DcmAppl_S3TimeoutIndication.c"
+"--ci:--no_instr:all"
+"--ci:--instr:stmt;func;call;decn;log;#DcmAppl_S3TimeoutIndication"

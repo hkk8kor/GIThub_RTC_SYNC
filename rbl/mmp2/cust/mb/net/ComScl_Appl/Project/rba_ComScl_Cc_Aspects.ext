@@ -1,0 +1,22 @@
+/*
+**********************************************************************************************************************
+*
+* COPYRIGHT RESERVED, Robert Bosch GmbH, 2021. All rights reserved.
+* The reproduction, distribution and utilization of this document as well as the communication of its contents to
+* others without explicit authorization is prohibited. Offenders will be held liable for the payment of damages.
+* All rights reserved in the event of the grant of a patent, utility model or design.
+*
+**********************************************************************************************************************
+*/
+
+/** Return the function name to report the error status Dem_SetEventStatus / Dem_ReportErrorStatus 
+*/
+around* /*String*/ rba_Nds_Aspect_getReportErrorFuncNameCc():
+    "Dem_SetEventStatus"
+;
+
+/** Return the function name to report the error status Dem_SetEventStatus / Dem_ReportErrorStatusWithEnvData 
+*/
+around* /*String*/ rba_Nds_Aspect_getReportErrorEnvDataFuncNameCc(): 
+    "Dem_SetEventStatusWithMonitorData"
+;

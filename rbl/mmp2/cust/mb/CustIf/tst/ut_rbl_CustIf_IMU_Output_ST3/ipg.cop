@@ -1,0 +1,63 @@
+#
+# Cantata Test-Level Options
+#
+# Any options set in this file will override the options set in the
+# project-level options file.
+#
+# WARNING: Do not alter this file manually.
+#
+#tool.testid=1796b3fa-dcf2-4d1d-893e-ce123986d0b4
+"--ci:--instr:stmt;func;decn;log;"
+"--sa:--calc:*#*"
+"--sm:--access_function:"rbl_CustIf_IMU_Output_ST3.c":RBSYS_EnterCommonLockSysfast()"
+"--sm:--access_function:"rbl_CustIf_IMU_Output_ST3.c":RBSYS_ExitCommonLockSysfast()"
+"--sm:--access_function:"rbl_CustIf_IMU_Output_ST3.c":RB_FloatToInt_f32_u8(float32 )"
+"--sm:--access_function:"rbl_CustIf_IMU_Output_ST3.c":cc_is_bit_set_u8(uint8_t, unsigned int)"
+"--sm:--access_function:"rbl_CustIf_IMU_Output_ST3.c":rbl_CustIf_IMU_Prepare_Temp(const rbl_ImuStdTypes_ImuSignalSet_t *)"
+"--sm:--access_function:"rbl_CustIf_IMU_Output_ST3.c":rbl_CustIf_PrepareStatus(uint8 ,uint8 ,uint8 )"
+"--sm:--access_function:"rbl_CustIf_IMU_Output_ST3.c":rbl_CustIf_Prepare_Acc(const rbl_ImuStdTypes_ImuSignalSet_t *,const rbl_ImuStdTypes_ImuSignalSet_t *)"
+"--sm:--access_function:"rbl_CustIf_IMU_Output_ST3.c":rbl_CustIf_Prepare_AngAcc(const rbl_ImuStdTypes_ImuSignalSet_t *,const rbl_ImuStdTypes_ImuSignalSet_t *)"
+"--sm:--access_function:"rbl_CustIf_IMU_Output_ST3.c":rbl_CustIf_Prepare_IMU_Signal_Status_Acc(const rbl_ImuStdTypes_ImuSignalSet_t *)"
+"--sm:--access_function:"rbl_CustIf_IMU_Output_ST3.c":rbl_CustIf_Prepare_IMU_Signal_Status_Rate(const rbl_ImuStdTypes_ImuSignalSet_t *)"
+"--sm:--access_function:"rbl_CustIf_IMU_Output_ST3.c":rbl_CustIf_Prepare_IMU_Stat_ST3(const rbl_ImuStdTypes_ImuSignalSet_t *)"
+"--sm:--access_function:"rbl_CustIf_IMU_Output_ST3.c":rbl_CustIf_Prepare_Rate(const rbl_ImuStdTypes_ImuSignalSet_t *,const rbl_ImuStdTypes_ImuSignalSet_t *)"
+"--sm:--access_function:"rbl_CustIf_IMU_Output_ST3.c":rbl_CustIf_Prepare_timeStamp(uint32 )"
+"--sm:--access_function:"rbl_CustIf_IMU_Output_ST3.c":rbl_CustIf_checkBits(uint8 )"
+"--sm:--access_variable:"rbl_CustIf_IMU_Output_ST3.c":rbl_CustIf_ImuSigData"
+"--sm:--access_variable:"rbl_CustIf_IMU_Output_ST3.c":rbl_CustIf_compu_param"
+"--sm:--wrap:RBSYS_EnterCommonLockSysfast()#rbl_CustIf_IMU_Output_ST3_PDU_Update(const rbl_ImuStdTypes_ImuSignalSet_t *,const rbl_ImuStdTypes_ImuSignalSet_t *)"
+"--sm:--wrap:RBSYS_ExitCommonLockSysfast()#rbl_CustIf_IMU_Output_ST3_PDU_Update(const rbl_ImuStdTypes_ImuSignalSet_t *,const rbl_ImuStdTypes_ImuSignalSet_t *)"
+"--sm:--wrap:RB_FloatToInt_f32_u8(float32 )#rbl_CustIf_IMU_Prepare_Temp(const rbl_ImuStdTypes_ImuSignalSet_t *)"
+"--sm:--wrap:cc_is_bit_set_u8(uint8_t, unsigned int)#rbl_CustIf_checkBits(uint8 )"
+"--sm:--wrap:rbl_CustIf_IMU_Prepare_Temp(const rbl_ImuStdTypes_ImuSignalSet_t *)#rbl_CustIf_IMU_Output_ST3_PDU_Update(const rbl_ImuStdTypes_ImuSignalSet_t *,const rbl_ImuStdTypes_ImuSignalSet_t *)"
+"--sm:--wrap:rbl_CustIf_PrepareStatus(uint8 ,uint8 ,uint8 )#rbl_CustIf_Prepare_IMU_Signal_Status_Acc(const rbl_ImuStdTypes_ImuSignalSet_t *)"
+"--sm:--wrap:rbl_CustIf_PrepareStatus(uint8 ,uint8 ,uint8 )#rbl_CustIf_Prepare_IMU_Signal_Status_Rate(const rbl_ImuStdTypes_ImuSignalSet_t *)"
+"--sm:--wrap:rbl_CustIf_Prepare_Acc(const rbl_ImuStdTypes_ImuSignalSet_t *,const rbl_ImuStdTypes_ImuSignalSet_t *)#rbl_CustIf_IMU_Output_ST3_PDU_Update(const rbl_ImuStdTypes_ImuSignalSet_t *,const rbl_ImuStdTypes_ImuSignalSet_t *)"
+"--sm:--wrap:rbl_CustIf_Prepare_AngAcc(const rbl_ImuStdTypes_ImuSignalSet_t *,const rbl_ImuStdTypes_ImuSignalSet_t *)#rbl_CustIf_IMU_Output_ST3_PDU_Update(const rbl_ImuStdTypes_ImuSignalSet_t *,const rbl_ImuStdTypes_ImuSignalSet_t *)"
+"--sm:--wrap:rbl_CustIf_Prepare_IMU_Signal_Status_Acc(const rbl_ImuStdTypes_ImuSignalSet_t *)#rbl_CustIf_IMU_Output_ST3_PDU_Update(const rbl_ImuStdTypes_ImuSignalSet_t *,const rbl_ImuStdTypes_ImuSignalSet_t *)"
+"--sm:--wrap:rbl_CustIf_Prepare_IMU_Signal_Status_Acc(const rbl_ImuStdTypes_ImuSignalSet_t *)#rbl_CustIf_Prepare_Acc(const rbl_ImuStdTypes_ImuSignalSet_t *,const rbl_ImuStdTypes_ImuSignalSet_t *)"
+"--sm:--wrap:rbl_CustIf_Prepare_IMU_Signal_Status_Acc(const rbl_ImuStdTypes_ImuSignalSet_t *)#rbl_CustIf_Prepare_IMU_Stat_ST3(const rbl_ImuStdTypes_ImuSignalSet_t *)"
+"--sm:--wrap:rbl_CustIf_Prepare_IMU_Signal_Status_Rate(const rbl_ImuStdTypes_ImuSignalSet_t *)#rbl_CustIf_IMU_Output_ST3_PDU_Update(const rbl_ImuStdTypes_ImuSignalSet_t *,const rbl_ImuStdTypes_ImuSignalSet_t *)"
+"--sm:--wrap:rbl_CustIf_Prepare_IMU_Signal_Status_Rate(const rbl_ImuStdTypes_ImuSignalSet_t *)#rbl_CustIf_Prepare_AngAcc(const rbl_ImuStdTypes_ImuSignalSet_t *,const rbl_ImuStdTypes_ImuSignalSet_t *)"
+"--sm:--wrap:rbl_CustIf_Prepare_IMU_Signal_Status_Rate(const rbl_ImuStdTypes_ImuSignalSet_t *)#rbl_CustIf_Prepare_IMU_Stat_ST3(const rbl_ImuStdTypes_ImuSignalSet_t *)"
+"--sm:--wrap:rbl_CustIf_Prepare_IMU_Signal_Status_Rate(const rbl_ImuStdTypes_ImuSignalSet_t *)#rbl_CustIf_Prepare_Rate(const rbl_ImuStdTypes_ImuSignalSet_t *,const rbl_ImuStdTypes_ImuSignalSet_t *)"
+"--sm:--wrap:rbl_CustIf_Prepare_IMU_Stat_ST3(const rbl_ImuStdTypes_ImuSignalSet_t *)#rbl_CustIf_IMU_Output_ST3_PDU_Update(const rbl_ImuStdTypes_ImuSignalSet_t *,const rbl_ImuStdTypes_ImuSignalSet_t *)"
+"--sm:--wrap:rbl_CustIf_Prepare_Rate(const rbl_ImuStdTypes_ImuSignalSet_t *,const rbl_ImuStdTypes_ImuSignalSet_t *)#rbl_CustIf_IMU_Output_ST3_PDU_Update(const rbl_ImuStdTypes_ImuSignalSet_t *,const rbl_ImuStdTypes_ImuSignalSet_t *)"
+"--sm:--wrap:rbl_CustIf_Prepare_timeStamp(uint32 )#rbl_CustIf_IMU_Output_ST3_PDU_Update(const rbl_ImuStdTypes_ImuSignalSet_t *,const rbl_ImuStdTypes_ImuSignalSet_t *)"
+"--sm:--wrap:rbl_CustIf_checkBits(uint8 )#rbl_CustIf_PrepareStatus(uint8 ,uint8 ,uint8 )"
+
+#User Section
+"--dont_ci:*"
+"--ci:--no_instr:all"
+"--do_ci:rbl_CustIf_IMU_Output_ST3.c"
+"--ci:--instr:stmt;func;call;decn;log;#rbl_CustIf_checkBits"
+"--ci:--instr:stmt;func;call;decn;log;#rbl_CustIf_PrepareStatus"
+"--ci:--instr:stmt;func;call;decn;log;#rbl_CustIf_Prepare_IMU_Stat_ST3"
+"--ci:--instr:stmt;func;call;decn;log;#rbl_CustIf_Prepare_IMU_Signal_Status_Acc"
+"--ci:--instr:stmt;func;call;decn;log;#rbl_CustIf_Prepare_IMU_Signal_Status_Rate"
+"--ci:--instr:stmt;func;call;decn;log;#rbl_CustIf_IMU_Prepare_Temp"
+"--ci:--instr:stmt;func;call;decn;log;#rbl_CustIf_Prepare_AngAcc"
+"--ci:--instr:stmt;func;call;decn;log;#rbl_CustIf_Prepare_Rate"
+"--ci:--instr:stmt;func;call;decn;log;#rbl_CustIf_Prepare_Acc"
+"--ci:--instr:stmt;func;call;decn;log;#rbl_CustIf_Prepare_timeStamp"
+"--ci:--instr:stmt;func;call;decn;log;#rbl_CustIf_IMU_Output_ST3_PDU_Update"

@@ -1,0 +1,181 @@
+/** @brief File defines the build relevant DSMpr files
+
+    And includes the necessary core-bcfgs, which are under DSM_PR responsibility.
+*/
+
+/*---------------------------------------------------------------------------- */
+/* Include DSM specific core bcfg files */
+/*---------------------------------------------------------------------------- */
+/* hint: optional DSM core components can be removed, if bcfg is not included */
+#include "rb/as/core/app/dsm/Build_Config_APP_DSM.bcfg"
+
+#include "rb/as/core/global/rbdiamantdb/Build_Config_Global_Diamant.bcfg"
+#include "rb/as/core/global/servicemanual/ServiceManual.bcfg"
+
+/*---------------------------------------------------------------------------- */
+/* Include DSM specific project  bcfg files */
+/*---------------------------------------------------------------------------- */
+
+#include "rbl/mmp2/ms/app/DSM/Build_Config_APP_DSM_Project.bcfg"
+#include "rbl/mmp2/ms/app/dsm/rbvoltagehandler/Build_Config_APP_RBVoltageHandler_Project.bcfg"
+
+#include "rbl/mmp2/ms/dsmpr/RB_DSMPr_MMP2.bcfg"    
+             
+/*---------------------------------------------------------------------------- */
+
+
+
+/*---------------------------------------------------------------------------- */
+/* Include DSM specific project  header files */
+/*---------------------------------------------------------------------------- */
+#include "cfg/RB_DsmPr_ConfigElements_MMP2.h"
+
+
+module "/rbl/mmp2/ms/dsmpr"
+{
+  #include "./tst/Build_Config_APP_DSMSIM.bcfg"    
+  module "cfg"
+  {
+    export
+    {
+       
+       "RBVoltageHandler";
+       "CUBAS";
+       "RBDET";
+       "STM";
+    }
+    files
+    {
+      genprodb
+      {
+         "**/*.cfg";
+         "**/*.h";
+        
+               exclude  "RBEMM/*.h";
+               exclude  "RBSMM/*.h";
+      }
+
+      c{
+          "**/*.c";
+       }
+
+      pdm
+      {
+       
+            "**/Dem_PRJ.pdm";
+      }
+
+      bct_input
+      {
+         "**/Dem/*.arxml";
+        
+         //"**/rba_DemFifo/*.arxml"; // Comments should be removed in Project which use FIFO .
+      }
+
+      diamant_plugin
+      {
+        #if (RBFS_MMP2 == RBFS_MMP2_IMUA)
+         "**/DDL_output_IMUA.dpp";
+        #endif
+        
+        #if ((RBFS_MMP2 == RBFS_MMP2_IMUB) || (RBFS_MMP2 == RBFS_MMP2_IMUD))
+          "**/DDL_output_IMUB.dpp";
+        #endif
+      }
+
+      diamant
+      {
+      	 
+        "Diamant_Cfg/Diamant_Spec_*/Diamant_*.xml";				
+		"Diamant_Cfg/Diamant_Spec_MMP2/Diamant_FW/Diamant_*.xml";
+		"Diamant_Cfg/Diamant_Spec_MMP2/Diamant_Node/Diamant_*.xml";
+		
+		"Diamant_Cfg/Diamant_Spec_MMP2/Diamant_GraphLink/Diamant_*.xml";
+		
+		#if (RBFS_MMP2 == RBFS_MMP2_IMUA)
+		"Diamant_Cfg/Diamant_Spec_MMP2/Diamant_GraphLink/Diamant_GraphLink_IMUA/Diamant__GraphLink__RB__MMP_NET.xml";	
+		"Diamant_Cfg/Diamant_Spec_MMP2/Diamant_DTCLink/Diamant_DTCLink_IMUA/Diamant__DTCLINK__PROJECT.xml";
+		"Diamant_Cfg/Diamant_Spec_MMP2/Diamant_Graph/Diamant_Graph_IMUA/Diamant__Graph__MB.xml";
+		#endif	
+		
+		#if (RBFS_MMP2 == RBFS_MMP2_IMUB)
+		"Diamant_Cfg/Diamant_Spec_MMP2/Diamant_GraphLink/Diamant_GraphLink_IMUB/Diamant__GraphLink__RB__MMP_NET.xml"; 
+		"Diamant_Cfg/Diamant_Spec_MMP2/Diamant_DTCLink/Diamant_DTCLink_IMUB/Diamant__DTCLINK__PROJECT.xml";
+		"Diamant_Cfg/Diamant_Spec_MMP2/Diamant_Graph/Diamant_Graph_IMUB/Diamant__Graph__MB.xml";
+		#endif	
+		
+		#if (RBFS_MMP2 == RBFS_MMP2_IMUD)
+		"Diamant_Cfg/Diamant_Spec_MMP2/Diamant_GraphLink/Diamant_GraphLink_IMUD/Diamant__GraphLink__RB__MMP_NET.xml"; 
+		"Diamant_Cfg/Diamant_Spec_MMP2/Diamant_DTCLink/Diamant_DTCLink_IMUD/Diamant__DTCLINK__PROJECT.xml";
+		"Diamant_Cfg/Diamant_Spec_MMP2/Diamant_Graph/Diamant_Graph_IMUD/Diamant__Graph__AMG.xml";
+		#endif	
+		
+		       
+        #if (RBFS_DiagBase == RBFS_DiagBase_DiagxRXx3xEX)
+        exclude  "Diamant_Cfg/Diamant_Spec_MMP2/Diamant__DTC__RB__MMP2.xml";
+        exclude  "Diamant_Cfg/Diamant_Spec_MMP2/Diamant__DTCATTRIBUTES__Ferrari__MMP2.xml";
+        exclude  "Diamant_Cfg/Diamant_Spec_MMP2/Diamant__DTCLINK__PROJECT.xml";        
+        exclude  "Diamant_Cfg/Diamant_Spec_Project/Diamant__DTC_AttributesClassLink__RB.xml";
+        #endif	
+        
+		
+		exclude  "Diamant_Cfg/Diamant_Spec_Project/Diamant__DTCLINK__PROJECT.xml";
+		exclude  "Diamant_Cfg/Diamant_Spec_Project/Diamant__Graph__PROJECT.xml";
+		exclude  "Diamant_Cfg/Diamant_Spec_Project/Diamant__STM__PROJECT.xml";
+		exclude  "Diamant_Cfg/Diamant_Spec_Project/Diamant__FWLINK__Used__PROJECT.xml";
+
+         #if ((RBFS_NwManagement == RBFS_NwManagement_Can) || (RBFS_NwManagement == RBFS_NwManagement_CanAndEthernet))
+            #if (RBFS_MMP2  == RBFS_MMP2_IMUD )
+                #if(RBFS_CAN0NetworkManagement == RBFS_CAN0NetworkManagement_ON)         
+                    "Diamant_Cfg/Diamant_Spec_MMP2/Diamant_SMM/Diamant__SMM__NM_AMGReq.xml";
+                #endif
+            #else 
+                "Diamant_Cfg/Diamant_Spec_MMP2/Diamant_SMM/Diamant__SMM__NM_MBReq.xml";
+                #if(RBFS_CAN0NetworkManagement == RBFS_CAN0NetworkManagement_ON)
+                    "Diamant_Cfg/Diamant_Spec_MMP2/Diamant_SMM/Diamant__SMM__NM_MBIntReq.xml";
+                #endif
+                #if(RBFS_CAN2NetworkManagement == RBFS_CAN2NetworkManagement_ON)
+                    "Diamant_Cfg/Diamant_Spec_MMP2/Diamant_SMM/Diamant__SMM__NM_AMGReq.xml";
+                #endif
+            #endif
+        #elif (RBFS_NwManagement == RBFS_NwManagement_StayAlive)
+            "Diamant_Cfg/Diamant_Spec_MMP2/Diamant_SMM/Diamant__SMM__MMP211_PLANTReq.xml";
+        #else
+            #error ("Unknown RBFS_NwManagement configuration")
+        #endif
+		
+        }
+
+      diamant_used_failure_words
+      {
+        "Diamant_Cfg/Diamant_Spec_Project/*.txt";
+		"Diamant_Cfg/Diamant_Spec_MMP2/*.txt";
+		
+      }
+    }
+  }
+
+  module "src"
+  {
+    export
+    {
+        "**/api";
+             exclude "Cubas/**";
+    }
+    files
+    {
+        genprodb
+        {
+            "**/*.[hc]";
+            exclude "**/Cubas/**";
+        }
+        c
+        {
+            "**/*.c";
+             exclude "Cubas/**";
+        }
+    }
+  } // module "src"
+  
+}
+

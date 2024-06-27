@@ -1,0 +1,6208 @@
+﻿1 Short Description of Nodes in Mainstream
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+This document shall give an overview of Nodes present in ESP configuration of the Mainstream projects.
+This document also includes description for generic APB nodes
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-142
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+Node is a collection of similar monitorings of a component\sensor\functionality grouped together with definite priority  to determine sequential failures. 
+Nodes are vital in deciding the system degradation. Every Node has a parent node and optionally a child node. Only one node in the graph shall existt with no ancestor node.
+Network of nodes is called Graph (Failure Dependency structure). 
+For each node the following status information are stored:
+report of monitoring (suspicion, invalid non recoverable) 
+monitoring report while filtered during situation (invalid filtered)
+report of curable monitoring (invalid)
+not initialized
+not available (online variant coding)
+The status information of a node is inherit to all child nodes
+For each node various static data is stored:
+Node mapped to any HWShutdown-
+Priority @ Node is disabled
+List of all child nodes
+List of all assigned MIDs
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-305
+	CP_Status_RB_RS:  ext_allocated
+	MS_Status_RB_RS:  ext_allocated
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  CUBAS
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+2 Context information
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-8
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+2.1 Description of Configuration Handling
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14439
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+In the Column RB_Configuration it is indicated for which Mainstream or Release-Branch a item is valid. This document is only used for Deuterium and later releases. Means Beryllium and Carbon is not covered by this document.
+Used tags are: 
+- Mainsteam_18.3		(object introduced before Deuterium split)
+- Mainstream_[BL] 	(current stream development, after Deuterium split)
+- Deuterium_[BL] 	(BL indicates object introduced modifed to a Bugfix-Sprint)
+
+Info: the BL version is important, as the test team is evaluating this for component test coverage (CT report / TPR).
+The tags shall only be separated by a blankspace.
+Last item is Mainstream, if applicable for mainstream.
+Empty shall not be used for object in MS_Status "accepted". If it is applicaple for all Release-Branches and Mainsteam all of them have to be listed.
+
+Example:
+"Deuterium Mainstream"		--> in Deuterium and Mainstream present
+"Deuterium_B03"			--> only in Deuterium with Bugfix Baseline B03 and later
+"Mainstream_18.3"		--> only in Mainstream Baseline 18.3 and later
+
+New Release-Branch 
+Once a new Release SW is branched out from the Mainstream the Tag in RB_Configuration "Mainstream" has to be replaced by "NewBranchReleaseName Mainstream".
+
+Example:
+Before: "Deuterium_B01 Mainstream"  	--> "Deuterium_B01 Europium Mainstream"
+Before: "Mainstream_18.3"		--> "Europium Mainstream_18.3"
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14440
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Open
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+Mainstream "Reference Projects":
+With Deuterium the mainstream supports the following refernce projects:
+PQ26 		--> ESP9.3 
+HevX (Golf GTE)	--> MMP2
+UHD (Golf GTE)	--> ESP 9.3 UHD
+The column RB_Product indicates if a requiment is applicaple for a reference project or not.
+
+Customer projects reusing a reference project have to ensure that all deviations are developed according to the process and that the system behaviour is proper.
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14443
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Open
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3 Requirements to Software Implementation
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-179
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+The components must be implemented considering defined Failure words, Parent and Child node and impact on the system degradation.
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-306
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.1 Requirements Related to Interfaces
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-219
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.1.1 Requirements towards received Interfaces
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-308
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.1.1.1 Requirements towards required interfaces
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-309
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+The general interfaces to the Node is via APIs provided by CDG
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-322
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.1.1.1.1 Requirements towards provided interfaces
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-314
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.1.2 Requirements towards sent Interfaces
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-315
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.1.2.1 Requirements towards required interfaces
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-316
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.1.2.2 Requirements towards provided interfaces
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-318
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+DiaStatus_<NodeName> - Bit coded information of the Node Status sent to ASW via MSI.
+The general interfaces to recieve the status of the Node is via APIs provided by CDG
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-323
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.1.2.2.1 Requirements towards provided shared classes/ functions
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-319
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2 General Requirements to Nodes
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-320
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.1 Node States
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-339
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+Below is the description of Node Status and Reasons for the status, which is valid for all nodes.
+ 
+Node_Status	Cause	   
+DEM_NODESTATUS_FAILED	If any one of the FW linked to this node reports failure	   
+DEM_NODESTATUS_SUSPICIOUS	If any FW linked to this node reaches suspicious limit	   
+DEM_NODESTATUS_NOTINIT	Node not initialized	   
+DEM_NODESTATUS_NOTAVAILABLE	If the node is not available due to variant code configuration or other conditions	   
+DEM_NODESTATUS_FAILEDFILTERED	If a FW linked to the node reports failure but is filtered by any Situation Filter	   
+DEM_NODESTATUS_FAILEDNOTRECOVERABLE	If a non recoverable failureword linked to the node reports failure	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-378
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.2 General Requirements to configure Node_<NodeName>
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-335
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+This section is generic section (template) to be replicated with relevant data for the actual configured nodes in project
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-944
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.2.1 Description
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-336
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+Description of Node: Related to Node and failures related
+Status Export to ASW:  If the Node status exported to ASW
+Node Initialisation by ASW:  If node initialised by ASW\ASCET
+Allowed Recoveries: Number of allowed recoveries of the node in an operation cycle lies in between 0x00 and 0xFF, if configured for 0xFF implies infinite recoveries
+HWShutdown: In case of a invalid graph node the DSW informs the HSW via function callback
+Priorities of FW Disabled: Priority can be disabled for a node if monitoring are independent from each other. The higher the priority number the higher is the priority.
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-337
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.2.2 Functional Requirements
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-338
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.2.2.1 Core Behavior
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-341
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.2.2.1.1 Description of Node
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-357
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+Description of  <NodeName>
+
+ 
+Failure words assigned	   
+Failure words	Priority	   
+FW_Failure1	prio1	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-347
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ 
+FW_Failure2	prio2	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2612
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ 
+FW_FailureN	prioN	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2611
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.2.2.1.2 Hierarchy of Node
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1996
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ParentNodes_of_<NodeName>
+
+ 
+ParentNodes	   
+Node_<AncestorNodeName>	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1997
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.2.2.2 Performance Requirements
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-365
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_
+3.2.42.3 Performance Requirements
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1869
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.3 General Requirements to configure Node_MMP_SignalChain
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-643
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.3.1 Description
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-644
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+Description of Node: 
+Status Export to ASW: False
+Node Initialisation by ASW: False
+Allowed Recoveries: 0xFF
+HWShutdown: NoHWShutdown
+Priorities of FW Disabled: True
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-645
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__APBActuatorMon.xml
+	VerificationType_RB:  Inspection
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  The Interfaces and Configuration can be manually verified
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.3.2 Functional Requirements
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-646
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.3.2.1 Node States
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-647
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.3.2.2 Core Behavior
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-649
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.3.2.2.1 Description of Node
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-650
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+Description_of_MMP_SignalChain
+
+ 
+Failure words assigned	   
+Failure words	Priority	   
+FW_RBL_Nvm_SigChain_Content	210	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14332
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:
+
+FW_RBL_Nvm_VariantCoding	215	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14332
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:	  
+
+3.2.3.2.2.2 Hierarchy of Node
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2078
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ParentNodes_of_Node_MMP_SignalChain
+
+
+ParentNodes	   
+Node_MMP_SensorConfig	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2079
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__Graph__PROJECT.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.3.3 Performance Requirements
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-654
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.4 General Requirements to configure Node_MMP_CustomerLearning
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-655
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.4.1 Description
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-656
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+Description of Node: 
+Status Export to ASW: False
+Node Initialisation by ASW: False
+Allowed Recoveries: 0xFF
+HWShutdown: NoHWShutdown
+Priorities of FW Disabled: True
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-657
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBMICAPB__APB.xml
+	VerificationType_RB:  Inspection
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  The Interfaces and Configuration can be manually verified
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.4.2 Functional Requirements
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-658
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.4.2.1 Node States
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-659
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.4.2.2 Core Behavior
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-661
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.4.2.2.1 Description of Node
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-662
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+Description_of_Node_MMP_CustomerLearning
+
+ 
+Failure words assigned	   
+Failure words	Priority	   
+FW_RBL_SigChain_OffsLearning	59	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14332
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  	 
+
+3.2.4.2.2.2 Hierarchy of Node
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2081
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ParentNodes_of_Node_MMP_CustomerLearning
+
+ 
+ParentNodes	   
+Node_MMP_SignalChain	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2082
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__Graph__PROJECT.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.4.3 Performance Requirements
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-666
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.5 General Requirements to configure Node_MMP_SignalChainMonitors
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3101
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.5.1 Description
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3102
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+Description of Node: 
+Status Export to ASW: False
+Node Initialisation by ASW: False
+Allowed Recoveries: 0xFF
+HWShutdown: NoHWShutdown
+Priorities of FW Disabled: True
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3103
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__MICAPB__APB.xml
+	VerificationType_RB:  Inspection
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  The Interfaces and Configuration can be manually verified
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.5.2 Functional Requirements
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3104
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.5.2.1 Node States
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3105
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.5.2.2 Core Behavior
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3107
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.5.2.2.1 Description of Node
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3108
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+Description_of_Node_MMP_SignalChainMonitors
+
+ 
+Failure words assigned	   
+Failure words	Priority	 
+FW_RBL_SignalUncorrelated_AccZ	71	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1782
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_RBL_SignalUncorrelated_AccX	72	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-423
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_RBL_SignalUncorrelated_AccY	73	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1781
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_RBL_SignalUncorrelated_RateX	74	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1783
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_RBL_SignalUncorrelated_RateY	75	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1784
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_RBL_SignalUncorrelated_RateZ	76	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1785
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB: 
+
+FW_RBL_TemperatureRangeExceeded_Smu0	134 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1814
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:		
+
+FW_RBL_TemperatureRangeExceeded_Smu1	135 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1815
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:
+
+FW_RBL_TemperatureRangeExceeded_Smu2	136 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1816
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:
+
+FW_RBL_TemperatureRangeExceeded_Smu3	137
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1817
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:
+
+FW_RBL_FrequencyFailure_Smu0	142	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1806
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_RBL_FrequencyFailure_Smu1	143	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1807
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:
+
+FW_RBL_FrequencyFailure_Smu2	144	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1808
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:
+
+FW_RBL_FrequencyFailure_Smu3	145 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1809
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:
+
+3.2.5.2.2.2 Hierarchy of Node
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3111
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ParentNodes_of_Node_MMP_SignalChainMonitors
+
+ 
+ParentNodes	   
+Node_MMP_SignalChain	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3112
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__Graph__PROJECT.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.5.3 Performance Requirements
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3116
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.6 General Requirements to configure Node_MMP_TracebilityData
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3271
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.6.1 Description
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3272
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+Description of Node: 
+Status Export to ASW: True
+Node Initialisation by ASW: False
+Allowed Recoveries: 0xFF
+HWShutdown: NoHWShutdown
+Priorities of FW Disabled: True
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3273
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBApbButton__APB.xml
+	VerificationType_RB:  Inspection
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  The Interfaces and Configuration can be manually verified
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.6.2 Functional Requirements
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3274
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.6.2.1 Node States
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3275
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.6.2.2 Core Behavior
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3277
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.6.2.2.1 Description of Node
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3278
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+Description_of_Node_MMP_TracebilityData
+
+ 
+Failure words assigned	   
+Failure words	Priority	
+FW_RBL_Nvm_CustDmc	24	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14332
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB: 
+
+FW_RBL_Nvm_CfgVers 26	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14333
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:
+
+FW_RBL_Nvm_SpareDmc	25	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14332
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:
+
+FW_RBL_Nvm_SplrNr	27	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14335
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:
+
+FW_RBL_Nvm_BaseplateDmc	28	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14336
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB: 
+
+FW_RBL_Nvm_HousingDmc	29	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14337
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:
+
+FW_RBL_Nvm_ProcProgsId	30	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14338
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:
+
+FW_RBL_Nvm_SnsrSerlNr	31	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14339
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:
+
+FW_RBL_Nvm_RbPartNr		32	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14340
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:
+
+FW_RBL_Nvm_RbAsblyPartNr	33	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14341
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:
+
+FW_RBL_Nvm_ProdDate		34	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14342
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:	
+
+FW_RBL_Nvm_PlaIdNr	35	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14343
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:
+
+FW_RBL_Nvm_PcbDmc	36	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14344
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:
+
+FW_RBL_Nvm_LotNr		37	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14345
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:
+
+FW_RBL_Nvm_HwVersNr		38	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14346
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:
+
+FW_RBL_Nvm_CustPartNr		39	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14347
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:
+
+3.2.6.2.2.2 Hierarchy of Node
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3281
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ParentNodes_of_Node_MMP_TracebilityData
+
+ 
+ParentNodes	   
+Node_Ecu	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3282
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__Graph__PROJECT.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.6.3 Performance Requirements
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3286
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:
+
+3.2.43 General Requirements to configure Node_ChargePump
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14559
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.43.1 Description
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14560
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+Description of Node: Malfunction related to the actuator and peripheral charge pump.
+Status Export to ASW: False
+Node Initialisation by ASW: False
+Allowed Recoveries: 0xFF
+HWShutdown: NoHWShutdown
+Priorities of FW Disabled: False
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14561
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBSUPPLYBASE.xml
+	VerificationType_RB:  Inspection
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  The Interfaces and Configuration can be manually verified
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.43.2 Functional Requirements
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14562
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.43.2.1 Core Behavior
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14563
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.43.2.1.1 Description of Node
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14564
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+Description_of_Node_ChargePump
+
+ 
+Failure words assigned	   
+Failure words	Priority	   
+FW_RBChargePumpUndervoltage	11	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3403
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBSUPPLYBASE.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.43.2.1.2 Hierarchy of Node
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14567
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ParentNodes_of_Node_ChargePump
+
+ 
+Parent Node	   
+Node_Ecu	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14568
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__Graph__PROJECT.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.43.3 Performance Requirements
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14569
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.45 General Requirements to configure Node_Det
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3306
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.45.1 Description
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3307
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+Description of Node: Contains Failure words concerning  DET errors
+Status Export to ASW: False
+Node Initialisation by ASW: False
+Allowed Recoveries: 0xFF
+HWShutdown: NoHWShutdown
+Priorities of FW Disabled: False
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3308
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  Beryllium : DSM
+(rb.as.core.global.rbdiamantdb)
+Carbon : DSM (rb.as.core.hwp.cubas.Diagnosis)
+Deuterium : DSM 
+(rb.as.core.app.dsm)
+	Realizing_SWitem_RB:  Beryllium : Diamant__NODE__RB.xml Carbon/Deuterium : Diamant__NODE__RB__DET.xml
+	VerificationType_RB:  Inspection
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  The Interfaces and Configuration can be manually verified
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.45.2 Functional Requirements
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3309
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.45.2.1 Core Behavior
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3312
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.45.2.1.1 Description of Node
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3313
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+Description_of_Node_Det
+ 
+Failure words assigned	   
+Failure words	Priority	   
+FW_DET_ReportError 	100	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3314
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  Beryllium : DSM
+(rb.as.core.global.rbdiamantdb)
+Carbon : DSM (rb.as.core.hwp.cubas.Diagnosis)
+Deuterium : DSM 
+(rb.as.core.app.dsm)
+	Realizing_SWitem_RB:  Beryllium : Diamant__NODE__RB.xml Carbon/Deuterium : Diamant__NODE__RB__DET.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.45.2.1.2 Hierarchy of Node
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3374
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ParentNodes_of_Node_Det
+ 
+ParentNodes	   
+Node_Ecu	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3375
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__Graph__PROJECT.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.45.3 Performance Requirements
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3379
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.24 General Requirements to configure Node_MMP_SensorModuleError
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-415
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.24.1 Description
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-416
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+Description of Node: All ASW software failures
+Status Export to ASW: False
+Node Initialisation by ASW: False
+Allowed Recoveries: 0xFF
+HWShutdown: NoHWShutdown
+Priorities of FW Disabled: True
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-417
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Inspection
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  The Interfaces and Configuration can be manually verified
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.24.2 Functional Requirements
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-418
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.24.2.1 Core Behavior
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-421
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.24.2.1.1 Description of Node
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-422
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+Description_of_Node_MMP_SensorModuleError
+
+ 
+Failure words assigned	   
+Failure words	Priority	   
+FW_RBL_ChannelInvalid_Smu0_Acc1	160	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1786
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_RBL_ChannelInvalid_Smu0_Acc2	161	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1787
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_RBL_ChannelInvalid_Smu0_Acc3	162	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1788
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_RBL_ChannelInvalid_Smu0_Rate1	163	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1789
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_RBL_ChannelInvalid_Smu1_Acc1	170	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1790
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_RBL_ChannelInvalid_Smu1_Acc2	171	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1791
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_RBL_ChannelInvalid_Smu1_Acc3	172	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1792
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_RBL_ChannelInvalid_Smu1_Rate1	173	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1793
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_RBL_ChannelInvalid_Smu2_Acc1	180	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1794
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_RBL_ChannelInvalid_Smu2_Acc2	181	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1795
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_RBL_ChannelInvalid_Smu2_Acc3	182	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1796
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_RBL_ChannelInvalid_Smu2_Rate1	183	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1797
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_RBL_ChannelInvalid_Smu3_Acc1	190	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1798
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_RBL_ChannelInvalid_Smu3_Acc2	191	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1799
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_RBL_ChannelInvalid_Smu3_Acc3	192	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1800
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_RBL_ChannelInvalid_Smu3_Rate1	193	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1801
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_RBL_CrcFailure_Smu0	200	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1802
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_RBL_CrcFailure_Smu1	201	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1803
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_RBL_CrcFailure_Smu2	202	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1804
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_RBL_CrcFailure_Smu3	203	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1805
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_RBL_TemperatureMsgInvalid_Smu0	150 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1810
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:
+
+FW_RBL_TemperatureMsgInvalid_Smu1	151 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1811
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:
+
+FW_RBL_TemperatureMsgInvalid_Smu2	152 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1812
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:
+
+FW_RBL_TemperatureMsgInvalid_Smu3	153 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1813
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:	
+
+FW_RBL_FrequencyMsgInvalid_Smu0	138	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1806
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_RBL_FrequencyMsgInvalid_Smu1	140	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1807
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:
+
+FW_RBL_FrequencyMsgInvalid_Smu2	139 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1808
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:
+
+FW_RBL_FrequencyMsgInvalid_Smu3	141 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1809
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:
+
+3.2.24.2.1.2 Hierarchy of Node
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1993
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ParentNodes_of_Node_MMP_SensorModuleError
+
+ 
+ParentNodes	   
+Node_MMP_SensorConfig	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1994
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__Graph__PROJECT.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.24.3 Performance Requirements
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-426
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.25 General Requirements to configure Node_MMP_SensorConfig
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1138
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.25.1 Description
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1139
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+Description of Node: 
+Status Export to ASW: True
+Node Initialisation by ASW: True
+Allowed Recoveries: 0xFF
+HWShutdown: NoHWShutdown
+Priorities of FW Disabled: True
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1140
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__ESP.xml
+	VerificationType_RB:  Inspection
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  The Interfaces and Configuration can be manually verified
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.25.2 Functional Requirements
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1141
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.25.2.1 Core Behavior
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1144
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.25.2.1.1 Description of Node
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1145
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+Description_of_Node_MMP_SensorConfig
+
+ 
+Failure words assigned	   
+Failure words	Priority	   
+FW_RBL_Nvm_AvlSnsrModl	209	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1146
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__ESP.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_RBL_Nvm_SensorCrc_ErrCnt	208	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14332
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.25.2.1.2 Hierarchy of Node
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2078
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB: 
+
+ParentNodes_of_Node_MMP_SensorConfig
+
+
+ParentNodes	   
+Node_Ecu	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2245
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__Graph__PROJECT.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.25.3 Performance Requirements
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1149
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.52 General Requirements to configure Node_Ecu
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-366
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.52.1 Description
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-367
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+Description of Node: Containes Failure words concerning  Electronic Control Unit internal failures which lead to a inoperable system
+Status Export to ASW: False
+Node Initialisation by ASW: False
+Allowed Recoveries: 0x0
+HWShutdown: FailsafeActuation
+Priorities of FW Disabled: False
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-368
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Inspection
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  The Interfaces and Configuration can be manually verified
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.52.2 Functional Requirements
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-369
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.52.2.1 Core Behavior
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-372
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.52.2.1.1 Description of Node
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-373
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+Description_of_Node_Ecu
+ 
+Failure words assigned	   
+Failure words	Priority	   
+FW_AssertionFailed 	250	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2477
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  Rausch Tobias (CC-AS/ESB3) and Grace Pauline, 08.05.2017 08:59:21: fixed
+
+Rausch Tobias (CC-AS/ESB3), 04.05.2017 17:31:02
+Findings: Realizing_SWItim is missing.
+Severity: S
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_RB_UnsupportedHW 	240	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2478
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  Rausch Tobias (CC-AS/ESB3) and Grace Pauline, 08.05.2017 08:59:21: fixed
+
+Rausch Tobias (CC-AS/ESB3), 04.05.2017 17:31:02
+Findings: Realizing_SWItim is missing.
+Severity: S
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ 
+FW_RBSupplyASICInitFailure 	230	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2480
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  Rausch Tobias (CC-AS/ESB3) and Grace Pauline, 08.05.2017 08:59:21: fixed
+
+Rausch Tobias (CC-AS/ESB3), 04.05.2017 17:31:02
+Findings: Realizing_SWItim is missing.
+Severity: S
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_RBSUPPLYIREFOutOfRange 	228	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2482
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  Rausch Tobias (CC-AS/ESB3) and Grace Pauline, 08.05.2017 08:59:21: fixed
+
+Rausch Tobias (CC-AS/ESB3), 04.05.2017 17:31:02
+Findings: Realizing_SWItim is missing.
+Severity: S
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ 
+FW_RBSUPPLY_U5VTestFailure 	227	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2485
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  Rausch Tobias (CC-AS/ESB3) and Grace Pauline, 08.05.2017 08:59:21: fixed
+
+Rausch Tobias (CC-AS/ESB3), 04.05.2017 17:31:02
+Findings: Realizing_SWItim is missing.
+Severity: S
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ 
+FW_RBSUPPLY_U5VOutOfRange 	225	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2487
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  Rausch Tobias (CC-AS/ESB3) and Grace Pauline, 08.05.2017 08:59:21: fixed
+
+Rausch Tobias (CC-AS/ESB3), 04.05.2017 17:31:02
+Findings: Realizing_SWItim is missing.
+Severity: S
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ 
+FW_RBChargePumpFailure 	223	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2489
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  Rausch Tobias (CC-AS/ESB3) and Grace Pauline, 08.05.2017 08:59:21: fixed
+
+Rausch Tobias (CC-AS/ESB3), 04.05.2017 17:31:02
+Findings: Realizing_SWItim is missing.
+Severity: S
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_RbfslEcuEClockTestFails 	210	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2483
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  Rausch Tobias (CC-AS/ESB3) and Grace Pauline, 08.05.2017 08:59:21: fixed
+
+Rausch Tobias (CC-AS/ESB3), 04.05.2017 17:31:02
+Findings: Realizing_SWItim is missing.
+Severity: S
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ 
+FW_RbfslEcuWrongBistCmdTestFails 	209	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2484
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  Rausch Tobias (CC-AS/ESB3) and Grace Pauline, 08.05.2017 08:59:21: fixed
+
+Rausch Tobias (CC-AS/ESB3), 04.05.2017 17:31:02
+Findings: Realizing_SWItim is missing.
+Severity: S
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ 
+FW_RbfslEcuFastWdTestFails 	208	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2490
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  Rausch Tobias (CC-AS/ESB3) and Grace Pauline, 08.05.2017 08:59:21: fixed
+
+Rausch Tobias (CC-AS/ESB3), 04.05.2017 17:31:02
+Findings: Realizing_SWItim is missing.
+Severity: S
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ 
+FW_RbfslEcuBistFailureCtrTestFails 	207	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2491
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  Rausch Tobias (CC-AS/ESB3) and Grace Pauline, 08.05.2017 08:59:21: fixed
+
+Rausch Tobias (CC-AS/ESB3), 04.05.2017 17:31:02
+Findings: Realizing_SWItim is missing.
+Severity: S
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ 
+FW_RbfslEcuErrpinCounterTestFails 	206	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2493
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  Rausch Tobias (CC-AS/ESB3) and Grace Pauline, 08.05.2017 08:59:21: fixed
+
+Rausch Tobias (CC-AS/ESB3), 04.05.2017 17:31:02
+Findings: Realizing_SWItim is missing.
+Severity: S
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ 
+FW_RbfslEcuEnableElLowFails 	205	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2494
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  Rausch Tobias (CC-AS/ESB3) and Grace Pauline, 08.05.2017 08:59:21: fixed
+
+Rausch Tobias (CC-AS/ESB3), 04.05.2017 17:31:02
+Findings: Realizing_SWItim is missing.
+Severity: S
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ 
+FW_RbfslDecoupleBitTestFails	 200	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2495
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  Rausch Tobias (CC-AS/ESB3) and Grace Pauline, 08.05.2017 08:59:21: fixed
+
+Rausch Tobias (CC-AS/ESB3), 04.05.2017 17:31:02
+Findings: Realizing_SWItim is missing.
+Severity: S
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ 
+FW_RbfslEcuEnableElHighFails	 199	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2496
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  Rausch Tobias (CC-AS/ESB3) and Grace Pauline, 08.05.2017 08:59:21: fixed
+
+Rausch Tobias (CC-AS/ESB3), 04.05.2017 17:31:02
+Findings: Realizing_SWItim is missing.
+Severity: S
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ 
+FW_RbfslEcuWdStartuptestFails	 198	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2492
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  Rausch Tobias (CC-AS/ESB3) and Grace Pauline, 08.05.2017 08:59:21: fixed
+
+Rausch Tobias (CC-AS/ESB3), 04.05.2017 17:31:02
+Findings: Realizing_SWItim is missing.
+Severity: S
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ 
+FW_RbfslEcuWdStatusContinuousError	183	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2504
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  Rausch Tobias (CC-AS/ESB3) and Grace Pauline, 08.05.2017 08:59:21: fixed
+
+Rausch Tobias (CC-AS/ESB3), 04.05.2017 17:31:02
+Findings: Realizing_SWItim is missing.
+Severity: S
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_RbfslEcuEnContinuousError	185	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2502
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  Rausch Tobias (CC-AS/ESB3) and Grace Pauline, 08.05.2017 08:59:21: fixed
+
+Rausch Tobias (CC-AS/ESB3), 04.05.2017 17:31:02
+Findings: Realizing_SWItim is missing.
+Severity: S
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_RbmicAsicClkInError	158	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2646
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  Rausch Tobias (CC-AS/ESB3) and Grace Pauline, 08.05.2017 08:59:21: all findings fixed
+
+Rausch Tobias (CC-AS/ESB3), 08.05.2017 08:54:37
+Findings: Event with Prio 156 is missing in doors.
+Severity: M
+
+Rausch Tobias (CC-AS/ESB3), 04.05.2017 17:31:02
+Findings: Realizing_SWItim is missing.
+Severity: S
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_RbmicAsicInitTestError	154	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2645
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  Rausch Tobias (CC-AS/ESB3) and Grace Pauline, 08.05.2017 08:59:21: fixed
+
+Rausch Tobias (CC-AS/ESB3), 04.05.2017 17:31:02
+Findings: Realizing_SWItim is missing.
+Severity: S
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_RbmicSpiTransferError	147	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2643
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  Rausch Tobias (CC-AS/ESB3) and Grace Pauline, 08.05.2017 08:59:21: fixed
+
+Rausch Tobias (CC-AS/ESB3), 04.05.2017 17:31:02
+Findings: Realizing_SWItim is missing.
+Severity: S
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+ 
+FW_RbWdhAsicWdErrorCntStuck	119	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2640
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  Rausch Tobias (CC-AS/ESB3) and Grace Pauline, 08.05.2017 08:59:21: fixed
+
+Rausch Tobias (CC-AS/ESB3), 04.05.2017 17:31:02
+Findings: Realizing_SWItim is missing.
+Severity: S
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ 
+FW_RbWdhAsicWdErrorCntLimit	117	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2639
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  Rausch Tobias (CC-AS/ESB3) and Grace Pauline, 08.05.2017 08:59:21: fixed
+
+Rausch Tobias (CC-AS/ESB3), 04.05.2017 17:31:02
+Findings: Realizing_SWItim is missing.
+Severity: S
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ 
+FW_RbWdhAsicWdCmdMissing	115	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2638
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  Rausch Tobias (CC-AS/ESB3) and Grace Pauline, 08.05.2017 08:59:21: fixed
+
+Rausch Tobias (CC-AS/ESB3), 04.05.2017 17:31:02
+Findings: Realizing_SWItim is missing.
+Severity: S
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_RbWdhTaskMonConCnt	112	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2636
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  Rausch Tobias (CC-AS/ESB3) and Grace Pauline, 08.05.2017 08:59:21: fixed
+
+Rausch Tobias (CC-AS/ESB3), 04.05.2017 17:31:02
+Findings: Realizing_SWItim is missing.
+Severity: S
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_RBEcuBandgap	53	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2635
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  Rausch Tobias (CC-AS/ESB3) and Grace Pauline, 08.05.2017 08:59:21: fixed
+
+Rausch Tobias (CC-AS/ESB3), 04.05.2017 17:31:02
+Findings: Realizing_SWItim is missing.
+Severity: S
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ 
+FW_RBAdcPinTest	49	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2634
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  Rausch Tobias (CC-AS/ESB3) and Grace Pauline, 08.05.2017 08:59:21: fixed
+
+Rausch Tobias (CC-AS/ESB3), 04.05.2017 17:31:02
+Findings: Realizing_SWItim is missing.
+Severity: S
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ 
+FW_RBAdcSelftestC5P	47	 
+
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2633
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  Rausch Tobias (CC-AS/ESB3) and Grace Pauline, 08.05.2017 08:59:21: fixed
+
+Rausch Tobias (CC-AS/ESB3), 04.05.2017 17:31:02
+Findings: Realizing_SWItim is missing.
+Severity: S
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ 
+FW_RBAdcPeripheralFault	46	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2632
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  Rausch Tobias (CC-AS/ESB3) and Grace Pauline, 08.05.2017 08:59:21: fixed
+
+Rausch Tobias (CC-AS/ESB3), 04.05.2017 17:31:02
+Findings: Realizing_SWItim is missing.
+Severity: S
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_RBNvM_WriteCycleExceed	11	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2509
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSW
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_RBMICSYS_OC_FINAL_HY_SHUTDOWN	5	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-13671
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.52.2.1.2 Hierarchy of Node
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1974
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ParentNodes_of_Node_Ecu
+
+ 
+ParentNodes	   
+Node_uC	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1975
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__Graph__PROJECT.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.52.3 Performance Requirements
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-377
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.81 General Requirements to configure Node_Network
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-583
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.81.1 Description
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-584
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+Description of Node: 
+Status Export to ASW: False
+Node Initialisation by ASW: False
+Allowed Recoveries: 0xFF
+HWShutdown: NoHWShutdown
+Priorities of FW Disabled: False
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-585
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Beryllium/Carbon:
+Diamant__NODE__RB.xml
+
+Deuterium: Diamant__NODE__RB__NET.xml
+	VerificationType_RB:  Inspection
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  The Interfaces and Configuration can be manually verified
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.81.2 Functional Requirements
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-586
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.81.2.1 Core Behavior
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-589
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.81.2.1.1 Description of Node
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-590
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+Description_of_Node_Network
+
+ 
+Failure words assigned	   
+Failure words	Priority	   
+FW_PDUR_E_PDU_INSTANCE_LOST	56	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2662
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Beryllium/Carbon:
+Diamant__NODE__RB.xml
+
+Deuterium: Diamant__NODE__RB__NET.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_PDUR_E_INIT_FAILED	53	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2679
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Beryllium/Carbon:
+Diamant__NODE__RB.xml
+
+Deuterium: Diamant__NODE__RB__NET.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:
+
+FW_RBNET_Undervoltage	252	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-591
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__NET.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:
+
+FW_RBNET_Overvoltage	250	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2673
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Beryllium/Carbon:
+Diamant__NODE__RB.xml
+
+Deuterium: Diamant__NODE__RB__NET.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.81.2.1.2 Hierarchy of Node
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2055
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ParentNodes_of_Node_Network
+
+ 
+ParentNodes	   
+Node_Ecu	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2056
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__Graph__PROJECT.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.81.3 Performance Requirements
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-594
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.82 General Requirements to configure Node_NetworkCAN
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3071
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.82.1 Description
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3072
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+Description of Node: -
+Status Export to ASW: False
+Node Initialisation by ASW: False
+Allowed Recoveries: 0xFF
+HWShutdown: NoHWShutdown
+Priorities of FW Disabled: False
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3073
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Beryllium/Carbon:
+Diamant__NODE__RB.xml
+
+Deuterium: Diamant__NODE__RB__RBNetCAN.xml
+	VerificationType_RB:  Inspection
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  The Interfaces and Configuration can be manually verified
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.82.2 Functional Requirements
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3074
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.82.2.1 Core Behavior
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3077
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.82.2.1.1 Description of Node
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3078
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+Description_of_Node_NetworkCAN
+
+ 
+Failure words assigned	   
+Failure words	Priority	
+FW_CANTRCV_TJA_E_NO_TRCV_CONTROL_CH0	98	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14283
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Beryllium/Carbon:
+Diamant__NODE__RB.xml
+
+Deuterium: Diamant__NODE__RB__RBNetCAN.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_CAN_E_TIME_OUT	96	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2668
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Beryllium/Carbon:
+Diamant__NODE__RB.xml
+
+Deuterium: Diamant__NODE__RB__RBNetCAN.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.82.2.1.2 Hierarchy of Node
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3087
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ParentNodes_of_Node_NetworkCAN
+
+ 
+ParentNodes	   
+Node_Network	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3088
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__Graph__PROJECT.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.82.3 Performance Requirements
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3092
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.83 General Requirements to configure Node_NetworkCAN0
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-969
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.83.1 Description
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-970
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+Description of Node: 
+Status Export to ASW: False
+Node Initialisation by ASW: False
+Allowed Recoveries: 0xFF
+HWShutdown: NoHWShutdown
+Priorities of FW Disabled: False
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-971
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Beryllium/Carbon:
+Diamant__NODE__RB.xml
+
+Deuterium: Diamant__NODE__RB__RBNetCAN.xml
+	VerificationType_RB:  Inspection
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  The Interfaces and Configuration can be manually verified
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.83.2 Functional Requirements
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-972
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.83.2.1 Core Behavior
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-975
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.83.2.1.1 Description of Node
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-976
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+Description_of_Node_NetworkCAN0
+
+ 
+Failure words assigned	   
+Failure words	Priority	   
+FW_CANSM_E_BUSOFF_NETWORK_0	241	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-977
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Beryllium/Carbon:
+Diamant__NODE__RB.xml
+
+Deuterium: Diamant__NODE__RB__RBNetCAN.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.83.2.1.2 Hierarchy of Node
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2171
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ParentNodes_of_Node_NetworkCAN0
+
+ 
+ParentNodes	   
+Node_NetworkCAN	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2172
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__Graph__PROJECT.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.83.3 Performance Requirements
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-980
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.84 General Requirements to configure Node_NetworkCAN1
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-981
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  Eisenhardt Martin (CC-AS/EST3), 01.07.2016 13:05:17
+Findings: shall be renamed into CAN1
+Severity: E
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.84.1 Description
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-982
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+Description of Node: 
+Status Export to ASW: False
+Node Initialisation by ASW: False
+Allowed Recoveries: 0xFF
+HWShutdown: NoHWShutdown
+Priorities of FW Disabled: False
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-983
+	CP_Status_RB_RS:  rejected
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Beryllium/Carbon:
+Diamant__NODE__RB.xml
+
+Deuterium: Diamant__NODE__RB__RBNetCAN.xml
+	VerificationType_RB:  Inspection
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  The Interfaces and Configuration can be manually verified
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:    
+
+3.2.115 General Requirements to configure Node_SMM_DegradeSystem
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-547
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.115.1 Description
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-548
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+Description of Node: SMM Group for system degration
+Status Export to ASW: False
+Node Initialisation by ASW: False
+Allowed Recoveries: 0xFF
+HWShutdown: NoHWShutdown
+Priorities of FW Disabled: False
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-549
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  Beryllium: DSM
+(rb.as.core.global.rbdiamantdb)
+Carbon/Deuterium : DSM
+(rb.as.core.app.dsm)
+	Realizing_SWitem_RB:  Beryllium : Diamant__NODE__RB.xml Carbon/Deuterium : 
+Diamant__NODE__RB__SMM.xml
+	VerificationType_RB:  Inspection
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  The Interfaces and Configuration can be manually verified
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.115.2 Functional Requirements
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-550
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.115.2.1 Core Behavior
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-553
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.115.2.1.1 Description of Node
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-554
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+Description_of_Node_SMM_DegradeSystem
+
+ 
+Failure words assigned	   
+Failure words	Priority	   
+FW_SMM_OneRequestsInit	2	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-555
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  Beryllium : DSM
+(rb.as.core.global.rbdiamantdb)
+Carbon/Deuterium : DSM
+(rb.as.core.app.dsm)
+	Realizing_SWitem_RB:  Beryllium : Diamant__NODE__RB.xml Carbon/Deuterium : 
+Diamant__NODE__RB__SMM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.115.2.1.2 Hierarchy of Node
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2046
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ParentNodes_of_Node_SMM_DegradeSystem
+
+ 
+ParentNodes	   
+Node_Ecu	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2047
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__Graph__PROJECT.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.115.3 Performance Requirements
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-558
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.125 General Requirements to configure Node_uCMemoryGuard
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14325
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.125.1 Description
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14326
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+Description of Node: Failures that indicate security malfunctions in RAM access
+Status Export to ASW: False
+Node Initialisation by ASW: False
+Allowed Recoveries: 0xFF
+HWShutdown: NoHWShutdown
+Priorities of FW Disabled: False
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14327
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Inspection
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  The Interfaces and Configuration can be manually verified
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.125.2 Functional Requirements
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14328
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.125.2.1 Core Behavior
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14329
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.125.2.1.1 Description of Node
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14330
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+Description_of_Node_uCMemoryGuard
+
+ 
+Failure words assigned	   
+Failure words	Priority	   
+FW_RBuCSafetyNotificationGRAM	120	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14331
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ 
+FW_RBuCSafetyNotification	100	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14332
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB__RBECM.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.125.2.1.2 Hierarchy of Node
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14333
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ParentNode_of_Node_uCMemoryGuard
+
+ 
+ParentNodes	   
+Node_uC	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14334
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__Graph__PROJECT.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.125.3 Performance Requirements
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14335
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+	
+
+	
+3.2.124 General Requirements to configure Node_uC
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-321
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.124.1 Description
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-327
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+Description of Node: Containes Failure words concerning  Mico_Controller Unit internal failures which lead to a inoperable system
+Status Export to ASW: False
+Node Initialisation by ASW: False
+Allowed Recoveries: 0x0
+HWShutdown: AllACTandCOM (failsafe strategy electrical off; all actuators and communication off)
+Priorities of FW Disabled: False
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-324
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Inspection
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  The Interfaces and Configuration can be manually verified
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.124.2 Functional Requirements
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-328
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.124.2.1 Core Behavior
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-332
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.124.2.1.1 Description of Node
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-355
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+Description_of_Node_uC
+
+ 
+Failure words assigned	   
+Failure words	Priority	   
+FW_RBuCSupplyError	247	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-348
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ 
+FW_RBHWBISTError	245	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2778
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ 
+FW_RBRAMFailure	241	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2796
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ 
+FW_RBFlashFailure	240	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2795
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ 
+FW_RBuCSafetyFault	239	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2794
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ 
+FW_RBuCSafetyLogicFault	238	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2793
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ 
+FW_RBCPUException	227	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2790
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ 
+FW_RBSYS_StackOverUnderFlow	171	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2788
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ 
+FW_RBSYS_SYSErrorHook	169	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2786
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ 
+FW_RBSYS_OSErrorHook	167	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2784
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ 
+FW_RBSYS_TaskOverRun	165	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2782
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ 
+FW_RBOSTaskSchemeError	164	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2781
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ 
+FW_RBSYS_TaskJitter	163	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2780
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ 
+FW_RBDmaTransferError	125	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2808
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ 
+FW_RbmicAsicOscillatorError	100	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2806
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_RBuCRegisterFault	40	 
+
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3174
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  The mentioned event/FW shall be set to invalid using API Dem_SetEventStatus(<EventName>,DEM_EVENT_STATUS_FAILED) and then checked if the node is also set to invalid.
+ (i.e. DEM_NODEFAILED_<NodeName> shall be true) 
+
+Recommended test environment is DSMSIM
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+FW_RB_UnsupportedSeriesHW	30	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3174
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__NODE__RB.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  The mentioned event/FW shall be set to invalid using API Dem_SetEventStatus(<EventName>,DEM_EVENT_STATUS_FAILED) and then checked if the node is also set to invalid.
+ (i.e. DEM_NODEFAILED_<NodeName> shall be true) 
+
+Recommended test environment is DSMSIM
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:
+	
+3.2.124.2.1.2 Hierarchy of Node
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1971
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+ParentNodes_of_Node_uC
+
+ 
+ParentNodes	   
+None	 
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1972
+	CP_Status_RB_RS:  accepted
+	MS_Status_RB_RS:  accepted
+	RB_Product:  MMP2
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  DSM
+	Realizing_SWitem_RB:  Diamant__Graph__PROJECT.xml
+	VerificationType_RB:  Test
+	TestEnvironment_RB:  SIL Simulation
+	Referenced_Testcase_RB:  CT
+	VerificationCriteria_RB:  Pass Result of Simulation Testcase
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  
+
+3.2.124.3 Performance Requirements
+	Requirements_ID_RB:  Gen_SWCS_DSM_Node_MS_ESP_Deuterium-364
+	CP_Status_RB_RS:  no_req
+	MS_Status_RB_RS:  no_req
+	RB_Product:  
+	RB_Configuration:  
+	RB_CP_Configuration:  Generic_MMP2
+	Realizing_SWComponent_RB:  
+	Realizing_SWitem_RB:  
+	VerificationType_RB:  
+	TestEnvironment_RB:  
+	Referenced_Testcase_RB:  
+	VerificationCriteria_RB:  
+	ReviewStatus_RB:  Ok
+	ReviewFindings_RB:  
+	TestStatus_RB:  
+	TestCase_TD_RB:  
+	TestCaseContext_TD_RB:  	

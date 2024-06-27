@@ -1,0 +1,23 @@
+start
+:ErrorCode would be declared;
+switch (SesCtrlTypeNew)
+case (DCM_DEFAULT_SESSION)
+     :No initialization;
+case (DCM_EXTENDED_DIAGNOSTIC_SESSION) 
+     :No initialization; 
+case (DCM_PROGRAMMING_SESSION)
+group RBFS_CheckProgPreCondition is equal to RBFS_CheckProgPreCondition == RBFS_CheckProgPreCondition_ON
+if (Check if dcom_CheckReprogPreConditionFullfilled is equal to TRUE) is (yes) then
+     :dcom_CheckReprogPreConditionFullfilled is updated to FALSE;
+else 
+     :ErrorCode is would be DCM_E_CONDITIONSNOTCORRECT\nRetVal updated with E_NOT_OK;
+endif
+end group
+case (DCM_SUPPLIER_SESSION)
+group RBFS_DcomReprogResponseType is not equal to RBFS_DcomReprogResponseType_Warm
+     :No initialization;
+end group
+case (default)
+     :retVal is updated with DCM_E_SESSION_NOT_ALLOWED;
+endswitch
+stop

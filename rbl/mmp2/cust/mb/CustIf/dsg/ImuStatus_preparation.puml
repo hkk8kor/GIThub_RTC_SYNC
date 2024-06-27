@@ -1,0 +1,13 @@
+start
+:check inertial signal status ie, acc and rate status;
+if (if Inertial signal status **init bit position**) then (yes)
+  :return  Imu status is INIT ;
+(no) elseif (Dem node failure error is detected for any of the nodes \n **uCPeriphery,SysAsic1,ucMemoryGuard,SyncError,NvM_FreqContent,SignalChain,ReInitError ** ) then (yes)
+note left
+use Dem_GetComponentFailed function from dem to check the node failure
+end note
+  :return permanent error ;
+else (no)
+  :return imu status operational;
+endif
+stop

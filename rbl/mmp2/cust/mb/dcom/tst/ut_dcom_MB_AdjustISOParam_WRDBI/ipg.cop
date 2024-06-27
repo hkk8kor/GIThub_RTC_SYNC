@@ -1,0 +1,18 @@
+#
+# Cantata Test-Level Options
+#
+# Any options set in this file will override the options set in the
+# project-level options file.
+#
+# WARNING: Do not alter this file manually.
+#
+#tool.testid=fb2d3018-7310-4e2e-aeb5-e5d35f30f25e
+"--ci:--instr:stmt;func;decn;log;"
+"--sa:--calc:*#*"
+
+#User Section
+"--dont_ci:*"
+"--do_ci:dcom_MB_AdjustISOParam_WRDBI.c"
+"--ci:--no_instr:all"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_CanTp_ReadParameter_010B_ReadData"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_CanTp_ChangeParameter_010B_WriteData"

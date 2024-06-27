@@ -1,0 +1,40 @@
+start
+switch (dcom_EepromReadByPdmState)
+case (dcom_NvMGetErrorStatus_BeforeReadOrWriteRequest)
+if (Check if NVM_REQ_PENDING is not equal to l_NvM_Result?) is (yes) then
+if (Check if NvM_ReadBlock is equal to E_OK) is (yes) then
+     :l_EEPROMRetryLimit is set to 0\ndcom_EepromReadByPdmState is set to dcom_NvMGetErrorStatus_AfterReadOrWriteRequest;
+else (no)
+     :l_EEPROMRetryLimit is incremented;
+if (Check if l_EEPROMRetryLimit is greater than 2) is (yes) then
+     :dcom_EepromReadByPdmState is set to dcom_Error_ReadOrWriteNVMBlock;
+endif
+endif
+else (no)
+     :l_EEPROMRetryLimit is incremented;
+if (Check if l_EEPROMRetryLimit is greater than 5) is (yes) then
+     :dcom_EepromReadByPdmState is set to dcom_Error_ReadOrWriteNVMBlock;
+endif
+endif
+case (dcom_NvMGetErrorStatus_AfterReadOrWriteRequest ) 
+switch (l_NvM_Result?)
+case ( E_OK)
+     :dcom_EepromReadByPdmState is set to dcom_Done_ReadOrWriteNVMBlock;
+case ( NVM_REQ_PENDING )  
+case ( NVM_REQ_INTEGRITY_FAILED)
+case ( NVM_REQ_NV_INVALIDATED)
+     :l_EEPROMRetryLimit is set to 0\ndcom_EepromReadByPdmState is set to dcom_NvMGetErrorStatus_BeforeReadOrWriteRequest\nretVal is set to E_OK;
+while (Loop 3 times to update NvM with default values ?) is (not empty)
+     :The array of data is updated as below \n data[i] = Fill_NvM;
+endwhile (empty)
+     :no data available;
+endswitch
+case ( default)
+     :dcom_EepromReadByPdmState is set to dcom_Error_ReadOrWriteNVMBlock;
+case (dcom_Done_ReadOrWriteNVMBlock )
+     :l_EEPROMRetryLimit is set to 0\ndcom_EepromReadByPdmState is set to dcom_NvMGetErrorStatus_BeforeReadOrWriteRequest\nretVal is set to E_OK;
+case (dcom_Error_ReadOrWriteNVMBlock )
+case ( default )
+     :l_EEPROMRetryLimit is set to 0\ndcom_EepromReadByPdmState is set to dcom_NvMGetErrorStatus_BeforeReadOrWriteRequest\nretVal is set to E_NOT_OK;
+endswitch
+stop

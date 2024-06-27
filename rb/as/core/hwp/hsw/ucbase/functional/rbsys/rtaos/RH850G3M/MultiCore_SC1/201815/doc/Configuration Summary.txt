@@ -1,0 +1,1042 @@
+==================================================
+RTA-OS Configuration Summary: rtaos_ccas_mcore_sc1
+==================================================
+
+Project Overview
+================
+
+Project information
+-------------------
+  Project: rtaos_ccas_mcore_sc1 (Project name)
+  Target: RH850GHS (Target name)
+  TargetVariant: P1HC (Target variant)
+  TotalCores: 2 (Number of Cores allocated)
+  OSCores: 2 (Number of Cores used for AUTOSAR OS)
+  TargetVersion: 5.0.36 (Target version)
+  OSVersion: 12.1.0 (OS version)
+  ARVersion: 4.5.0 (AUTOSAR version)
+  
+OS characteristics
+------------------
+  ScalabilityClass: SC1 (Scalability Class)
+  OSIPL: 11 (Interrupt priority at OS level)
+  HighestIPL: 19 (Highest interrupt priority used)
+  MaxIPL: 19 (Maximum possible interrupt priority)
+  
+Target configuration
+--------------------
+  CyclesPerSecond: 1000000 (Number of CPU cycles per second)
+  TicksPerSecond: 1000000 (Number of stopwatch ticks per second)
+  DefCat1Stack: undefined (Default stack budget for Category 1 ISRs)
+  DefCat2Stack: undefined (Default stack budget for Category 2 ISRs)
+  DefTaskStack: undefined (Default stack budget for Tasks)
+  
+Hardware information
+--------------------
+  Vendor: Renesas (Chip vendor)
+  Device: RH850 (Device)
+  Register initialization: SP (The stack must be allocated and SP initialized before calling \code{Os_InitializeVectorTable()}.)
+  Register initialization: EICn (The INTC priorities must be set to match the values declared in the configuration. This can be done by calling \code{Os_InitializeVectorTable()}.)
+  Register initialization: EIBDn (The INTC interrupt core binding (in multicore parts) must be set to match the values declared in the configuration. This can be done by calling \code{Os_InitializeVectorTable()}. For single-core variants that run on a multicore processor it may be necessary to call \code{Os_PreBindVectorsForPEx()} on core PE1 before \code{Os_InitializeVectorTable()} is called. See the API reference for \code{Os_PreBindVectorsForPEx()}.)
+  Register initialization: EBASE (The EBASE register must be set to match the interrupt vector mode declared in the configuration. If using Direct Vector interrupt vectors the RINT bit should be set to configure a single vector entry. This can be done by calling \code{Os_InitializeVectorTable()}.)
+  Register initialization: FPIPR (The FPIPR register (not supported on G3K and G3M cores) must be set to match the interrupt priority declared in the configuration)
+  Register initialization: INTBP (The interrupt vector base address must be set to match the application vector table address when using Table Reference interrupt vectors. This can be done by calling \code{Os_InitializeVectorTable()}.)
+  Register initialization: INTCFG (The interrupt function setting register must be set to disable updating of the ISPR register. This is done by calling \code{Os_InitializeVectorTable()}.)
+  Register initialization: PSW.UM (The CPU must be in Supervisor mode (i.e. PSW.UM=0).)
+  Register initialization: P1M (When winIDEA User tracing is required the I/O Port 1 Mode register (P1M) must configure all of the I/O pins to general purpose output before calling \code{StartOS()}.)
+  Reserved register: R2 (Reserved with the \code{reserve_r2} compiler option and preserved by the OS. The r2 register is reserved for future OS use)
+  Reserved register: CTPSW (Reserved in multicore applications when the target option Cache CoreID is selected)
+  Reserved register: ISPR (User code may not directly change the In-Service Priority Register.)
+  Reserved register: INTCFG (User code may not directly change the Interrupt function setting Register.)
+  Reserved register: PMR (User code may not directly change the Priority Mask Register.)
+  Reserved register: PSW (User code may not directly change the Program Status Word other than as a result of normal program flow.)
+  Reserved register: SP (User code may not change the stack pointer other than as a result of normal program flow.)
+  Reserved register: P1 (I/O Port 1 is reserved to support winIDEA User tracing when configured in the application.)
+  Reserved register: MEV (MEV register 0 is reserved for use by the OS when a multicore E1xxx variant is used.)
+  Reserved resource: TRAP0/1 (These are the CPU trap exceptions. The OS needs to use one of these when the configuration contains untrusted OS Applications. The trap used can be configured with the 'Trust Trap' target option.)
+  
+
+OS Configuration
+================
+
+Application Modes
+-----------------
+Key:
+  Name:  The name of the application mode
+  Index:  Internal OS object index
+
+The OS configuration defines the following application modes:
+  
+  Name: OSDEFAULTAPPMODE
+    Index: 1
+
+
+Hooks
+-----
+  ErrorHook: present (Called on error)
+  StartupHook: not present (Called during StartOS())
+  ShutdownHook: not present (Called during ShutdownOS())
+  PreTaskHook: not present (Called prior to starting/resuming a task)
+  PostTaskHook: not present (Called after stopping/pausing a task)
+  StackFaultHook: not present (Called when a stack budget overrun is detected)
+  ProtectionHook: not present (Called when a memory violation or CPU exception occurs)
+  
+OS-Application Hooks
+--------------------
+  StartupHook_TrustedAppCore0: not present (Called during StartOS())
+  ErrorHook_TrustedAppCore0: not present (Called on error)
+  ShutdownHook_TrustedAppCore0: not present (Called during ShutdownOS())
+  StartupHook_TrustedAppCore1: not present (Called during StartOS())
+  ErrorHook_TrustedAppCore1: not present (Called on error)
+  ShutdownHook_TrustedAppCore1: not present (Called during ShutdownOS())
+  
+OS-Applications
+---------------
+Key:
+  Name:  The name of the OS-Application
+  Trust:  Trust type
+  Location:  Name for MemMap code section override for the OS-Application
+  Restart:  Task that runs if the OS-Application gets restarted
+  Functions:  Trusted functions that belong to the OS-Application
+  Tasks:  Tasks that belong to the OS-Application
+  Isrs:  ISRs that belong to the OS-Application
+  Counters:  Counters that belong to the OS-Application
+  Alarms:  Alarms that belong to the OS-Application
+  Scheduletables:  ScheduleTables that belong to the OS-Application
+  Core:  The Core that the OS-Application's Tasks and ISRs run on
+  Index:  Internal OS object index
+
+The OS configuration defines the following OS-Applications:
+  
+  Name: TrustedAppCore0
+    Trust: trusted
+    Location: 
+    Restart: 
+    Functions: 
+    Tasks: TaskTPSWKillCore0 TaskInit TaskBaseCtrlCycx8 TaskBaseCtrlCycx2p TaskBaseCtrlCycx1Low TaskBaseCtrlCycx1High
+    Isrs: b_EXCDEBUG b_EXCFEINT b_EXCFPP b_EXCMAE b_EXCRIE b_EXCSYSERR EXCFENMI EXCFETRAP EXCHVTRAP EXCMDP EXCPIE EXCUCPOP ISRFLX0LINE0 ISRFLX1LINE0 ISRMCAN0I0 ISRMCAN1I0 ISRMCAN2I0 ISRMTTCANI0 ISRSTM05 ISRRLIN30STATUS ISRRLIN31RX ISRRLIN31STATUS ISRRLIN30RX
+    Counters: 
+    Alarms: 
+    Scheduletables: 
+    Core: 0
+    Index: 0
+
+  Name: TrustedAppCore1
+    Trust: trusted
+    Location: 
+    Restart: 
+    Functions: 
+    Tasks: TaskTPSWKillCore1 TaskInitP TaskFlexray TaskBaseCtrlCycx4 TaskBaseCtrlCycx24 TaskBaseCtrlCycx2 Task1ms Task0p5ms
+    Isrs: ISRSTM04 ISRSWINT0
+    Counters: 
+    Alarms: 
+    Scheduletables: 
+    Core: 1
+    Index: 1
+
+
+Trusted Functions
+-----------------
+There are no Trusted Functions in the OS configuration.
+  
+PeripheralAreas
+---------------
+There are no PeripheralAreas in the OS configuration.
+  
+Spinlocks
+---------
+There are no Spinlocks in the OS configuration.
+  
+Category 1 ISRs
+---------------
+Key:
+  Name:  The name of the ISR
+  Priority:  The declared interrupt priority
+  Base_ipl:  The interrupt priority assigned at configuration
+  Dispatch_ipl:  The interrupt priority that the ISR runs at (this can be higher than the base priority if the ISR shares an internal resource with other interrupts)
+  Vector:  The vector of the interrupt
+  Core:  The Core that the ISR runs on
+
+The OS configuration defines the following Category 1 ISRs:
+  
+  Name: b_EXCFPP
+    Priority: 17
+    Base_ipl: 17
+    Dispatch_ipl: 17
+    Vector: FPP/FPI
+    Core: 0
+
+  Name: EXCFETRAP
+    Priority: 18
+    Base_ipl: 18
+    Dispatch_ipl: 18
+    Vector: FETRAP
+    Core: 0
+
+  Name: EXCHVTRAP
+    Priority: 18
+    Base_ipl: 18
+    Dispatch_ipl: 18
+    Vector: HVTRAP
+    Core: 0
+
+  Name: EXCMDP
+    Priority: 18
+    Base_ipl: 18
+    Dispatch_ipl: 18
+    Vector: MIP/MDP/ITLBE/DTLBE
+    Core: 0
+
+  Name: EXCPIE
+    Priority: 18
+    Base_ipl: 18
+    Dispatch_ipl: 18
+    Vector: PIE
+    Core: 0
+
+  Name: EXCUCPOP
+    Priority: 18
+    Base_ipl: 18
+    Dispatch_ipl: 18
+    Vector: UCPOP
+    Core: 0
+
+  Name: b_EXCDEBUG
+    Priority: 18
+    Base_ipl: 18
+    Dispatch_ipl: 18
+    Vector: DEBUG
+    Core: 0
+
+  Name: b_EXCFEINT
+    Priority: 18
+    Base_ipl: 18
+    Dispatch_ipl: 18
+    Vector: FEINT
+    Core: 0
+
+  Name: b_EXCMAE
+    Priority: 18
+    Base_ipl: 18
+    Dispatch_ipl: 18
+    Vector: MAE
+    Core: 0
+
+  Name: b_EXCRIE
+    Priority: 18
+    Base_ipl: 18
+    Dispatch_ipl: 18
+    Vector: RIE
+    Core: 0
+
+  Name: EXCFENMI
+    Priority: 19
+    Base_ipl: 19
+    Dispatch_ipl: 19
+    Vector: FENMI
+    Core: 0
+
+  Name: b_EXCSYSERR
+    Priority: 19
+    Base_ipl: 19
+    Dispatch_ipl: 19
+    Vector: SYSERR
+    Core: 0
+
+
+Default ISR
+-----------
+Key:
+  Name:  The name of the interrupt handler to run if any unused interrupt is raised.
+
+The OS configuration defines the following default ISR:
+  
+  Name: InvalidInt
+
+Category 2 ISRs
+---------------
+Key:
+  Name:  The name of the ISR
+  Priority:  The declared interrupt priority
+  Base_ipl:  The interrupt priority assigned at configuration
+  Dispatch_ipl:  The interrupt priority that the ISR runs at (this can be higher than the base priority if the ISR shares an internal resource with other interrupts)
+  Vector:  The vector of the interrupt
+  Core:  The Core that the ISR runs on
+  Location:  Name for MemMap code section override for the ISR
+  Index:  Internal OS object index
+
+The OS configuration defines the following Category 2 ISRs:
+  
+  Name: ISRFLX0LINE0
+    Priority: 10
+    Base_ipl: 10
+    Dispatch_ipl: 10
+    Vector: FLXA0 universal ch A
+    Core: 0
+    Location: 
+    Index: 0
+
+  Name: ISRFLX1LINE0
+    Priority: 10
+    Base_ipl: 10
+    Dispatch_ipl: 10
+    Vector: FLXA1 universal ch A
+    Core: 0
+    Location: 
+    Index: 1
+
+  Name: ISRMCAN0I0
+    Priority: 10
+    Base_ipl: 10
+    Dispatch_ipl: 10
+    Vector: MCAN0 interrupt 0
+    Core: 0
+    Location: 
+    Index: 2
+
+  Name: ISRMCAN1I0
+    Priority: 10
+    Base_ipl: 10
+    Dispatch_ipl: 10
+    Vector: MCAN1 interrupt 0
+    Core: 0
+    Location: 
+    Index: 3
+
+  Name: ISRMCAN2I0
+    Priority: 10
+    Base_ipl: 10
+    Dispatch_ipl: 10
+    Vector: MCAN2 interrupt 0
+    Core: 0
+    Location: 
+    Index: 4
+
+  Name: ISRMTTCANI0
+    Priority: 10
+    Base_ipl: 10
+    Dispatch_ipl: 10
+    Vector: MTTCAN0 interrupt 0
+    Core: 0
+    Location: 
+    Index: 5
+
+  Name: ISRRLIN30RX
+    Priority: 10
+    Base_ipl: 10
+    Dispatch_ipl: 10
+    Vector: RLIN3_0 Rx
+    Core: 0
+    Location: 
+    Index: 6
+
+  Name: ISRRLIN30STATUS
+    Priority: 10
+    Base_ipl: 10
+    Dispatch_ipl: 10
+    Vector: RLIN3_0 status
+    Core: 0
+    Location: 
+    Index: 7
+
+  Name: ISRRLIN31RX
+    Priority: 10
+    Base_ipl: 10
+    Dispatch_ipl: 10
+    Vector: RLIN3_1 Rx
+    Core: 0
+    Location: 
+    Index: 8
+
+  Name: ISRRLIN31STATUS
+    Priority: 10
+    Base_ipl: 10
+    Dispatch_ipl: 10
+    Vector: RLIN3_1 status
+    Core: 0
+    Location: 
+    Index: 9
+
+  Name: ISRSTM04
+    Priority: 10
+    Base_ipl: 10
+    Dispatch_ipl: 10
+    Vector: STM0 interrupt 4
+    Core: 1
+    Location: 
+    Index: 10
+
+  Name: ISRSTM05
+    Priority: 10
+    Base_ipl: 10
+    Dispatch_ipl: 10
+    Vector: STM0 interrupt 5
+    Core: 0
+    Location: 
+    Index: 11
+
+  Name: ISRSWINT0
+    Priority: 11
+    Base_ipl: 11
+    Dispatch_ipl: 11
+    Vector: Software interrupt 0
+    Core: 1
+    Location: 
+    Index: 12
+
+
+Tasks
+-----
+Key:
+  Name:  The name of the Task
+  Type:  The task type (see the OSEK/ISO 17356/AUTOSAR OS Specifications for explanation)
+  Priority:  The declared task priority
+  Activations:  The number of task activations that can be queued at a time
+  Base_tpl:  The task priority assigned at configuration
+  Dispatch_tpl:  The task priority that the task runs at (this can be higher than the base priority if the task shares an internal resource with other tasks)
+  Dispatch_ipl:  The interrupt priority that the task runs at (this happens if the task shares an internal resource with an interrupt)
+  Schedules:  Can call Schedule() API
+  Access:  OS-Applications that can access the task (in addition to the owning OS-Application)
+  Core:  The Core that the Task runs on
+  Location:  Name for MemMap code section override for the task
+  Index:  Internal OS object index
+
+The OS configuration defines the following Tasks:
+  
+  Name: TaskBaseCtrlCycx24
+    Type: BCC1
+    Priority: 10
+    Activations: 1
+    Base_tpl: 0
+    Dispatch_tpl: 0
+    Dispatch_ipl: 0
+    Schedules: 
+    Access: TrustedAppCore0 TrustedAppCore1
+    Core: 1
+    Location: 
+    Index: 0
+
+  Name: TaskBaseCtrlCycx8
+    Type: BCC1
+    Priority: 15
+    Activations: 1
+    Base_tpl: 0
+    Dispatch_tpl: 0
+    Dispatch_ipl: 0
+    Schedules: 
+    Access: TrustedAppCore0 TrustedAppCore1
+    Core: 0
+    Location: 
+    Index: 1
+
+  Name: TaskBaseCtrlCycx4
+    Type: BCC1
+    Priority: 20
+    Activations: 1
+    Base_tpl: 1
+    Dispatch_tpl: 1
+    Dispatch_ipl: 0
+    Schedules: 
+    Access: TrustedAppCore0 TrustedAppCore1
+    Core: 1
+    Location: 
+    Index: 2
+
+  Name: TaskBaseCtrlCycx2p
+    Type: BCC1
+    Priority: 22
+    Activations: 1
+    Base_tpl: 1
+    Dispatch_tpl: 1
+    Dispatch_ipl: 0
+    Schedules: 
+    Access: TrustedAppCore0 TrustedAppCore1
+    Core: 0
+    Location: 
+    Index: 3
+
+  Name: TaskBaseCtrlCycx2
+    Type: BCC1
+    Priority: 25
+    Activations: 1
+    Base_tpl: 2
+    Dispatch_tpl: 2
+    Dispatch_ipl: 0
+    Schedules: 
+    Access: TrustedAppCore0 TrustedAppCore1
+    Core: 1
+    Location: 
+    Index: 4
+
+  Name: TaskBaseCtrlCycx1Low
+    Type: BCC1
+    Priority: 30
+    Activations: 1
+    Base_tpl: 2
+    Dispatch_tpl: 2
+    Dispatch_ipl: 0
+    Schedules: 
+    Access: TrustedAppCore0 TrustedAppCore1
+    Core: 0
+    Location: 
+    Index: 5
+
+  Name: TaskFlexray
+    Type: BCC1
+    Priority: 35
+    Activations: 1
+    Base_tpl: 3
+    Dispatch_tpl: 3
+    Dispatch_ipl: 0
+    Schedules: 
+    Access: TrustedAppCore0 TrustedAppCore1
+    Core: 1
+    Location: 
+    Index: 6
+
+  Name: TaskBaseCtrlCycx1High
+    Type: BCC1
+    Priority: 40
+    Activations: 1
+    Base_tpl: 3
+    Dispatch_tpl: 3
+    Dispatch_ipl: 0
+    Schedules: 
+    Access: TrustedAppCore0 TrustedAppCore1
+    Core: 0
+    Location: 
+    Index: 7
+
+  Name: Task1ms
+    Type: BCC1
+    Priority: 45
+    Activations: 1
+    Base_tpl: 4
+    Dispatch_tpl: 4
+    Dispatch_ipl: 0
+    Schedules: 
+    Access: TrustedAppCore0 TrustedAppCore1
+    Core: 1
+    Location: 
+    Index: 8
+
+  Name: Task0p5ms
+    Type: BCC1
+    Priority: 47
+    Activations: 1
+    Base_tpl: 5
+    Dispatch_tpl: 5
+    Dispatch_ipl: 0
+    Schedules: 
+    Access: TrustedAppCore0 TrustedAppCore1
+    Core: 1
+    Location: 
+    Index: 9
+
+  Name: TaskInitP
+    Type: BCC1
+    Priority: 50
+    Activations: 1
+    Base_tpl: 6
+    Dispatch_tpl: 6
+    Dispatch_ipl: 0
+    Schedules: 
+    Access: TrustedAppCore0 TrustedAppCore1
+    Core: 1
+    Location: 
+    Index: 10
+
+  Name: TaskInit
+    Type: BCC1
+    Priority: 55
+    Activations: 1
+    Base_tpl: 4
+    Dispatch_tpl: 4
+    Dispatch_ipl: 0
+    Schedules: 
+    Access: TrustedAppCore0 TrustedAppCore1
+    Core: 0
+    Location: 
+    Index: 11
+
+  Name: TaskTPSWKillCore0
+    Type: BCC2
+    Priority: 100
+    Activations: 250
+    Base_tpl: 5
+    Dispatch_tpl: 5
+    Dispatch_ipl: 0
+    Schedules: 
+    Access: TrustedAppCore0 TrustedAppCore1
+    Core: 0
+    Location: 
+    Index: 12
+
+  Name: TaskTPSWKillCore1
+    Type: BCC2
+    Priority: 101
+    Activations: 250
+    Base_tpl: 7
+    Dispatch_tpl: 7
+    Dispatch_ipl: 0
+    Schedules: 
+    Access: TrustedAppCore0 TrustedAppCore1
+    Core: 1
+    Location: 
+    Index: 13
+
+
+Register Sets
+-------------
+There are no Register Sets in the OS configuration.
+  
+Resources
+---------
+Key:
+  Name:  The name of the Resource
+  Property:  The type of resource
+  Link:  The resource that it links to
+  Tpl:  For resources that are only used by tasks: the task priority to which the system is raised when the resource is locked
+  Ipl:  For resources that are used by interrupts: the interrupt priority  to which the system is raised when the resource is locked
+  Access:  OS-Applications that can access the Resource (in addition to the owning OS-Application)
+  Core:  The Core that the Resource applies to
+  Index:  Internal OS object index
+
+The OS configuration defines the following Resources:
+  
+  Name: OS_RTE_RESOURCE_CORE0
+    Property: STANDARD
+    Link: 
+    Tpl: 0
+    Ipl: 10
+    Access: TrustedAppCore0
+    Core: 0
+    Index: 0
+
+  Name: OS_RTE_RESOURCE_CORE1
+    Property: STANDARD
+    Link: 
+    Tpl: 0
+    Ipl: 11
+    Access: TrustedAppCore1
+    Core: 1
+    Index: 1
+
+
+Events
+------
+There are no Events in the OS configuration.
+  
+Counters
+--------
+There are no Counters in the OS configuration.
+  
+TimeConstants
+-------------
+There are no TimeConstants in the OS configuration.
+  
+Alarms
+------
+There are no Alarms in the OS configuration.
+  
+ScheduleTables
+--------------
+There are no ScheduleTables in the OS configuration.
+  
+Expiry Points
+-------------
+There are no Expiry Points in the OS configuration.
+  
+
+TRACE Configuration
+===================
+Tracing is disabled.
+
+Build Details
+=============
+
+Build options
+-------------
+The project contains the following internal build options/optimizations:
+  ActivateKL: true
+  application_state: true
+  apps_own_resources: false
+  asyn_apis: false
+  async_activations: false
+  async_tasks: false
+  atomic_rw_size: 4
+  atomic_struct_copies: false
+  avoid_noinit_definitions: false
+  cat2_ipl_protection: true
+  cat2_long_blocking: true
+  check_execution_budgets: false
+  check_stack_budgets: false
+  combined_resources: true
+  cross_core_activation: true
+  cross_core_isr: true
+  delayed_tasks: false
+  enhanced_isolation: false
+  errorhandling: full
+  errorlogging: true
+  extended_tests: false
+  first_osapp: 0
+  forced_termination: false
+  forced_termination_of_isrs: false
+  forced_termination_of_tasks: false
+  generate_vectors: true
+  hardware_counters: false
+  hardware_tasks: false
+  has_crosscore_task_activations: true
+  has_events: false
+  has_resources: true
+  has_spinlocks: false
+  interrupt_apis_need_controlled_core: 
+  invalid_osapp: 2
+  invalid_osapp_is_zero: false
+  ioc_external: false
+  ioc_external_ns: false
+  ioc_internal: false
+  ioc_present: false
+  ioc_stub: false
+  isr_internal_resources: false
+  isr_lifetime_hooks: true
+  isrs_have_dyntype: true
+  lightweight: true
+  memmap_declarations: true
+  memmap_definitions: true
+  memory_protection_callbacks: false
+  meter_elapsed_time: true
+  meter_execution: true
+  meter_stack: false
+  metrics: false
+  mixed_psets: false
+  monitor_activations: true
+  multi_core: true
+  multi_os: true
+  multiple_activation: true
+  multiple_osapps: true
+  no_upward_activation: false
+  only_terminate_untrusted: false
+  optimize_schedule: true
+  orti: true
+  os_core_compatibility: 12.1.0
+  rtaos6_memmap_compliant: true
+  scalability_class: 1
+  schedule_optimize_internal: true
+  shared_priorities: false
+  single_os: false
+  software_counters: false
+  spinlock_info: false
+  spinlocks: false
+  spinlocks_lock_locally: 
+  stack_sampling: false
+  support_chaintask: true
+  support_nonautosar_cores: false
+  support_schedule: true
+  task_activation_hooks: false
+  task_internal_resources: false
+  task_lifetime_hooks: true
+  task_termination_hooks: false
+  tasks_have_dyntype: true
+  terminate_applications: false
+  terminate_specified_applications: true
+  timing_protection_isr: false
+  trace: false
+  trusted_functions: false
+  trusted_osapps: true
+  
+Target characteristics
+----------------------
+The project contains the following internal target characteristics:
+  Cache_CoreID_in_CTPSW: false
+  DirectVectors: true
+  DistrustStacks: false
+  EBASE_val_str: 0x0U
+  IsUntrustedCodeOK_params: const Os_EIContextBuffType * const Os_stack_context, Os_UntrustedContextRefType Os_EIApplicationContext
+  IsUntrustedTrapOK_params: MemoryStartAddressType Os_ret_addr, uint32 Os_CauseCode
+  Optimizer_setting: Ogeneral
+  SDA_size: 23-bit
+  TrustTrap0x40: true
+  TrustTrap0x50: false
+  abort_cleanup: true
+  alignment_forced: true
+  always_call_GetAbortStack: false
+  autosar_platform_name: RH850GHS
+  biggest_api_param_size: 32
+  biggest_api_param_type: unsigned int
+  block_default_interrupt: false
+  cat1_internal_resources: true
+  compilername: GREENHILLS
+  compilerversion: Green Hills Software, FROZEN v800-v2018.1.5bosch-frozen-P01
+  core_count: 2
+  endianness: little
+  float32: float
+  float64: double
+  handle_FPU_context: true
+  has_hardware_trusted_with_protection_mode: false
+  int32: int
+  large_constant_suffix: LL
+  large_int_size: 64
+  large_int_type: long long
+  large_unsigned_constant_suffix: ULL
+  link_FLASH: true
+  link_RAM: false
+  link_val_str: FLASH
+  native_char_size: 8
+  native_int_size: 32
+  native_int_type: int
+  orti_analyzer_data: false
+  orti_analyzer_none: true
+  orti_analyzer_soft: false
+  orti_analyzer_user: false
+  orti_lauterbach: true
+  orti_stackfill: false
+  orti_value: true
+  orti_winidea: false
+  rta_os_5_4_3_plus: true
+  rta_os_5_4_plus: true
+  rta_os_5_5_6_plus: true
+  rta_os_6_1_3_plus: true
+  sda_value: 0
+  secure_boot_stack: false
+  single_thread_build: false
+  sint16_least: signed int
+  sint32_least: signed int
+  sint8_least: signed int
+  stack_alignment: 4
+  trusted_with_protection: true
+  uint16_least: unsigned int
+  uint32_least: unsigned int
+  uint8_least: unsigned int
+  unaligned_data: true
+  use_ghs_headers: true
+  use_option_set1: false
+  use_option_set2: true
+  use_option_set3: false
+  use_stack_protector: false
+  
+Library compilation options
+---------------------------
+Key:
+  Value:  The option passed to the compiler
+  Description:  The meaning of the option
+  Usage:  How/where the option is used
+
+Compiler options and usage:
+  
+  Value: -cpu=rh850g3m
+    Description: Specify the target processor instruction set (this is variant-specific i.e. rh850g3k, rh850g3m, rh850g3kh or rh850g3mh if supported by the compiler)
+    Usage: Used to build library
+
+  Value: -ignore_callt_state_in_interrupts
+    Description: CTPSW and CTPC registers are not saved in interrupt routines
+    Usage: Used to build library
+
+  Value: -large_sda
+    Description: Generate 23-bit SDA relocations for load/store instructions (can be changed by a target option)
+    Usage: Used to build library
+
+  Value: -no_callt
+    Description: Disable use of the callt instruction
+    Usage: Used to build library
+
+  Value: -Ogeneral
+    Description: Optimizer strategy (other values are supported using the target option 'Optimizer setting' value)
+    Usage: Used to build library
+
+  Value: -prepare_dispose
+    Description: Allow V850E prepare and dispose instructions
+    Usage: Used to build library
+
+  Value: -reserve_r2
+    Description: Reserve R2
+    Usage: Used to build library
+
+  Value: -sda=0
+    Description: SDA threshold (other values are supported using the target option 'SDA Threshold' value)
+    Usage: Used to build library
+
+  Value: -shorten_loads
+    Description: Convert 23-bit SDA relocations to 16-bit in load/store instructions when possible
+    Usage: Used to build library
+
+  Value: --no_commons
+    Description: Allocate uninitialized global variables to a section and initialize them to zero at program startup
+    Usage: Used to build library
+
+  Value: --short_enum
+    Description: Store enumerations in the smallest possible type
+    Usage: Used to build library
+
+  Value: -G
+    Description: Generate debug information
+    Usage: Used to build library
+
+  Value: -dual_debug
+    Description: Generate DWARF debug information
+    Usage: Used to build library
+
+  Value: -list
+    Description: Create a listing file
+    Usage: Used to build library
+
+  Value: -frigor=accurate
+    Description: Favor accuracy over performance in floating point operations
+    Usage: Used to build library
+
+  Value: --diag_error=157
+    Description: Treat expression not an integral constant error as a warning.
+    Usage: Used to build library and required in application code
+
+  Value: --diag_error=1800
+    Description: Treat non-prototyped function warning as an error.
+    Usage: Used to build library and required in application code
+
+  Value: --diag_error=missing_type_specifier
+    Description: Explicit type is missing treated as an error.
+    Usage: Used to build library and required in application code
+
+  Value: --diag_error=implicit_return_from_non_void_function
+    Description: Missing return statement treated as an error.
+    Usage: Used to build library and required in application code
+
+  Value: --diag_error=1544
+    Description: Pragma information conflicts treated as errors.
+    Usage: Used to build library and required in application code
+
+  Value: --diag_error=2003
+    Description: Pointer to larger alignment treated as an error.
+    Usage: Used to build library and required in application code
+
+  Value: --diag_warning=1980
+    Description: Not enough initializers treated as a warning.
+    Usage: Used to build library and required in application code
+
+  Value: -
+    Description: The same options as for kernel compilation with the exception of the following which may be omitted from application code:
+
+-nofarcalls,
+
+-nofloatio,
+
+-Onounroll,
+
+--brief_diagnostics,
+
+--no_wrap_diagnostics,
+
+--quit_after_warnings.
+
+    Usage: Used to build library and required in application code
+
+  Value: -
+    Description: Any options that conflict with kernel options for example:
+    Usage: Must not be used
+
+  Value: -callt
+    Description: Use callt instruction in function prologues/epilogues
+    Usage: Must not be used
+
+  Value: -registermode=22
+    Description: Restrict the compiler to using 22 general purpose registers
+    Usage: Must not be used
+
+  Value: -registermode=26
+    Description: Restrict the compiler to using 26 general purpose registers
+    Usage: Must not be used
+
+  Value: -globalreg
+    Description: Reserve register to hold global variable
+    Usage: Must not be used
+
+  Value: -ga
+    Description: Use r28 as a frame pointer
+    Usage: Must not be used
+
+  Value: -r20has255
+    Description: Register r20 is set to the value 255
+    Usage: Must not be used
+
+  Value: -r21has65535
+    Description: Register r21 is set to the value 65535
+    Usage: Must not be used
+
+  Value: --no_short_enum
+    Description: Store enumerations as integers
+    Usage: Must not be used
+
+
+Library assembler options
+-------------------------
+Key:
+  Value:  The option passed to the assembler
+  Description:  The meaning of the option
+  Usage:  How/where the option is used
+
+Assembler options and usage:
+  
+  Value: -
+    Description: The same options as for compilation
+    Usage: Used to build library
+
+  Value: -
+    Description: The same options as for compilation
+    Usage: Used to build library and required in application code
+
+  Value: -
+    Description: Any options that conflict with kernel options
+    Usage: Must not be used
+
+
+Linker options
+--------------
+Key:
+  Value:  The option passed to the linker
+  Description:  The meaning of the option
+  Usage:  How/where the option is used
+
+Linker options and usage:
+  
+  Value: -cpu=rh850g3m
+    Description: Specify the target processor instruction set (this is variant-specific i.e. rh850g3k, rh850g3m, rh850g3kh or rh850g3mh if supported by the linker)
+    Usage: Used to test library
+
+  Value: -e Os_sample_reset
+    Description: Set the application entry function
+    Usage: Used to test library
+
+  Value: -lnk="-Manux -v -Qn"
+    Description: Create map file, verbose, skip comment section
+    Usage: Used to test library
+
+  Value: -lnk="-strict_overlap_check"
+    Description: Errors for all overlapping sections
+    Usage: Used to test library
+
+  Value: -lnk="-ignore_debug_references"
+    Description: Ignore reference from debug sections with delete
+    Usage: Used to test library
+
+  Value: -lnk="-delete"
+    Description: Delete unused functions
+    Usage: Used to test library
+
+  Value: -elxr_diag_error=283
+    Description: Section not included by the section map treated as an error.
+    Usage: Used to test library
+
+  Value: -lnk="-overlap"
+    Description: Do not generate errors for overlapping sections (needed for core local memory in multicore parts)
+    Usage: Used to test library
+
+  Value: -
+    Description: The same options as for the kernel
+    Usage: May be used in application code
+
+  Value: -
+    Description: Any options that conflict with kernel options
+    Usage: Must not be used in application code
+
+
+
+Copyright ETAS GmbH 2023

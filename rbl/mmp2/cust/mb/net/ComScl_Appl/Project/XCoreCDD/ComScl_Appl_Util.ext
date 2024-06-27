@@ -1,0 +1,211 @@
+import bsw;
+import bsw::rba_NdsModule;
+
+extension rba_Nds_EcuUtil;
+
+String ComScl_Appl_getProcAllocInformation(rba_Nds_FlexRayReceiveFrame rxFrame):
+    if(rxFrame.rba_Nds_FrameProcessingAllocation == null) then (
+        ";;"
+    ) else (
+       rxFrame.rba_Nds_FrameProcessingAllocation.rba_Nds_ReceiveFrameProcessingAllocationRef.getProcAllocInformation()
+    )
+;
+
+String ComScl_Appl_getProcAllocInformation(rba_Nds_FlexRayReceivePduLinkage pduLink):
+    if(pduLink.rba_Nds_ReceivePduRef != null && pduLink.rba_Nds_ReceivePduRef.rba_Nds_ReceiveSignalPdu != null) then (
+        pduLink.getProcAllocInformation() + ";" + pduLink.rba_Nds_ReceivePduRef.rba_Nds_ReceiveSignalPdu.getCycleTime()
+    ) else (
+        pduLink.getProcAllocInformation()
+    )
+;
+
+private String getProcAllocInformation(rba_Nds_FlexRayReceivePduLinkage rxPduLink):
+    if(rxPduLink.rba_Nds_PduProcessingAllocation == null) then (
+        ";;"
+    ) else (
+       rxPduLink.rba_Nds_PduProcessingAllocation.rba_Nds_ReceivePduProcessingAllocationRef.getProcAllocInformation()
+    )
+;
+
+String ComScl_Appl_getProcAllocInformation(rba_Nds_CanReceiveFrame rxFrame):
+    if(rxFrame.rba_Nds_FrameProcessingAllocation == null) then (
+        ";;"
+    ) else (
+       rxFrame.rba_Nds_FrameProcessingAllocation.rba_Nds_ReceiveFrameProcessingAllocationRef.getProcAllocInformation()
+    )
+;
+
+String ComScl_Appl_getProcAllocInformation(rba_Nds_CanReceivePduLinkage pduLink):
+    if(pduLink.rba_Nds_ReceivePduRef != null && pduLink.rba_Nds_ReceivePduRef.rba_Nds_ReceiveSignalPdu != null) then (
+        pduLink.getProcAllocInformation() + ";" + pduLink.rba_Nds_ReceivePduRef.rba_Nds_ReceiveSignalPdu.getCycleTime()
+    ) else (
+        pduLink.getProcAllocInformation()
+    )
+;
+
+String getProcAllocInformation(rba_Nds_CanReceivePduLinkage rxPduLink):
+    if(rxPduLink.rba_Nds_PduProcessingAllocation == null) then (
+        ";;"
+    ) else (
+       rxPduLink.rba_Nds_PduProcessingAllocation.rba_Nds_ReceivePduProcessingAllocationRef.getProcAllocInformation()
+    )
+;
+
+String ComScl_Appl_getProcAllocInformation(rba_Nds_FlexRayTransmitFrame txFrame):
+    if(txFrame.rba_Nds_FrameProcessingAllocation == null) then (
+        ";;"
+    ) else (
+       txFrame.rba_Nds_FrameProcessingAllocation.rba_Nds_TransmitFrameProcessingAllocationRef.getProcAllocInformation()
+    )
+;
+
+
+
+String ComScl_Appl_getProcAllocInformation(rba_Nds_FlexRayTransmitPduLinkage pduLink):
+    if(pduLink.rba_Nds_TransmitPduRef != null && pduLink.rba_Nds_TransmitPduRef.rba_Nds_TransmitSignalPdu != null) then (
+        pduLink.getProcAllocInformation() + ";" + pduLink.rba_Nds_TransmitPduRef.rba_Nds_TransmitSignalPdu.getCycleTime()
+    ) else (
+        pduLink.getProcAllocInformation()
+    )
+;
+
+String getProcAllocInformation(rba_Nds_FlexRayTransmitPduLinkage txPduLink):
+    if(txPduLink.rba_Nds_PduProcessingAllocation == null) then (
+        ";;"
+    ) else (
+       txPduLink.rba_Nds_PduProcessingAllocation.rba_Nds_TransmitPduProcessingAllocationRef.getProcAllocInformation()
+    )
+;
+
+String ComScl_Appl_getProcAllocInformation(rba_Nds_CanTransmitFrame txFrame):
+    if(txFrame.rba_Nds_FrameProcessingAllocation == null) then (
+        ";;"
+    ) else (
+       txFrame.rba_Nds_FrameProcessingAllocation.rba_Nds_TransmitFrameProcessingAllocationRef.getProcAllocInformation()
+    )
+;
+
+String ComScl_Appl_getProcAllocInformation(rba_Nds_CanTransmitPduLinkage pduLink):
+    if(pduLink.rba_Nds_TransmitPduRef != null && pduLink.rba_Nds_TransmitPduRef.rba_Nds_TransmitSignalPdu != null) then (
+        pduLink.getProcAllocInformation() + ";" + pduLink.rba_Nds_TransmitPduRef.rba_Nds_TransmitSignalPdu.getCycleTime()
+    ) else (
+        pduLink.getProcAllocInformation()
+    )
+;
+
+String getProcAllocInformation(rba_Nds_CanTransmitPduLinkage txPduLink):
+    if(txPduLink.rba_Nds_PduProcessingAllocation == null) then (
+        ";;"
+    ) else (
+       txPduLink.rba_Nds_PduProcessingAllocation.rba_Nds_TransmitPduProcessingAllocationRef.getProcAllocInformation()
+    )
+;
+
+private String getCycleTime(rba_Nds_ReceiveSignalPdu rbaNdsRxSigPdu):
+    rbaNdsRxSigPdu.rba_Nds_SignalPduRef.getCycleTime()
+;
+
+
+private String getCycleTime(rba_Nds_TransmitSignalPdu rbaNdsTxSigPdu):
+    rbaNdsTxSigPdu.rba_Nds_SignalPduRef.getCycleTime()
+;
+
+private String getCycleTime(rba_Nds_SignalPdu rbaNdsRxPdu):
+    if(rbaNdsRxPdu.rba_Nds_PduTiming != null &&
+       rbaNdsRxPdu.rba_Nds_PduTiming.rba_Nds_TransmissionModeDeclaration != null) then (
+        let tmtt = rbaNdsRxPdu.rba_Nds_PduTiming.rba_Nds_TransmissionModeDeclaration.getTmtt():
+        if(rbaNdsRxPdu.rba_Nds_PduTiming.rba_Nds_TransmissionModeDeclaration.getTmft() == null) then (
+            tmtt + "," + rbaNdsRxPdu.rba_Nds_PduTiming.rba_Nds_TransmissionModeDeclaration.getTmft()
+        ) else (
+            tmtt
+        )
+    )
+;
+
+private String getTmtt(rba_Nds_TransmissionModeDeclaration tmd):
+    if(tmd != null && tmd.rba_Nds_TransmissionModeTrueTiming != null) then (
+        let tmtt = tmd.rba_Nds_TransmissionModeTrueTiming:
+	    if(tmtt.rba_Nds_CycleTime != null) then (
+	        tmtt.rba_Nds_CycleTime.toString() + (tmtt.isEvent() ? " + event" : "")
+	    ) else (
+	        tmtt.isEvent() ? " event" : ""
+	    )
+    ) else (
+        ""
+    )
+;
+
+private Boolean isEvent(rba_Nds_TransmissionModeTrueTiming tmtt):
+    tmtt.rba_Nds_EventTransmissionCycleTime != null || tmtt.rba_Nds_NumberOfEventTransmissions != null
+;
+
+private String getTmttCycle(rba_Nds_TransmissionModeDeclaration tmd):
+    if(tmd.rba_Nds_TransmissionModeTrueTiming != null && 
+       tmd.rba_Nds_TransmissionModeTrueTiming.rba_Nds_CycleTime != null) then (
+        tmd.rba_Nds_TransmissionModeTrueTiming.rba_Nds_CycleTime.toString() + 
+            (tmd.isTmttEvent() ? " + event" : "") 
+    ) else (
+        "event"
+    )
+;
+
+private Boolean isTmttEvent(rba_Nds_TransmissionModeDeclaration tmd):
+    tmd.rba_Nds_TransmissionModeTrueTiming != null && 
+    (tmd.rba_Nds_TransmissionModeTrueTiming.rba_Nds_NumberOfEventTransmissions != null ||
+     tmd.rba_Nds_TransmissionModeTrueTiming.rba_Nds_EventTransmissionCycleTime != null) 
+;
+
+private String getTmftCycle(rba_Nds_TransmissionModeDeclaration tmd):
+    if(tmd.rba_Nds_TransmissionModeFalseTiming == null) then (
+        ""
+    ) else if(tmd.rba_Nds_TransmissionModeFalseTiming.rba_Nds_CycleTime == null) then (
+        "event"
+    ) else (
+        tmd.rba_Nds_TransmissionModeFalseTiming.rba_Nds_CycleTime.toString() + 
+            (tmd.isTmftEvent() ? " + event" : "") 
+    )
+;
+
+private Boolean isTmftEvent(rba_Nds_TransmissionModeDeclaration tmd):
+    tmd.rba_Nds_TransmissionModeFalseTiming != null && 
+    (tmd.rba_Nds_TransmissionModeFalseTiming.rba_Nds_NumberOfEventTransmissions != null ||
+     tmd.rba_Nds_TransmissionModeFalseTiming.rba_Nds_EventTransmissionCycleTime != null)    
+;
+
+private String getTmft(rba_Nds_TransmissionModeDeclaration tmd):
+    if(tmd != null && tmd.rba_Nds_TransmissionModeFalseTiming != null) then (
+        let tmft = tmd.rba_Nds_TransmissionModeTrueTiming:
+	    if(tmft.rba_Nds_CycleTime != null) then (
+	        tmft.rba_Nds_CycleTime.toString() + (tmft.isEvent() ? " + event" : "")
+	    ) else (
+	        tmft.isEvent() ? " event" : ""
+	    )
+    ) else (
+        ""
+    )
+;
+
+private Boolean isEvent(rba_Nds_TransmissionModeFalseTiming tmft):
+    tmft.rba_Nds_EventTransmissionCycleTime != null || tmft.rba_Nds_NumberOfEventTransmissions != null
+;
+
+
+private cached String getProcAllocInformation(rba_Nds_ProcessingAllocation rbaNdsProcAlloc):
+    rbaNdsProcAlloc.ComScl_Appl_getCoreId().toString() + ";" + rbaNdsProcAlloc.ComScl_Appl_getTask()
+;
+
+cached Integer ComScl_Appl_getCoreId(rba_Nds_ProcessingAllocation rbaNdsProcAlloc):
+    rbaNdsProcAlloc.rba_Nds_getCoreId()
+;
+
+cached String ComScl_Appl_getTask(rba_Nds_ProcessingAllocation rbaNdsProcAlloc):
+    rbaNdsProcAlloc.rba_Nds_PeriodicOsTaskAllocation.rba_Nds_OsTaskRef.shortName + " (" + rbaNdsProcAlloc.ComScl_Appl_getCycleTime() + "ms)"
+;
+
+cached Real ComScl_Appl_getCycleTime(rba_Nds_ProcessingAllocation rbaNdsProcAlloc):
+    if(rbaNdsProcAlloc.rba_Nds_PeriodicOsTaskAllocation != null) then (
+        rbaNdsProcAlloc.rba_Nds_PeriodicOsTaskAllocation.rba_Nds_Period
+    ) else (
+        5.0
+    )
+;

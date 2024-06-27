@@ -1,0 +1,50 @@
+#
+# Cantata Test-Level Options
+#
+# Any options set in this file will override the options set in the
+# project-level options file.
+#
+# WARNING: Do not alter this file manually.
+#
+#tool.testid=fd58d77b-f2a4-4ab0-b959-283e5fdf5736
+"--ci:--instr:stmt;func;decn;log;"
+"--sa:--calc:*#*"
+"--sm:--access_variable:"dcom_MB_ReadDataByIdentifier.c":DID0x01A2_DataLength"
+"--sm:--access_variable:"dcom_MB_ReadDataByIdentifier.c":dcom_ApplHeader_st"
+
+#User Section
+"--dont_ci:*"
+"--ci:--no_instr:all"
+"--do_ci:dcom_MB_ReadDataByIdentifier.c"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_ActiveDiagnosticSession_F100_ReadData"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_DDS_Package_Release_F10D_ReadData"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_Diagnostic_Trace_Memory_102_ReadData"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_Ecu_Extract_Version_EF00_ReadData"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_ECUSerialNumber_F18C_ReadData"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_HardwareSupplier_F154_ReadData"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_HardwareVersion_F150_ReadData"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_MercedesCarGroupHardware_F111_ReadData"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_Read_Software_Fingerprint_s_Bootloader_Data_F15B_ReadData"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_Read_Software_Fingerprint_s_Application_Data_F15B_ReadData"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_ReprogrammingAttemptCounter_Bootloader_Data_0100_ReadData"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_ReprogrammingAttemptCounter_Application_Data_0100_ReadData"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_SoftwareSupplier_Bootloader_F155_ReadData"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_SoftwareSupplier_Application_F155_ReadData"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_Diagnostic_Extract_Version_EF01_ReadData"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_ECU_Name_F104_ReadData"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_MercedesCarGroupSoftware_F121_ReadData"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_Minimum_Software_Version_Bootloader_EF05_ReadData"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_Minimum_Software_Version_Application_EF05_ReadData"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_BootSoftwareVersion_F151_F153_ReadData"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_SoftwareVersion_Application_F151_ReadData"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_StandardApplicationSWPackageSWVersion_EF03_ReadData"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_StandardApplicationSWPackageXCIdentification_EF03_ReadData"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_StandardApplicationSWPackageSupplierIdentification_EF03_ReadData"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_StandardApplicationSWPackage_AUTOSAR_Platform_EF03_ReadData"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_Supported_Configuration_Mechanisms_F131_ReadData"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_VedocRelavantHardwarePartNumber_F103_ReadData"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_VedocRelavantHardwareSupplierIdentification_F103_ReadData"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_VedocRelavantECUSerialNumber_F103_ReadData"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_VehicleOdometerLowResolution_10A_ReadData"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_CurrentOperatingTime_133_ReadData"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_ActivateSupplierSpecificMessages_012A_ReadData"

@@ -1,0 +1,22 @@
+Review settings in general, but especially:
+  Disallow Task Chain (interface is not used)
+  forced termination of Tasks (we do not have untrusted tasks, could be configurable in newer tool versions, but might need to be true for TPSW to work)
+  DistrustStack (probably no impact when Enhanced Isolation activated)
+  timing protection isr (we do not have untrusted ISRs)
+  untrusted stack aligns / Enable stack repositioning (necessary for P1x? false in U2A, no alignment needed for MPU)
+  P1x: OS_RTE_RESOURCE_CORE0/1 -> Accessing Application -> UntrustedAppCore0/1? current config on P1x is trusted and untrusted, U2A only trusted
+  Omit Default Implementations
+  Omit Service Protections in SC3/SC4 -> overhead anschauen/messen
+  RTE resources on U2A inconsistent
+
+
+
+
+Os API misuse in untrusted code e.g. of Os_TerminateTask, wäre nicht durch Omit Service Protections gelöst
+
+remove access to TaskTPSWKillCore1/0 -> not possible because TPSWs can be nested
+  -> RBTPSW_CallTrustedFunction could be called in User Mode and therefore ActivateTask(TaskTPSWKillCorex) could be called inside of the untrusted application
+
+
+für autosar 4.5/6 einstellung von invalid_osapp checken
+für p1x abort_cleanup auf false setzen um an U2A anzugleichen

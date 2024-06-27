@@ -1,0 +1,17 @@
+@startuml
+start
+if(Check if Data is not equal to null pointer) then (yes)
+ if(Check if Requested Data is in Range of 0 and 1) then (yes)
+ : Update Ram_Block <b> rbl_dcom_MirrorActvtDbgFrmsAppl_u8 <plain>with requested Data;
+ : Write requested Data to NVM block <b>DCOM_MB_ActivateSupplierMsgs <plain>using <b>dcom_Lib_WriteNvMData function
+ <plain> and read respective Return Value <b>E_OK <plain>or <b>E_NOT_OK <plain>from <b>dcom_Lib_WriteNvMData function;
+else (no)
+ :Update ErrorCode with <b>DCM REQUESTOUTOFRANGE NRC(0x31)
+  Return Value updated with <b>E_NOT_OK;
+endif
+else (no)
+ :Update ErrorCode with <b>DCM CONDITIONSNOTCORRECT NRC(0x22)
+  Return Value updated with <b>E_NOT_OK;
+endif
+stop
+@enduml

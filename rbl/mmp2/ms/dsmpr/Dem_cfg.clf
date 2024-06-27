@@ -1,0 +1,15 @@
+package Dem_cfg{
+	
+
+		rule {
+				class = AUTOSAR
+
+				path = rb\as\core\app\dsm\RBEnv\cfg\Ecuc\DemEnvData_Prot_EcucValues.arxml
+				path = rb\as\ms\hwref\dsmpr\cfg\Cubas\Dem\DemEnvData_RBAPLCUST_EcucValues.arxml
+				path = rb\as\ms\hwref\app\dsm\RBEnv\cfg\DemEnvData_Cus_EcucValues.arxml
+				path = rb\as\ms\hwref\dsmpr\cfg\Cubas\rba_DemFifo\Rba_DemFifo_Configuration.arxml
+
+			}
+
+}
+

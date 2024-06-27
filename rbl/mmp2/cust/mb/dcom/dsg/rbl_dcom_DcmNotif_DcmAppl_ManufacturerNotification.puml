@@ -1,0 +1,12 @@
+group DCM_CFG_MANUFACTURER_NOTIFICATION_ENABLED != DCM_CFG_OFF
+start
+if (Check if SourceAddress is equal to DCOM_SECOND_TESTER) is (yes) then
+group RBFS_DcomSecondTesterSupport != RBFS_DcomSecondTesterSupport_OFF
+     :dcom_Requested_Tester is updated to DCOM_SECOND_TESTER;
+end group
+else (no)
+     :dcom_Requested_Tester is updated to DCOM_FIRST_TESTER;
+endif
+: return E_OK;
+stop
+end group

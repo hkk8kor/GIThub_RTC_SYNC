@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DIAGNOSIS>
+  <NODE_LINKS>
+    <NODE_LINK key="_UjY_Node_Ecu_UjY__UjY_Node_MMP_NoDTC" source="Node_Ecu" target="Node_MMP_NoDTC" />
+    <NODE_LINK key="_UjY_Node_Ecu_UjY__UjY_Node_MMP_SyncError" source="Node_Ecu" target="Node_MMP_SyncError" />
+    <NODE_LINK key="_UjY_Node_Ecu_UjY__UjY_Node_MMP_TracebilityData" source="Node_Ecu" target="Node_MMP_TracebilityData" />
+    <NODE_LINK key="_UjY_Node_Ecu_UjY__UjY_Node_MMP2_NetConfig" source="Node_Ecu" target="Node_MMP2_NetConfig" />
+    <NODE_LINK key="_UjY_Node_MMP_CommunicationFailure_UjY__UjY_Node_MMP_SensorModuleError" source="Node_MMP_CommunicationFailure" target="Node_MMP_SensorModuleError" />
+    <NODE_LINK key="_UjY_Node_MMP_Nvm_SigChnMonContents_UjY__UjY_Node_MMP_SignalChainMonitors" source="Node_MMP_Nvm_SigChnMonContents" target="Node_MMP_SignalChainMonitors" />
+    <NODE_LINK key="_UjY_Node_MMP_ReInitError_UjY__UjY_Node_MMP_CommunicationFailure" source="Node_MMP_ReInitError" target="Node_MMP_CommunicationFailure" />
+    <NODE_LINK key="_UjY_Node_MMP_ReInitError_UjY__UjY_Node_MMP_Nvm_SigChnMonContents" source="Node_MMP_ReInitError" target="Node_MMP_Nvm_SigChnMonContents" />
+    <NODE_LINK key="_UjY_Node_MMP_SyncError_UjY__UjY_Node_MMP_ReInitError" source="Node_MMP_SyncError" target="Node_MMP_ReInitError" />
+    <NODE_LINK key="_UjY_Node_MMP_SyncError_UjY__UjY_Node_MMP_SignalChain" source="Node_MMP_SyncError" target="Node_MMP_SignalChain" />
+  </NODE_LINKS>
+</DIAGNOSIS>

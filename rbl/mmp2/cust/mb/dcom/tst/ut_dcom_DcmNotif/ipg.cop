@@ -1,0 +1,22 @@
+#
+# Cantata Test-Level Options
+#
+# Any options set in this file will override the options set in the
+# project-level options file.
+#
+# WARNING: Do not alter this file manually.
+#
+#tool.testid=deae2c44-459a-480e-9fcc-44556943b3d0
+"--ci:--instr:stmt;func;decn;log;"
+"--sa:--calc:*#*"
+
+#User Section
+"--dont_ci:*"
+"--do_ci:dcom_DcmNotif.c"
+"--ci:--no_instr:all"
+"--ci:--instr:stmt;func;call;decn;log;#DcmAppl_SupplierNotification"
+"--ci:--instr:stmt;func;call;decn;log;#DcmAppl_ManufacturerNotification"
+"--ci:--instr:stmt;func;call;decn;log;#ServiceRequestNotification_Dcm_Coding_Confirmation"
+"--ci:--instr:stmt;func;call;decn;log;#ServiceRequestNotification_Dcm_Coding_Indication"
+"--ci:--instr:stmt;func;call;decn;log;#ServiceRequestNotification_Dcm_RightsM_Confirmation"
+"--ci:--instr:stmt;func;call;decn;log;#ServiceRequestNotification_Dcm_RightsM_Indication"

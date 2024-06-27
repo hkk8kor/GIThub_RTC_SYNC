@@ -1,0 +1,18 @@
+stage("/*%deliverStream%*/"){
+	agent {
+		label 'MPSP_CI'
+	}
+	when {
+		allOf{
+			expression { env.JOB_BASE_NAME ==~  //*%deliverStream%*//}
+			expression { !((env.personalBuild)?.trim()) }
+		}
+	}
+	steps {
+		echo 'calling ...'
+		script {
+			/*%pullJobCall%*/
+		}
+		echo 'fire and forget ;-) '
+	}
+}

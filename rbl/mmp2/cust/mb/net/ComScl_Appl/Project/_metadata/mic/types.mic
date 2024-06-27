@@ -1,0 +1,48 @@
+[common]
+domain = CUBAS
+
+[item:ComScl_Appl_CfgWorkflow.properties]
+class = CONFPROPS
+
+[item:ComScl_Appl_Generator.oaw]
+class = CONFWF
+
+[item:ComScl_Appl_Generator.xpt]
+class = CONFGEN
+
+[item:ComScl_Appl_PostProc.ext]
+class = CONFLIB
+
+[item:Project/ComScl_Appl_Forward.ext]
+class = CONFLIB
+
+[item:Project/ComScl_Appl_Forward.mwe]
+class = CONFWF
+
+[item:rba_ComScl_CfgWorkflow.properties]
+class = CONFPROPS
+
+[item:rba_ComScl_Pdus.properties]
+class = CONFPROPS
+
+[item:rba_ComScl_ShortNames.properties]
+class = CONFPROPS
+
+[item:rba_ComScl_Signals.properties]
+class = CONFPROPS
+
+[item:rba_Nds_CfgWorkflow.properties]
+class = CONFPROPS
+
+[item:rba_Nds_Frames.properties]
+class = CONFPROPS
+
+[item:rba_Nds_Pdus.properties]
+class = CONFPROPS
+
+[item:rba_Nds_ShortNames.properties]
+class = CONFPROPS
+
+[item:rba_Nds_Signals.properties]
+class = CONFPROPS
+

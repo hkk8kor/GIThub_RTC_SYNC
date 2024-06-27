@@ -1,0 +1,403 @@
+/*
+**********************************************************************************************************************
+*
+* COPYRIGHT RESERVED, Robert Bosch GmbH, 2021. All rights reserved.
+* The reproduction, distribution and utilization of this document as well as the communication of its contents to
+* others without explicit authorization is prohibited. Offenders will be held liable for the payment of damages.
+* All rights reserved in the event of the grant of a patent, utility model or design.
+*
+**********************************************************************************************************************
+*/
+import bsw;
+import bsw::rba_NdsModule;
+import bsw::rbc_XCoreDefaultsModule;
+
+extension org::eclipse::xtend::util::stdlib::io;
+
+/**********************************************************************************************************************/
+/* Root function:                                                                                                     */ 
+/* Selecting all CAN related parameters (rba_Nds_CanController, rba_Nds_CanReceiveFrame, ...), create a valid Can     */ 
+/* configuration and forward it to Can                                                                                */
+/**********************************************************************************************************************/
+Autosar rbc_XCoreCddDefaults_Forward(Autosar model):
+    if(model.isModuleDefined("rbc_XCoreDefaults")) then (
+        model.rba_Nds.rba_Nds_Ecu.rba_Nds_Connectors.rba_Nds_CanConnector.forwardProcessingAllocation(model.rbc_XCoreDefaults) ->
+        model.rba_Nds.rba_Nds_Ecu.rba_Nds_Connectors.rba_Nds_FlexRayConnector.forwardProcessingAllocation(model.rbc_XCoreDefaults) ->
+        model
+    ) else (
+        info("") ->
+        info(">>> rbc_XCoreCddDefaults is not configured. Nothing to forward. <<<") ->
+        info("") ->
+        model
+    )
+;
+
+private Void forwardProcessingAllocation(rba_Nds_CanConnector connector, rbc_XCoreDefaults defaults):
+    let txframeProAlloc = defaults.rbc_XCoreDefaults_XCoreDefaultsFrameProcsessingAllocation.selectFirst(e|e.rbc_XCoreDefaults_rbaNdsConnectorRef == connector &&
+                                                                                                           e.rbc_XCoreDefaults_FrameProcessingType == "TRANSMIT"):
+    let rxframeProAlloc = defaults.rbc_XCoreDefaults_XCoreDefaultsFrameProcsessingAllocation.selectFirst(e|e.rbc_XCoreDefaults_rbaNdsConnectorRef == connector &&
+                                                                                                           e.rbc_XCoreDefaults_FrameProcessingType == "RECEIVE"):
+    let txContainerPduProcAlloc = defaults.rbc_XCoreDefaults_XCoreDefaultsPduProcsessingAllocation.selectFirst(e|e.rbc_XCoreDefaults_PduProcessingType == "TRANSMIT" &&
+                                                                                                                 e.rbc_XCoreDefaults_PduType == "CONTAINER_PDU" &&
+                                                                                                                 e.rbc_XCoreDefaults_rbaNdsConnectorRef == connector):
+    let rxContainerPduProcAlloc = defaults.rbc_XCoreDefaults_XCoreDefaultsPduProcsessingAllocation.selectFirst(e|e.rbc_XCoreDefaults_PduProcessingType == "RECEIVE" &&
+                                                                                                                 e.rbc_XCoreDefaults_PduType == "CONTAINER_PDU" &&
+                                                                                                                 e.rbc_XCoreDefaults_rbaNdsConnectorRef == connector):
+    let txMultiplexedPduProcAlloc = defaults.rbc_XCoreDefaults_XCoreDefaultsPduProcsessingAllocation.selectFirst(e|e.rbc_XCoreDefaults_PduProcessingType == "TRANSMIT" &&
+                                                                                                                   e.rbc_XCoreDefaults_PduType == "MULTIPLEXED_PDU" &&
+                                                                                                                   e.rbc_XCoreDefaults_rbaNdsConnectorRef == connector):
+    let rxMultiplexedPduProcAlloc = defaults.rbc_XCoreDefaults_XCoreDefaultsPduProcsessingAllocation.selectFirst(e|e.rbc_XCoreDefaults_PduProcessingType == "RECEIVE" &&
+                                                                                                                   e.rbc_XCoreDefaults_PduType == "MULTIPLEXED_PDU" &&
+                                                                                                                   e.rbc_XCoreDefaults_rbaNdsConnectorRef == connector):
+    let txSecuredPduProcAlloc = defaults.rbc_XCoreDefaults_XCoreDefaultsPduProcsessingAllocation.selectFirst(e|e.rbc_XCoreDefaults_PduProcessingType == "TRANSMIT" &&
+                                                                                                               e.rbc_XCoreDefaults_PduType == "SECURED_PDU" &&
+                                                                                                               e.rbc_XCoreDefaults_rbaNdsConnectorRef == connector):
+    let rxSecuredPduProcAlloc = defaults.rbc_XCoreDefaults_XCoreDefaultsPduProcsessingAllocation.selectFirst(e|e.rbc_XCoreDefaults_PduProcessingType == "RECEIVE" &&
+                                                                                                               e.rbc_XCoreDefaults_PduType == "SECURED_PDU" &&
+                                                                                                               e.rbc_XCoreDefaults_rbaNdsConnectorRef == connector):
+    let txSignalPduProcAlloc = defaults.rbc_XCoreDefaults_XCoreDefaultsPduProcsessingAllocation.selectFirst(e|e.rbc_XCoreDefaults_PduProcessingType == "TRANSMIT" &&
+                                                                                                              e.rbc_XCoreDefaults_PduType == "SIGNAL_PDU" &&
+                                                                                                              e.rbc_XCoreDefaults_rbaNdsConnectorRef == connector):
+    let rxSignalPduProcAlloc = defaults.rbc_XCoreDefaults_XCoreDefaultsPduProcsessingAllocation.selectFirst(e|e.rbc_XCoreDefaults_PduProcessingType == "RECEIVE" &&
+                                                                                                              e.rbc_XCoreDefaults_PduType == "SIGNAL_PDU" &&
+                                                                                                              e.rbc_XCoreDefaults_rbaNdsConnectorRef == connector):
+    connector.rba_Nds_CanReceiveFrame.forwardProcessingAllocation(rxframeProAlloc.rbc_XCoreDefaults_rbaNdsProcessingAllocationRef) ->
+    debug("rxframeProAlloc.rbc_XCoreDefaults_rbaNdsProcessingAllocationRef" + rxframeProAlloc.rbc_XCoreDefaults_rbaNdsProcessingAllocationRef) ->
+    connector.rba_Nds_CanTransmitFrame.forwardProcessingAllocation(txframeProAlloc.rbc_XCoreDefaults_rbaNdsProcessingAllocationRef) ->
+    debug("txframeProAlloc.rbc_XCoreDefaults_rbaNdsProcessingAllocationRef" + txframeProAlloc.rbc_XCoreDefaults_rbaNdsProcessingAllocationRef) ->
+    if(rxContainerPduProcAlloc != null) then (
+        connector.getReceivePduLinkages("CONTAINER_PDU").forwardProcessingAllocation(rxContainerPduProcAlloc.rbc_XCoreDefaults_rbaNdsProcessingAllocationRef)
+    ) ->
+    if(rxMultiplexedPduProcAlloc != null) then (
+        connector.getReceivePduLinkages("MULTIPLEXED_PDU").forwardProcessingAllocation(rxMultiplexedPduProcAlloc.rbc_XCoreDefaults_rbaNdsProcessingAllocationRef)
+    ) ->
+    if(rxSecuredPduProcAlloc != null) then (
+        connector.getReceivePduLinkages("SECURED_PDU").forwardProcessingAllocation(rxSecuredPduProcAlloc.rbc_XCoreDefaults_rbaNdsProcessingAllocationRef)
+    ) ->
+    if(rxSignalPduProcAlloc != null) then (
+        connector.getReceivePduLinkages("SIGNAL_PDU").forwardProcessingAllocation(rxSignalPduProcAlloc.rbc_XCoreDefaults_rbaNdsProcessingAllocationRef)
+    ) ->
+    if(txContainerPduProcAlloc != null) then (
+        connector.getTransmitPduLinkages("CONTAINER_PDU").forwardProcessingAllocation(txContainerPduProcAlloc.rbc_XCoreDefaults_rbaNdsProcessingAllocationRef)
+    ) ->
+    if(txMultiplexedPduProcAlloc != null) then (
+        connector.getTransmitPduLinkages("MULTIPLEXED_PDU").forwardProcessingAllocation(txMultiplexedPduProcAlloc.rbc_XCoreDefaults_rbaNdsProcessingAllocationRef)
+    ) ->
+    if(txSecuredPduProcAlloc != null) then (
+        connector.getTransmitPduLinkages("SECURED_PDU").forwardProcessingAllocation(txSecuredPduProcAlloc.rbc_XCoreDefaults_rbaNdsProcessingAllocationRef)
+    ) ->
+    if(txSignalPduProcAlloc != null) then (
+        connector.getTransmitPduLinkages("SIGNAL_PDU").forwardProcessingAllocation(txSignalPduProcAlloc.rbc_XCoreDefaults_rbaNdsProcessingAllocationRef)
+    )
+;
+
+private Void forwardProcessingAllocation(rba_Nds_CanReceiveFrame frame, rba_Nds_ProcessingAllocation procAlloc):
+    if(frame.rba_Nds_FrameProcessingAllocation == null) then (
+        frame.fwdRba_Nds_FrameProcessingAllocation(frame.createFrameProcessingAllocation(procAlloc))
+    ) else (
+        if(frame.rba_Nds_FrameProcessingAllocation.rba_Nds_ReceiveFrameProcessingAllocationRef == null) then (
+            frame.rba_Nds_FrameProcessingAllocation.fwdRba_Nds_ReceiveFrameProcessingAllocationRef(procAlloc)
+        ) else (
+            // nothing to do, processing alloctaion is already configured
+            null
+        )
+    )
+;
+
+private Void forwardProcessingAllocation(rba_Nds_CanTransmitFrame frame, rba_Nds_ProcessingAllocation procAlloc):
+    if(frame.rba_Nds_FrameProcessingAllocation == null) then (
+        frame.fwdRba_Nds_FrameProcessingAllocation(frame.createFrameProcessingAllocation(procAlloc))
+    ) else (
+        if(frame.rba_Nds_FrameProcessingAllocation.rba_Nds_TransmitFrameProcessingAllocationRef == null) then (
+            frame.rba_Nds_FrameProcessingAllocation.fwdRba_Nds_TransmitFrameProcessingAllocationRef(procAlloc)
+        ) else (
+            // nothing to do, processing alloctaion is already configured
+            null
+        )
+    )
+;
+
+
+private Void forwardProcessingAllocation(rba_Nds_CanReceivePduLinkage pdu, rba_Nds_ProcessingAllocation procAlloc):
+    if(pdu.rba_Nds_PduProcessingAllocation == null) then (
+        pdu.fwdRba_Nds_PduProcessingAllocation(pdu.createPduProcessingAllocation(procAlloc))
+    ) else (
+        if(pdu.rba_Nds_PduProcessingAllocation.rba_Nds_ReceivePduProcessingAllocationRef == null) then (
+            pdu.rba_Nds_PduProcessingAllocation.fwdRba_Nds_ReceivePduProcessingAllocationRef(procAlloc)
+        ) else (
+            // nothing to do, processing alloctaion is already configured
+            null
+        )
+    )
+;
+
+private Void forwardProcessingAllocation(rba_Nds_CanTransmitPduLinkage pdu, rba_Nds_ProcessingAllocation procAlloc):
+    if(pdu.rba_Nds_PduProcessingAllocation == null) then (
+        pdu.fwdRba_Nds_PduProcessingAllocation(pdu.createPduProcessingAllocation(procAlloc))
+    ) else (
+        if(pdu.rba_Nds_PduProcessingAllocation.rba_Nds_TransmitPduProcessingAllocationRef == null) then (
+            pdu.rba_Nds_PduProcessingAllocation.fwdRba_Nds_TransmitPduProcessingAllocationRef(procAlloc)
+        ) else (
+            // nothing to do, processing alloctaion is already configured
+            null
+        )
+    )
+;
+
+private Void forwardProcessingAllocation(rba_Nds_FlexRayConnector connector, rbc_XCoreDefaults defaults):
+    let txframeProAlloc = defaults.rbc_XCoreDefaults_XCoreDefaultsFrameProcsessingAllocation.selectFirst(e|e.rbc_XCoreDefaults_rbaNdsConnectorRef == connector &&
+                                                                                                           e.rbc_XCoreDefaults_FrameProcessingType == "TRANSMIT"):
+    let rxframeProAlloc = defaults.rbc_XCoreDefaults_XCoreDefaultsFrameProcsessingAllocation.selectFirst(e|e.rbc_XCoreDefaults_rbaNdsConnectorRef == connector &&
+                                                                                                           e.rbc_XCoreDefaults_FrameProcessingType == "RECEIVE"):
+    let txContainerPduProcAlloc = defaults.rbc_XCoreDefaults_XCoreDefaultsPduProcsessingAllocation.selectFirst(e|e.rbc_XCoreDefaults_PduProcessingType == "TRANSMIT" &&
+                                                                                                                 e.rbc_XCoreDefaults_PduType == "CONTAINER_PDU" &&
+                                                                                                                 e.rbc_XCoreDefaults_rbaNdsConnectorRef == connector):
+    let rxContainerPduProcAlloc = defaults.rbc_XCoreDefaults_XCoreDefaultsPduProcsessingAllocation.selectFirst(e|e.rbc_XCoreDefaults_PduProcessingType == "RECEIVE" &&
+                                                                                                                 e.rbc_XCoreDefaults_PduType == "CONTAINER_PDU" &&
+                                                                                                                 e.rbc_XCoreDefaults_rbaNdsConnectorRef == connector):
+    let txMultiplexedPduProcAlloc = defaults.rbc_XCoreDefaults_XCoreDefaultsPduProcsessingAllocation.selectFirst(e|e.rbc_XCoreDefaults_PduProcessingType == "TRANSMIT" &&
+                                                                                                                   e.rbc_XCoreDefaults_PduType == "MULTIPLEXED_PDU" &&
+                                                                                                                   e.rbc_XCoreDefaults_rbaNdsConnectorRef == connector):
+    let rxMultiplexedPduProcAlloc = defaults.rbc_XCoreDefaults_XCoreDefaultsPduProcsessingAllocation.selectFirst(e|e.rbc_XCoreDefaults_PduProcessingType == "RECEIVE" &&
+                                                                                                                   e.rbc_XCoreDefaults_PduType == "MULTIPLEXED_PDU" &&
+                                                                                                                   e.rbc_XCoreDefaults_rbaNdsConnectorRef == connector):
+    let txSecuredPduProcAlloc = defaults.rbc_XCoreDefaults_XCoreDefaultsPduProcsessingAllocation.selectFirst(e|e.rbc_XCoreDefaults_PduProcessingType == "TRANSMIT" &&
+                                                                                                                   e.rbc_XCoreDefaults_PduType == "SECURED_PDU" &&
+                                                                                                                   e.rbc_XCoreDefaults_rbaNdsConnectorRef == connector):
+    let rxSecuredPduProcAlloc = defaults.rbc_XCoreDefaults_XCoreDefaultsPduProcsessingAllocation.selectFirst(e|e.rbc_XCoreDefaults_PduProcessingType == "RECEIVE" &&
+                                                                                                                   e.rbc_XCoreDefaults_PduType == "SECURED_PDU" &&
+                                                                                                                   e.rbc_XCoreDefaults_rbaNdsConnectorRef == connector):
+    let txSignalPduProcAlloc = defaults.rbc_XCoreDefaults_XCoreDefaultsPduProcsessingAllocation.selectFirst(e|e.rbc_XCoreDefaults_PduProcessingType == "TRANSMIT" &&
+                                                                                                                  e.rbc_XCoreDefaults_PduType == "SIGNAL_PDU" &&
+                                                                                                                  e.rbc_XCoreDefaults_rbaNdsConnectorRef == connector):
+    let rxSignalPduProcAlloc = defaults.rbc_XCoreDefaults_XCoreDefaultsPduProcsessingAllocation.selectFirst(e|e.rbc_XCoreDefaults_PduProcessingType == "RECEIVE" &&
+                                                                                                                  e.rbc_XCoreDefaults_PduType == "SIGNAL_PDU" &&
+                                                                                                                  e.rbc_XCoreDefaults_rbaNdsConnectorRef == connector):
+    connector.rba_Nds_FlexRayReceiveFrame.forwardProcessingAllocation(rxframeProAlloc.rbc_XCoreDefaults_rbaNdsProcessingAllocationRef) ->
+    connector.rba_Nds_FlexRayTransmitFrame.forwardProcessingAllocation(txframeProAlloc.rbc_XCoreDefaults_rbaNdsProcessingAllocationRef) ->
+    if(rxContainerPduProcAlloc != null) then (
+        connector.getReceivePduLinkages("CONTAINER_PDU").forwardProcessingAllocation(rxContainerPduProcAlloc.rbc_XCoreDefaults_rbaNdsProcessingAllocationRef)
+    ) ->
+    if(rxMultiplexedPduProcAlloc != null) then (
+        connector.getReceivePduLinkages("MULTIPLEXED_PDU").forwardProcessingAllocation(rxMultiplexedPduProcAlloc.rbc_XCoreDefaults_rbaNdsProcessingAllocationRef)
+    ) ->
+    if(rxSecuredPduProcAlloc != null) then (
+        connector.getReceivePduLinkages("SECURED_PDU").forwardProcessingAllocation(rxSecuredPduProcAlloc.rbc_XCoreDefaults_rbaNdsProcessingAllocationRef)
+    ) ->
+    if(rxSignalPduProcAlloc != null) then (
+        connector.getReceivePduLinkages("SIGNAL_PDU").forwardProcessingAllocation(rxSignalPduProcAlloc.rbc_XCoreDefaults_rbaNdsProcessingAllocationRef)
+    ) ->
+    if(txContainerPduProcAlloc != null) then (
+        connector.getTransmitPduLinkages("CONTAINER_PDU").forwardProcessingAllocation(txContainerPduProcAlloc.rbc_XCoreDefaults_rbaNdsProcessingAllocationRef)
+    ) ->
+    if(txMultiplexedPduProcAlloc != null) then (
+        connector.getTransmitPduLinkages("MULTIPLEXED_PDU").forwardProcessingAllocation(txMultiplexedPduProcAlloc.rbc_XCoreDefaults_rbaNdsProcessingAllocationRef)
+    ) ->
+    if(txSecuredPduProcAlloc != null) then (
+        connector.getTransmitPduLinkages("SECURED_PDU").forwardProcessingAllocation(txSecuredPduProcAlloc.rbc_XCoreDefaults_rbaNdsProcessingAllocationRef)
+    ) ->
+    if(txSignalPduProcAlloc != null) then (
+        connector.getTransmitPduLinkages("SIGNAL_PDU").forwardProcessingAllocation(txSignalPduProcAlloc.rbc_XCoreDefaults_rbaNdsProcessingAllocationRef)
+    )
+;
+
+
+
+private Void forwardProcessingAllocation(rba_Nds_FlexRayReceiveFrame frame, rba_Nds_ProcessingAllocation procAlloc):
+    if(frame.rba_Nds_FrameProcessingAllocation == null) then (
+        frame.fwdRba_Nds_FrameProcessingAllocation(frame.createFrameProcessingAllocation(procAlloc))
+    ) else (
+        if(frame.rba_Nds_FrameProcessingAllocation.rba_Nds_ReceiveFrameProcessingAllocationRef == null) then (
+            frame.rba_Nds_FrameProcessingAllocation.fwdRba_Nds_ReceiveFrameProcessingAllocationRef(procAlloc)
+        ) else (
+            // nothing to do, processing alloctaion is already configured
+            null
+        )
+    )
+;
+
+private Void forwardProcessingAllocation(rba_Nds_FlexRayTransmitFrame frame, rba_Nds_ProcessingAllocation procAlloc):
+    if(frame.rba_Nds_FrameProcessingAllocation == null) then (
+        frame.fwdRba_Nds_FrameProcessingAllocation(frame.createFrameProcessingAllocation(procAlloc))
+    ) else (
+        if(frame.rba_Nds_FrameProcessingAllocation.rba_Nds_TransmitFrameProcessingAllocationRef == null) then (
+            frame.rba_Nds_FrameProcessingAllocation.fwdRba_Nds_TransmitFrameProcessingAllocationRef(procAlloc)
+        ) else (
+            // nothing to do, processing alloctaion is already configured
+            null
+        )
+    )
+;
+
+
+private Void forwardProcessingAllocation(rba_Nds_FlexRayReceivePduLinkage pdu, rba_Nds_ProcessingAllocation procAlloc):
+    if(pdu.rba_Nds_PduProcessingAllocation == null) then (
+        pdu.fwdRba_Nds_PduProcessingAllocation(pdu.createPduProcessingAllocation(procAlloc))
+    ) else (
+        if(pdu.rba_Nds_PduProcessingAllocation.rba_Nds_ReceivePduProcessingAllocationRef == null) then (
+            pdu.rba_Nds_PduProcessingAllocation.fwdRba_Nds_ReceivePduProcessingAllocationRef(procAlloc)
+        ) else (
+            // nothing to do, processing alloctaion is already configured
+            null
+        )
+    )
+;
+
+private Void forwardProcessingAllocation(rba_Nds_FlexRayTransmitPduLinkage pdu, rba_Nds_ProcessingAllocation procAlloc):
+    if(pdu.rba_Nds_PduProcessingAllocation == null) then (
+        pdu.fwdRba_Nds_PduProcessingAllocation(pdu.createPduProcessingAllocation(procAlloc))
+    ) else (
+        if(pdu.rba_Nds_PduProcessingAllocation.rba_Nds_TransmitPduProcessingAllocationRef == null) then (
+            pdu.rba_Nds_PduProcessingAllocation.fwdRba_Nds_TransmitPduProcessingAllocationRef(procAlloc)
+        ) else (
+            // nothing to do, processing alloctaion is already configured
+            null
+        )
+    )
+;
+
+
+/**********************************************************************************************************************/
+/*********                       Get Frames / PduLinkages                                                     *********/
+/**********************************************************************************************************************/
+
+/* 
+ * Get ReceivePduLinkages based on Connector and PDU Type
+ */
+private List[rba_Nds_CanReceivePduLinkage] getReceivePduLinkages(rba_Nds_CanConnector connector, String pduType):
+    switch(pduType) {
+        case "CONTAINER_PDU"    : 
+            connector.rba_Nds_CanReceivePduLinkage.select(e|e.rba_Nds_ReceivePduRef != null && 
+                                                            e.rba_Nds_ReceivePduRef.rba_Nds_ReceiveContainerPdu != null)
+        case "MULTIPLEXED_PDU"  :
+            connector.rba_Nds_CanReceivePduLinkage.select(e|e.rba_Nds_ReceivePduRef != null && 
+                                                            e.rba_Nds_ReceivePduRef.rba_Nds_ReceiveMultiplexedPdu != null)
+        case "SECURED_PDU"      :
+            connector.rba_Nds_CanReceivePduLinkage.select(e|e.rba_Nds_ReceivePduRef != null && 
+                                                            e.rba_Nds_ReceivePduRef.rba_Nds_ReceiveSecuredPdu != null)
+        case "SIGNAL_PDU"       :
+            connector.rba_Nds_CanReceivePduLinkage.select(e|e.rba_Nds_ReceivePduRef != null && 
+                                                            e.rba_Nds_ReceivePduRef.rba_Nds_ReceiveSignalPdu != null)
+        default                 :
+            ((List[rba_Nds_CanReceivePduLinkage]) {})
+    }
+;
+
+/* 
+ * Get TransmitPduLinkages based on Connector and PDU Type
+ */
+private List[rba_Nds_CanTransmitPduLinkage] getTransmitPduLinkages(rba_Nds_CanConnector connector, String pduType):
+    switch(pduType) {
+        case "CONTAINER_PDU"    : 
+            connector.rba_Nds_CanTransmitPduLinkage.select(e|e.rba_Nds_TransmitPduRef != null && 
+                                                             e.rba_Nds_TransmitPduRef.rba_Nds_TransmitContainerPdu != null)
+        case "MULTIPLEXED_PDU"  :
+            connector.rba_Nds_CanTransmitPduLinkage.select(e|e.rba_Nds_TransmitPduRef != null && 
+                                                             e.rba_Nds_TransmitPduRef.rba_Nds_TransmitMultiplexedPdu != null)
+        case "SECURED_PDU"      :
+            connector.rba_Nds_CanTransmitPduLinkage.select(e|e.rba_Nds_TransmitPduRef != null && 
+                                                             e.rba_Nds_TransmitPduRef.rba_Nds_TransmitSecuredPdu != null)
+        case "SIGNAL_PDU"       :
+            connector.rba_Nds_CanTransmitPduLinkage.select(e|e.rba_Nds_TransmitPduRef != null && 
+                                                             e.rba_Nds_TransmitPduRef.rba_Nds_TransmitSignalPdu != null)
+        default                 :
+            ((List[rba_Nds_CanTransmitPduLinkage]) {})
+    }
+;
+
+/* 
+ * Get ReceivePduLinkages based on Connector and PDU Type
+ */
+private List[rba_Nds_FlexRayReceivePduLinkage] getReceivePduLinkages(rba_Nds_FlexRayConnector connector, String pduType):
+    switch(pduType) {
+        case "CONTAINER_PDU"    : 
+            connector.rba_Nds_FlexRayReceivePduLinkage.select(e|e.rba_Nds_ReceivePduRef != null && 
+                                                            e.rba_Nds_ReceivePduRef.rba_Nds_ReceiveContainerPdu != null)
+        case "MULTIPLEXED_PDU"  :
+            connector.rba_Nds_FlexRayReceivePduLinkage.select(e|e.rba_Nds_ReceivePduRef != null && 
+                                                            e.rba_Nds_ReceivePduRef.rba_Nds_ReceiveMultiplexedPdu != null)
+        case "SECURED_PDU"      :
+            connector.rba_Nds_FlexRayReceivePduLinkage.select(e|e.rba_Nds_ReceivePduRef != null && 
+                                                            e.rba_Nds_ReceivePduRef.rba_Nds_ReceiveSecuredPdu != null)
+        case "SIGNAL_PDU"       :
+            connector.rba_Nds_FlexRayReceivePduLinkage.select(e|e.rba_Nds_ReceivePduRef != null && 
+                                                            e.rba_Nds_ReceivePduRef.rba_Nds_ReceiveSignalPdu != null)
+        default                 :
+            ((List[rba_Nds_FlexRayReceivePduLinkage]) {})
+    }
+;
+
+/* 
+ * Get TransmitPduLinkages based on Connector and PDU Type
+ */
+private List[rba_Nds_FlexRayTransmitPduLinkage] getTransmitPduLinkages(rba_Nds_FlexRayConnector connector, String pduType):
+    switch(pduType) {
+        case "CONTAINER_PDU"    : 
+            connector.rba_Nds_FlexRayTransmitPduLinkage.select(e|e.rba_Nds_TransmitPduRef != null && 
+                                                             e.rba_Nds_TransmitPduRef.rba_Nds_TransmitContainerPdu != null)
+        case "MULTIPLEXED_PDU"  :
+            connector.rba_Nds_FlexRayTransmitPduLinkage.select(e|e.rba_Nds_TransmitPduRef != null && 
+                                                             e.rba_Nds_TransmitPduRef.rba_Nds_TransmitMultiplexedPdu != null)
+        case "SECURED_PDU"      :
+            connector.rba_Nds_FlexRayTransmitPduLinkage.select(e|e.rba_Nds_TransmitPduRef != null && 
+                                                             e.rba_Nds_TransmitPduRef.rba_Nds_TransmitSecuredPdu != null)
+        case "SIGNAL_PDU"       :
+            connector.rba_Nds_FlexRayTransmitPduLinkage.select(e|e.rba_Nds_TransmitPduRef != null && 
+                                                             e.rba_Nds_TransmitPduRef.rba_Nds_TransmitSignalPdu != null)
+        default                 :
+            ((List[rba_Nds_FlexRayTransmitPduLinkage]) {})
+    }
+;
+
+/**********************************************************************************************************************/
+/*********                       Create Frame/PduProcessingAllocations                                        *********/
+/**********************************************************************************************************************/
+
+private create bsw::rba_Nds::rba_Nds_Ecu::rba_Nds_Connectors::rba_Nds_CanConnector::rba_Nds_CanReceiveFrame::rba_Nds_FrameProcessingAllocation
+                createFrameProcessingAllocation(rba_Nds_CanReceiveFrame frame, rba_Nds_ProcessingAllocation procAlloc):
+    this.fwdShortName("rba_Nds_FrameProcessingAllocation") ->
+    this.fwdRba_Nds_ReceiveFrameProcessingAllocationRef(procAlloc)
+;
+
+private create bsw::rba_Nds::rba_Nds_Ecu::rba_Nds_Connectors::rba_Nds_CanConnector::rba_Nds_CanTransmitFrame::rba_Nds_FrameProcessingAllocation
+                createFrameProcessingAllocation(rba_Nds_CanTransmitFrame frame, rba_Nds_ProcessingAllocation procAlloc):
+    this.fwdShortName("rba_Nds_FrameProcessingAllocation") ->
+    this.fwdRba_Nds_TransmitFrameProcessingAllocationRef(procAlloc)
+;
+
+private create bsw::rba_Nds::rba_Nds_Ecu::rba_Nds_Connectors::rba_Nds_FlexRayConnector::rba_Nds_FlexRayReceiveFrame::rba_Nds_FrameProcessingAllocation
+                createFrameProcessingAllocation(rba_Nds_FlexRayReceiveFrame frame, rba_Nds_ProcessingAllocation procAlloc):
+    this.fwdShortName("rba_Nds_FrameProcessingAllocation") ->
+    this.fwdRba_Nds_ReceiveFrameProcessingAllocationRef(procAlloc)
+;
+
+private create bsw::rba_Nds::rba_Nds_Ecu::rba_Nds_Connectors::rba_Nds_FlexRayConnector::rba_Nds_FlexRayTransmitFrame::rba_Nds_FrameProcessingAllocation
+                createFrameProcessingAllocation(rba_Nds_FlexRayTransmitFrame frame, rba_Nds_ProcessingAllocation procAlloc):
+    this.fwdShortName("rba_Nds_FrameProcessingAllocation") ->
+    this.fwdRba_Nds_TransmitFrameProcessingAllocationRef(procAlloc)
+;
+
+private create bsw::rba_Nds::rba_Nds_Ecu::rba_Nds_Connectors::rba_Nds_CanConnector::rba_Nds_CanReceivePduLinkage::rba_Nds_PduProcessingAllocation
+                createPduProcessingAllocation(rba_Nds_CanReceivePduLinkage pdu, rba_Nds_ProcessingAllocation procAlloc):
+    this.fwdShortName("rba_Nds_PduProcessingAllocation") ->
+    this.fwdRba_Nds_ReceivePduProcessingAllocationRef(procAlloc)
+;
+
+private create bsw::rba_Nds::rba_Nds_Ecu::rba_Nds_Connectors::rba_Nds_CanConnector::rba_Nds_CanTransmitPduLinkage::rba_Nds_PduProcessingAllocation
+                createPduProcessingAllocation(rba_Nds_CanTransmitPduLinkage pdu, rba_Nds_ProcessingAllocation procAlloc):
+    this.fwdShortName("rba_Nds_PduProcessingAllocation") ->
+    this.fwdRba_Nds_TransmitPduProcessingAllocationRef(procAlloc)
+;
+
+private create bsw::rba_Nds::rba_Nds_Ecu::rba_Nds_Connectors::rba_Nds_FlexRayConnector::rba_Nds_FlexRayReceivePduLinkage::rba_Nds_PduProcessingAllocation
+                createPduProcessingAllocation(rba_Nds_FlexRayReceivePduLinkage pdu, rba_Nds_ProcessingAllocation procAlloc):
+    this.fwdShortName("rba_Nds_PduProcessingAllocation") ->
+    this.fwdRba_Nds_ReceivePduProcessingAllocationRef(procAlloc)
+;
+
+private create bsw::rba_Nds::rba_Nds_Ecu::rba_Nds_Connectors::rba_Nds_FlexRayConnector::rba_Nds_FlexRayTransmitPduLinkage::rba_Nds_PduProcessingAllocation
+                createPduProcessingAllocation(rba_Nds_FlexRayTransmitPduLinkage pdu, rba_Nds_ProcessingAllocation procAlloc):
+    this.fwdShortName("rba_Nds_PduProcessingAllocation") ->
+    this.fwdRba_Nds_TransmitPduProcessingAllocationRef(procAlloc)
+;
+

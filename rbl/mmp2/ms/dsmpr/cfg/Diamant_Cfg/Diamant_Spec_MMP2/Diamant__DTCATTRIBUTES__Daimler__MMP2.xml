@@ -1,0 +1,317 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<DIAGNOSIS INFO="DiamantPro Core Library 4.2.257.1692" CHECK="93C0EAF9DEE56E690D8CAFA9CDDF5BF2ICAgICAgICAgRGlhbWFudFBybyBDb3JlIExpYnJhcnkgICAgICAgICAgICAgICAgICAgIDQuMi4yNTcuMTY5MiAgICAgICAgICAgIC04NTg0ODQyMTc3MzA4NjExMTA2ICAgICAgICAgICAgICAgICAgICAgS09SLUMtMDExS0sgICAgICAgICAgICAgICAgICAgIEFQQUNcVUNIM0tPUiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg">
+  <AUTOSAR_COLLECTIONS>
+    <DTCATTRIBUTES>
+      <DtcAttribute>
+        <SHORT-NAME>DTCAttribute_Variant_Coding</SHORT-NAME>
+        <CUSTOMER_REF>Cus_Daimler</CUSTOMER_REF>
+        <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+        <AgingAllowed>true</AgingAllowed>
+        <AgingcyclecounterThreshold>1</AgingcyclecounterThreshold>
+        <DemDTCPriority>2</DemDTCPriority>
+        <EventFailurecyclecounterThreshold>1</EventFailurecyclecounterThreshold>
+        <MaxNumberFreezeFrameRecords>1</MaxNumberFreezeFrameRecords>
+        <AgingcycleRef>PowerCycle</AgingcycleRef>
+        <ExtendedDataClassRef>ExtData_DemExtendedDataClass_MMP2_MB</ExtendedDataClassRef>
+        <FreezeFrameClassRef>FFrame_DemFreezeFrameClass_MMP2_MB</FreezeFrameClassRef>
+        <FreezeFrameRecNumClassRef>DemFreezeFrameRecNumClass_MMP2_MB</FreezeFrameRecNumClassRef>
+        <EventDestination>DemPrimaryMemory</EventDestination>
+        <EventDestinationMirror>None</EventDestinationMirror>
+        <DTCKinds>DEM_DTC_KIND_ALL_DTCS</DTCKinds>
+      </DtcAttribute>
+      <DtcAttribute>
+        <SHORT-NAME>DTCAttribute_DTC_SSA_0xD12083</SHORT-NAME>
+        <Description>DTC attribute for SSA failures</Description>
+        <CUSTOMER_REF>Cus_Daimler</CUSTOMER_REF>
+        <PROJECT_REF />
+        <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+        <AgingAllowed>true</AgingAllowed>
+        <AgingcyclecounterThreshold>1</AgingcyclecounterThreshold>
+        <DemDTCPriority>2</DemDTCPriority>
+        <EventSignificance>EVENT_SIGNIFICANCE_OCCURENCE</EventSignificance>
+        <EventFailurecyclecounterThreshold>1</EventFailurecyclecounterThreshold>
+        <ImmediateNvstorage>true</ImmediateNvstorage>
+        <MaxNumberFreezeFrameRecords>2</MaxNumberFreezeFrameRecords>
+        <AgingcycleRef>PowerCycle</AgingcycleRef>
+        <ExtendedDataClassRef>ExtData_DemExtendedDataClass_MMP2_MB</ExtendedDataClassRef>
+        <FreezeFrameClassRef>FFrame_DemFreezeFrameClass_MMP2_SSA</FreezeFrameClassRef>
+        <FreezeFrameRecNumClassRef>DemFreezeFrameRecNumClass_MMP2_MB</FreezeFrameRecNumClassRef>
+        <EventDestination>DemPrimaryMemory</EventDestination>
+        <EventDestinationMirror>None</EventDestinationMirror>
+        <DTCKinds>DEM_DTC_KIND_ALL_DTCS</DTCKinds>
+      </DtcAttribute>
+      <DtcAttribute>
+        <SHORT-NAME>DTCAttribute_DTC_CustIf</SHORT-NAME>
+        <Description>Attributes for Imu related failures</Description>
+        <CUSTOMER_REF>Cus_Daimler</CUSTOMER_REF>
+        <PROJECT_REF />
+        <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+        <AgingAllowed>true</AgingAllowed>
+        <AgingcyclecounterThreshold>100</AgingcyclecounterThreshold>
+        <DemDTCPriority>2</DemDTCPriority>
+        <EventSignificance>EVENT_SIGNIFICANCE_OCCURENCE</EventSignificance>
+        <EventFailurecyclecounterThreshold>1</EventFailurecyclecounterThreshold>
+        <ImmediateNvstorage>true</ImmediateNvstorage>
+        <MaxNumberFreezeFrameRecords>2</MaxNumberFreezeFrameRecords>
+        <AgingcycleRef>IgnitionCycle</AgingcycleRef>
+        <ExtendedDataClassRef>ExtData_DemExtendedDataClass_MMP2_MB</ExtendedDataClassRef>
+        <FreezeFrameClassRef>FFrame_DemFreezeFrameClass_MMP2_MB</FreezeFrameClassRef>
+        <FreezeFrameRecNumClassRef>DemFreezeFrameRecNumClass_MMP2_MB</FreezeFrameRecNumClassRef>
+        <EventDestination>DemPrimaryMemory</EventDestination>
+        <EventDestinationMirror>None</EventDestinationMirror>
+        <DTCKinds>DEM_DTC_KIND_ALL_DTCS</DTCKinds>
+      </DtcAttribute>
+      <DtcAttribute>
+        <SHORT-NAME>DTCAttribute_DTC_Net_Voltage</SHORT-NAME>
+        <Description>Attributes for Voltage related failures</Description>
+        <CUSTOMER_REF>Cus_Daimler</CUSTOMER_REF>
+        <PROJECT_REF />
+        <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+        <AgingAllowed>true</AgingAllowed>
+        <AgingcyclecounterThreshold>100</AgingcyclecounterThreshold>
+        <DemDTCPriority>2</DemDTCPriority>
+        <EventSignificance>EVENT_SIGNIFICANCE_OCCURENCE</EventSignificance>
+        <EventFailurecyclecounterThreshold>1</EventFailurecyclecounterThreshold>
+        <ImmediateNvstorage>true</ImmediateNvstorage>
+        <MaxNumberFreezeFrameRecords>2</MaxNumberFreezeFrameRecords>
+        <AgingcycleRef>PowerCycle</AgingcycleRef>
+        <ExtendedDataClassRef>ExtData_DemExtendedDataClass_MMP2_MB</ExtendedDataClassRef>
+        <FreezeFrameClassRef>FFrame_DemFreezeFrameClass_MMP2_MB</FreezeFrameClassRef>
+        <FreezeFrameRecNumClassRef>DemFreezeFrameRecNumClass_MMP2_MB</FreezeFrameRecNumClassRef>
+        <EventDestination>DemPrimaryMemory</EventDestination>
+        <EventDestinationMirror>None</EventDestinationMirror>
+        <DTCKinds>DEM_DTC_KIND_ALL_DTCS</DTCKinds>
+      </DtcAttribute>
+      <DtcAttribute>
+        <SHORT-NAME>DTCAttribute_DTC_NetGeneric_MMP2</SHORT-NAME>
+        <Description>Attributes for DTC_NetGeneric</Description>
+        <CUSTOMER_REF>Cus_Daimler</CUSTOMER_REF>
+        <PROJECT_REF />
+        <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+        <AgingAllowed>true</AgingAllowed>
+        <AgingcyclecounterThreshold>100</AgingcyclecounterThreshold>
+        <DemDTCPriority>2</DemDTCPriority>
+        <EventFailurecyclecounterThreshold>1</EventFailurecyclecounterThreshold>
+        <ImmediateNvstorage>true</ImmediateNvstorage>
+        <MaxNumberFreezeFrameRecords>2</MaxNumberFreezeFrameRecords>
+        <AgingcycleRef>IgnitionCycle</AgingcycleRef>
+        <ExtendedDataClassRef>ExtData_DemExtendedDataClass_MMP2_MB</ExtendedDataClassRef>
+        <FreezeFrameClassRef>FFrame_DemFreezeFrameClass_MMP2_MB</FreezeFrameClassRef>
+        <FreezeFrameRecNumClassRef>DemFreezeFrameRecNumClass_MMP2_MB</FreezeFrameRecNumClassRef>
+        <EventDestination>DemPrimaryMemory</EventDestination>
+        <EventDestinationMirror>None</EventDestinationMirror>
+        <DTCKinds>DEM_DTC_KIND_ALL_DTCS</DTCKinds>
+      </DtcAttribute>
+      <DtcAttribute>
+        <SHORT-NAME>DTCAttribute_DTC_Net_MMP2</SHORT-NAME>
+        <Description>Attributes for Network related failures</Description>
+        <CUSTOMER_REF>Cus_Daimler</CUSTOMER_REF>
+        <PROJECT_REF />
+        <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+        <AgingAllowed>true</AgingAllowed>
+        <AgingcyclecounterThreshold>100</AgingcyclecounterThreshold>
+        <DemDTCPriority>2</DemDTCPriority>
+        <EventSignificance>EVENT_SIGNIFICANCE_FAULT</EventSignificance>
+        <EventFailurecyclecounterThreshold>1</EventFailurecyclecounterThreshold>
+        <ImmediateNvstorage>true</ImmediateNvstorage>
+        <MaxNumberFreezeFrameRecords>2</MaxNumberFreezeFrameRecords>
+        <AgingcycleRef>PowerCycle</AgingcycleRef>
+        <ExtendedDataClassRef>ExtData_DemExtendedDataClass_MMP2_MB</ExtendedDataClassRef>
+        <FreezeFrameClassRef>FFrame_DemFreezeFrameClass_MMP2_MB</FreezeFrameClassRef>
+        <FreezeFrameRecNumClassRef>DemFreezeFrameRecNumClass_MMP2_MB</FreezeFrameRecNumClassRef>
+        <EventDestination>DemPrimaryMemory</EventDestination>
+        <EventDestinationMirror>None</EventDestinationMirror>
+        <DTCKinds>DEM_DTC_KIND_ALL_DTCS</DTCKinds>
+      </DtcAttribute>
+      <DtcAttribute>
+        <SHORT-NAME>DTCAttribute_DTC_Imu</SHORT-NAME>
+        <Description>Attributes for Imu related failures</Description>
+        <CUSTOMER_REF>Cus_Daimler</CUSTOMER_REF>
+        <PROJECT_REF />
+        <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+        <AgingAllowed>true</AgingAllowed>
+        <AgingcyclecounterThreshold>100</AgingcyclecounterThreshold>
+        <DemDTCPriority>2</DemDTCPriority>
+        <EventSignificance>EVENT_SIGNIFICANCE_FAULT</EventSignificance>
+        <EventFailurecyclecounterThreshold>1</EventFailurecyclecounterThreshold>
+        <ImmediateNvstorage>true</ImmediateNvstorage>
+        <MaxNumberFreezeFrameRecords>2</MaxNumberFreezeFrameRecords>
+        <AgingcycleRef>OtherCycle</AgingcycleRef>
+        <ExtendedDataClassRef>ExtData_DemExtendedDataClass_MMP2_MB</ExtendedDataClassRef>
+        <FreezeFrameClassRef>FFrame_DemFreezeFrameClass_MMP2_MB</FreezeFrameClassRef>
+        <FreezeFrameRecNumClassRef>DemFreezeFrameRecNumClass_MMP2_MB</FreezeFrameRecNumClassRef>
+        <EventDestination>DemPrimaryMemory</EventDestination>
+        <EventDestinationMirror>None</EventDestinationMirror>
+        <DTCKinds>DEM_DTC_KIND_ALL_DTCS</DTCKinds>
+      </DtcAttribute>
+      <DtcAttribute>
+        <SHORT-NAME>DTCAttribute_DTC_uC_MMP2</SHORT-NAME>
+        <Description>Attributes for uC related failures</Description>
+        <CUSTOMER_REF>Cus_Daimler</CUSTOMER_REF>
+        <PROJECT_REF />
+        <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+        <AgingAllowed>true</AgingAllowed>
+        <AgingcyclecounterThreshold>100</AgingcyclecounterThreshold>
+        <DemDTCPriority>2</DemDTCPriority>
+        <EventSignificance>EVENT_SIGNIFICANCE_FAULT</EventSignificance>
+        <EventFailurecyclecounterThreshold>1</EventFailurecyclecounterThreshold>
+        <ImmediateNvstorage>true</ImmediateNvstorage>
+        <MaxNumberFreezeFrameRecords>2</MaxNumberFreezeFrameRecords>
+        <AgingcycleRef>PowerCycle</AgingcycleRef>
+        <ExtendedDataClassRef>ExtData_DemExtendedDataClass_MMP2_MB</ExtendedDataClassRef>
+        <FreezeFrameClassRef>FFrame_DemFreezeFrameClass_MMP2_MB</FreezeFrameClassRef>
+        <FreezeFrameRecNumClassRef>DemFreezeFrameRecNumClass_MMP2_MB</FreezeFrameRecNumClassRef>
+        <EventDestination>DemPrimaryMemory</EventDestination>
+        <EventDestinationMirror>None</EventDestinationMirror>
+        <DTCKinds>DEM_DTC_KIND_ALL_DTCS</DTCKinds>
+      </DtcAttribute>
+      <DtcAttribute>
+        <SHORT-NAME>DTCAttribute_DTC_Ecu_MMP2</SHORT-NAME>
+        <Description>Attributes for Ecu related failures</Description>
+        <CUSTOMER_REF>Cus_Daimler</CUSTOMER_REF>
+        <PROJECT_REF />
+        <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+        <AgingAllowed>true</AgingAllowed>
+        <AgingcyclecounterThreshold>100</AgingcyclecounterThreshold>
+        <DemDTCPriority>2</DemDTCPriority>
+        <EventSignificance>EVENT_SIGNIFICANCE_FAULT</EventSignificance>
+        <EventFailurecyclecounterThreshold>1</EventFailurecyclecounterThreshold>
+        <ImmediateNvstorage>true</ImmediateNvstorage>
+        <MaxNumberFreezeFrameRecords>2</MaxNumberFreezeFrameRecords>
+        <AgingcycleRef>PowerCycle</AgingcycleRef>
+        <ExtendedDataClassRef>ExtData_DemExtendedDataClass_MMP2_MB</ExtendedDataClassRef>
+        <FreezeFrameClassRef>FFrame_DemFreezeFrameClass_MMP2_MB</FreezeFrameClassRef>
+        <FreezeFrameRecNumClassRef>DemFreezeFrameRecNumClass_MMP2_MB</FreezeFrameRecNumClassRef>
+        <EventDestination>DemPrimaryMemory</EventDestination>
+        <EventDestinationMirror>None</EventDestinationMirror>
+        <DTCKinds>DEM_DTC_KIND_ALL_DTCS</DTCKinds>
+      </DtcAttribute>
+      <DtcAttribute>
+        <SHORT-NAME>DTCAttribute_DTC_Imu_NVM</SHORT-NAME>
+        <Description>Attributes for Imu related NVM failures</Description>
+        <CUSTOMER_REF>Cus_Daimler</CUSTOMER_REF>
+        <PROJECT_REF />
+        <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+        <AgingAllowed>true</AgingAllowed>
+        <AgingcyclecounterThreshold>100</AgingcyclecounterThreshold>
+        <DemDTCPriority>2</DemDTCPriority>
+        <EventSignificance>EVENT_SIGNIFICANCE_FAULT</EventSignificance>
+        <EventFailurecyclecounterThreshold>1</EventFailurecyclecounterThreshold>
+        <ImmediateNvstorage>true</ImmediateNvstorage>
+        <MaxNumberFreezeFrameRecords>2</MaxNumberFreezeFrameRecords>
+        <AgingcycleRef>OtherCycle</AgingcycleRef>
+        <ExtendedDataClassRef>ExtData_DemExtendedDataClass_MMP2_MB</ExtendedDataClassRef>
+        <FreezeFrameClassRef>FFrame_DemFreezeFrameClass_MMP2_MB</FreezeFrameClassRef>
+        <FreezeFrameRecNumClassRef>DemFreezeFrameRecNumClass_MMP2_MB</FreezeFrameRecNumClassRef>
+        <EventDestination>DemPrimaryMemory</EventDestination>
+        <EventDestinationMirror>None</EventDestinationMirror>
+        <DTCKinds>DEM_DTC_KIND_ALL_DTCS</DTCKinds>
+      </DtcAttribute>
+      <DtcAttribute>
+        <SHORT-NAME>DTCAttribute_DTC_Ecu_Voltage_MMP2</SHORT-NAME>
+        <Description>Attributes for DTC_Ecu_Voltage</Description>
+        <CUSTOMER_REF>Cus_Daimler</CUSTOMER_REF>
+        <PROJECT_REF />
+        <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+        <AgingAllowed>true</AgingAllowed>
+        <AgingcyclecounterThreshold>100</AgingcyclecounterThreshold>
+        <DemDTCPriority>2</DemDTCPriority>
+        <EventSignificance>EVENT_SIGNIFICANCE_OCCURENCE</EventSignificance>
+        <EventFailurecyclecounterThreshold>1</EventFailurecyclecounterThreshold>
+        <ImmediateNvstorage>true</ImmediateNvstorage>
+        <MaxNumberFreezeFrameRecords>2</MaxNumberFreezeFrameRecords>
+        <AgingcycleRef>OtherCycle</AgingcycleRef>
+        <ExtendedDataClassRef>ExtData_DemExtendedDataClass_MMP2_MB</ExtendedDataClassRef>
+        <FreezeFrameClassRef>FFrame_DemFreezeFrameClass_MMP2_MB</FreezeFrameClassRef>
+        <FreezeFrameRecNumClassRef>DemFreezeFrameRecNumClass_MMP2_MB</FreezeFrameRecNumClassRef>
+        <EventDestination>DemPrimaryMemory</EventDestination>
+        <EventDestinationMirror>None</EventDestinationMirror>
+        <DTCKinds>DEM_DTC_KIND_ALL_DTCS</DTCKinds>
+      </DtcAttribute>
+      <DtcAttribute>
+        <SHORT-NAME>DTCAttribute_DTC_SSA</SHORT-NAME>
+        <Description>DTC attribute for SSA failures</Description>
+        <CUSTOMER_REF>Cus_Daimler</CUSTOMER_REF>
+        <PROJECT_REF />
+        <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+        <AgingAllowed>true</AgingAllowed>
+        <AgingcyclecounterThreshold>1</AgingcyclecounterThreshold>
+        <DemDTCPriority>2</DemDTCPriority>
+        <EventSignificance>EVENT_SIGNIFICANCE_OCCURENCE</EventSignificance>
+        <EventFailurecyclecounterThreshold>1</EventFailurecyclecounterThreshold>
+        <ImmediateNvstorage>true</ImmediateNvstorage>
+        <MaxNumberFreezeFrameRecords>2</MaxNumberFreezeFrameRecords>
+        <AgingcycleRef>PowerCycle</AgingcycleRef>
+        <ExtendedDataClassRef>ExtData_DemExtendedDataClass_MMP2_MB</ExtendedDataClassRef>
+        <FreezeFrameClassRef>FFrame_DemFreezeFrameClass_MMP2_MB</FreezeFrameClassRef>
+        <FreezeFrameRecNumClassRef>DemFreezeFrameRecNumClass_MMP2_MB</FreezeFrameRecNumClassRef>
+        <EventDestination>DemPrimaryMemory</EventDestination>
+        <EventDestinationMirror>None</EventDestinationMirror>
+        <DTCKinds>DEM_DTC_KIND_ALL_DTCS</DTCKinds>
+      </DtcAttribute>
+      <DtcAttribute>
+        <SHORT-NAME>DTCAttribute_DTC_MechOverload</SHORT-NAME>
+        <Description>Attributes for MechOverload related failures</Description>
+        <CUSTOMER_REF>Cus_Daimler</CUSTOMER_REF>
+        <PROJECT_REF />
+        <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+        <AgingAllowed>true</AgingAllowed>
+        <AgingcyclecounterThreshold>100</AgingcyclecounterThreshold>
+        <DemDTCPriority>2</DemDTCPriority>
+        <EventSignificance>EVENT_SIGNIFICANCE_OCCURENCE</EventSignificance>
+        <EventFailurecyclecounterThreshold>1</EventFailurecyclecounterThreshold>
+        <ImmediateNvstorage>true</ImmediateNvstorage>
+        <MaxNumberFreezeFrameRecords>2</MaxNumberFreezeFrameRecords>
+        <AgingcycleRef>OtherCycle</AgingcycleRef>
+        <ExtendedDataClassRef>ExtData_DemExtendedDataClass_MMP2_MB</ExtendedDataClassRef>
+        <FreezeFrameClassRef>FFrame_DemFreezeFrameClass_MMP2_MB</FreezeFrameClassRef>
+        <FreezeFrameRecNumClassRef>DemFreezeFrameRecNumClass_MMP2_MB</FreezeFrameRecNumClassRef>
+        <EventDestination>DemPrimaryMemory</EventDestination>
+        <EventDestinationMirror>None</EventDestinationMirror>
+        <DTCKinds>DEM_DTC_KIND_ALL_DTCS</DTCKinds>
+      </DtcAttribute>
+      <DtcAttribute>
+        <SHORT-NAME>DTCAttribute_DTC_SSA_0x164456_0x9a6857</SHORT-NAME>
+        <Description>DTC attribute for SSA failures</Description>
+        <CUSTOMER_REF>Cus_Daimler</CUSTOMER_REF>
+        <PROJECT_REF />
+        <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+        <AgingAllowed>true</AgingAllowed>
+        <AgingcyclecounterThreshold>1</AgingcyclecounterThreshold>
+        <DemDTCPriority>2</DemDTCPriority>
+        <EventSignificance>EVENT_SIGNIFICANCE_FAULT</EventSignificance>
+        <EventFailurecyclecounterThreshold>1</EventFailurecyclecounterThreshold>
+        <ImmediateNvstorage>true</ImmediateNvstorage>
+        <MaxNumberFreezeFrameRecords>2</MaxNumberFreezeFrameRecords>
+        <AgingcycleRef>PowerCycle</AgingcycleRef>
+        <ExtendedDataClassRef>ExtData_DemExtendedDataClass_MMP2_MB</ExtendedDataClassRef>
+        <FreezeFrameClassRef>FFrame_DemFreezeFrameClass_MMP2_MB</FreezeFrameClassRef>
+        <FreezeFrameRecNumClassRef>DemFreezeFrameRecNumClass_MMP2_MB</FreezeFrameRecNumClassRef>
+        <EventDestination>DemPrimaryMemory</EventDestination>
+        <EventDestinationMirror>None</EventDestinationMirror>
+        <DTCKinds>DEM_DTC_KIND_ALL_DTCS</DTCKinds>
+      </DtcAttribute>
+      <DtcAttribute>
+        <SHORT-NAME>DTCAttribute_DTC_TPSW</SHORT-NAME>
+        <Description>DTC attribute for SSA failures</Description>
+        <CUSTOMER_REF>Cus_Daimler</CUSTOMER_REF>
+        <PROJECT_REF />
+        <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+        <AgingAllowed>true</AgingAllowed>
+        <AgingcyclecounterThreshold>100</AgingcyclecounterThreshold>
+        <DemDTCPriority>2</DemDTCPriority>
+        <EventSignificance>EVENT_SIGNIFICANCE_FAULT</EventSignificance>
+        <EventFailurecyclecounterThreshold>1</EventFailurecyclecounterThreshold>
+        <ImmediateNvstorage>true</ImmediateNvstorage>
+        <MaxNumberFreezeFrameRecords>1</MaxNumberFreezeFrameRecords>
+        <AgingcycleRef>PowerCycle</AgingcycleRef>
+        <ExtendedDataClassRef>ExtData_DemExtendedDataClass_MMP2_MB</ExtendedDataClassRef>
+        <FreezeFrameClassRef>FFrame_DemFreezeFrameClass_MMP2_MB</FreezeFrameClassRef>
+        <FreezeFrameRecNumClassRef>DemFreezeFrameRecNumClass_MMP2_MB</FreezeFrameRecNumClassRef>
+        <EventDestination>DemPrimaryMemory</EventDestination>
+        <EventDestinationMirror>None</EventDestinationMirror>
+        <DTCKinds>DEM_DTC_KIND_ALL_DTCS</DTCKinds>
+      </DtcAttribute>
+    </DTCATTRIBUTES>
+  </AUTOSAR_COLLECTIONS>
+</DIAGNOSIS>

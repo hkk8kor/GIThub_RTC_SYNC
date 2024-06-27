@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<DIAGNOSIS INFO="DiamantPro 4.1.257.1682" CHECK="64E64CCA9B59F1F668419D92111ECFF9ICAgICAgICAgICAgICAgICAgICAgIERpYW1hbnRQcm8gICAgICAgICAgICAgICAgICAgIDQuMS4yNTcuMTY4MiAgICAgICAgICAgIC04NTg1NDIxNTI2OTA1ODkyNDU5ICAgICAgICAgICAgICAgICAgICAgICAgQUJUWjBNOEYgICAgICAgICAgICAgICAgICAgICAgREVca2FzNmFidCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg">
+  <ENABLE_CONDITIONS>
+    <ENABLE_CONDITION>
+      <NAME>SystemLevelNetworkCommunicationNoKL15</NAME>
+      <DESCRIPTION>Enable condition depending on  SystemVoltage, TransportationMode, ProductionMode, VehicleEngineStartup</DESCRIPTION>
+      <CUSTOMER_REF>Cus_Daimler</CUSTOMER_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+    </ENABLE_CONDITION>
+    <ENABLE_CONDITION>
+      <NAME>ECU_Level</NAME>
+      <DESCRIPTION>Enable condition depending on LocalVoltage and VehicleEngineStartup</DESCRIPTION>
+      <CUSTOMER_REF>Cus_Daimler</CUSTOMER_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+    </ENABLE_CONDITION>
+    <ENABLE_CONDITION>
+      <NAME>SystemLevelNetworkCommunication</NAME>
+      <DESCRIPTION>Enable condition depending on ignitionStatus, SystemVoltage, TransportationMode, ProductionMode, VehicleEngineStartup</DESCRIPTION>
+      <CUSTOMER_REF>Cus_Daimler</CUSTOMER_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+    </ENABLE_CONDITION>
+  </ENABLE_CONDITIONS>
+</DIAGNOSIS>

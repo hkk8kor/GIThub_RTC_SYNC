@@ -1,0 +1,130 @@
+/* *********** some test code for rba_runtime *************  */
+
+static void myRTTest(void)
+{
+  uint32 t;
+  RBSYS_startUsecTimer(&t);
+  while(!RBSYS_isUsecTimerElapsed(&t, 120))
+  {}
+}
+
+rba_Runtime_MTValues_t myruntime1;
+/*[[MEASUREMENT*/
+/*NAME=myruntime1.tiActRT_u32*/
+/*COMMENT=Task1msCnt*/
+/*MTEVENT=c_MT_Default_Task_x1*/
+/*]]MEASUREMENT*/
+/*[[MEASUREMENT*/
+/*NAME=myruntime1.tiMinRT_u32*/
+/*COMMENT=Task1msCnt*/
+/*MTEVENT=c_MT_Default_Task_x1*/
+/*]]MEASUREMENT*/
+/*[[MEASUREMENT*/
+/*NAME=myruntime1.tiMaxRT_u32*/
+/*COMMENT=Task1msCnt*/
+/*MTEVENT=c_MT_Default_Task_x1*/
+/*]]MEASUREMENT*/
+/*[[MEASUREMENT*/
+/*NAME=myruntime1.tiActCD_u32*/
+/*COMMENT=Task1msCnt*/
+/*MTEVENT=c_MT_Default_Task_x1*/
+/*]]MEASUREMENT*/
+/*[[MEASUREMENT*/
+/*NAME=myruntime1.ctCalls_u32*/
+/*COMMENT=Task1msCnt*/
+/*MTEVENT=c_MT_Default_Task_x1*/
+/*]]MEASUREMENT*/
+
+
+
+rba_Runtime_MTValuesReentrant_t myruntime1_reent;
+/*[[MEASUREMENT*/
+/*NAME=myruntime1_reent[0].data_st.tiActRT_u32*/
+/*COMMENT=Task1msCnt*/
+/*MTEVENT=c_MT_Default_Task_x1*/
+/*]]MEASUREMENT*/
+/*[[MEASUREMENT*/
+/*NAME=myruntime1_reent[0].data_st.tiMinRT_u32*/
+/*COMMENT=Task1msCnt*/
+/*MTEVENT=c_MT_Default_Task_x1*/
+/*]]MEASUREMENT*/
+/*[[MEASUREMENT*/
+/*NAME=myruntime1_reent[0].data_st.tiMaxRT_u32*/
+/*COMMENT=Task1msCnt*/
+/*MTEVENT=c_MT_Default_Task_x1*/
+/*]]MEASUREMENT*/
+/*[[MEASUREMENT*/
+/*NAME=myruntime1_reent[0].data_st.tiActCD_u32*/
+/*COMMENT=Task1msCnt*/
+/*MTEVENT=c_MT_Default_Task_x1*/
+/*]]MEASUREMENT*/
+/*[[MEASUREMENT*/
+/*NAME=myruntime1_reent[0].data_st.ctCalls_u32*/
+/*COMMENT=Task1msCnt*/
+/*MTEVENT=c_MT_Default_Task_x1*/
+/*]]MEASUREMENT*/
+
+/*[[MEASUREMENT*/
+/*NAME=myruntime1_reent[1].data_st.tiActRT_u32*/
+/*COMMENT=Task1msCnt*/
+/*MTEVENT=c_MT_Default_Task_x1*/
+/*]]MEASUREMENT*/
+/*[[MEASUREMENT*/
+/*NAME=myruntime1_reent[1].data_st.tiMinRT_u32*/
+/*COMMENT=Task1msCnt*/
+/*MTEVENT=c_MT_Default_Task_x1*/
+/*]]MEASUREMENT*/
+/*[[MEASUREMENT*/
+/*NAME=myruntime1_reent[1].data_st.tiMaxRT_u32*/
+/*COMMENT=Task1msCnt*/
+/*MTEVENT=c_MT_Default_Task_x1*/
+/*]]MEASUREMENT*/
+/*[[MEASUREMENT*/
+/*NAME=myruntime1_reent[1].data_st.tiActCD_u32*/
+/*COMMENT=Task1msCnt*/
+/*MTEVENT=c_MT_Default_Task_x1*/
+/*]]MEASUREMENT*/
+/*[[MEASUREMENT*/
+/*NAME=myruntime1_reent[1].data_st.ctCalls_u32*/
+/*COMMENT=Task1msCnt*/
+/*MTEVENT=c_MT_Default_Task_x1*/
+/*]]MEASUREMENT*/
+
+
+
+static void RBSYS_myPRC(void)
+{
+  volatile static int x;
+  x++;
+}
+
+static void RBSYS_myPRC2(int z)
+{
+  volatile static int y;
+  y++;
+  y+=z;
+  rba_Runtime_MTStartMeasure(&myruntime1);  // runtime code instrumentation example for internal use and MM6
+  myRTTest();
+  rba_Runtime_MTEndMeasure(&myruntime1);
+
+  rba_Runtime_MTStartMeasureReentrant(&myruntime1_reent);
+  myRTTest();
+  rba_Runtime_MTEndMeasureReentrant(&myruntime1_reent);
+}
+
+
+void RBSYS_myTaskBodyExample(void)
+{
+  static volatile int x_cnt;
+
+  x_cnt++;
+  // runtime instrumentation examples for WinRTM
+  RBA_RUNTIME_MSR_PROC(RBSYS_myPRC); // used for void void
+  RBA_RUNTIME_MSR_CODESEQ(RBSYS_myPRC2, RBSYS_myPRC2(x_cnt));  // used for functions with parameter
+
+  /*=> for plain merge proc calls: _ROOT_SECTION: SPG_xxRuntimeTest_Root |RBA_RUNTIME_MSR_PROC(|); */
+  /*=> for plain merge proc calls: _PROC_EP: SPG_xxRuntimeTest */
+  /*=> for plain merge proc calls: _ROOT_SECTION_END: */
+  // runtime instrumentation examples
+
+}

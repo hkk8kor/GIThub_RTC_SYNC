@@ -1,0 +1,58 @@
+module "TRBSYSBootblock_Startup"
+{
+  module "TestCase" {
+    files {
+      c {
+        /** files containing tests */
+        "/rb/as/core/hwp/hsw/ucbase/functional/RBSYS/tst/unit/Bootblock_Startup/TRBSYS_Bootblock_Startup.c";
+      }
+    }
+  } // TestCase
+
+  module "UnitUnderTest" {
+    export {
+      /** export headers */
+      "/rb/as/core/hwp/hsw/ucbase/functional/RBSYS/api/**";
+      "/rb/as/core/hwp/hsw/ucbase/functional/RBSYS/src/**";
+      "/rb/as/core/hwp/hsw/ucbase/functional/RBSYS/lib_ghs/api";
+    }
+
+    files {
+      c {
+        // effectively: "/rb/as/core/hwp/hsw/ucbase/functional/RBSYS/src/Bootblock/src/RBSYS_Bootblock_Startup.c";
+        "/rb/as/core/hwp/hsw/ucbase/functional/RBSYS/tst/unit/Bootblock_Startup/TRBSYS_Bootblock_Startup_Adaptor.c";
+      }
+    }
+  } // UnitUnderTest
+
+  #include "../../stubs/TRB_Prj_ConfigStub.bcfg"
+
+  module "Stub" {
+    export {
+      /** export the stubs */
+      "/rb/as/core/hwp/hsw/ucbase/functional/RBSYS/tst/unit/stubs/**";
+      "/rb/as/core/hwp/hsw/ucbase/functional/RBSYS/tst/unit/Bootblock_Startup/stubs/**";
+
+      /** Configure "TRB_Prj_Config.h" from "TRB_Prj_ConfigElements.h": RBFS_HexBlockBuild, RBFS_uC, RBFS_CompilationLanguage */
+
+      /** now map the header stub name to the original header file names */
+
+      /** stub "RBSYS_Intrinsics.h"           with "TRBSYS_Intrinsics.h" */
+      /** stub "RBSYS_uCRegisters.h"          with "TRBSYS_uCRegisters.h" */
+      /** stub "Os.h"                         with "TRBSYS_Os.h" */
+      /** stub "Os_ConfigInterrupts.h"        with "TRBSYS_Os_ConfigInterrupts.h" */
+
+      /** stub "RBLCF_MemoryRemap.h"          with "TRBLCF_MemoryRemap.h" */
+    }
+    files {
+      c {
+        /** stubs */
+        "/rb/as/core/hwp/hsw/ucbase/functional/RBSYS/tst/unit/Bootblock_Startup/stubs/*.c";
+        "/rb/as/core/hwp/hsw/ucbase/functional/RBSYS/tst/unit/stubs/*.c";
+        exclude "/rb/as/core/hwp/hsw/ucbase/functional/rbsys/tst/unit/stubs/TRBSYS_OsServices.c";
+        "/rb/as/core/hwp/hsw/ucbase/functional/rbsys/src/SystemMemoryProtection/RenesasP1x/RBSYS_GuardConfigInternalP1x.c";
+        "/rb/as/core/hwp/hsw/ucbase/functional/rbsys/src/SystemMemoryProtection/RenesasU2A/RBSYS_GuardConfigInternalU2A.c";
+      }
+    }
+  } // Stub
+} // TRBSYSBootblock_Startup

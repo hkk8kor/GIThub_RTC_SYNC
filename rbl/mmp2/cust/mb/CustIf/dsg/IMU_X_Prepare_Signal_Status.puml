@@ -1,0 +1,38 @@
+start
+:check indivitual signal staus;
+:calculate internal signal status;
+group internal signal status
+
+:status are recieved from signal chain;
+if (the status is In ** init bit position **) then (yes)
+  :return  signal status as RBL_CUSTIF_INTERNAL_SIGSTATUS_INIT;
+(no) elseif (Any axis status is In ** permanant bit position ** ) then (yes)
+  :return status as RBL_CUSTIF_INTERNAL_SIGSTATUS_PERMANENT_ERROR ;
+(no) elseif (Any axis status is In ** temp bit position or temperature out of spec ** ) then (yes)
+  :return status as RBL_CUSTIF_INTERNAL_SIGSTATUS_TEMP_ERROR error;
+(no) elseif (Any axis status is In ** overload bit position ** ) then (yes)
+  :return status as RBL_CUSTIF_INTERNAL_SIGSTATUS_OVERLOAD_ERROR error;
+(no) elseif (Any axis status is In ** temperature bit position or AmbientTemperatureFault failure status is True  **) then (yes)
+  :return status as RBL_CUSTIF_INTERNAL_SIGSTATUS_TEMPERORY_ERROR error;
+else (no)
+  :return signal status is RBL_CUSTIF_INTERNAL_SIGSTATUS_VALID ;
+endif
+end group
+
+group signal staus on the bus
+:X,Y and Z signal(accs status,rate status,angular acceleration status) internal signal status are calculated based on signal chain status;
+if (Any axis status is In ** internal init bit position **) then (yes)
+  :return  signal status as init ;
+(no) elseif (Any axis status is In ** internal permanant bit position ** ) then (yes)
+  :return status as permanent error ;
+(no) elseif (Any axis status is In ** internal temp bit position ** ) then (yes)
+  :return status as sprodiac error;
+(no) elseif (Any axis status is In ** internal temperature bit position or AmbientTemperatureFault failure status is True  **) then (yes)
+  :return status as temperature error;
+(no) elseif (Any axis status is In ** internal overload bit position ** ) then (yes)
+  :return status as overload error;
+else (no)
+  :return signal status is valid ;
+endif
+end
+stop

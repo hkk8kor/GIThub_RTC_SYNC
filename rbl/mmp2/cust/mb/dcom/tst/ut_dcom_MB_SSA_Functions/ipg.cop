@@ -1,0 +1,19 @@
+#
+# Cantata Test-Level Options
+#
+# Any options set in this file will override the options set in the
+# project-level options file.
+#
+# WARNING: Do not alter this file manually.
+#
+#tool.testid=9bf2ddba-2c60-47bb-8acd-380351b96842
+"--ci:--instr:stmt;func;decn;log;"
+"--sa:--calc:*#*"
+
+#User Section
+"--dont_ci:*"
+"--ci:--no_instr:all"
+"--do_ci:dcom_MB_SSA_Functions.c"
+"--ci:--instr:stmt;func;call;decn;log;#GenerateKeyPair"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_MB_GetDiagnosticData"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_MB_GetSupplierData"

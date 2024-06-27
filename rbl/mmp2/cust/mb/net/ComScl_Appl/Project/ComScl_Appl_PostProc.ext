@@ -1,0 +1,53 @@
+import bsw;
+import emf;
+import RB::RBA::rba_Nds::EcucModuleDefs::rba_Nds;
+import RB::RBA::rba_Nds::EcucModuleDefs::rba_Nds::rba_Nds_Communication;
+import RB::RBA::rba_Nds::EcucModuleDefs::rba_Nds::rba_Nds_Communication::rba_Nds_Networks;
+import RB::RBA::rba_Nds::EcucModuleDefs::rba_Nds::rba_Nds_Communication::rba_Nds_Networks::rba_Nds_LinNetwork;
+import RB::RBA::rba_Nds::EcucModuleDefs::rba_Nds::rba_Nds_Communication::rba_Nds_Networks::rba_Nds_LinNetwork::rba_Nds_LinScheduleTable;
+import RB::RBA::rba_Nds::EcucModuleDefs::rba_Nds::rba_Nds_Communication::rba_Nds_Networks::rba_Nds_LinNetwork::rba_Nds_LinScheduleTable::rba_Nds_LinScheduleTableEntry;
+
+/* block must be removed in case of PS-EC */
+import RB::RBA::rba_Nds_Cc::EcucModuleDefs;
+import RB::RBA::rba_Nds_Cc::EcucModuleDefs::rba_Nds_Cc;
+
+extension org::eclipse::xtend::util::stdlib::io;
+extension org::eclipse::xtend::util::stdlib::globalvar;
+extension org::eclipse::xtend::util::stdlib::elementprops;
+extension org::eclipse::xtend::util::stdlib::crossref;
+extension templates::EcuExtractor;
+extension templates::ManufacturerExtensionLib;
+
+
+/* -------------------------------------------------------------------------------------- */
+/*                      initial postprocessing for CC                                     */
+/* -------------------------------------------------------------------------------------- */
+
+around *performNdsPostProcessProject(rba_Nds_Cc rbaNdsCc, RB::RBA::rba_Nds::EcucModuleDefs::rba_Nds rbaNds, EObject fibexRoot):
+    /* Here you can provide your project specific post processing */    
+    
+   info("*******************************************************************************************")->
+   info("                         performing CC postprocessing activities                       ")->
+   info("*******************************************************************************************")->
+
+   /*-----------------------------  assignment of ALIVECOUNTER  -------------------------------------*/
+   rbaNds.rba_Nds_Communication.rba_Nds_Signals.select(e|e.rba_Nds_Name.value.endsWith("_AL")).SubmitSignalType("ALIVECOUNTER")->
+   rbaNds.rba_Nds_Communication.rba_Nds_Signals.select(e|e.rba_Nds_Name.value.endsWith("_AL8")).SubmitSignalType("ALIVECOUNTER")->
+   
+   /*-----------------------------  assignment of Checksum  -----------------------------------------*/
+   /* To avoid a double instance of SignalType 'Checksum' in case of E2E relevant messages (in rba_Nds_CreateSignal.ext), a check of rba_Nds_SignalType==null was introduced */
+   rbaNds.rba_Nds_Communication.rba_Nds_Signals.select(e|e.rba_Nds_Name.value.endsWith("_CRC") && (e.rba_Nds_SignalType==null)).SubmitSignalType("CHECKSUM")->
+   rbaNds.rba_Nds_Communication.rba_Nds_Signals.select(e|e.rba_Nds_Name.value.endsWith("_CRC16") && (e.rba_Nds_SignalType==null)).SubmitSignalType("CHECKSUM")->
+   
+    /*----------------------------------------- finishing info --------------------------------------------------*/
+    info("*   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *   *")->
+    info("                       Cc project specific postprocessing completed                           ")->
+    info("*********************************************************************************************")    
+;
+
+
+private SubmitSignalType(rba_Nds_Signal NdsSignal, String SignalType):
+
+    NdsSignal.setAttributeReference("rba_Nds_SignalType", SignalType)
+;
+

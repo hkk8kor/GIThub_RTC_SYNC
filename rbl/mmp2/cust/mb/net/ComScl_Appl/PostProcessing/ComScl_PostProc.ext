@@ -1,0 +1,165 @@
+
+import RB::RBA::rba_Nds::EcucModuleDefs::rba_Nds;
+import RB::RBA::rba_Nds::EcucModuleDefs::rba_Nds::rba_Nds_Ecu;
+import RB::RBA::rba_Nds::EcucModuleDefs::rba_Nds::rba_Nds_Ecu::rba_Nds_EcuPdus;
+import RB::RBA::rba_Nds::EcucModuleDefs::rba_Nds::rba_Nds_Communication;
+import RB::RBA::rba_Nds::EcucModuleDefs::rba_Nds::rba_Nds_Communication::rba_Nds_Signal;
+import RB::RBA::rba_Nds::EcucModuleDefs::rba_Nds::rba_Nds_Communication::rba_Nds_Signal::rba_Nds_NetworkRepresentation;
+import RB::RBA::rba_Nds::EcucModuleDefs::rba_Nds::rba_Nds_Communication::rba_Nds_Signal::rba_Nds_NetworkRepresentation::rba_Nds_DirectRepresentation;
+import RB::RBA::rba_Nds::EcucModuleDefs::rba_Nds::rba_Nds_Communication::rba_Nds_Networks;
+import RB::RBA::rba_Nds::EcucModuleDefs::rba_Nds::rba_Nds_Communication::rba_Nds_Networks::rba_Nds_CanNetwork;
+
+/* import for Dgs only */
+import RB::RBA::rba_Nds_Dgs::EcucModuleDefs;
+import RB::RBA::rba_Nds_Dgs::EcucModuleDefs::rba_Nds_Dgs;
+import RB::RBA::rba_Nds_Dgs::EcucModuleDefs::rba_Nds_Dgs::rba_Nds_Dgs_PduMonitorings;
+import RB::RBA::rba_Nds_Dgs::EcucModuleDefs::rba_Nds_Dgs::rba_Nds_Dgs_PduMonitorings::rba_Nds_Dgs_ReceivePduMonitoring;
+
+/* import for CC only */
+import RB::RBA::rba_Nds_Cc::EcucModuleDefs;
+import RB::RBA::rba_Nds_Cc::EcucModuleDefs::rba_Nds_Cc;
+import RB::RBA::rba_Nds_Cc::EcucModuleDefs::rba_Nds_Cc::rba_Nds_Cc_PduProtections;
+import RB::RBA::rba_Nds_Cc::EcucModuleDefs::rba_Nds_Cc::rba_Nds_Cc_PduProtections::rba_Nds_Cc_ReceivePduProtection;
+
+/* extensions */
+extension org::eclipse::xtend::util::stdlib::io;
+extension org::eclipse::xtend::util::stdlib::globalvar;
+extension org::eclipse::xtend::util::stdlib::elementprops;
+extension templates::EcuExtractor;
+
+extension ComScl_PostProc_config;
+
+/* -------------------------------------------------------------------------------------- */
+/*                      initial postprocessing for CC                                     */
+/* -------------------------------------------------------------------------------------- */
+
+performNdsPostProcessProject(RB::RBA::rba_Nds_Cc::EcucModuleDefs::rba_Nds_Cc rbaNdsCc, RB::RBA::rba_Nds::EcucModuleDefs::rba_Nds rbaNds):
+
+    rbaNdsCc.setRba_Nds_Cc_PduProtections(createRba_Nds_Cc_PduProtections(rbaNds.rba_Nds_Ecu.rba_Nds_EcuPdus))->
+
+    info("Cc: " + rbaNds.rba_Nds_Ecu.rba_Nds_EcuPdus.shortName)->
+    info(" .             .             .             .   project specific postprocessing completed")
+;
+
+/*------------------------  preparation of Pdu protections in CC context  -------------------------*/
+
+private create rba_Nds_Cc_PduProtections createRba_Nds_Cc_PduProtections(rba_Nds_EcuPdus NdsEcuPdu):
+
+   /* adapt short name to rba_Nds_Cc_ReceivePduMonitoring_ + plain Receive Pdu name */
+   this.setShortName("rba_Nds_Cc_PduProtections")->
+   /* provide preconfigured ReceivePduMonitoring */
+   this.rba_Nds_Cc_ReceivePduProtections.addAll(NdsEcuPdu.rba_Nds_ReceivePdus.createRba_Nds_Cc_ReceivePduProtection())->
+   null
+;
+
+
+private create rba_Nds_Cc_ReceivePduProtection createRba_Nds_Cc_ReceivePduProtection (rba_Nds_ReceivePdu  Nds_ReceivePdu):
+
+   /* adapt short name to rba_Nds_Dgs_ReceivePduMonitoring_ + plain Receive Pdu name */
+   this.setShortName("rba_Nds_Cc_ReceivePduProtection" + Nds_ReceivePdu.shortName.replaceFirst("rba_Nds_ReceivePdu_", "_"))->
+   this.setContainerReference("rba_Nds_Cc_ReceivePduRef", Nds_ReceivePdu)->
+   null
+;
+
+
+/* -------------------------------------------------------------------------------------- */
+/*                      initial postprocessing for DGS                                    */
+/* -------------------------------------------------------------------------------------- */
+
+performNdsPostProcessProject(RB::RBA::rba_Nds_Dgs::EcucModuleDefs::rba_Nds_Dgs rbaNdsDgs, RB::RBA::rba_Nds::EcucModuleDefs::rba_Nds rbaNds):
+
+    rbaNdsDgs.setRba_Nds_Dgs_PduMonitorings(createRba_Nds_Dgs_PduMonitoring(rbaNds.rba_Nds_Ecu.rba_Nds_EcuPdus))->
+
+    /* correcting the CAN names */
+    rbaNds.rba_Nds_Communication.rba_Nds_Networks.rba_Nds_CanNetworks.renameCanNetworks()->
+    /* extending network representations */
+    rbaNds.rba_Nds_Communication.rba_Nds_Signals.extendNetworkRepresentation()->
+    debug("List a: " + rbaNds.rba_Nds_Communication.rba_Nds_Signals)->
+
+    rbaNds.rba_Nds_Ecu.rba_Nds_EcuPdus.rba_Nds_ReceivePdus.select(e|e.shortName == "rba_Nds_ReceivePdu_mBremse_1").rba_Nds_PduUserCallout.setValue("123quak")->
+    rbaNds.rba_Nds_Ecu.rba_Nds_EcuPdus.rba_Nds_ReceivePdus.select(e|e.shortName == "rba_Nds_ReceivePdu_mBremse_1").setContainerReference("rba_Nds_EcuReceiveProcessRef", "/RB/UBK/Project/EcucModuleConfigurationValuess/rba_Nds/rba_Nds_Ecu/rba_Nds_EcuProcesses/rba_Nds_EcuReceiveProcess_20ms")->
+/*
+    rbaNds.rba_Nds_Communication.rba_Nds_Networks.rba_Nds_CanNetworks.first().setShortName("rba_Nds_CanNetwork_MyHugendubelCan")->
+    rbaNds.rba_Nds_Communication.rba_Nds_Networks.rba_Nds_CanNetworks.first().rba_Nds_Name.setValue("Hugendubel")->
+*/
+
+    info("Dgs: " + rbaNds.rba_Nds_Ecu.rba_Nds_EcuPdus.shortName)->
+    info(" .             .             .             .   project specific postprocessing completed")
+;
+
+/*------------------------  preparation of Pdu monitorings in DGS context  -------------------------*/
+
+private create rba_Nds_Dgs_PduMonitorings createRba_Nds_Dgs_PduMonitoring(rba_Nds_EcuPdus NdsEcuPdu):
+
+   this.setShortName("rba_Nds_Dgs_PduMonitorings")->
+   /* provide preconfigured ReceivePduMonitoring */
+   this.rba_Nds_Dgs_ReceivePduMonitorings.addAll(NdsEcuPdu.rba_Nds_ReceivePdus.createRba_Nds_Dgs_ReceivePduMonitoring())
+;
+
+private create rba_Nds_Dgs_ReceivePduMonitoring createRba_Nds_Dgs_ReceivePduMonitoring (rba_Nds_ReceivePdu  Nds_ReceivePdu):
+
+   /* adapt short name to rba_Nds_Dgs_ReceivePduMonitoring_ + plain Receive Pdu name */
+   this.setShortName("rba_Nds_Dgs_ReceivePduMonitoring" + Nds_ReceivePdu.shortName.replaceFirst("rba_Nds_ReceivePdu_", "_"))->
+   this.setContainerReference("rba_Nds_Dgs_ReceivePduRef", Nds_ReceivePdu)->
+   null
+;
+
+/*------------------------  preparation of activities, that shall be externalized  -------------------------*/
+
+/* -------------------------------------------------------------------------------------- */
+/*                      renaming of CAN networks                                          */
+/* -------------------------------------------------------------------------------------- */
+
+private renameCanNetworks(List[rba_Nds_CanNetwork] NdsCanNetworks):
+
+   /* identify import of rba_Nds_CanNetwork_CanRef_Can1 */
+   if (NdsCanNetworks.first().rba_Nds_CanFrameTriggerings.select(e|e.shortName == "rba_Nds_CanFrameTriggering_Msg00_Trgr").isEmpty) then
+   (
+      /* do nothing */
+      null
+   )
+   else
+   (
+      /* rename to  */
+      NdsCanNetworks.first().setShortName("rba_Nds_CanNetwork_CanRef_Can1")->
+      NdsCanNetworks.first().rba_Nds_Name.setValue("CanRef_Can1")
+   )
+;
+
+private extendNetworkRepresentation(List[rba_Nds_Signal] NdsSignal):
+
+   /* identify signal that shall be extended */
+   NdsSignal.selectFirst(e|e.rba_Nds_Name.value == "Msg00Sig16Bit").setAttributeReference("rba_Nds_Description", "saugladd gell")->
+   NdsSignal.first().setAttributeReference("rba_Nds_Description", "detailed description of Msg00Sig16Bit is saugladd gell")->
+
+   NdsSignal.first().rba_Nds_NetworkRepresentations.add(createNetworkRepresentation4DirectRepresentation(NdsSignal.first()))->
+   NdsSignal.last().rba_Nds_NetworkRepresentations.add(createNetworkRepresentation4DirectRepresentation(NdsSignal.last()))->
+   if (NdsSignal.select(e|e.rba_Nds_Name.value=="BR1_Lichtschalt").isEmpty != true ) then
+   (
+     NdsSignal.select(e|e.rba_Nds_Name.value=="BR1_Lichtschalt").first().rba_Nds_NetworkRepresentations.add(createNetworkRepresentation4DirectRepresentation(NdsSignal.select(e|e.rba_Nds_Name.value=="BR1_Lichtschalt").first()))
+   )
+;
+/* -------------------------------------------------------------------------------------- */
+/*                      NetworkRepresentation -> DirectRepresentation                     */
+/* -------------------------------------------------------------------------------------- */
+
+/* create the direct repesentation methods */
+create rba_Nds_NetworkRepresentation createNetworkRepresentation4DirectRepresentation(rba_Nds_Signal NdsSignal):
+
+   debug("Level_1: " + NdsSignal.shortName)->
+   this.setShortName("rba_Nds_NetworkRepresentation_PostProc")->
+   this.setRba_Nds_DirectRepresentation(createDirectRepresentation(NdsSignal, "m", "n", "t"))->
+   null
+;
+
+/* create the direct repesentation methods */
+create rba_Nds_DirectRepresentation createDirectRepresentation(rba_Nds_Signal NdsSignal, string  MinValue, string MaxValue, string Unit):
+
+   this.setShortName("rba_Nds_NetworkRepresentation_PostProc_"+ MinValue + MaxValue)->
+   this.setAttributeReference("rba_Nds_MinValue", MinValue)->
+   this.setAttributeReference("rba_Nds_MaxValue", MaxValue)->
+   this.setAttributeReference("rba_Nds_Unit", Unit)->
+   debug("Level_2: " + "rba_Nds_NetworkRepresentation_PostProc_"+ MinValue + MaxValue)->
+   null
+;
+

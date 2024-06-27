@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DOORS xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<NODES>
+		<NODE NAME="Node_ChargePump">
+			<FW_REFS>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3403">
+					FW_RBChargePumpUndervoltage
+				</FW_REF>
+			</FW_REFS>
+			<PARENT_NODES>
+				<NODE_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14568">
+					Node_Ecu
+				</NODE_REF>
+			</PARENT_NODES>
+		</NODE>
+		<NODE NAME="Node_Det">
+			<FW_REFS>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3314">
+					FW_DET_ReportError
+				</FW_REF>
+			</FW_REFS>
+			<PARENT_NODES>
+				<NODE_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3375">
+					Node_Ecu
+				</NODE_REF>
+			</PARENT_NODES>
+		</NODE>
+		<NODE NAME="Node_Ecu">
+			<FW_REFS>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-13671">
+					FW_RBMICSYS_OC_FINAL_HY_SHUTDOWN
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2477">
+					FW_AssertionFailed
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2478">
+					FW_RB_UnsupportedHW
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2480">
+					FW_RBSupplyASICInitFailure
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2482">
+					FW_RBSUPPLYIREFOutOfRange
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2483">
+					FW_RbfslEcuEClockTestFails
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2484">
+					FW_RbfslEcuWrongBistCmdTestFails
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2485">
+					FW_RBSUPPLY_U5VTestFailure
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2487">
+					FW_RBSUPPLY_U5VOutOfRange
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2489">
+					FW_RBChargePumpFailure
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2490">
+					FW_RbfslEcuFastWdTestFails
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2491">
+					FW_RbfslEcuBistFailureCtrTestFails
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2492">
+					FW_RbfslEcuWdStartuptestFails
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2493">
+					FW_RbfslEcuErrpinCounterTestFails
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2494">
+					FW_RbfslEcuEnableElLowFails
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2495">
+					FW_RbfslDecoupleBitTestFails
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2496">
+					FW_RbfslEcuEnableElHighFails
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2502">
+					FW_RbfslEcuEnContinuousError
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2504">
+					FW_RbfslEcuWdStatusContinuousError
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2509">
+					FW_RBNvM_WriteCycleExceed
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2632">
+					FW_RBAdcPeripheralFault
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2633">
+					FW_RBAdcSelftestC5P
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2634">
+					FW_RBAdcPinTest
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2635">
+					FW_RBEcuBandgap
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2636">
+					FW_RbWdhTaskMonConCnt
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2638">
+					FW_RbWdhAsicWdCmdMissing
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2639">
+					FW_RbWdhAsicWdErrorCntLimit
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2643">
+					FW_RbmicSpiTransferError
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2645">
+					FW_RbmicAsicInitTestError
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2646">
+					FW_RbmicAsicClkInError
+				</FW_REF>
+			</FW_REFS>
+			<PARENT_NODES>
+				<NODE_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1975">
+					Node_uC
+				</NODE_REF>
+			</PARENT_NODES>
+		</NODE>
+		<NODE NAME="Node_MMP_CustomerLearning">
+			<FW_REFS>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14332">
+					FW_RBL_SigChain_OffsLearning
+				</FW_REF>
+			</FW_REFS>
+			<PARENT_NODES>
+				<NODE_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2082">
+					Node_MMP_SignalChain
+				</NODE_REF>
+			</PARENT_NODES>
+		</NODE>
+		<NODE NAME="Node_MMP_SensorConfig">
+			<FW_REFS>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1146">
+					FW_RBL_Nvm_AvlSnsrModl
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14332">
+					FW_RBL_Nvm_SensorCrc_ErrCnt
+				</FW_REF>
+			</FW_REFS>
+			<PARENT_NODES>
+				<NODE_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2245">
+					Node_Ecu
+				</NODE_REF>
+			</PARENT_NODES>
+		</NODE>
+		<NODE NAME="Node_MMP_SensorModuleError">
+			<FW_REFS>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1786">
+					FW_RBL_ChannelInvalid_Smu0_Acc1
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1787">
+					FW_RBL_ChannelInvalid_Smu0_Acc2
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1788">
+					FW_RBL_ChannelInvalid_Smu0_Acc3
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1789">
+					FW_RBL_ChannelInvalid_Smu0_Rate1
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1790">
+					FW_RBL_ChannelInvalid_Smu1_Acc1
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1791">
+					FW_RBL_ChannelInvalid_Smu1_Acc2
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1792">
+					FW_RBL_ChannelInvalid_Smu1_Acc3
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1793">
+					FW_RBL_ChannelInvalid_Smu1_Rate1
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1794">
+					FW_RBL_ChannelInvalid_Smu2_Acc1
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1795">
+					FW_RBL_ChannelInvalid_Smu2_Acc2
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1796">
+					FW_RBL_ChannelInvalid_Smu2_Acc3
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1797">
+					FW_RBL_ChannelInvalid_Smu2_Rate1
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1798">
+					FW_RBL_ChannelInvalid_Smu3_Acc1
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1799">
+					FW_RBL_ChannelInvalid_Smu3_Acc2
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1800">
+					FW_RBL_ChannelInvalid_Smu3_Acc3
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1801">
+					FW_RBL_ChannelInvalid_Smu3_Rate1
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1802">
+					FW_RBL_CrcFailure_Smu0
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1803">
+					FW_RBL_CrcFailure_Smu1
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1804">
+					FW_RBL_CrcFailure_Smu2
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1805">
+					FW_RBL_CrcFailure_Smu3
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1806">
+					FW_RBL_FrequencyMsgInvalid_Smu0
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1807">
+					FW_RBL_FrequencyMsgInvalid_Smu1
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1808">
+					FW_RBL_FrequencyMsgInvalid_Smu2
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1809">
+					FW_RBL_FrequencyMsgInvalid_Smu3
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1810">
+					FW_RBL_TemperatureMsgInvalid_Smu0
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1811">
+					FW_RBL_TemperatureMsgInvalid_Smu1
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1812">
+					FW_RBL_TemperatureMsgInvalid_Smu2
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1813">
+					FW_RBL_TemperatureMsgInvalid_Smu3
+				</FW_REF>
+			</FW_REFS>
+			<PARENT_NODES>
+				<NODE_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1994">
+					Node_MMP_SensorConfig
+				</NODE_REF>
+			</PARENT_NODES>
+		</NODE>
+		<NODE NAME="Node_MMP_SignalChain">
+			<FW_REFS>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14332">
+					FW_RBL_Nvm_SigChain_Content
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14332">
+					FW_RBL_Nvm_VariantCoding
+				</FW_REF>
+			</FW_REFS>
+			<PARENT_NODES>
+				<NODE_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2079">
+					Node_MMP_SensorConfig
+				</NODE_REF>
+			</PARENT_NODES>
+		</NODE>
+		<NODE NAME="Node_MMP_SignalChainMonitors">
+			<FW_REFS>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1781">
+					FW_RBL_SignalUncorrelated_AccY
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1782">
+					FW_RBL_SignalUncorrelated_AccZ
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1783">
+					FW_RBL_SignalUncorrelated_RateX
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1784">
+					FW_RBL_SignalUncorrelated_RateY
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1785">
+					FW_RBL_SignalUncorrelated_RateZ
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1806">
+					FW_RBL_FrequencyFailure_Smu0
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1807">
+					FW_RBL_FrequencyFailure_Smu1
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1808">
+					FW_RBL_FrequencyFailure_Smu2
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1809">
+					FW_RBL_FrequencyFailure_Smu3
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1814">
+					FW_RBL_TemperatureRangeExceeded_Smu0
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1815">
+					FW_RBL_TemperatureRangeExceeded_Smu1
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1816">
+					FW_RBL_TemperatureRangeExceeded_Smu2
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-1817">
+					FW_RBL_TemperatureRangeExceeded_Smu3
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-423">
+					FW_RBL_SignalUncorrelated_AccX
+				</FW_REF>
+			</FW_REFS>
+			<PARENT_NODES>
+				<NODE_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3112">
+					Node_MMP_SignalChain
+				</NODE_REF>
+			</PARENT_NODES>
+		</NODE>
+		<NODE NAME="Node_MMP_TracebilityData">
+			<FW_REFS>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14332">
+					FW_RBL_Nvm_CustDmc
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14332">
+					FW_RBL_Nvm_SpareDmc
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14333">
+					FW_RBL_Nvm_CfgVers
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14335">
+					FW_RBL_Nvm_SplrNr
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14336">
+					FW_RBL_Nvm_BaseplateDmc
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14337">
+					FW_RBL_Nvm_HousingDmc
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14338">
+					FW_RBL_Nvm_ProcProgsId
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14339">
+					FW_RBL_Nvm_SnsrSerlNr
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14340">
+					FW_RBL_Nvm_RbPartNr
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14341">
+					FW_RBL_Nvm_RbAsblyPartNr
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14342">
+					FW_RBL_Nvm_ProdDate
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14343">
+					FW_RBL_Nvm_PlaIdNr
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14344">
+					FW_RBL_Nvm_PcbDmc
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14345">
+					FW_RBL_Nvm_LotNr
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14346">
+					FW_RBL_Nvm_HwVersNr
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14347">
+					FW_RBL_Nvm_CustPartNr
+				</FW_REF>
+			</FW_REFS>
+			<PARENT_NODES>
+				<NODE_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3282">
+					Node_Ecu
+				</NODE_REF>
+			</PARENT_NODES>
+		</NODE>
+		<NODE NAME="Node_NetworkCAN0">
+			<FW_REFS>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-977">
+					FW_CANSM_E_BUSOFF_NETWORK_0
+				</FW_REF>
+			</FW_REFS>
+			<PARENT_NODES>
+				<NODE_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2172">
+					Node_NetworkCAN
+				</NODE_REF>
+			</PARENT_NODES>
+		</NODE>
+		<NODE NAME="Node_NetworkCAN">
+			<FW_REFS>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14283">
+					FW_CANTRCV_TJA_E_NO_TRCV_CONTROL_CH0
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2668">
+					FW_CAN_E_TIME_OUT
+				</FW_REF>
+			</FW_REFS>
+			<PARENT_NODES>
+				<NODE_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3088">
+					Node_Network
+				</NODE_REF>
+			</PARENT_NODES>
+		</NODE>
+		<NODE NAME="Node_Network">
+			<FW_REFS>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2662">
+					FW_PDUR_E_PDU_INSTANCE_LOST
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2673">
+					FW_RBNET_Overvoltage
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2679">
+					FW_PDUR_E_INIT_FAILED
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-591">
+					FW_RBNET_Undervoltage
+				</FW_REF>
+			</FW_REFS>
+			<PARENT_NODES>
+				<NODE_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2056">
+					Node_Ecu
+				</NODE_REF>
+			</PARENT_NODES>
+		</NODE>
+		<NODE NAME="Node_SMM_DegradeSystem">
+			<FW_REFS>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-555">
+					FW_SMM_OneRequestsInit
+				</FW_REF>
+			</FW_REFS>
+			<PARENT_NODES>
+				<NODE_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2047">
+					Node_Ecu
+				</NODE_REF>
+			</PARENT_NODES>
+		</NODE>
+		<NODE NAME="Node_uC">
+			<FW_REFS>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2778">
+					FW_RBHWBISTError
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2780">
+					FW_RBSYS_TaskJitter
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2781">
+					FW_RBOSTaskSchemeError
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2782">
+					FW_RBSYS_TaskOverRun
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2784">
+					FW_RBSYS_OSErrorHook
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2786">
+					FW_RBSYS_SYSErrorHook
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2788">
+					FW_RBSYS_StackOverUnderFlow
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2790">
+					FW_RBCPUException
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2793">
+					FW_RBuCSafetyLogicFault
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2794">
+					FW_RBuCSafetyFault
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2795">
+					FW_RBFlashFailure
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2796">
+					FW_RBRAMFailure
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2806">
+					FW_RbmicAsicOscillatorError
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-2808">
+					FW_RBDmaTransferError
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3174">
+					FW_RB_UnsupportedSeriesHW
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-3174">
+					FW_RBuCRegisterFault
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-348">
+					FW_RBuCSupplyError
+				</FW_REF>
+			</FW_REFS>
+			<PARENT_NODES/>
+		</NODE>
+		<NODE NAME="Node_uCMemoryGuard">
+			<FW_REFS>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14331">
+					FW_RBuCSafetyNotificationGRAM
+				</FW_REF>
+				<FW_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14332">
+					FW_RBuCSafetyNotification
+				</FW_REF>
+			</FW_REFS>
+			<PARENT_NODES>
+				<NODE_REF PRJ="true" REQ_ID="Gen_SWCS_DSM_Node_MS_ESP_Deuterium-14334">
+					Node_uC
+				</NODE_REF>
+			</PARENT_NODES>
+		</NODE>
+	</NODES>
+	<STM_SYSTEMS/>
+</DOORS>

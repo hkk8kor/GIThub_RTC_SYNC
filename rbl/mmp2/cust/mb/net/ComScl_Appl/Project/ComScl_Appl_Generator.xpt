@@ -1,0 +1,236 @@
+«REM»
+/*
+**********************************************************************************************************************
+*
+* COPYRIGHT RESERVED, Robert Bosch GmbH, 2019. All rights reserved.
+* The reproduction, distribution and utilization of this document as well as the communication of its contents to
+* others without explicit authorization is prohibited. Offenders will be held liable for the payment of damages.
+* All rights reserved in the event of the grant of a patent, utility model or design.
+*
+**********************************************************************************************************************
+*/
+«ENDREM»
+
+«IMPORT bsw»
+«IMPORT bsw::rba_NdsModule»
+«IMPORT bsw::rba_Nds_DgsModule»
+
+«EXTENSION rba_Nds_PduCommUtil»
+«EXTENSION rba_Nds_Util»
+«EXTENSION rba_Nds_DgsUtil»
+«EXTENSION ComScl_Appl_Util»
+
+«REM»
+    Generates a file, containing the TaskAllocation of FlexRay and Can Receive/Transmit Frames and Pdus
+«ENDREM»
+«DEFINE Generate FOR Autosar»
+    «FILE "rba_Nds_TaskAllocation.csv"»
+    Network;Direction;Frame;ContainerPdu;SecuredPdu;SignalPdu;CoreId;Task;CycleTime;
+    «FOREACH this.rba_Nds.rba_Nds_Ecu.rba_Nds_Connectors.rba_Nds_FlexRayConnector AS frConnector-»
+        «EXPAND Print_AllocInformation FOR frConnector-»    
+    «ENDFOREACH»
+    «FOREACH this.rba_Nds.rba_Nds_Ecu.rba_Nds_Connectors.rba_Nds_CanConnector AS canConnector-»
+        «EXPAND Print_AllocInformation FOR canConnector-»    
+    «ENDFOREACH»
+    «ENDFILE»
+«ENDDEFINE»
+
+«REM»
+    Prints the allocation information of all Frames and Pdus of the connector
+«ENDREM»
+«DEFINE Print_AllocInformation FOR rba_Nds_FlexRayConnector»
+    «FOREACH this.rba_Nds_FlexRayReceiveFrame AS frRxFrame-»
+        «EXPAND Print_AllocInformation FOR frRxFrame-»
+    «ENDFOREACH-»
+    «FOREACH this.rba_Nds_FlexRayTransmitFrame AS frTxFrame-»
+        «EXPAND Print_AllocInformation FOR frTxFrame-»
+    «ENDFOREACH-»
+«ENDDEFINE»
+
+«REM»
+    Prints the allocation information for the Frame and its contained Pdus
+«ENDREM»
+«DEFINE Print_AllocInformation FOR rba_Nds_FlexRayReceiveFrame-»
+    «this.parent.rba_Nds_FlexRayNetworkRef.rba_Nds_Name»;RECEIVE;«this.shortName-»;;;;«this.ComScl_Appl_getProcAllocInformation()»
+    «FOREACH this.rba_Nds_FlexRayReceivePduLinkageRef.select(e|e.rba_Nds_ReceivePduRef != null && e.rba_Nds_ReceivePduRef.rba_Nds_ReceiveSignalPdu != null) AS signalPduLinkage-»
+        «EXPAND Print_SignalPduInfo FOR signalPduLinkage-»
+    «ENDFOREACH-»
+    «FOREACH this.rba_Nds_FlexRayReceivePduLinkageRef.select(e|e.rba_Nds_ReceivePduRef != null && e.rba_Nds_ReceivePduRef.rba_Nds_ReceiveSecuredPdu != null) AS securedPduLinkage-»
+        «EXPAND Print_SecuredPduInfo FOR securedPduLinkage-»
+    «ENDFOREACH-»
+    «FOREACH this.rba_Nds_FlexRayReceivePduLinkageRef.select(e|e.rba_Nds_ReceivePduRef != null && e.rba_Nds_ReceivePduRef.rba_Nds_ReceiveContainerPdu != null) AS containerPduLinkage-»
+        «EXPAND Print_ContainerPduInfo FOR containerPduLinkage-»
+    «ENDFOREACH-»
+«ENDDEFINE-»
+
+«REM»
+    Prints the allocation information for a FlexRayReceivePduLinkage, representing a SignalPdu
+«ENDREM»
+«DEFINE Print_SignalPduInfo FOR rba_Nds_FlexRayReceivePduLinkage-»
+    «this.parent.rba_Nds_FlexRayNetworkRef.rba_Nds_Name»;RECEIVE;;;;«this.shortName-»;«this.ComScl_Appl_getProcAllocInformation()»
+«ENDDEFINE-»
+
+«REM»
+    Prints the allocation information for a FlexRayReceivePduLinkage, representing a SecuredPdu
+«ENDREM»
+«DEFINE Print_SecuredPduInfo FOR rba_Nds_FlexRayReceivePduLinkage-»
+    «this.parent.rba_Nds_FlexRayNetworkRef.rba_Nds_Name»;RECEIVE;;;«this.shortName-»;;«this.ComScl_Appl_getProcAllocInformation()»
+    «EXPAND Print_SignalPduInfo FOR ((rba_Nds_FlexRayReceivePduLinkage)this.rba_Nds_ReceivePduRef.rba_Nds_ReceiveSecuredPdu.rba_Nds_AuthenticReceivePduLinkageRef)-»
+«ENDDEFINE-»
+
+«REM»
+    Prints the allocation information for a FlexRayReceivePduLinkage, representing a ContainerPdu
+«ENDREM»
+«DEFINE Print_ContainerPduInfo FOR rba_Nds_FlexRayReceivePduLinkage-»
+    «this.parent.rba_Nds_FlexRayNetworkRef.rba_Nds_Name»;RECEIVE;;«this.shortName-»;;;«this.ComScl_Appl_getProcAllocInformation()»
+    «FOREACH this.rba_Nds_ReceivePduRef.rba_Nds_ReceiveContainerPdu.rba_Nds_ContainedReceivePduLinkageRef.typeSelect(rba_Nds_FlexRayReceivePduLinkage).select(e|e.rba_Nds_ReceivePduRef != null && e.rba_Nds_ReceivePduRef.rba_Nds_ReceiveSignalPdu != null) AS rxPduLink-»
+        «EXPAND Print_SignalPduInfo FOR rxPduLink-»
+    «ENDFOREACH-»
+    «FOREACH this.rba_Nds_ReceivePduRef.rba_Nds_ReceiveContainerPdu.rba_Nds_ContainedReceivePduLinkageRef.typeSelect(rba_Nds_FlexRayReceivePduLinkage).select(e|e.rba_Nds_ReceivePduRef != null && e.rba_Nds_ReceivePduRef.rba_Nds_ReceiveSecuredPdu != null) AS rxPduLink-»
+        «EXPAND Print_SecuredPduInfo FOR rxPduLink-»
+    «ENDFOREACH-»
+«ENDDEFINE-»
+
+«REM»
+    Prints the allocation information for the Frame and its contained Pdus
+«ENDREM»
+«DEFINE Print_AllocInformation FOR rba_Nds_FlexRayTransmitFrame-»
+    «this.parent.rba_Nds_FlexRayNetworkRef.rba_Nds_Name»;TRANSMIT;«this.shortName-»;;;;«this.ComScl_Appl_getProcAllocInformation()»
+    «FOREACH this.rba_Nds_FlexRayTransmitPduLinkageRef.select(e|e.rba_Nds_TransmitPduRef != null && e.rba_Nds_TransmitPduRef.rba_Nds_TransmitSignalPdu != null) AS signalPduLinkage-»
+        «EXPAND Print_SignalPduInfo FOR signalPduLinkage-»
+    «ENDFOREACH-»
+    «FOREACH this.rba_Nds_FlexRayTransmitPduLinkageRef.select(e|e.rba_Nds_TransmitPduRef != null && e.rba_Nds_TransmitPduRef.rba_Nds_TransmitSecuredPdu != null) AS securedPduLinkage-»
+        «EXPAND Print_SecuredPduInfo FOR securedPduLinkage-»
+    «ENDFOREACH-»
+    «FOREACH this.rba_Nds_FlexRayTransmitPduLinkageRef.select(e|e.rba_Nds_TransmitPduRef != null && e.rba_Nds_TransmitPduRef.rba_Nds_TransmitContainerPdu != null) AS containerPduLinkage-»
+        «EXPAND Print_ContainerPduInfo FOR containerPduLinkage-»
+    «ENDFOREACH-»
+«ENDDEFINE-»
+
+«REM»
+    Prints the allocation information for a FlexRayTransmitPduLinkage, representing a SignalPdu
+«ENDREM»
+«DEFINE Print_SignalPduInfo FOR rba_Nds_FlexRayTransmitPduLinkage-»
+    «this.parent.rba_Nds_FlexRayNetworkRef.rba_Nds_Name»;TRANSMIT;;;;«this.shortName-»;«this.ComScl_Appl_getProcAllocInformation()»
+«ENDDEFINE-»
+
+«REM»
+    Prints the allocation information for a FlexRayTransmitPduLinkage, representing a SecuredPdu
+«ENDREM»
+«DEFINE Print_SecuredPduInfo FOR rba_Nds_FlexRayTransmitPduLinkage-»
+    «this.parent.rba_Nds_FlexRayNetworkRef.rba_Nds_Name»;TRANSMIT;;;«this.shortName-»;;«this.ComScl_Appl_getProcAllocInformation()»
+    «EXPAND Print_SignalPduInfo FOR ((rba_Nds_FlexRayTransmitPduLinkage)this.rba_Nds_TransmitPduRef.rba_Nds_TransmitSecuredPdu.rba_Nds_AuthenticTransmitPduLinkageRef)-»
+«ENDDEFINE-»
+
+«REM»
+    Prints the allocation information for a FlexRayTransmitPduLinkage, representing a ContainerPdu
+«ENDREM»
+«DEFINE Print_ContainerPduInfo FOR rba_Nds_FlexRayTransmitPduLinkage-»
+    «this.parent.rba_Nds_FlexRayNetworkRef.rba_Nds_Name»;TRANSMIT;;«this.shortName-»;;;«this.ComScl_Appl_getProcAllocInformation()»
+    «FOREACH this.rba_Nds_TransmitPduRef.rba_Nds_TransmitContainerPdu.rba_Nds_ContainedTransmitPduLinkageRef.typeSelect(rba_Nds_FlexRayTransmitPduLinkage).select(e|e.rba_Nds_TransmitPduRef != null && e.rba_Nds_TransmitPduRef.rba_Nds_TransmitSignalPdu != null) AS rxPduLink-»
+        «EXPAND Print_SignalPduInfo FOR rxPduLink-»
+    «ENDFOREACH-»
+    «FOREACH this.rba_Nds_TransmitPduRef.rba_Nds_TransmitContainerPdu.rba_Nds_ContainedTransmitPduLinkageRef.typeSelect(rba_Nds_FlexRayTransmitPduLinkage).select(e|e.rba_Nds_TransmitPduRef != null && e.rba_Nds_TransmitPduRef.rba_Nds_TransmitSecuredPdu != null) AS rxPduLink-»
+        «EXPAND Print_SecuredPduInfo FOR rxPduLink-»
+    «ENDFOREACH-»
+«ENDDEFINE-»
+
+«REM»
+    Prints the allocation information of all Frames and Pdus of the connector
+«ENDREM»
+«DEFINE Print_AllocInformation FOR rba_Nds_CanConnector»
+    «FOREACH this.rba_Nds_CanReceiveFrame AS canRxFrame-»
+        «EXPAND Print_AllocInformation FOR canRxFrame-»
+    «ENDFOREACH-»
+    «FOREACH this.rba_Nds_CanTransmitFrame AS canTxFrame-»
+        «EXPAND Print_AllocInformation FOR canTxFrame-»
+    «ENDFOREACH-»
+«ENDDEFINE»
+
+«REM»
+    Prints the allocation information for the Frame and its contaiedPdus
+«ENDREM»
+«DEFINE Print_AllocInformation FOR rba_Nds_CanReceiveFrame-»
+    «this.parent.rba_Nds_CanNetworkRef.rba_Nds_Name»;RECEIVE;«this.shortName-»;;;;«this.ComScl_Appl_getProcAllocInformation()»
+    «IF this.rba_Nds_CanReceivePduLinkageRef.rba_Nds_ReceivePduRef != null && this.rba_Nds_CanReceivePduLinkageRef.rba_Nds_ReceivePduRef.rba_Nds_ReceiveSignalPdu != null-»
+        «EXPAND Print_SignalPduInfo FOR this.rba_Nds_CanReceivePduLinkageRef-»
+    «ENDIF-»
+    «IF this.rba_Nds_CanReceivePduLinkageRef.rba_Nds_ReceivePduRef != null && this.rba_Nds_CanReceivePduLinkageRef.rba_Nds_ReceivePduRef.rba_Nds_ReceiveSecuredPdu != null-»
+        «EXPAND Print_SecuredPduInfo FOR this.rba_Nds_CanReceivePduLinkageRef-»
+    «ENDIF-»
+    «IF this.rba_Nds_CanReceivePduLinkageRef.rba_Nds_ReceivePduRef != null && this.rba_Nds_CanReceivePduLinkageRef.rba_Nds_ReceivePduRef.rba_Nds_ReceiveContainerPdu != null-»
+        «EXPAND Print_ContainerPduInfo FOR this.rba_Nds_CanReceivePduLinkageRef-»
+    «ENDIF-»
+«ENDDEFINE-»
+
+«REM»
+    Prints the allocation information for a CanReceivePduLinkage, representing a SignalPdu
+«ENDREM»
+«DEFINE Print_SignalPduInfo FOR rba_Nds_CanReceivePduLinkage-»
+    «this.parent.rba_Nds_CanNetworkRef.rba_Nds_Name»;RECEIVE;;;;«this.shortName-»;«this.ComScl_Appl_getProcAllocInformation()»
+«ENDDEFINE-»
+
+«REM»
+    Prints the allocation information for a CanReceivePduLinkage, representing a SecuredPdu
+«ENDREM»
+«DEFINE Print_SecuredPduInfo FOR rba_Nds_CanReceivePduLinkage-»
+    «this.parent.rba_Nds_CanNetworkRef.rba_Nds_Name»;RECEIVE;;;«this.shortName-»;;«this.ComScl_Appl_getProcAllocInformation()»
+    «EXPAND Print_SignalPduInfo FOR ((rba_Nds_CanReceivePduLinkage)this.rba_Nds_ReceivePduRef.rba_Nds_ReceiveSecuredPdu.rba_Nds_AuthenticReceivePduLinkageRef)-»
+«ENDDEFINE-»
+
+«REM»
+    Prints the allocation information for a CanReceivePduLinkage, representing a ContainerPdu
+«ENDREM»
+«DEFINE Print_ContainerPduInfo FOR rba_Nds_CanReceivePduLinkage-»
+    «this.parent.rba_Nds_CanNetworkRef.rba_Nds_Name»;RECEIVE;;«this.shortName-»;;;«this.ComScl_Appl_getProcAllocInformation()»
+    «FOREACH this.rba_Nds_ReceivePduRef.rba_Nds_ReceiveContainerPdu.rba_Nds_ContainedReceivePduLinkageRef.typeSelect(rba_Nds_CanReceivePduLinkage).select(e|e.rba_Nds_ReceivePduRef != null && e.rba_Nds_ReceivePduRef.rba_Nds_ReceiveSignalPdu != null) AS rxPduLink-»
+        «EXPAND Print_SignalPduInfo FOR rxPduLink-»
+    «ENDFOREACH-»
+    «FOREACH this.rba_Nds_ReceivePduRef.rba_Nds_ReceiveContainerPdu.rba_Nds_ContainedReceivePduLinkageRef.typeSelect(rba_Nds_CanReceivePduLinkage).select(e|e.rba_Nds_ReceivePduRef != null && e.rba_Nds_ReceivePduRef.rba_Nds_ReceiveSecuredPdu != null) AS rxPduLink-»
+        «EXPAND Print_SecuredPduInfo FOR rxPduLink-»
+    «ENDFOREACH-»
+«ENDDEFINE-»
+
+«REM»
+    Prints the allocation information for the Frame and its contaiedPdus
+«ENDREM»
+«DEFINE Print_AllocInformation FOR rba_Nds_CanTransmitFrame-»
+    «this.parent.rba_Nds_CanNetworkRef.rba_Nds_Name»;TRANSMIT;«this.shortName-»;;;;«this.ComScl_Appl_getProcAllocInformation()»
+    «IF this.rba_Nds_CanTransmitPduLinkageRef.rba_Nds_TransmitPduRef != null && this.rba_Nds_CanTransmitPduLinkageRef.rba_Nds_TransmitPduRef.rba_Nds_TransmitSignalPdu != null-»
+        «EXPAND Print_SignalPduInfo FOR this.rba_Nds_CanTransmitPduLinkageRef-»
+    «ENDIF-»
+    «IF this.rba_Nds_CanTransmitPduLinkageRef.rba_Nds_TransmitPduRef != null && this.rba_Nds_CanTransmitPduLinkageRef.rba_Nds_TransmitPduRef.rba_Nds_TransmitSecuredPdu != null-»
+        «EXPAND Print_SecuredPduInfo FOR this.rba_Nds_CanTransmitPduLinkageRef-»
+    «ENDIF-»
+    «IF this.rba_Nds_CanTransmitPduLinkageRef.rba_Nds_TransmitPduRef != null && this.rba_Nds_CanTransmitPduLinkageRef.rba_Nds_TransmitPduRef.rba_Nds_TransmitContainerPdu != null-»
+        «EXPAND Print_ContainerPduInfo FOR this.rba_Nds_CanTransmitPduLinkageRef-»
+    «ENDIF-»
+«ENDDEFINE-»
+
+«REM»
+    Prints the allocation information for a CanTransmitPduLinkage, representing a SignalPdu
+«ENDREM»
+«DEFINE Print_SignalPduInfo FOR rba_Nds_CanTransmitPduLinkage-»
+    «this.parent.rba_Nds_CanNetworkRef.rba_Nds_Name»;TRANSMIT;;;;«this.shortName-»;«this.ComScl_Appl_getProcAllocInformation()»
+«ENDDEFINE-»
+
+«REM»
+    Prints the allocation information for a CanTransmitPduLinkage, representing a SecuredPdu
+«ENDREM»
+«DEFINE Print_SecuredPduInfo FOR rba_Nds_CanTransmitPduLinkage-»
+    «this.parent.rba_Nds_CanNetworkRef.rba_Nds_Name»;TRANSMIT;;;«this.shortName-»;;«this.ComScl_Appl_getProcAllocInformation()»
+    «EXPAND Print_SignalPduInfo FOR ((rba_Nds_CanTransmitPduLinkage)this.rba_Nds_TransmitPduRef.rba_Nds_TransmitSecuredPdu.rba_Nds_AuthenticTransmitPduLinkageRef)-»
+«ENDDEFINE-»
+
+«REM»
+    Prints the allocation information for a CanTransmitPduLinkage, representing a ContainerPdu
+«ENDREM»
+«DEFINE Print_ContainerPduInfo FOR rba_Nds_CanTransmitPduLinkage-»
+    «this.parent.rba_Nds_CanNetworkRef.rba_Nds_Name»;TRANSMIT;;«this.shortName-»;;;«this.ComScl_Appl_getProcAllocInformation()»
+    «FOREACH this.rba_Nds_TransmitPduRef.rba_Nds_TransmitContainerPdu.rba_Nds_ContainedTransmitPduLinkageRef.typeSelect(rba_Nds_CanTransmitPduLinkage).select(e|e.rba_Nds_TransmitPduRef != null && e.rba_Nds_TransmitPduRef.rba_Nds_TransmitSignalPdu != null) AS rxPduLink-»
+        «EXPAND Print_SignalPduInfo FOR rxPduLink-»
+    «ENDFOREACH-»
+    «FOREACH this.rba_Nds_TransmitPduRef.rba_Nds_TransmitContainerPdu.rba_Nds_ContainedTransmitPduLinkageRef.typeSelect(rba_Nds_CanTransmitPduLinkage).select(e|e.rba_Nds_TransmitPduRef != null && e.rba_Nds_TransmitPduRef.rba_Nds_TransmitSecuredPdu != null) AS rxPduLink-»
+        «EXPAND Print_SecuredPduInfo FOR rxPduLink-»
+    «ENDFOREACH-»
+«ENDDEFINE-»

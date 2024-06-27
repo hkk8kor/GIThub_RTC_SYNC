@@ -1,0 +1,44 @@
+«REM»
+<BASDKey>
+**********************************************************************************************************************
+*
+* COPYRIGHT RESERVED, Robert Bosch GmbH, 2019. All rights reserved.
+* The reproduction, distribution and utilization of this document as well as the communication of its contents to
+* others without explicit authorization is prohibited. Offenders will be held liable for the payment of damages.
+* All rights reserved in the event of the grant of a patent, utility model or design.
+*
+**********************************************************************************************************************
+* Administrative Information (automatically filled in)
+* $Domain____:$
+* $Namespace_:$
+* $Class_____:$
+* $Name______:$
+* $Variant___:$
+* $Revision__:$
+**********************************************************************************************************************
+</BASDKey>
+«ENDREM»
+
+«IMPORT bsw»
+«IMPORT bsw::rba_NdsModule»
+«IMPORT bsw::rba_Nds_DgsModule»
+
+«EXTENSION rba_Nds_PduCommUtil»
+«EXTENSION rba_Nds_Util»
+«EXTENSION rba_Nds_DgsUtil»
+
+«DEFINE Generate FOR Autosar»
+    «EXPAND ComScl_Appl_Measurement_Generator_SecOc::Generate FOR this»
+    «EXPAND ComScl_Appl_Measurement_Generator_Csm::Generate FOR this»
+    «EXPAND ComScl_Appl_Measurement_Generator_XCoreCdd::Generate FOR this»
+    «EXPAND ComScl_Appl_Measurement_Generator_CryptoHsm::Generate FOR this»
+«ENDDEFINE»
+
+«REM»
+<BASDKey>
+**********************************************************************************************************************
+* Administrative Information (automatically filled in)
+* $History___:$
+**********************************************************************************************************************
+</BASDKey>
+«ENDREM»

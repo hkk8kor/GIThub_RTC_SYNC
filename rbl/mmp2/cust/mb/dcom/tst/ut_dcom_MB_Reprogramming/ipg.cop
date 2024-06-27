@@ -1,0 +1,22 @@
+#
+# Cantata Test-Level Options
+#
+# Any options set in this file will override the options set in the
+# project-level options file.
+#
+# WARNING: Do not alter this file manually.
+#
+#tool.testid=84e99abd-8bc0-4faa-b0c6-e2afcd3cab77
+"--ci:--instr:stmt;func;decn;log;"
+"--sa:--calc:*#*"
+"--sm:--access_variable:"dcom_MB_Reprogramming.c":DcmAppl_BackUp_RAM"
+
+#User Section
+"--dont_ci:*"
+"--do_ci:dcom_MB_Reprogramming.c"
+"--ci:--no_instr:all"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_SetProgConditions"
+"--ci:--instr:stmt;func;call;decn;log;#Dcm_SetProgConditions"
+"--ci:--instr:stmt;func;call;decn;log;#DcmAppl_DcmGetStoreType"
+"--ci:--instr:stmt;func;call;decn;log;#DcmAppl_Switch_DcmExecuteDscReset"
+"--ci:--instr:stmt;func;call;decn;log;#Dcm_GetProgConditions"

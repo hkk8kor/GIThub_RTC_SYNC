@@ -1,0 +1,55 @@
+import bsw::rba_NdsModule;
+import bsw::PduRModule;
+
+/** Project specific forwarder action
+*/
+Autosar ComScl_Appl_Forward(Autosar model):
+    /*if(model.pduR != null) then (
+        model.pduR.forwardPduRTxBuffer()
+    ) ->*/
+    model
+;
+
+/** Returns a list of PduRDestPdus, which have a PduRDefaultValue configured and pduRDestTxBufferRef is null
+*/
+private List[PduRDestPdu] getPduRDestPdus(PduR pduR):
+    pduR.pduRRoutingTables.pduRRoutingTable.pduRRoutingPath.pduRDestPdu.select(e|e.pduRDefaultValue != null && 
+                                                                                 e.pduRDestTxBufferRef == null)
+;
+
+/** Forward the PduRTxBuffers
+*/
+private Void forwardPduRTxBuffer(PduR pduR):
+    pduR.getPduRDestPdus().forwardPduRTxBuffer(pduR)
+;
+
+/** Create and forward the PduRTxBuffer for the dedicated PduRDestPdu
+*/
+private Void forwardPduRTxBuffer(PduRDestPdu pduRDestPdu, PduR pduR):
+    let txBuffer = pduRDestPdu.createPduRTxBuffer():
+    pduR.getPduRTxBufferTable().pduRTxBuffer.fwd(txBuffer) ->
+    pduRDestPdu.fwdPduRDestTxBufferRef(txBuffer)
+;
+
+/** Returns the PduRTxBufferTable. If not exists creates a new one
+*/
+private cached PduRTxBufferTable getPduRTxBufferTable(PduR pduR):
+    if(pduR.pduRRoutingTables.pduRTxBufferTable == null) then (
+        pduR.pduRRoutingTables.fwdPduRTxBufferTable(pduR.createPduRTxBufferTable())    
+    )  ->
+    pduR.pduRRoutingTables.pduRTxBufferTable
+;
+
+/* Create a new PduRTxBufferTable
+*/
+private create PduRTxBufferTable createPduRTxBufferTable(PduR pduR):
+    this.fwdShortName("PduRTxBufferTable")
+;
+
+/** Create a new PduRTxBuffer
+*/
+private create PduRTxBuffer createPduRTxBuffer(PduRDestPdu pduRDestPdu):
+    this.fwdShortName("PduRTxBuffer_" + pduRDestPdu.pduRDestPduRef.shortName) ->
+    this.fwdPduRTxBufferDepth(1) ->
+    this.fwdPduRTxBufferLength(pduRDestPdu.pduRDestPduRef.pduLength)
+;

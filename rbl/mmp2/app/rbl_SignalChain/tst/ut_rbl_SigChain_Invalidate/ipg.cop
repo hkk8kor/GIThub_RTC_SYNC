@@ -1,0 +1,22 @@
+#
+# Cantata Test-Level Options
+#
+# Any options set in this file will override the options set in the
+# project-level options file.
+#
+# WARNING: Do not alter this file manually.
+#
+#tool.testid=bd445797-5aed-4009-bca6-5149a633e8d6
+"--ci:--instr:stmt;func;decn;log;"
+"--sa:--calc:*#*"
+"--sm:--wrap:rbl_SigChain_setAxesZero(rbl_ImuStdTypes_ImuSignalSet_t *)#rbl_SigChain_setSignalSetZero(rbl_ImuStdTypes_ImuSignalSet_t *)"
+
+#User Section
+"--dont_ci:*"
+"--do_ci:rbl_SigChain_Invalidate.c"
+"--ci:--no_instr:all"
+"--ci:--instr:stmt;func;decn;log;#rbl_SigChain_addStatusSmx"
+"--ci:--instr:stmt;func;decn;log;#rbl_SigChain_addStatusSignalSet"
+"--ci:--instr:stmt;func;decn;log;#rbl_SigChain_setSignalSetZero"
+"--ci:--instr:stmt;func;decn;log;#rbl_SigChain_setAxesZero"
+"--ci:--instr:stmt;func;decn;log;#rbl_SigChain_invalidate"

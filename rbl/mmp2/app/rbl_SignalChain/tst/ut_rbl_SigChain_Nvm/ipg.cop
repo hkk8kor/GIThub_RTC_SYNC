@@ -1,0 +1,30 @@
+#
+# Cantata Test-Level Options
+#
+# Any options set in this file will override the options set in the
+# project-level options file.
+#
+# WARNING: Do not alter this file manually.
+#
+#tool.testid=6ac30f8f-cdbd-4a43-9503-3a73354343aa
+"--ci:--instr:stmt;func;decn;log;"
+"--sa:--calc:*#*"
+"--sm:--wrap:rbl_SigChain_NvmValidCheck(uint8 ,NvM_RequestResultType )#rbl_SigChain_AlgnAccSnvtyResultCb(uint8 ,NvM_RequestResultType )"
+"--sm:--wrap:rbl_SigChain_NvmValidCheck(uint8 ,NvM_RequestResultType )#rbl_SigChain_AlgnRateSnvtyResultCb(uint8 ,NvM_RequestResultType )"
+"--sm:--wrap:rbl_SigChain_NvmValidCheck(uint8 ,NvM_RequestResultType )#rbl_SigChain_SigFilErrCntResultCb(uint8 ,NvM_RequestResultType )"
+
+#User Section
+"--dont_ci:*"
+"--do_ci:rbl_SigChain_Nvm.c"
+"--ci:--no_instr:all"
+"--ci:--instr:stmt;func;decn;log;#rbl_SigChain_NvmValidCheck"
+"--ci:--instr:stmt;func;decn;log;#rbl_SigChain_GenericWriteCb"
+"--ci:--instr:stmt;func;decn;log;#rbl_SigChain_AlgnAccSnvtyReadCb"
+"--ci:--instr:stmt;func;decn;log;#rbl_SigChain_AlgnAccSnvtyResultCb"
+"--ci:--instr:stmt;func;decn;log;#rbl_SigChain_AlgnRateSnvtyReadCb"
+"--ci:--instr:stmt;func;decn;log;#rbl_SigChain_AlgnRateSnvtyResultCb"
+"--ci:--instr:stmt;func;decn;log;#rbl_SigChain_SigFilErrCntReadCb"
+"--ci:--instr:stmt;func;decn;log;#rbl_SigChain_SigFilErrCntResultCb"
+"--ci:--instr:stmt;func;decn;log;#rbl_SigChain_SigFilCfgReadCb"
+"--ci:--instr:stmt;func;decn;log;#rbl_SigChain_SigFilCfgResultCb"
+

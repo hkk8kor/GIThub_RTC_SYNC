@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<DIAGNOSIS INFO="DiamantPro 2.0.257.23070" CHECK="E042B21D6BF7DFC6ADF9B54BC4860574ICAgICAgICAgICAgICAgICAgICAgIERpYW1hbnRQcm8gICAgICAgICAgICAgICAgICAgMi4wLjI1Ny4yMzA3MCAgICAgICAgICAgIC04NTg5MTI3NDQ5NzA1MjI4MjUyICAgICAgICAgICAgICAgICAgICAgICAgQUJUWjAyMVogICAgICAgICAgICAgICAgICAgICAgSU5cdmloNGtvciAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg">
+  <STM_COMPONENTS>
+    <STM_COMPONENT name="ESPHardware" vaf="false" root="false">
+      <KEYLIST>
+        <ITEM key="Description" />
+        <ITEM key="INFOSTATEEXPORT2ASCET">false</ITEM>
+        <ITEM key="USED_INASCET">false</ITEM>
+      </KEYLIST>
+      <DESC>Hardware component (HSW) for ESP system</DESC>
+      <USED_INASCET>false</USED_INASCET>
+      <PROVIDESCURRENTSTATE>false</PROVIDESCURRENTSTATE>
+      <PROJECT_REF />
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <STM_SUBCOMPONENTS />
+      <STM_DEPCOMPONENTS />
+      <STM_STATES>
+        <STM_STATE name="Off">
+          <DESC>hardware component "off"</DESC>
+          <ABBREVIATION />
+        </STM_STATE>
+        <STM_STATE name="ExtendedDiag">
+          <DESC>hardware component in extended diagnosis mode</DESC>
+          <ABBREVIATION />
+        </STM_STATE>
+        <STM_STATE name="Diag">
+          <DESC>hardware component in diagnosis mode</DESC>
+          <ABBREVIATION />
+        </STM_STATE>
+        <STM_STATE name="Normal">
+          <DESC>hardware component "on"</DESC>
+          <ABBREVIATION />
+        </STM_STATE>
+      </STM_STATES>
+      <STM_VAR>
+        <STM_DRIVER_INFO_STATE state_ref="Normal" />
+        <STM_VAR_STATES>
+          <STM_VAR_STATE state_ref="Off">
+            <STM_SUBSTATES />
+          </STM_VAR_STATE>
+          <STM_VAR_STATE state_ref="ExtendedDiag">
+            <STM_SUBSTATES />
+          </STM_VAR_STATE>
+          <STM_VAR_STATE state_ref="Diag">
+            <STM_SUBSTATES />
+          </STM_VAR_STATE>
+          <STM_VAR_STATE state_ref="Normal">
+            <STM_SUBSTATES />
+          </STM_VAR_STATE>
+        </STM_VAR_STATES>
+        <STM_NODES>
+          <STM_NODE node_ref="Node_uC" state_ref="Off" />
+        </STM_NODES>
+        <STM_FWS />
+      </STM_VAR>
+      <STM_SIGNALS />
+      <STM_ILLEGAL_STATE_COMBINATIONS />
+    </STM_COMPONENT>
+  </STM_COMPONENTS>
+</DIAGNOSIS>

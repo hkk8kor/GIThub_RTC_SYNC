@@ -1,0 +1,11 @@
+start
+ if (status bit position is Init) then (yes)
+  :updating signal status to init;
+ else if (status bit position is permanent) then (yes) 
+  :updating signal status to permanent failure;
+ else if (status bit position temporary ) then (yes)
+  :updating signal status to temporary failure;
+ else 
+ :updating signal status as ok;
+endif
+stop

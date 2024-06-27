@@ -1,0 +1,20 @@
+start
+
+repeat: acc and rate signal to be corrected
+  :get signal value;
+  :get temperature valid for signal;
+partition offset {
+    :get interpolated offset correction;
+    :convert interpolation result to correct resolution;
+    :add offset to signal value;   
+} 
+partition sensitivity {
+    :get interpolated offset correction;
+    :convert interpolation result to correct resolution;
+    :multiply value with sensitvity factor (converted value + 1);
+}
+  :add status of temperature to signal status;
+repeat while (any signals left? )
+
+stop
+

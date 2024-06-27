@@ -1,0 +1,24 @@
+start
+group <b>RBFS_OEMBootloader == RBFS_OEMBootloader_Yes
+     :local pointer PTR_BootHeaderInfo_tst is set to   
+     Bootloader address <b>DCOM_BOOTLOADER_ADDRESS;
+end group
+
+if (Check if Data pointer is not equal to null pointer) is (yes) then
+:The DCM buffer first 2 bytes are updated with 
+<b>DDS Package Release of Application Software;
+     
+group <b>RBFS_OEMBootloader == RBFS_OEMBootloader_Yes  
+   if (Check if Bootloader address <b>DCOM_BOOTLOADER_ADDRESS
+          is in Range of <b>DCOM_APPLICATION_ENDADDRESS) is (yes) then
+     :The DCM buffer next 2 bytes are updated with
+   <b>DDS Package Release of Boot Software;
+     :update return value with E_OK;
+   else(no)
+   :update return value with E_NOT_OK;
+   endif
+end group
+else(no)
+:update return value with E_NOT_OK;
+endif
+stop

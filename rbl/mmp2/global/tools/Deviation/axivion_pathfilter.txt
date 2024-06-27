@@ -1,0 +1,12 @@
+used path filter for axivion
+
+!"rba/*" & !/bct/_out &!"rb/*"&!"*RTE/rtegen/*"&!"*3rdPartySwInt/SSA/SWC/*"&!"*3rdPartySwInt/SWC_Diag/*"&!"*mb/rbl_dcom/src/cubas/*"
+
+
+details:
+
+!"rba/*" & !/bct/_out -> take over from base software
+!"rb/*" -> base software (as this 3rd party)
+!"*RTE/rtegen/*" -> has own filter, that includes only findings without deviation document delivered with the rtegen/*
+!"*3rdPartySwInt/SSA/SWC/*"&!"*3rdPartySwInt/SWC_Diag/*" -> 3rd party software 
+!"*mb/rbl_dcom/src/cubas/*" -> unused hook functions derived from templates (only for compilation)

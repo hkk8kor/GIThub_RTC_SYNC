@@ -1,0 +1,617 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_4-0-3.xsd">
+  <ADMIN-DATA>
+    <LANGUAGE>EN</LANGUAGE>
+    <USED-LANGUAGES>
+      <L-10 xml:space="default" L="EN">EN</L-10>
+    </USED-LANGUAGES>
+    <SDGS>
+      <SDG GID="BASDKey">
+        <SD GID="Domain"></SD>
+        <SD GID="Namespace"></SD>
+        <SD GID="Class"></SD>
+        <SD GID="Name"></SD>
+        <SD GID="Variant"></SD>
+        <SD GID="Revision"></SD>
+        <SD GID="History"></SD>
+      </SDG>
+      <SDG GID="RBTemplate">
+        <SD GID="Type">BswDoc</SD>
+        <SD GID="Subtype">ModuleRb</SD>
+        <SD GID="Version">1.0.6</SD>
+      </SDG>
+    </SDGS>
+  </ADMIN-DATA>
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>RB</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE>
+          <SHORT-NAME>RBA</SHORT-NAME>
+          <AR-PACKAGES>
+            <AR-PACKAGE>
+              <SHORT-NAME><?xm-replace_text {ComponentShortName}?></SHORT-NAME>
+              <AR-PACKAGES>
+                <AR-PACKAGE>
+                  <SHORT-NAME>BswModuleDescriptions</SHORT-NAME>
+                  <ELEMENTS>
+                    <BSW-MODULE-DESCRIPTION>
+                      <SHORT-NAME><?xm-replace_text {ComponentShortName}?></SHORT-NAME>
+                      <LONG-NAME>
+                        <L-4 L="EN"><?xm-replace_text {Component long name}?></L-4>
+                      </LONG-NAME>
+                      <BSW-MODULE-DOCUMENTATIONS>
+                        <SW-COMPONENT-DOCUMENTATION>
+                          <SW-FEATURE-DEF>
+                            <SHORT-NAME>BswDocDef</SHORT-NAME>
+                            <CHAPTER>
+                              <SHORT-NAME>BswDocDefPurpose</SHORT-NAME>
+                              <LONG-NAME>
+                                <L-4 L="EN">Purpose</L-4>
+                              </LONG-NAME>
+                              <P>
+                                <L-1 L="EN">The Nds component provides a uniformed interaction platform to configure a network communication stack. Currently the network types CAN, LIN and Flexray are supported. Intention of the NDS is to abstract the AUTOSAR layered architecture and give an function overview to the involved stakeholder at project team and customer</L-1>
+                              </P>
+                            </CHAPTER>
+                            <CHAPTER>
+                              <SHORT-NAME>BswDocDefIntroduction</SHORT-NAME>
+                              <LONG-NAME>
+                                <L-4 L="EN">Introduction</L-4>
+                              </LONG-NAME>
+                              <P>
+                                <L-1 L="EN">Nds enable BSW developers to provide specific adequate configuration concepts (esp. editors and importers) in BCT. </L-1>
+                              </P><P>
+<L-1 L="EN">Hotspot is to prepare the proper configuration of CAN, LIN or Flexray network stack. It incorporates a first abstraction model and performs a forwarding of configuration data to the underlying AUTOSAR components.</L-1></P>
+                            </CHAPTER>
+                            <CHAPTER>
+                              <SHORT-NAME>BswDocDefInteraction</SHORT-NAME>
+                              <LONG-NAME>
+                                <L-4 L="EN">Interaction</L-4>
+                              </LONG-NAME>
+                              <P>
+                                <L-1 L="EN"><?xm-replace_text {Mandatory: Explain the place of the component in the architecture, including the input and output flows with other components. For example make a picture with your component in the middle and all others having interactions with it around, linked by arrows.}?></L-1>
+                              </P>
+                            </CHAPTER>
+                            <CHAPTER>
+                              <SHORT-NAME>BswDocDefFeatures</SHORT-NAME>
+                              <LONG-NAME>
+                                <L-4 L="EN">Features</L-4>
+                              </LONG-NAME>
+                              <P>
+                                <L-1 L="EN">Prepare a easy identification of the network</L-1>
+                              </P><LIST TYPE="UNNUMBER">
+  <ITEM>
+    <P><L-1 L="EN">Networks</L-1></P>
+  </ITEM><ITEM>
+    <P><L-1 L="EN">Frames</L-1></P>
+  </ITEM><ITEM>
+    <P><L-1 L="EN">Pdus</L-1></P>
+  </ITEM>
+</LIST>
+    <LIST TYPE="UNNUMBER">
+<ITEM>
+<P>
+<L-1 L="EN">Signals, Signal groups</L-1></P></ITEM></LIST>
+<P>
+<L-1 L="EN">Based on this network information the assigment to a dedicated Ecu and its variants can be choosen and configured. Additionally standard evaluations may be added</L-1></P>
+<LIST TYPE="UNNUMBER">
+  <ITEM>
+    <P><L-1 L="EN">Network</L-1></P>
+  </ITEM><ITEM>
+    <P><L-1 L="EN">Frame, Pdu</L-1></P>
+  </ITEM><ITEM>
+    <P><L-1 L="EN">Signalgroup, Signal</L-1></P>
+  </ITEM>
+</LIST>
+  
+<P><L-1 L="EN">To transfer the model parameters to the underlying AUTOSAR components the forwarding mechanism of the AUTOSAR workbench is utilized</L-1></P>
+  
+                            </CHAPTER>
+                            <CHAPTER>
+                              <SHORT-NAME>BswDocDefSubstructure</SHORT-NAME>
+                              <LONG-NAME>
+                                <L-4 L="EN">Substructure</L-4>
+                              </LONG-NAME>
+                              <P>
+                                <L-1 L="EN"><?xm-replace_text {Optional: This part describes the internal structure, i.e. the decomposition into groups of files with similar tasks (in case of components) or into components and their interaction with each other (in case of packages). This may contain parts of the design, reformulated to be comprehensible by the end user.}?></L-1>
+                              </P>
+                            </CHAPTER>
+                          </SW-FEATURE-DEF>
+                          <SW-FEATURE-DESC>
+                            <SHORT-NAME>BswDocDesc</SHORT-NAME>
+                            <CHAPTER>
+                              <SHORT-NAME>BswDocDescBehaviorNormalMode</SHORT-NAME>
+                              <LONG-NAME>
+                                <L-4 L="EN">Behavior in normal mode</L-4>
+                              </LONG-NAME>
+                              <P>
+                                <L-1 L="EN">Refer to assigned information at the respective configuration elements</L-1>
+                              </P>
+                            </CHAPTER>
+                            <CHAPTER>
+                              <SHORT-NAME>BswDocDescBehaviorInitialization</SHORT-NAME>
+                              <LONG-NAME>
+                                <L-4 L="EN">Behavior in initialization</L-4>
+                              </LONG-NAME>
+                              <P>
+                                <L-1 L="EN">Refer to assigned information at the respective configuration elements</L-1>
+                              </P>
+                            </CHAPTER>
+                            <CHAPTER>
+                              <SHORT-NAME>BswDocDescBehaviorShutdown</SHORT-NAME>
+                              <LONG-NAME>
+                                <L-4 L="EN">Behavior in shutdown</L-4>
+                              </LONG-NAME>
+                              <P>
+                                <L-1 L="EN">Refer to assigned information at the respective configuration elements</L-1>
+                              </P>
+                            </CHAPTER><CHAPTER>  
+  <SHORT-NAME>BswDocDescBehaviorConfiguration</SHORT-NAME>
+  <LONG-NAME><L-4 L="EN">Network definition</L-4></LONG-NAME>
+  <P>
+<L-1 L="EN">The definitions inside this document are automatically generated from the BCT network configuration toolchain. The definitions shall be regarded as the valid definition of the Ecu and so can be used for reviw an discussion with external and internal development partners.</L-1></P>
+
+</CHAPTER>
+                          <CHAPTER>  
+  <SHORT-NAME>BswDocDescBehaviorAssignedComponentConfiguration</SHORT-NAME>
+  <LONG-NAME><L-4 L="EN">Supported components</L-4></LONG-NAME>
+  <P>
+<L-1 L="EN">Currently the following component can be forwarded or directly generated based on the rba_Nds definition</L-1></P>
+<P>
+<L-1 L="EN"></L-1></P>
+<LIST TYPE="UNNUMBER">
+  <ITEM>
+    <P>
+<L-1 L="EN">AUTOSAR components:</L-1></P>
+<P>
+<L-1 L="EN">CAN: CanDrv, CanIf</L-1></P>
+<P>
+<L-1 L="EN">LIN: LinDrv. LinIf</L-1></P>
+<P>
+<L-1 L="EN">Flexray: FrDrv, FrIf</L-1></P>
+<P>
+<L-1 L="EN">Generic: PduR, Com, EcuC</L-1></P>
+<P>
+<L-1 L="EN"></L-1></P>
+  </ITEM><ITEM>
+    <P><L-1 L="EN">Legacy components:</L-1></P><P><L-1 L="EN">DGS: ComScl, Scl</L-1></P><P><L-1 L="EN"></L-1></P>
+  </ITEM>
+</LIST>
+</CHAPTER></SW-FEATURE-DESC>
+                          <SW-CALIBRATION-NOTES>
+                            <SHORT-NAME>BswDocCalibration</SHORT-NAME>
+                            <CHAPTER>
+                              <SHORT-NAME>BswDocCalibrationMeasurements</SHORT-NAME>
+                              <LONG-NAME>
+                                <L-4 L="EN">Measurements</L-4>
+                              </LONG-NAME>
+                              <P>
+                                <L-1 L="EN"><?xm-replace_text {Mandatory only if the component actually provides measurable variables: Describe what can be measured for which purpose in this component.}?></L-1>
+                              </P>
+                            </CHAPTER>
+                            <CHAPTER>
+                              <SHORT-NAME>BswDocCalibrationParameters</SHORT-NAME>
+                              <LONG-NAME>
+                                <L-4 L="EN">Calibration parameters</L-4>
+                              </LONG-NAME>
+                              <P>
+                                <L-1 L="EN"><?xm-replace_text {Mandatory only if the component actually provides calibration parameters: Describe what can be calibrated in this component and what are the effects of this calibration. Also describe for each calibration parameter which value would be a good start or standard calibration value.}?></L-1>
+                              </P>
+                            </CHAPTER>
+                          </SW-CALIBRATION-NOTES>
+                          <CHAPTER>
+                            <SHORT-NAME>BswDocGlossary</SHORT-NAME>
+                            <LONG-NAME>
+                              <L-4 L="EN">Glossary</L-4>
+                            </LONG-NAME>
+                            <P>
+                              <L-1 L="EN"><?xm-replace_text {Optional: Add an alphabetically sorted list of component specific terms.}?></L-1>
+                            </P>
+                          </CHAPTER>
+                          <CHAPTER>
+                            <SHORT-NAME>BswDocArDeviations</SHORT-NAME>
+                            <LONG-NAME>
+                              <L-4 L="EN">Deviations from AUTOSAR specification</L-4>
+                            </LONG-NAME>
+                            <CHAPTER>
+                              <SHORT-NAME>BswDocArDeviationsPermanent</SHORT-NAME>
+                              <LONG-NAME>
+                                <L-4 L="EN">Permanent deviations</L-4>
+                              </LONG-NAME>
+                              <P>
+                                <L-1 L="EN"><?xm-replace_text {Mandatory only if the component is standardized by AUTOSAR: Enter the deviations from specification which are not version-dependent and are planned to be permanent. They are due to either the design or to a choice to reject some functionalities or characteristics given in the specification.}?></L-1>
+                              </P>
+                            </CHAPTER>
+                            <CHAPTER>
+                              <SHORT-NAME>BswDocArDeviationsTemporary</SHORT-NAME>
+                              <LONG-NAME>
+                                <L-4 L="EN">Temporary deviations</L-4>
+                              </LONG-NAME>
+                              <P>
+                                <L-1 L="EN"><?xm-replace_text {Mandatory only if the component is standardized by AUTOSAR: Enter the deviations from specification which are planned to be removed in the future.}?></L-1>
+                              </P>
+                            </CHAPTER>
+                          </CHAPTER>
+                          <CHAPTER>
+                            <SHORT-NAME>BswDocInterfaces</SHORT-NAME>
+                            <LONG-NAME>
+                              <L-4 L="EN">Interface reference</L-4>
+                            </LONG-NAME>
+                            <CHAPTER>
+                              <SHORT-NAME>BswDocInterfaceEcuc</SHORT-NAME>
+                              <LONG-NAME>
+                                <L-4 L="EN">Configuration interface</L-4>
+                              </LONG-NAME>
+                              <P>
+                                <L-1 L="EN"><?xm-replace_text {Generated: Don't enter anything here. The contents of this chapter will be automatically filled from the ECUC parameter definition file.}?></L-1>
+                              </P>
+                            </CHAPTER>
+                            <CHAPTER>
+                              <SHORT-NAME>BswDocInterfaceCalibration</SHORT-NAME>
+                              <LONG-NAME>
+                                <L-4 L="EN">Calibration interface</L-4>
+                              </LONG-NAME>
+                              <CHAPTER>
+                                <SHORT-NAME>BswDocInterfaceCalibrationMeasurements</SHORT-NAME>
+                                <LONG-NAME>
+                                  <L-4 L="EN">Measurements</L-4>
+                                </LONG-NAME>
+                                <P>
+                                  <L-1 L="EN"><?xm-replace_text {Generated: Don't enter anything here. The contents of this chapter will be automatically filled from BSWMD.}?></L-1>
+                                </P>
+                              </CHAPTER>
+                              <CHAPTER>
+                                <SHORT-NAME>BswDocInterfaceCalibrationParameters</SHORT-NAME>
+                                <LONG-NAME>
+                                  <L-4 L="EN">Calibration parameters</L-4>
+                                </LONG-NAME>
+                                <P>
+                                  <L-1 L="EN"><?xm-replace_text {Generated: Don't enter anything here. The contents of this chapter will be automatically filled from BSWMD.}?></L-1>
+                                </P>
+                              </CHAPTER>
+                            </CHAPTER>
+                            <CHAPTER>
+                              <SHORT-NAME>BswDocInterfaceRte</SHORT-NAME>
+                              <LONG-NAME>
+                                <L-4 L="EN">RTE interface</L-4>
+                              </LONG-NAME>
+                              <CHAPTER>
+                                <SHORT-NAME>BswDocInterfaceRteClientServer</SHORT-NAME>
+                                <LONG-NAME>
+                                  <L-4 L="EN">Client/server interfaces</L-4>
+                                </LONG-NAME>
+                                <P>
+                                  <L-1 L="EN"><?xm-replace_text {Mandatory only if the component actually has a client/server interface: Describe all client/server interfaces defined by this component.}?></L-1>
+                                </P>
+                              </CHAPTER>
+                              <CHAPTER>
+                                <SHORT-NAME>BswDocInterfaceRteData</SHORT-NAME>
+                                <LONG-NAME>
+                                  <L-4 L="EN">Data interfaces</L-4>
+                                </LONG-NAME>
+                                <P>
+                                  <L-1 L="EN"><?xm-replace_text {Mandatory only if the component actually has a data interface: Describe all data interfaces such as sender/receiver or parameter interfaces defined by this component.}?></L-1>
+                                </P>
+                              </CHAPTER>
+                              <CHAPTER>
+                                <SHORT-NAME>BswDocInterfaceRteModeSwitch</SHORT-NAME>
+                                <LONG-NAME>
+                                  <L-4 L="EN">Mode switch interfaces</L-4>
+                                </LONG-NAME>
+                                <P>
+                                  <L-1 L="EN"><?xm-replace_text {Mandatory only if the component actually has a mode switch interface: Describe all mode switch interfaces defined by this component.}?></L-1>
+                                </P>
+                              </CHAPTER>
+                              <CHAPTER>
+                                <SHORT-NAME>BswDocInterfaceRteTrigger</SHORT-NAME>
+                                <LONG-NAME>
+                                  <L-4 L="EN">Trigger interfaces</L-4>
+                                </LONG-NAME>
+                                <P>
+                                  <L-1 L="EN"><?xm-replace_text {Mandatory only if the component actually has a trigger interface: Describe all trigger interfaces defined by this component.}?></L-1>
+                                </P>
+                              </CHAPTER>
+                              <CHAPTER>
+                                <SHORT-NAME>BswDocInterfaceRtePPorts</SHORT-NAME>
+                                <LONG-NAME>
+                                  <L-4 L="EN">Provided ports</L-4>
+                                </LONG-NAME>
+                                <P>
+                                  <L-1 L="EN"><?xm-replace_text {Mandatory only if the component actually has provided ports: Describe all ports provided by this component. In case of generated provided ports, describe the pattern and conditions according to which provided ports are generated.}?></L-1>
+                                </P>
+                              </CHAPTER>
+                              <CHAPTER>
+                                <SHORT-NAME>BswDocInterfaceRteRPorts</SHORT-NAME>
+                                <LONG-NAME>
+                                  <L-4 L="EN">Required ports</L-4>
+                                </LONG-NAME>
+                                <P>
+                                  <L-1 L="EN"><?xm-replace_text {Mandatory only if the component actually has required ports: Describe all ports required by this component. In case of generated required ports, describe the pattern and conditions according to which required ports are generated.}?></L-1>
+                                </P>
+                              </CHAPTER>
+                            </CHAPTER>
+                            <CHAPTER>
+                              <SHORT-NAME>BswDocInterfaceC</SHORT-NAME>
+                              <LONG-NAME>
+                                <L-4 L="EN">C interface</L-4>
+                              </LONG-NAME>
+                              <CHAPTER>
+                                <SHORT-NAME>BswDocInterfaceCProvidedFunctions</SHORT-NAME>
+                                <LONG-NAME>
+                                  <L-4 L="EN">Provided functions</L-4>
+                                </LONG-NAME>
+                                <P>
+                                  <L-1 L="EN"><?xm-replace_text {Generated: Don't enter anything here. The contents of this chapter will be automatically filled from BSWMD.}?></L-1>
+                                </P>
+                              </CHAPTER>
+                              <CHAPTER>
+                                <SHORT-NAME>BswDocInterfaceCOutgoingCallbacks</SHORT-NAME>
+                                <LONG-NAME>
+                                  <L-4 L="EN">Outgoing callbacks</L-4>
+                                </LONG-NAME>
+                                <P>
+                                  <L-1 L="EN"><?xm-replace_text {Generated: Don't enter anything here. The contents of this chapter will be automatically filled from BSWMD.}?></L-1>
+                                </P>
+                              </CHAPTER>
+                              <CHAPTER>
+                                <SHORT-NAME>BswDocInterfaceCMacros</SHORT-NAME>
+                                <LONG-NAME>
+                                  <L-4 L="EN">Macros</L-4>
+                                </LONG-NAME>
+                                <P>
+                                  <L-1 L="EN"><?xm-replace_text {Generated: Don't enter anything here. The contents of this chapter will be automatically filled from BSWMD.}?></L-1>
+                                </P>
+                              </CHAPTER>
+                              <CHAPTER>
+                                <SHORT-NAME>BswDocInterfaceCPreproc</SHORT-NAME>
+                                <LONG-NAME>
+                                  <L-4 L="EN">Preprocessor constants</L-4>
+                                </LONG-NAME>
+                                <P>
+                                  <L-1 L="EN"><?xm-replace_text {Mandatory only if the component actually has public preprocessor constants: A list of all publicly accessible preprocessor constants shall be given here together with a short description of each constant. Give non-obvious information to enable a correct usage of the API.}?></L-1>
+                                </P>
+                              </CHAPTER>
+                              <CHAPTER>
+                                <SHORT-NAME>BswDocInterfaceCDataTypes</SHORT-NAME>
+                                <LONG-NAME>
+                                  <L-4 L="EN">Data types</L-4>
+                                </LONG-NAME>
+                                <P>
+                                  <L-1 L="EN"><?xm-replace_text {Generated: Don't enter anything here. The contents of this chapter will be automatically filled from BSWMD.}?></L-1>
+                                </P>
+                              </CHAPTER>
+                              <CHAPTER>
+                                <SHORT-NAME>BswDocInterfaceCConstants</SHORT-NAME>
+                                <LONG-NAME>
+                                  <L-4 L="EN">Constants</L-4>
+                                </LONG-NAME>
+                                <P>
+                                  <L-1 L="EN"><?xm-replace_text {Mandatory only if the component actually has public C constants: A list of all publicly accessible C constants shall be given here together with a short description of each constant. The description should correspond to the AR4.0 chapter 8 table format.}?></L-1>
+                                </P>
+                              </CHAPTER>
+                              <CHAPTER>
+                                <SHORT-NAME>BswDocInterfaceCVariables</SHORT-NAME>
+                                <LONG-NAME>
+                                  <L-4 L="EN">Variables</L-4>
+                                </LONG-NAME>
+                                <P>
+                                  <L-1 L="EN"><?xm-replace_text {Mandatory only if the component actually has public variables: A list of all publicly accessible variables shall be given here together with a short description of each variable. Give non-obvious information to enable a correct usage of the API, for example restrictions due to hardware limits.}?></L-1>
+                                </P>
+                              </CHAPTER>
+                            </CHAPTER>
+                            <CHAPTER>
+                              <SHORT-NAME>BswDocInterfaceSched</SHORT-NAME>
+                              <LONG-NAME>
+                                <L-4 L="EN">Scheduling interface</L-4>
+                              </LONG-NAME>
+                              <P>
+                                <L-1 L="EN"><?xm-replace_text {Mandatory only if the component actually has schedulable or interrupt entities: Describe the information necessary to help the user to configure the RTE on the BSW side to create the BswScheduler. It covers the description of all BSW schedulable and interrupt entities with their properties as well as a description of the events triggering these entities.}?></L-1>
+                              </P>
+                            </CHAPTER>
+                          </CHAPTER>
+                          <CHAPTER>
+                            <SHORT-NAME>BswDocEnvNeeds</SHORT-NAME>
+                            <LONG-NAME>
+                              <L-4 L="EN">Environment needs</L-4>
+                            </LONG-NAME>
+                            <CHAPTER>
+                              <SHORT-NAME>BswDocEnvNeedsDemEvents</SHORT-NAME>
+                              <LONG-NAME>
+                                <L-4 L="EN">Dem events</L-4>
+                              </LONG-NAME>
+                              <P>
+                                <L-1 L="EN"><?xm-replace_text {Mandatory only if the component actually reports production errors to Dem: Describe the Dem events (production errors) you have defined in this component.}?></L-1>
+                              </P>
+                            </CHAPTER>
+                            <CHAPTER>
+                              <SHORT-NAME>BswDocEnvNeedsDetEvents</SHORT-NAME>
+                              <LONG-NAME>
+                                <L-4 L="EN">Det events</L-4>
+                              </LONG-NAME>
+                              <P>
+                                <L-1 L="EN"><?xm-replace_text {Mandatory only if the component actually reports development errors to Det: Describe the Det events (development errors) you have defined in this component.}?></L-1>
+                              </P>
+                            </CHAPTER>
+                            <CHAPTER>
+                              <SHORT-NAME>BswDocEnvNeedsNvBlocks</SHORT-NAME>
+                              <LONG-NAME>
+                                <L-4 L="EN">Non-volatile memory blocks</L-4>
+                              </LONG-NAME>
+                              <P>
+                                <L-1 L="EN"><?xm-replace_text {Mandatory only if the component actually requires NvM blocks for persistant data storage: Describe the NvM blocks required for this component and the configuration they should have.}?></L-1>
+                              </P>
+                            </CHAPTER>
+                            <CHAPTER>
+                              <SHORT-NAME>BswDocEnvNeedsExclAreas</SHORT-NAME>
+                              <LONG-NAME>
+                                <L-4 L="EN">Exclusive areas</L-4>
+                              </LONG-NAME>
+                              <P>
+                                <L-1 L="EN"><?xm-replace_text {Mandatory only if the component actually uses exclusive areas: Configuration of the template file [Component]_Cfg_SchM.h which is used to configure a protection mechanism for the exclusive areas (AUTOSAR module "Schedule Manager"). What makes sense and why?}}?></L-1>
+                              </P>
+                            </CHAPTER>
+                            <CHAPTER>
+                              <SHORT-NAME>BswDocEnvNeedsMemMap</SHORT-NAME>
+                              <LONG-NAME>
+                                <L-4 L="EN">Memory mapping</L-4>
+                              </LONG-NAME>
+                              <P>
+                                <L-1 L="EN"><?xm-replace_text {Mandatory only if the component actually uses memory mapping: Describe all information regarding the memory mapping of the component. For AUTOSAR describe the MemMap classes and their usage, so that the MemMap.h file can be configured. This part can contain the name of a MemMap.h template delivered with the component if it's well documented.}?></L-1>
+                              </P>
+                            </CHAPTER>
+                          </CHAPTER>
+                          <CHAPTER>
+                            <SHORT-NAME>BswDocDependencies</SHORT-NAME>
+                            <LONG-NAME>
+                              <L-4 L="EN">Dependencies</L-4>
+                            </LONG-NAME>
+                            <CHAPTER>
+                              <SHORT-NAME>BswDocDependenciesCompPac</SHORT-NAME>
+                              <LONG-NAME>
+                                <L-4 L="EN">Other components/packages</L-4>
+                              </LONG-NAME>
+                              <P>
+                                <L-1 L="EN"><?xm-replace_text {Mandatory only if version-independent dependencies to other components or packages exist for the component: Mention all components or packages this component depends on, and explain how. Only version-independent dependencies shall be documented here.}?></L-1>
+                              </P>
+                            </CHAPTER>
+                            <CHAPTER>
+                              <SHORT-NAME>BswDocDependenciesSw</SHORT-NAME>
+                              <LONG-NAME>
+                                <L-4 L="EN">Software environment</L-4>
+                              </LONG-NAME>
+                              <P>
+                                <L-1 L="EN"><?xm-replace_text {Mandatory only if version-independent software environment constraints exist for the component: Document any software environment constraints which are valid for the component, e.g. structure alignment, endianness... Only version-independent dependencies shall be documented here.}?></L-1>
+                              </P>
+                            </CHAPTER>
+                            <CHAPTER>
+                              <SHORT-NAME>BswDocDependenciesHw</SHORT-NAME>
+                              <LONG-NAME>
+                                <L-4 L="EN">Hardware environment</L-4>
+                              </LONG-NAME>
+                              <P>
+                                <L-1 L="EN"><?xm-replace_text {Mandatory only if version-independent hardware environment constraints exist for the component: Document any hardware environment contraints which are valid for the component, e.g. supported hardware or other hardware-related constraints. Only version-independent dependencies shall be documented here.}?></L-1>
+                              </P>
+                            </CHAPTER>
+                            <CHAPTER>
+                              <SHORT-NAME>BswDocDependenciesTools</SHORT-NAME>
+                              <LONG-NAME>
+                                <L-4 L="EN">Tool environment</L-4>
+                              </LONG-NAME>
+                              <P>
+<L-1 L="EN">rba_Nds is highly dependent on AUTOSAR workbench. Function are only ensured if the following release is used</L-1></P>
+    <LIST TYPE="UNNUMBER"></LIST><P></P><LIST TYPE="UNNUMBER">
+  <ITEM>
+    
+  <P><L-1 L="EN">AWB 2013.2.1</L-1></P></ITEM><ITEM>
+    <P><L-1 L="EN">EcuWorks 2013.2.1</L-1></P>
+  </ITEM>
+</LIST>
+  
+                            </CHAPTER>
+                          </CHAPTER>
+                          <CHAPTER>
+                            <SHORT-NAME>BswDocVariants</SHORT-NAME>
+                            <LONG-NAME>
+                              <L-4 L="EN">Variant handling</L-4>
+                            </LONG-NAME>
+                            <CHAPTER>
+                              <SHORT-NAME>BswDocVariantsSysConst</SHORT-NAME>
+                              <LONG-NAME>
+                                <L-4 L="EN">System constants</L-4>
+                              </LONG-NAME>
+                              <P>
+                                <L-1 L="EN"><?xm-replace_text {Mandatory only if the component is actually influenced by system constants: Enter the list of the system constants having an influence on the component and their use cases.}?></L-1>
+                              </P>
+                            </CHAPTER>
+                            <CHAPTER>
+                              <SHORT-NAME>BswDocVariantsFileSelection</SHORT-NAME>
+                              <LONG-NAME>
+                                <L-4 L="EN">File selection</L-4>
+                              </LONG-NAME>
+                              <P>
+                                <L-1 L="EN"><?xm-replace_text {Mandatory only if the component actually supports file selection: Configuration by selecting only specific files (to be compiled for example). This configuration mode isn't foreseen by AUTOSAR, but there may be cases where only one file is to be selected so that the SW can be linked successfully. It might as well be only a recommendation (e.g. "all PduR_Lin_xxx.c files can be omitted in the compilation if the Lin bus is not used in this project").}?></L-1>
+                              </P>
+                            </CHAPTER>
+                            <CHAPTER>
+                              <SHORT-NAME>BswDocVariantsTemplCust</SHORT-NAME>
+                              <LONG-NAME>
+                                <L-4 L="EN">Template customization</L-4>
+                              </LONG-NAME>
+                              <P>
+                                <L-1 L="EN"><?xm-replace_text {Mandatory only if the component actually provides templates to be customized: Manual configuration of delivered tpl-files to produce .c/.h files: Describe here for each file the configuration elements it contains, like function switches and other #define details, as well as the template functions to adapt. This configuration mode is not an AUTOSAR mechanism. It is therefore relevant mostly for legacy components, or for components in a early and provisory step of their development. Configuration of exclusive areas in [Component]_Cfg_SchM.h is not explained here but in the BswDocEnvNeedsExclAreas chapter.}?></L-1>
+                              </P>
+                            </CHAPTER>
+                          </CHAPTER>
+                          <CHAPTER>
+                            <SHORT-NAME>BswDocIntegration</SHORT-NAME>
+                            <LONG-NAME>
+                              <L-4 L="EN">Integration</L-4>
+                            </LONG-NAME>
+                            <CHAPTER>
+                              <SHORT-NAME>BswDocIntegrationEffort</SHORT-NAME>
+                              <LONG-NAME>
+                                <L-4 L="EN">Estimated effort</L-4>
+                              </LONG-NAME>
+                              <P>
+                                <L-1 L="EN"><?xm-replace_text {Mandatory for either the component or for the package (if the component is always integrated with the whole package): This chapter gives a rough estimation of the required integration effort of this component. You can estimate using these levels: trivial, low, middle or high effort.}?></L-1>
+                              </P>
+                            </CHAPTER>
+                            <CHAPTER>
+                              <SHORT-NAME>BswDocIntegrationHowTo</SHORT-NAME>
+                              <LONG-NAME>
+                                <L-4 L="EN">How to integrate</L-4>
+                              </LONG-NAME>
+                              <P>
+                                <L-1 L="EN"><?xm-replace_text {Mandatory for either the component or for the package (if the component is always integrated with the whole package): Which steps are necessary for a first integration. Describe all the required activities to be done for the integration, like choosing a variant, calling the cyclic functions from the tasks, do the configuration, and configure the error events (Dem/Det).}?></L-1>
+                              </P>
+                            </CHAPTER>
+                            <CHAPTER>
+                              <SHORT-NAME>BswDocIntegrationSched</SHORT-NAME>
+                              <LONG-NAME>
+                                <L-4 L="EN">Scheduling aspects</L-4>
+                              </LONG-NAME>
+                              <P>
+                                <L-1 L="EN"><?xm-replace_text {Mandatory for either the component or for the package (if the component is always integrated with the whole package): Describe all constraints regarding the invocation of initialization, deinitialization and regularly scheduled functions as well as interrupt handlers here. This description shall also cover the calling order relative to callables of other components (where applicable).}?></L-1>
+                              </P>
+                            </CHAPTER>
+                            <CHAPTER>
+                              <SHORT-NAME>BswDocIntegrationBuild</SHORT-NAME>
+                              <LONG-NAME>
+                                <L-4 L="EN">Build aspects</L-4>
+                              </LONG-NAME>
+                              <P>
+                                <L-1 L="EN"><?xm-replace_text {Mandatory for either the component or for the package (if the component is always integrated with the whole package) and only if build-related integration aspects exist for the component: This chapter describes the integration of the component (including paths, etc...) in the build process. For example for the OS component: switch in build possible between the extended or standard version.}?></L-1>
+                              </P>
+                            </CHAPTER>
+                          </CHAPTER>
+                          <CHAPTER>
+                            <SHORT-NAME>BswDocUseCases</SHORT-NAME>
+                            <LONG-NAME>
+                              <L-4 L="EN">Use cases</L-4>
+                            </LONG-NAME>
+                            <P>
+                              <L-1 L="EN"><?xm-replace_text {Optional: "How to" chapter: Description of the use cases for the component, i.e. what the user has to do by applying/configuring the component, for the typical needs/expectations he can have. Make a sub-chapter for each use case.}?></L-1>
+                            </P>
+                          </CHAPTER>
+                          <CHAPTER>
+                            <SHORT-NAME>BswDocMisc</SHORT-NAME>
+                            <LONG-NAME>
+                              <L-4 L="EN">Miscellaneous</L-4>
+                            </LONG-NAME>
+                            <P>
+                              <L-1 L="EN"><?xm-replace_text {Optional: This chapter describes the miscellaneous information of the component, which are not part of the existing chapters. It can contain for example a FAQ.}?></L-1>
+                            </P>
+                          </CHAPTER>
+                        </SW-COMPONENT-DOCUMENTATION>
+                      </BSW-MODULE-DOCUMENTATIONS>
+                    </BSW-MODULE-DESCRIPTION>
+                  </ELEMENTS>
+                </AR-PACKAGE>
+              </AR-PACKAGES>
+            </AR-PACKAGE>
+          </AR-PACKAGES>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

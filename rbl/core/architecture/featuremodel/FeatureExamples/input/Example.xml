@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BuildVariantConfig>
+	<BuildVariants>
+		<BuildVariant>
+			<VDM>..\FeatureExamples\Basic.vdm</VDM>
+			<VDM>..\FeatureExamples\Medium.vdm</VDM>
+			<VDM>..\FeatureExamples\Top.vdm</VDM>
+		</BuildVariant>
+	</BuildVariants>
+	<Settings>
+		<FeatureModel>..\FeatureExamples.xfm</FeatureModel>
+		<OutputFolder>..\output</OutputFolder>
+		<TemplateFolder>..\..\MPSP_FeatureModel\input\templates</TemplateFolder>
+	</Settings>
+</BuildVariantConfig>

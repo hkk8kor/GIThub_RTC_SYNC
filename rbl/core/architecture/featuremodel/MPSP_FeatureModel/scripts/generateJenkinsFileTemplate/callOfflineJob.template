@@ -1,0 +1,13 @@
+stage("Call offline tooling"){
+	agent {
+		label 'MPSP_CI'
+	}
+	/*%when%*/
+	steps {
+		echo 'calling ...'
+		script {
+			/*%offlineJobCall%*/
+		}
+		echo 'fire and forget ;-) '
+	}
+} // stage("Call offline tooling")

@@ -1,0 +1,9 @@
+start
+:read temp value from filtered signal from siganl chain (index 0 ) **;
+:Calculate the float value by adding the offset value \n **RBL_CUSTIF_SENSITIVITY_TEMP_LSB_PER_K** to recieved temp value \n and then dvide by sensitivity factor **RBL_CUSTIF_SENSITIVITY_TEMP_LSB_PER_K**;
+:Use **rbl_CustIf_Calc_CompuMethod_Phy2Int ** for converting physical to integer ;
+:Pass calculate float value and compute methode values (offset ,scale,upperlimit and lower limit ) as input parameter;
+:Retun value from rbl_CustIf_Calc_CompuMethod_Phy2Int considerd as converted temp value;
+:Store the return value in global variable;
+stop
+

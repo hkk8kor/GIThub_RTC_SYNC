@@ -1,0 +1,24 @@
+#
+# Cantata Test-Level Options
+#
+# Any options set in this file will override the options set in the
+# project-level options file.
+#
+# WARNING: Do not alter this file manually.
+#
+#tool.testid=71d689be-3d92-464b-81d7-9b496e34da39
+"--ci:--instr:stmt;func;decn;log;"
+"--sa:--calc:*#*"
+"--sm:--wrap:memcpy(void * __restrict__, const void * __restrict__, size_t)#Rte_UserMemCpy(void *,const void *,uint16 )"
+"--sm:--wrap:memcpy(void * __restrict__, const void * __restrict__, size_t)#dcom_Trust_Model_CSR_Supplier_Signature_01A2_WriteData(const uint8 *,uint16 ,Dcm_NegativeResponseCodeType *)"
+"--sm:--wrap:memcpy(void * __restrict__, const void * __restrict__, size_t)#rba_BswSrv_MemCopy32(uint32 *,const uint32 *,uint32 )"
+"--sm:--wrap:memcpy(void * __restrict__, const void * __restrict__, size_t)#rba_BswSrv_MemCopy8(uint8 *,const uint8 *,uint32 )"
+
+#User Section
+#"--ci:--instr:stmt;func;call;decn;log;"
+"--dont_ci:*"
+"--ci:--no_instr:all"
+"--do_ci:dcom_MB_WriteDataByIdentifier.c"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_DiagnosticTraceMemory_102_WriteData"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_ActivateSupplierSpecificMessages_012A_WriteData"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_Trust_Model_CSR_Supplier_Signature_01A2_WriteData"

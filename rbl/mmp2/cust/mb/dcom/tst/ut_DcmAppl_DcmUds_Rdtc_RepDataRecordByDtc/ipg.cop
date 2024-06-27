@@ -1,0 +1,19 @@
+#
+# Cantata Test-Level Options
+#
+# Any options set in this file will override the options set in the
+# project-level options file.
+#
+# WARNING: Do not alter this file manually.
+#
+#tool.testid=e89c6e34-bce2-4fb1-8d3f-1ba92eb303ba
+"--ci:--instr:stmt;func;decn;log;"
+"--sa:--calc:*#*"
+ 
+#User Section
+"--parse:--warning_suppress:9001"
+"--parse:--warning_suppress:10427"
+"--dont_ci:*"
+"--do_ci:DcmAppl_DcmUds_Rdtc_RepDataRecordByDtc.c"
+"--ci:--no_instr:all"
+"--ci:--instr:stmt;func;call;decn;log;#DcmAppl_DcmUds_Rdtc_RepDataRecordByDTC"

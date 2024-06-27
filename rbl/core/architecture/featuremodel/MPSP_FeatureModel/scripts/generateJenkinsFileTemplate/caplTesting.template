@@ -1,0 +1,35 @@
+stage('ECU CAPL Testing: /*%buildVariantName%*/') {
+	agent {
+		label 'TS_VMPS_HW_D5ED'
+	}
+	/*%when%*/
+	steps {
+		deleteDir()
+		catchError(buildResult: 'UNSTABLE', stageResult: 'FAILURE') {
+			bat """
+				IF EXIST f: (subst f: /d )
+				subst f: .
+				pushd f:
+	
+				powershell.exe //abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins/OpsLoadJenkinsScriptSources/rb.ps.scripts.dotNet/JenkinsJobsScripts/CAPLTesting/Test.ps1 -Variant /*%buildVariantName%*/ -PathJSONFile ${jsonFile} -ECUBuildStoreFolder ECUBuild -JobNeedsPath //abtvdfs.de.bosch.com/ismdfs/ilm/abt/CC-PS-Sensors-Jenkins/OpsLoadJenkinsScriptSources/rb.ps.scripts.dotNet/JenkinsJobsScripts/CAPLTesting
+	
+				SET RETURNERROR=%ERRORLEVEL%
+	
+				popd
+				subst f: /D
+					
+				exit /b %RETURNERROR%
+			"""
+		}
+	}
+
+	post {
+		success {
+			archiveArtifacts artifacts: "**/TestReport_*.html", allowEmptyArchive: true
+		}
+		cleanup {
+			deleteDir()
+		}
+	}
+} //stage('ECU CAPL Testing: /*%buildVariantName%*/')
+

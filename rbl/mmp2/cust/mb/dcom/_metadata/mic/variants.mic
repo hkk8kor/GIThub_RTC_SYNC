@@ -1,0 +1,13 @@
+[settings]
+def:local:DiagBase = DiagBase_DiagxMB
+[common(DiagBase)]
+item:api = [true]
+item:cfg/rbl_dcom_MB_Diag_EcucValues.arxml = [DiagBase==DiagBase_DiagxMB]
+item:cfg/rbl_dcom_MB_Diag_EcucValues_HSM.arxml = [DiagBase==DiagBase_DiagxMB]
+item:cfg/rbl_dcom_MB_IMUA_Diag_EcucValues.arxml = [DiagBase==DiagBase_DiagxMB && MMP2 == MMP2_IMUA]
+item:cfg/rbl_dcom_MB_IMUA_DiagGateway_EcucValues.arxml = [DiagBase==DiagBase_DiagxMB && MMP2 == MMP2_IMUA]
+item:cfg/rbl_dcom_MB_IMUB_Diag_EcucValues.arxml = [DiagBase==DiagBase_DiagxMB && MMP2 == MMP2_IMUB]
+item:cfg/rbl_dcom_MB_IMUB_Diag_EcucValues_HSM.arxml = [DiagBase==DiagBase_DiagxMB && MMP2 == MMP2_IMUB]
+item:cfg/rbl_dcom_MB_SSA_Diag_EcucValues.arxml = [DiagBase==DiagBase_DiagxMB]
+item:src = [true]
+

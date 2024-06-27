@@ -1,0 +1,92 @@
+«REM»
+<BASDKey>
+**********************************************************************************************************************
+*
+* COPYRIGHT RESERVED, Robert Bosch GmbH, 2019. All rights reserved.
+* The reproduction, distribution and utilization of this document as well as the communication of its contents to
+* others without explicit authorization is prohibited. Offenders will be held liable for the payment of damages.
+* All rights reserved in the event of the grant of a patent, utility model or design.
+*
+**********************************************************************************************************************
+* Administrative Information (automatically filled in)
+* $Domain____:$
+* $Namespace_:$
+* $Class_____:$
+* $Name______:$
+* $Variant___:$
+* $Revision__:$
+**********************************************************************************************************************
+</BASDKey>
+«ENDREM»
+
+«IMPORT bsw»
+«IMPORT bsw::rba_NdsModule»
+«IMPORT bsw::rba_Nds_DgsModule»
+
+«EXTENSION rba_Nds_PduCommUtil»
+«EXTENSION rba_Nds_Util»
+«EXTENSION rba_Nds_DgsUtil»
+
+«DEFINE Generate FOR Autosar»
+    «IF this.isModuleExistent("Csm")»
+        «FILE "ComScl_Csm_Measurement.c"»
+            /*
+             ********************************************************************************************************************** 
+             *
+             * COPYRIGHT RESERVED, 2019 Robert Bosch GmbH. All rights reserved.
+             * The reproduction, distribution and utilization of this document as well as the communication of its contents to
+             * others without explicit authorization is prohibited. Offenders will be held liable for the payment of damages.
+             * All rights reserved in the event of the grant of a patent, utility model or design.
+             *
+             ********************************************************************************************************************** 
+             */
+            #include "Csm.h"
+            #include "CM_Basetypes_COMMON.h"
+
+            /****************************************************************************/
+            /* Measurement block Transmit Config                                        */
+            /****************************************************************************/
+            «IF this.csm.csmJobs == null»
+                // No CsmJob configured
+            «ELSE»
+                typedef enum /*TOOL_SCAN*/
+                {
+                    CRYPTO_JOBSTATE__IDLE = 0,
+                    CRYPTO_JOBSTATE__ACTIVE = 1,
+                    CRYPTO_JOBSTATE__WAITING = 2,
+                    CRYPTO_JOBSTATE__ACTIVE_WAITING = 3,
+                    CRYPTO_JOBSTATE__RUNNING = 4,
+                    CRYPTO_JOBSTATE__ACTIVE_RUNNING = 5
+                } Crypto_JobStateType_en;
+            
+	            «FOREACH this.csm.csmJobs.csmJob.sortBy(e|e.csmJobId) AS csmJob ITERATOR index»
+	            /****************************************************************************/
+	            /* «csmJob.shortName» */
+	            /****************************************************************************/
+	            /*[[MEASUREMENT*/
+			    /*NAME=Csm_Prv_Jobs_ast[«index.counter0»].state*/
+			    /*MODEL_NAME=«csmJob.shortName»_state*/
+			    /*DATA_TYPE=enum*/
+			    /*COMMENT=Status of Crypto_JobType «csmJob.shortName» */
+			    /*FORMULA=Crypto_JobStateType_en*/
+			    /*MINBORDER=0*/
+			    /*MAXBORDER=5*/
+			    /*MTEVENT=c_MT_Default_Task_x1*/
+			    /*]]MEASUREMENT*/
+			    /*
+			    */
+			    «ENDFOREACH»
+		    «ENDIF»
+
+        «ENDFILE»
+    «ENDIF»
+«ENDDEFINE»
+
+«REM»
+<BASDKey>
+**********************************************************************************************************************
+* Administrative Information (automatically filled in)
+* $History___:$
+**********************************************************************************************************************
+</BASDKey>
+«ENDREM»

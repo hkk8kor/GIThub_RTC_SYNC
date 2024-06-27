@@ -1,0 +1,228 @@
+  #include "RBPDMDB_Customer.pdmdb"
+
+
+/* *********************************************** *
+ * PDM fields used in DCOM *
+ * *********************************************** */
+use dataitem DCOM_MB_SupplierPublicKey_Signature
+{
+    job interface
+    {                                                
+     ram_block = DCOM_SupplierPubKey_Sig_RAM_Mirror;
+    }        
+     startup read;
+    plant eol preserve; 
+    writecycles = 1000;                                       
+
+}
+
+ use dataitem DCOM_MB_ECU_SerialNr
+{
+    job interface
+    {                                                
+     ram_block = rbl_ECU_SerialNr_RAM_Mirror;
+    }        
+    startup read;
+    plant eol preserve; 
+    writecycles = 1000;                                       
+
+}
+
+use dataitem DCOM_MB_MinimumSWVersion_LB0
+{
+    job interface
+    {                                                
+    
+    }        
+    plant eol preserve; 
+    writecycles = 1000;                                       
+
+}
+
+#if (RBFS_MMP2 == RBFS_MMP2_IMUB)
+use dataitem DCOM_MB_CALID 
+{
+    job interface
+    {                                         
+        ram_block = rbl_Mirrordcom_CalId_u8;
+    }    
+    startup read;     
+    plant eol preserve; 
+    writecycles = 1000;                                       
+}
+#endif
+
+#if (RBFS_MMP2 == RBFS_MMP2_IMUB)
+use dataitem DCOM_AMG_SWITCH
+{
+    job interface
+    {       
+                                           
+        ram_block = rbl_dcom_MirrorAMGVarSwitch_u8;
+
+    }        
+    startup read;  
+    plant eol preserve; 
+    writecycles = 1000;                                       
+}
+#endif
+
+use dataitem DCOM_MB_MinimumSWVersion
+{
+    job interface
+	{                                                
+    
+    }        
+	plant eol preserve;	
+    writecycles = 1000;                                       
+
+}
+
+use dataitem DCOM_MB_HW_PartNumber
+{
+    job interface
+	{                                  
+        ram_block = rbl_dcom_DCOM_MB_HW_PartNumber; 
+    }
+    startup read;        
+	plant eol preserve;	
+    writecycles = 1000;                                       
+
+}
+#if(RBFS_ThirdPartySoftware != RBFS_ThirdPartySoftware_ON)
+use dataitem DCOM_MB_VIN
+{
+    job interface
+	{                                                
+    
+    }        
+	plant eol preserve;	
+    writecycles = 1000;                                       
+
+}
+#endif
+
+
+use dataitem DCOM_MB_DiagTraceMem
+{
+    job interface
+	{                                                
+    
+    }        
+	plant eol preserve;	
+    writecycles = 1000;                                       
+
+}
+ 
+use dataitem DCOM_MB_ActivateSupplierMsgs
+{
+    job interface
+	{                                                
+       ram_block = rbl_dcom_MirrorActvtDbgFrmsAppl_u8;
+    }
+    startup read;    
+	plant eol preserve;	
+    writecycles = 1000;                                       
+
+}
+
+use dataitem DCOM_ReprogAttCounter_LB0
+{
+	job interface
+	{
+	}
+
+	plant eol preserve;
+	writecycles = 1000;
+}
+
+use dataitem DCOM_ReprogAttCounter_LB1
+{
+    job interface
+    {
+    }
+
+    plant eol preserve;
+    writecycles = 1000;
+}
+
+use dataitem FLASH_MB_SWIdentificationBackup_LB0
+{
+    job interface
+    {
+    }
+
+    plant eol preserve;
+    writecycles = 1000;
+}
+
+use dataitem FLASH_MB_SWFingerprint_LB0 
+{
+	job interface
+	{
+	}
+
+	plant eol preserve;
+	writecycles = 1000;
+}
+
+use dataitem FLASH_MB_SWFingerprint_LB1 
+{
+    job interface
+    {
+    }
+
+    plant eol preserve;
+    writecycles = 1000;
+}
+
+use dataitem FLASH_MB_ResumeAreaIndicator_LB0
+{
+    job interface
+    {
+    }
+
+    plant eol preserve;
+    writecycles = 1000;
+}
+
+use dataitem FLASH_CurrentState_LB0
+{
+    job interface
+    {
+    }
+
+    plant eol preserve;
+    writecycles = 1000;
+}
+
+use dataitem FLASH_MB_Crc_LB0
+{
+    job interface
+    {
+    }
+
+    plant eol preserve;
+    writecycles = 1000;
+}
+
+use dataitem FLASH_TransitionToDcomFlag
+{
+	job interface
+	{
+	}
+
+	plant eol preserve;
+	writecycles = 1000;
+}
+
+use dataitem FLASH_SecAccessAttCounter
+{
+    job interface
+	{                                                
+    
+    }        
+	plant eol preserve;	
+    writecycles = 1000;                                       
+
+}

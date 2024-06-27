@@ -1,0 +1,24 @@
+start
+start;
+group RBFS_OEMBootloader == RBFS_OEMBootloader_Yes
+     if((bootloader reset reason is DCOM_DEFAULTSESSION)||(bootloader reset reason is DCOM_HARDRESET)) then (yes)
+    :Set protocolID to DCM_SUPPLIER_1 and tester source address to 0xEF8;
+     endif
+group RBFS_DcomSecondTesterSupport != RBFS_DcomSecondTesterSupport_OFF
+     if((bootloader reset reason is DCOM_DEFAULTSESSION_2NDTESTER)||(bootloader reset reason is DCOM_HARDRESET_2NDTESTER)) then (yes)
+    :Set protocolID to DCM_SUPPLIER_2 and tester source address to 0xF0D;
+     endif      
+end group
+end group
+
+switch (bootloader reset reason)
+case ( DCOM_DEFAULTSESSION || DCOM_DEFAULTSESSION_2NDTESTER)
+     :send positive response 0x50;
+     :Set return value to DCM_WARM_START;    
+case ( DCOM_HARDRESET || DCOM_HARDRESET_2NDTESTER)
+     :send positive response 0x51;
+     :Set return value to DCM_WARM_START;
+case ( default)
+     :Set return value to DCM_COLD_START;
+endswitch
+stop

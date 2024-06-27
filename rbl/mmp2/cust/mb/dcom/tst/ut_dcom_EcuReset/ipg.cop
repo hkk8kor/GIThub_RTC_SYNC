@@ -1,0 +1,22 @@
+#
+# Cantata Test-Level Options
+#
+# Any options set in this file will override the options set in the
+# project-level options file.
+#
+# WARNING: Do not alter this file manually.
+#
+#tool.testid=af8532b8-2fa8-4fe5-a442-f9b461e097dd
+"--ci:--instr:stmt;func;decn;log;"
+"--sa:--calc:*#*"
+"--sm:--access_function:"dcom_EcuReset.c":dcom_SoftResetRdy_check()"
+"--sm:--access_variable:"dcom_EcuReset.c":dcom_SoftResetstatus"
+"--sm:--wrap:dcom_SoftResetRdy_check()#DcmAppl_DcmEcuResetPreparation(uint8 ,Dcm_NegativeResponseCodeType *)"
+
+#User Section
+"--dont_ci:*"
+"--do_ci:dcom_EcuReset.c"
+"--ci:--no_instr:all"
+"--ci:--instr:stmt;func;call;decn;log;#DcmAppl_Switch_DcmExecuteEcuReset"
+"--ci:--instr:stmt;func;call;decn;log;#DcmAppl_DcmEcuResetPreparation"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_SoftResetRdy_check"

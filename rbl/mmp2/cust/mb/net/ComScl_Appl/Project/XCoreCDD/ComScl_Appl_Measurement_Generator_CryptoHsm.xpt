@@ -1,0 +1,181 @@
+«REM»
+<BASDKey>
+**********************************************************************************************************************
+*
+* COPYRIGHT RESERVED, Robert Bosch GmbH, 2020. All rights reserved.
+* The reproduction, distribution and utilization of this document as well as the communication of its contents to
+* others without explicit authorization is prohibited. Offenders will be held liable for the payment of damages.
+* All rights reserved in the event of the grant of a patent, utility model or design.
+*
+**********************************************************************************************************************
+* Administrative Information (automatically filled in)
+* $Domain____:$
+* $Namespace_:$
+* $Class_____:$
+* $Name______:$
+* $Variant___:$
+* $Revision__:$
+**********************************************************************************************************************
+</BASDKey>
+«ENDREM»
+
+«IMPORT bsw»
+
+«DEFINE Generate FOR Autosar»
+    «IF this.isModuleExistent("Csm")»
+        «FILE "ComScl_CryptoHsm_Measurement.c"»
+            /*
+             ********************************************************************************************************************** 
+             *
+             * COPYRIGHT RESERVED, 2020 Robert Bosch GmbH. All rights reserved.
+             * The reproduction, distribution and utilization of this document as well as the communication of its contents to
+             * others without explicit authorization is prohibited. Offenders will be held liable for the payment of damages.
+             * All rights reserved in the event of the grant of a patent, utility model or design.
+             *
+             ********************************************************************************************************************** 
+             */
+            //#include "rba_CryptoHSM_Prv.h"
+            #include "CM_Basetypes_COMMON.h"
+
+            /****************************************************************************/
+            /* Measurement block Transmit Config                                        */
+            /****************************************************************************/
+            «IF this.isModuleExistent("Crypto") && this.crypto.exists(e|e.shortName.endsWith("HSM"))»
+                «LET this.crypto.selectFirst(e|e.shortName.endsWith("HSM")) AS cryptoHSM»
+                typedef enum /*TOOL_SCAN*/
+                {
+                    CRYPTOHSM_BULKSTATE_IDLE   = 0,
+                    CRYPTOHSM_BULKSTATE_ACTIVE = 1,
+                    CRYPTOHSM_BULKSTATE_FINISH = 2,
+                    CRYPTOHSM_BULKSTATE_ERROR  = 4
+                } CryptoHSM_Prv_BulkState_ten;
+            
+	            «FOREACH cryptoHSM.cryptoDriverObjects.cryptoDriverObject AS driverObject ITERATOR index»
+	            /****************************************************************************/
+	            /* «driverObject.shortName» */
+	            /****************************************************************************/
+	            /*[[MEASUREMENT*/
+			    /*NAME=rba_CryptoHSM_Prv_JobContext_ast[«index.counter0»].jobHandle_u32*/
+			    /*MODEL_NAME=«driverObject.shortName»_jobHandle*/
+			    /*DATA_TYPE=uint32*/
+			    /*COMMENT=JobHandle of CryptoHSM_Prv_JobContext «driverObject.shortName» */
+			    /*FORMULA=NF_IDENTITY*/
+			    /*MINBORDER=0*/
+			    /*MAXBORDER=4294967295*/
+			    /*MTEVENT=c_MT_Default_Task_x1*/
+			    /*]]MEASUREMENT*/
+			    /*
+			    */
+			    /*[[MEASUREMENT*/
+                /*NAME=rba_CryptoHSM_Prv_JobContext_ast[«index.counter0»].jobId_u32*/
+                /*MODEL_NAME=«driverObject.shortName»_jobId*/
+                /*DATA_TYPE=uint32*/
+                /*COMMENT=JobId of CryptoHSM_Prv_JobContext «driverObject.shortName» */
+                /*FORMULA=NF_IDENTITY*/
+                /*MINBORDER=0*/
+                /*MAXBORDER=4294967295*/
+                /*MTEVENT=c_MT_Default_Task_x1*/
+                /*]]MEASUREMENT*/
+                /*
+                */
+                /*[[MEASUREMENT*/
+                /*NAME=rba_CryptoHSM_Prv_JobContext_ast[«index.counter0»].resultFlag_u32*/
+                /*MODEL_NAME=«driverObject.shortName»_resultFlag*/
+                /*DATA_TYPE=uint32*/
+                /*COMMENT=ResultFlag of CryptoHSM_Prv_JobContext «driverObject.shortName» */
+                /*FORMULA=NF_IDENTITY*/
+                /*MINBORDER=0*/
+                /*MAXBORDER=4294967295*/
+                /*MTEVENT=c_MT_Default_Task_x1*/
+                /*]]MEASUREMENT*/
+                /*
+                */
+                /*[[MEASUREMENT*/
+                /*NAME=rba_CryptoHSM_Prv_AsyncJobReq_ast[«index.counter0»].job_pst*/
+                /*MODEL_NAME=«driverObject.shortName»_job_pst*/
+                /*DATA_TYPE=uint32*/
+                /*COMMENT=Jop Pointer of rba_CryptoHSM_Prv_AsyncJobReq_tst «driverObject.shortName» */
+                /*FORMULA=NF_IDENTITY*/
+                /*MINBORDER=0*/
+                /*MAXBORDER=4294967295*/
+                /*MTEVENT=c_MT_Default_Task_x1*/
+                /*]]MEASUREMENT*/
+                /*
+                */
+                /*[[MEASUREMENT*/
+                /*NAME=rba_CryptoHSM_Prv_AsyncJobReq_ast[«index.counter0»].state_u8*/
+                /*MODEL_NAME=«driverObject.shortName»_state*/
+                /*DATA_TYPE=uint32*/
+                /*COMMENT=State of rba_CryptoHSM_Prv_AsyncJobReq_tst «driverObject.shortName» */
+                /*FORMULA=NF_IDENTITY*/
+                /*MINBORDER=0*/
+                /*MAXBORDER=4294967295*/
+                /*MTEVENT=c_MT_Default_Task_x1*/
+                /*]]MEASUREMENT*/
+                /*
+                */
+                /*[[MEASUREMENT*/
+                /*NAME=rba_CryptoHSM_Prv_AsyncJobReq_ast[«index.counter0»].bulkIndex_u32*/
+                /*MODEL_NAME=«driverObject.shortName»_bulkIndex*/
+                /*DATA_TYPE=uint32*/
+                /*COMMENT=BulkIndex of rba_CryptoHSM_Prv_AsyncJobReq_tst «driverObject.shortName» */
+                /*FORMULA=NF_IDENTITY*/
+                /*MINBORDER=0*/
+                /*MAXBORDER=4294967295*/
+                /*MTEVENT=c_MT_Default_Task_x1*/
+                /*]]MEASUREMENT*/
+                /*
+                */
+                /*[[MEASUREMENT*/
+                /*NAME=rba_CryptoHSM_Prv_DriverServiceType_au32[«index.counter0»]*/
+                /*MODEL_NAME=«driverObject.shortName»_driverServiceType*/
+                /*DATA_TYPE=uint32*/
+                /*COMMENT=DriverServiceType of rba_CryptoHSM_Prv_DriverServiceType_au32 «driverObject.shortName» */
+                /*FORMULA=NF_IDENTITY*/
+                /*MINBORDER=0*/
+                /*MAXBORDER=4294967295*/
+                /*MTEVENT=c_MT_Default_Task_x1*/
+                /*]]MEASUREMENT*/
+                /*
+                */
+			    «ENDFOREACH»
+                /*[[MEASUREMENT*/
+                /*NAME=rba_CryptoHSM_stateBulkGenerate_en*/
+                /*MODEL_NAME=rba_CryptoHSM_stateBulkGenerate_en*/
+                /*DATA_TYPE=enumeration*/
+                /*COMMENT=rba_CryptoHSM_stateBulkGenerate_en*/
+                /*FORMULA=CryptoHSM_Prv_BulkState_ten*/
+                /*MINBORDER=0*/
+                /*MAXBORDER=4*/
+                /*MTEVENT=c_MT_Default_Task_x1*/
+                /*]]MEASUREMENT*/
+                /*
+                */
+                /*[[MEASUREMENT*/
+                /*NAME=rba_CryptoHSM_stateBulkVerify_en*/
+                /*MODEL_NAME=rba_CryptoHSM_stateBulkVerify_en*/
+                /*DATA_TYPE=enumeration*/
+                /*COMMENT=rba_CryptoHSM_stateBulkVerify_en*/
+                /*FORMULA=CryptoHSM_Prv_BulkState_ten*/
+                /*MINBORDER=0*/
+                /*MAXBORDER=4*/
+                /*MTEVENT=c_MT_Default_Task_x1*/
+                /*]]MEASUREMENT*/
+                /*
+                */
+			    «ENDLET»                
+            «ELSE»
+                // CryptoHSM not configured
+		    «ENDIF»
+        «ENDFILE»
+    «ENDIF»
+«ENDDEFINE»
+
+«REM»
+<BASDKey>
+**********************************************************************************************************************
+* Administrative Information (automatically filled in)
+* $History___:$
+**********************************************************************************************************************
+</BASDKey>
+«ENDREM»

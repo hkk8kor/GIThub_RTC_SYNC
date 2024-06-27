@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<DIAGNOSIS INFO="DiamantPro Core Library 4.2.257.1692" CHECK="F3C0403F8927707C9A8378AC6CB625F8ICAgICAgICAgRGlhbWFudFBybyBDb3JlIExpYnJhcnkgICAgICAgICAgICAgICAgICAgIDQuMi4yNTcuMTY5MiAgICAgICAgICAgIC04NTg0OTA4NjIyOTg2ODIxNDkxICAgICAgICAgICAgICAgICAgICBCQU5JLUMtMDA2OFIgICAgICAgICAgICAgICAgICAgIEFQQUNcUFpSMktPUiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg">
+  <NODES>
+    <NODE>
+      <NAME>Node_MMP_Nvm_SigChnMonContents</NAME>
+      <SW_GROUP_REF>SwGrp_MMP</SW_GROUP_REF>
+      <KEYLIST>
+        <ITEM key="STATUSEXPORTTOASW">false</ITEM>
+        <ITEM key="ASWSETSINIT">false</ITEM>
+        <ITEM key="ALLOWEDRECOVERIES">0xFF</ITEM>
+        <ITEM key="FW_Priorities_Disabled">true</ITEM>
+        <ITEM key="Desc">For Nvm failures related to frequency block</ITEM>
+        <ITEM key="HWShutdown">NoHWShutdown</ITEM>
+      </KEYLIST>
+      <FUNCTION_ID_REFS />
+      <FW_REFS>
+        <FW_REF prio="60">FW_RBL_Nvm_AmbTempMon_Content</FW_REF>
+        <FW_REF prio="50">FW_RBL_Nvm_RefFreq_Content</FW_REF>
+      </FW_REFS>
+    </NODE>
+    <NODE>
+      <NAME>Node_MMP2_NetConfig</NAME>
+      <SW_GROUP_REF>SwGrp_MMP</SW_GROUP_REF>
+      <KEYLIST>
+        <ITEM key="STATUSEXPORTTOASW">false</ITEM>
+        <ITEM key="ASWSETSINIT">false</ITEM>
+        <ITEM key="FW_Priorities_Disabled">false</ITEM>
+        <ITEM key="Desc" />
+        <ITEM key="ALLOWEDRECOVERIES">0xFF</ITEM>
+        <ITEM key="HWShutdown">NoHWShutdown</ITEM>
+      </KEYLIST>
+      <FUNCTION_ID_REFS />
+      <FW_REFS>
+        <FW_REF prio="187">FW_RBL_NET_DynamicCanId</FW_REF>
+      </FW_REFS>
+    </NODE>
+    <NODE>
+      <NAME>Node_MMP_SensorModuleError</NAME>
+      <SW_GROUP_REF>SwGrp_MMP</SW_GROUP_REF>
+      <KEYLIST>
+        <ITEM key="STATUSEXPORTTOASW">false</ITEM>
+        <ITEM key="ASWSETSINIT">false</ITEM>
+        <ITEM key="FW_Priorities_Disabled">true</ITEM>
+        <ITEM key="Desc" />
+        <ITEM key="ALLOWEDRECOVERIES">0xFF</ITEM>
+        <ITEM key="HWShutdown">NoHWShutdown</ITEM>
+      </KEYLIST>
+      <FUNCTION_ID_REFS />
+      <FW_REFS>
+        <FW_REF prio="183">FW_RBL_ChannelInvalid_Smu2_Rate1</FW_REF>
+        <FW_REF prio="182">FW_RBL_ChannelInvalid_Smu2_Acc3</FW_REF>
+        <FW_REF prio="181">FW_RBL_ChannelInvalid_Smu2_Acc2</FW_REF>
+        <FW_REF prio="180">FW_RBL_ChannelInvalid_Smu2_Acc1</FW_REF>
+        <FW_REF prio="173">FW_RBL_ChannelInvalid_Smu1_Rate1</FW_REF>
+        <FW_REF prio="172">FW_RBL_ChannelInvalid_Smu1_Acc3</FW_REF>
+        <FW_REF prio="171">FW_RBL_ChannelInvalid_Smu1_Acc2</FW_REF>
+        <FW_REF prio="170">FW_RBL_ChannelInvalid_Smu1_Acc1</FW_REF>
+        <FW_REF prio="163">FW_RBL_ChannelInvalid_Smu0_Rate1</FW_REF>
+        <FW_REF prio="162">FW_RBL_ChannelInvalid_Smu0_Acc3</FW_REF>
+        <FW_REF prio="161">FW_RBL_ChannelInvalid_Smu0_Acc2</FW_REF>
+        <FW_REF prio="160">FW_RBL_ChannelInvalid_Smu0_Acc1</FW_REF>
+        <FW_REF prio="128">FW_RBL_MechOverload_Smu2_Rate1</FW_REF>
+        <FW_REF prio="127">FW_RBL_MechOverload_Smu2_Acc3</FW_REF>
+        <FW_REF prio="126">FW_RBL_MechOverload_Smu2_Acc2</FW_REF>
+        <FW_REF prio="125">FW_RBL_MechOverload_Smu2_Acc1</FW_REF>
+        <FW_REF prio="124">FW_RBL_MechOverload_Smu1_Rate1</FW_REF>
+        <FW_REF prio="123">FW_RBL_MechOverload_Smu1_Acc3</FW_REF>
+        <FW_REF prio="122">FW_RBL_MechOverload_Smu1_Acc2</FW_REF>
+        <FW_REF prio="121">FW_RBL_MechOverload_Smu1_Acc1</FW_REF>
+        <FW_REF prio="120">FW_RBL_MechOverload_Smu0_Rate1</FW_REF>
+        <FW_REF prio="119">FW_RBL_MechOverload_Smu0_Acc3</FW_REF>
+        <FW_REF prio="118">FW_RBL_MechOverload_Smu0_Acc2</FW_REF>
+        <FW_REF prio="117">FW_RBL_MechOverload_Smu0_Acc1</FW_REF>
+        <FW_REF prio="115">FW_RBL_TemperatureRangeExceeded_Smu1</FW_REF>
+        <FW_REF prio="114">FW_RBL_TemperatureRangeExceeded_Smu2</FW_REF>
+        <FW_REF prio="113">FW_RBL_TemperatureRangeExceeded_Smu0</FW_REF>
+      </FW_REFS>
+    </NODE>
+    <NODE>
+      <NAME>Node_MMP_SignalChain</NAME>
+      <SW_GROUP_REF>SwGrp_MMP</SW_GROUP_REF>
+      <KEYLIST>
+        <ITEM key="STATUSEXPORTTOASW">false</ITEM>
+        <ITEM key="ASWSETSINIT">false</ITEM>
+        <ITEM key="FW_Priorities_Disabled">true</ITEM>
+        <ITEM key="Desc" />
+        <ITEM key="ALLOWEDRECOVERIES">0xFF</ITEM>
+        <ITEM key="HWShutdown">NoHWShutdown</ITEM>
+      </KEYLIST>
+      <FUNCTION_ID_REFS />
+      <FW_REFS>
+        <FW_REF prio="210">FW_RBL_Nvm_SigChain_Content</FW_REF>
+      </FW_REFS>
+    </NODE>
+    <NODE>
+      <NAME>Node_MMP_NoDTC</NAME>
+      <SW_GROUP_REF>SwGrp_MMP</SW_GROUP_REF>
+      <KEYLIST>
+        <ITEM key="STATUSEXPORTTOASW">false</ITEM>
+        <ITEM key="ASWSETSINIT">false</ITEM>
+        <ITEM key="FW_Priorities_Disabled">false</ITEM>
+        <ITEM key="Desc">Node for DFA DTCs</ITEM>
+        <ITEM key="ALLOWEDRECOVERIES">0xFF</ITEM>
+        <ITEM key="HWShutdown">NoHWShutdown</ITEM>
+      </KEYLIST>
+      <FUNCTION_ID_REFS />
+      <FW_REFS />
+    </NODE>
+    <NODE>
+      <NAME>Node_MMP_TracebilityData</NAME>
+      <SW_GROUP_REF>SwGrp_MMP</SW_GROUP_REF>
+      <KEYLIST>
+        <ITEM key="STATUSEXPORTTOASW">false</ITEM>
+        <ITEM key="ASWSETSINIT">false</ITEM>
+        <ITEM key="FW_Priorities_Disabled">true</ITEM>
+        <ITEM key="Desc" />
+        <ITEM key="ALLOWEDRECOVERIES">0xFF</ITEM>
+        <ITEM key="HWShutdown">NoHWShutdown</ITEM>
+      </KEYLIST>
+      <FUNCTION_ID_REFS />
+      <FW_REFS>
+        <FW_REF prio="38">FW_RBL_Nvm_HwVersNr</FW_REF>
+        <FW_REF prio="36">FW_RBL_Nvm_PcbDmc</FW_REF>
+        <FW_REF prio="35">FW_RBL_Nvm_PlaIdNr</FW_REF>
+        <FW_REF prio="34">FW_RBL_Nvm_ProdDate</FW_REF>
+        <FW_REF prio="33">FW_RBL_Nvm_RbAsblyPartNr</FW_REF>
+        <FW_REF prio="32">FW_RBL_Nvm_RbPartNr</FW_REF>
+        <FW_REF prio="31">FW_RBL_Nvm_SnsrSerlNr</FW_REF>
+        <FW_REF prio="30">FW_RBL_Nvm_ProcProgsId</FW_REF>
+      </FW_REFS>
+    </NODE>
+    <NODE>
+      <NAME>Node_MMP_SignalChainMonitors</NAME>
+      <SW_GROUP_REF>SwGrp_MMP</SW_GROUP_REF>
+      <KEYLIST>
+        <ITEM key="STATUSEXPORTTOASW">false</ITEM>
+        <ITEM key="ASWSETSINIT">false</ITEM>
+        <ITEM key="FW_Priorities_Disabled">true</ITEM>
+        <ITEM key="Desc" />
+        <ITEM key="ALLOWEDRECOVERIES">0xFF</ITEM>
+        <ITEM key="HWShutdown">NoHWShutdown</ITEM>
+      </KEYLIST>
+      <FUNCTION_ID_REFS />
+      <FW_REFS>
+        <FW_REF prio="145">FW_RBL_AmbientTemperatureFault</FW_REF>
+        <FW_REF prio="144">FW_RBL_FrequencyFailure_Smu2</FW_REF>
+        <FW_REF prio="143">FW_RBL_FrequencyFailure_Smu1</FW_REF>
+        <FW_REF prio="142">FW_RBL_FrequencyFailure_Smu0</FW_REF>
+      </FW_REFS>
+    </NODE>
+    <NODE>
+      <NAME>Node_MMP_SyncError</NAME>
+      <SW_GROUP_REF>SwGrp_MMP</SW_GROUP_REF>
+      <KEYLIST>
+        <ITEM key="STATUSEXPORTTOASW">false</ITEM>
+        <ITEM key="ASWSETSINIT">false</ITEM>
+        <ITEM key="FW_Priorities_Disabled">false</ITEM>
+        <ITEM key="Desc">Syncronisation Failure</ITEM>
+        <ITEM key="ALLOWEDRECOVERIES">0xFF</ITEM>
+        <ITEM key="HWShutdown">NoHWShutdown</ITEM>
+      </KEYLIST>
+      <FUNCTION_ID_REFS />
+      <FW_REFS>
+        <FW_REF prio="50">FW_RBL_SyncOnSmu_Timeout</FW_REF>
+      </FW_REFS>
+    </NODE>
+    <NODE>
+      <NAME>Node_MMP_CommunicationFailure</NAME>
+      <SW_GROUP_REF>SwGrp_MMP</SW_GROUP_REF>
+      <KEYLIST>
+        <ITEM key="STATUSEXPORTTOASW">false</ITEM>
+        <ITEM key="ASWSETSINIT">false</ITEM>
+        <ITEM key="ALLOWEDRECOVERIES">0xFF</ITEM>
+        <ITEM key="FW_Priorities_Disabled">true</ITEM>
+        <ITEM key="Desc">Communication failures</ITEM>
+        <ITEM key="HWShutdown">NoHWShutdown</ITEM>
+      </KEYLIST>
+      <FUNCTION_ID_REFS />
+      <FW_REFS>
+        <FW_REF prio="202">FW_RBL_CommunicationFailure_Smu2</FW_REF>
+        <FW_REF prio="201">FW_RBL_CommunicationFailure_Smu1</FW_REF>
+        <FW_REF prio="200">FW_RBL_CommunicationFailure_Smu0</FW_REF>
+      </FW_REFS>
+    </NODE>
+    <NODE>
+      <NAME>Node_MMP_ReInitError</NAME>
+      <SW_GROUP_REF>SwGrp_MMP</SW_GROUP_REF>
+      <KEYLIST>
+        <ITEM key="STATUSEXPORTTOASW">false</ITEM>
+        <ITEM key="ASWSETSINIT">false</ITEM>
+        <ITEM key="FW_Priorities_Disabled">true</ITEM>
+        <ITEM key="Desc">Syncronisation Failure</ITEM>
+        <ITEM key="ALLOWEDRECOVERIES">0xFF</ITEM>
+        <ITEM key="HWShutdown">NoHWShutdown</ITEM>
+      </KEYLIST>
+      <FUNCTION_ID_REFS />
+      <FW_REFS>
+        <FW_REF prio="50">FW_RBL_ReInitOccured_Smu0</FW_REF>
+        <FW_REF prio="40">FW_RBL_ReInitOccured_Smu1</FW_REF>
+        <FW_REF prio="30">FW_RBL_ReInitOccured_Smu2</FW_REF>
+      </FW_REFS>
+    </NODE>
+  </NODES>
+</DIAGNOSIS>

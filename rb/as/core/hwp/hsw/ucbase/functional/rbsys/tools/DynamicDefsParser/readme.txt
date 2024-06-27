@@ -1,0 +1,1 @@
+\\bosch.com\dfsrb\DfsDE\DIV\CS\DE_CS$\Tech\HSW_Doc\Evo17\08_Tools\81_Ecc69Tools\dynamic_defs_parser

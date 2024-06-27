@@ -1,0 +1,172 @@
+«REM»
+<BASDKey>
+**********************************************************************************************************************
+*
+* COPYRIGHT RESERVED, Robert Bosch GmbH, 2019. All rights reserved.
+* The reproduction, distribution and utilization of this document as well as the communication of its contents to
+* others without explicit authorization is prohibited. Offenders will be held liable for the payment of damages.
+* All rights reserved in the event of the grant of a patent, utility model or design.
+*
+**********************************************************************************************************************
+* Administrative Information (automatically filled in)
+* $Domain____:$
+* $Namespace_:$
+* $Class_____:$
+* $Name______:$
+* $Variant___:$
+* $Revision__:$
+**********************************************************************************************************************
+</BASDKey>
+«ENDREM»
+
+«IMPORT bsw»
+«IMPORT bsw::rba_NdsModule»
+«IMPORT bsw::rba_Nds_DgsModule»
+
+«EXTENSION rba_Nds_PduCommUtil»
+«EXTENSION rba_Nds_Util»
+«EXTENSION rba_Nds_DgsUtil»
+
+«DEFINE Generate FOR Autosar»
+    «IF this.isModuleExistent("rba_XCoreCdd")»
+        «FILE "ComScl_rbaXCoreCdd_Measurement.c"»
+            /*
+             ********************************************************************************************************************** 
+             *
+             * COPYRIGHT RESERVED, 2019 Robert Bosch GmbH. All rights reserved.
+             * The reproduction, distribution and utilization of this document as well as the communication of its contents to
+             * others without explicit authorization is prohibited. Offenders will be held liable for the payment of damages.
+             * All rights reserved in the event of the grant of a patent, utility model or design.
+             *
+             ********************************************************************************************************************** 
+             */
+            #include "rba_XCoreCdd.h"
+            #include "CM_Basetypes_COMMON.h"
+
+            /****************************************************************************/
+            /* Measurement block Transmit Config                                        */
+            /****************************************************************************/
+            «FOREACH this.rba_XCoreCdd.rba_XCoreCddPipe AS pipe ITERATOR index»
+            /****************************************************************************/
+            /* «pipe.shortName» */
+            /****************************************************************************/
+            /*[[MEASUREMENT*/
+		    /*NAME=rba_XCoreCdd_PipeRuntimeInfo_ast[«index.counter0»].Dbg_st.NumSenCalls_u32*/
+		    /*MODEL_NAME=«pipe.shortName»_NumSendCalls_u32*/
+		    /*DATA_TYPE=uint32*/
+		    /*COMMENT=NumSendCalls_u32 of «pipe.shortName»*/
+		    /*FORMULA=NF_IDENTITY*/
+		    /*MINBORDER=0*/
+		    /*MAXBORDER=4294967296*/
+		    /*MTEVENT=c_MT_Default_Task_x1*/
+		    /*]]MEASUREMENT*/
+		    /*
+		    */
+            /*[[MEASUREMENT*/
+            /*NAME=rba_XCoreCdd_PipeRuntimeInfo_ast[«index.counter0»].Dbg_st.NumSendCallsOk_u32*/
+            /*MODEL_NAME=«pipe.shortName»_NumSendCallsOk_u32*/
+            /*DATA_TYPE=uint32*/
+            /*COMMENT=NumSendCallsOk_u32 of «pipe.shortName»*/
+            /*FORMULA=NF_IDENTITY*/
+            /*MINBORDER=0*/
+            /*MAXBORDER=4294967296*/
+            /*MTEVENT=c_MT_Default_Task_x1*/
+            /*]]MEASUREMENT*/
+            /*
+            */
+            /*[[MEASUREMENT*/
+            /*NAME=rba_XCoreCdd_PipeRuntimeInfo_ast[«index.counter0»].Dbg_st.NumSendCallsNotOk_u32*/
+            /*MODEL_NAME=«pipe.shortName»_NumSendCallsNotOk_u32*/
+            /*DATA_TYPE=uint32*/
+            /*COMMENT=NumSendCallsNotOk_u32 of «pipe.shortName»*/
+            /*FORMULA=NF_IDENTITY*/
+            /*MINBORDER=0*/
+            /*MAXBORDER=4294967296*/
+            /*MTEVENT=c_MT_Default_Task_x1*/
+            /*]]MEASUREMENT*/
+            /*
+            */
+            /*[[MEASUREMENT*/
+            /*NAME=rba_XCoreCdd_PipeRuntimeInfo_ast[«index.counter0»].Dbg_st.NumBytesSendOk_u32*/
+            /*MODEL_NAME=«pipe.shortName»_NumBytesSendOk_u32*/
+            /*DATA_TYPE=uint32*/
+            /*COMMENT=NumBytesSendOk_u32 of «pipe.shortName»*/
+            /*FORMULA=NF_IDENTITY*/
+            /*MINBORDER=0*/
+            /*MAXBORDER=4294967296*/
+            /*MTEVENT=c_MT_Default_Task_x1*/
+            /*]]MEASUREMENT*/
+            /*
+            */
+            /*[[MEASUREMENT*/
+            /*NAME=rba_XCoreCdd_PipeRuntimeInfo_ast[«index.counter0»].Dbg_st.NumReceiveCalls_u32*/
+            /*MODEL_NAME=«pipe.shortName»_NumReceiveCalls_u32*/
+            /*DATA_TYPE=uint32*/
+            /*COMMENT=NumReceiveCalls_u32 of «pipe.shortName»*/
+            /*FORMULA=NF_IDENTITY*/
+            /*MINBORDER=0*/
+            /*MAXBORDER=4294967296*/
+            /*MTEVENT=c_MT_Default_Task_x1*/
+            /*]]MEASUREMENT*/
+            /*
+            */
+            /*[[MEASUREMENT*/
+            /*NAME=rba_XCoreCdd_PipeRuntimeInfo_ast[«index.counter0»].Dbg_st.NumReceiveCallsOk_u32*/
+            /*MODEL_NAME=«pipe.shortName»_NumReceiveCallsOk_u32*/
+            /*DATA_TYPE=uint32*/
+            /*COMMENT=NumReceiveCallsOk_u32 of «pipe.shortName»*/
+            /*FORMULA=NF_IDENTITY*/
+            /*MINBORDER=0*/
+            /*MAXBORDER=4294967296*/
+            /*MTEVENT=c_MT_Default_Task_x1*/
+            /*]]MEASUREMENT*/
+            /*
+            */
+            /*[[MEASUREMENT*/
+            /*NAME=rba_XCoreCdd_PipeRuntimeInfo_ast[«index.counter0»].Dbg_st.NumBytesReceiveOk_u32*/
+            /*MODEL_NAME=«pipe.shortName»_NumBytesReceiveOk_u32*/
+            /*DATA_TYPE=uint32*/
+            /*COMMENT=NumBytesReceiveOk_u32 of «pipe.shortName»*/
+            /*FORMULA=NF_IDENTITY*/
+            /*MINBORDER=0*/
+            /*MAXBORDER=4294967296*/
+            /*MTEVENT=c_MT_Default_Task_x1*/
+            /*]]MEASUREMENT*/
+            /*
+            */
+		    /*[[MEASUREMENT*/
+            /*NAME=rba_XCoreCdd_PipeRuntimeInfo_ast[«index.counter0»].Dbg_st.SendLastAttemptedPduId*/
+            /*MODEL_NAME=«pipe.shortName»_SendLastAttemptedPduId*/
+            /*DATA_TYPE=uint16*/
+            /*COMMENT=SendLastAttemptedPduId of «pipe.shortName»*/
+            /*FORMULA=NF_IDENTITY*/
+            /*MINBORDER=0*/
+            /*MAXBORDER=65536*/
+            /*MTEVENT=c_MT_Default_Task_x1*/
+            /*]]MEASUREMENT*/
+            /*
+            */
+            /*[[MEASUREMENT*/
+            /*NAME=rba_XCoreCdd_PipeRuntimeInfo_ast[«index.counter0»].Dbg_st.ReceiveLastPduId*/
+            /*MODEL_NAME=«pipe.shortName»_ReceiveLastPduId*/
+            /*DATA_TYPE=uint16*/
+            /*COMMENT=ReceiveLastPduId of «pipe.shortName»*/
+            /*FORMULA=NF_IDENTITY*/
+            /*MINBORDER=0*/
+            /*MAXBORDER=65536*/
+            /*MTEVENT=c_MT_Default_Task_x1*/
+            /*]]MEASUREMENT*/
+		    «ENDFOREACH»
+
+        «ENDFILE»
+    «ENDIF»
+«ENDDEFINE»
+
+«REM»
+<BASDKey>
+**********************************************************************************************************************
+* Administrative Information (automatically filled in)
+* $History___:$
+**********************************************************************************************************************
+</BASDKey>
+«ENDREM»

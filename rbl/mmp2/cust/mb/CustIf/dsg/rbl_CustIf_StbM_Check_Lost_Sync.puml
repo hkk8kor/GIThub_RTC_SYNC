@@ -1,0 +1,9 @@
+start
+if (Check if StbM_GetTimeBaseStatus() function is equal to E_OK) then (yes)
+if (Check if Bfx_GetBit_u8u8_u8() function of RBL_CUSTIF_TIMEOUT_BflPn is set to TRUE) then (yes)
+  :Update Return Value as TRUE;
+else(no)
+  :Update Return Value as FALSE;
+endif
+endif
+stop

@@ -1,0 +1,5 @@
+start
+if (Check if ResetType is equal to DCOM_SOFT _RESET) then (yes)
+     :Return value would be updated with the return value of the function dcom_softResetRdy_check;
+endif
+stop

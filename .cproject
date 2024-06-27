@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?fileVersion 4.0.0?><cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
+    	
+    <storageModule moduleId="org.eclipse.cdt.core.settings">
+        		
+        <buildSystem id="preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.320380824">
+            			
+            <storageModule id="preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.320380824" moduleId="org.eclipse.cdt.core.settings"/>
+            		
+        </buildSystem>
+        		
+        <cconfiguration id="com.bosch.codenav.cdt.util.buildConfig.disabled">
+            			
+            <storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.bosch.codenav.cdt.util.buildConfig.disabled" moduleId="org.eclipse.cdt.core.settings" name="CDT_Build_Disabled_Configuration">
+                				
+                <externalSettings/>
+                				
+                <extensions>
+                    					
+                    <extension id="org.eclipse.cdt.core.PE" point="org.eclipse.cdt.core.BinaryParser"/>
+                    					
+                    <extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+                    					
+                    <extension id="org.eclipse.cdt.core.GmakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+                    					
+                    <extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+                    					
+                    <extension id="org.eclipse.cdt.core.VCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+                    					
+                    <extension id="org.eclipse.cdt.core.CWDLocator" point="org.eclipse.cdt.core.ErrorParser"/>
+                    					
+                    <extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+                    				
+                </extensions>
+                			
+            </storageModule>
+            			
+            <storageModule moduleId="cdtBuildSystem" version="4.0.0">
+                				
+                <configuration artifactName="${ProjName}" buildProperties="" description="The CDT Build support is disabled when applying this configuration..." errorParsers="" id="com.bosch.codenav.cdt.util.buildConfig.disabled" name="CDT_Build_Disabled_Configuration" parent="org.eclipse.cdt.build.core.prefbase.cfg">
+                    					
+                    <folderInfo id="com.bosch.codenav.cdt.util.buildConfig.disabled." name="/" resourcePath="">
+                        						
+                        <toolChain id="org.eclipse.cdt.build.core.prefbase.toolchain.1233072539" name="No ToolChain" resourceTypeBasedDiscovery="false" superClass="org.eclipse.cdt.build.core.prefbase.toolchain">
+                            							
+                            <targetPlatform binaryParser="org.eclipse.cdt.core.PE" id="org.eclipse.cdt.build.core.prefbase.toolchain.1233072539.191832406" name=""/>
+                            							
+                            <builder buildPath="${workspace_loc:/RB_MS_MMP2_Git_Exchange_Test_RWS_HKK8KOR}" command="CDT Build disabled command" enableAutoBuild="false" enableCleanBuild="false" enabledIncrementalBuild="false" id="org.eclipse.cdt.build.core.settings.default.builder.663780278" keepEnvironmentInBuildfile="false" name="Gnu Make Builder" parallelBuildOn="false" superClass="org.eclipse.cdt.build.core.settings.default.builder"/>
+                            							
+                            <tool id="org.eclipse.cdt.build.core.settings.holder.libs.1784129302" name="holder for library settings" superClass="org.eclipse.cdt.build.core.settings.holder.libs"/>
+                            							
+                            <tool id="org.eclipse.cdt.build.core.settings.holder.843553241" name="Assembly" superClass="org.eclipse.cdt.build.core.settings.holder">
+                                								
+                                <inputType id="org.eclipse.cdt.build.core.settings.holder.inType.157784320" languageId="org.eclipse.cdt.core.assembly" languageName="Assembly" sourceContentType="org.eclipse.cdt.core.asmSource" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
+                                							
+                            </tool>
+                            							
+                            <tool id="org.eclipse.cdt.build.core.settings.holder.793216381" name="GNU C++" superClass="org.eclipse.cdt.build.core.settings.holder">
+                                								
+                                <inputType id="org.eclipse.cdt.build.core.settings.holder.inType.1982798521" languageId="org.eclipse.cdt.core.g++" languageName="GNU C++" sourceContentType="org.eclipse.cdt.core.cxxSource,org.eclipse.cdt.core.cxxHeader" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
+                                							
+                            </tool>
+                            							
+                            <tool id="org.eclipse.cdt.build.core.settings.holder.2134308068" name="GNU C" superClass="org.eclipse.cdt.build.core.settings.holder">
+                                								
+                                <inputType id="org.eclipse.cdt.build.core.settings.holder.inType.695104500" languageId="org.eclipse.cdt.core.gcc" languageName="GNU C" sourceContentType="org.eclipse.cdt.core.cSource,org.eclipse.cdt.core.cHeader" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
+                                							
+                            </tool>
+                            							
+                            <tool id="org.eclipse.cdt.build.core.settings.holder.1602631600" name="LLVM bytecode assembly" superClass="org.eclipse.cdt.build.core.settings.holder">
+                                								
+                                <inputType id="org.eclipse.cdt.build.core.settings.holder.inType.1941679651" languageId="org.eclipse.cdt.managedbuilder.llvm.ui.llvmAssembly" languageName="LLVM bytecode assembly" sourceContentType="org.eclipse.cdt.managedbuilder.llvm.ui.llvmAssemblySource" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
+                                							
+                            </tool>
+                            							
+                            <tool id="org.eclipse.cdt.build.core.settings.holder.1896414832" name="UPC" superClass="org.eclipse.cdt.build.core.settings.holder">
+                                								
+                                <inputType id="org.eclipse.cdt.build.core.settings.holder.inType.2055507029" languageId="org.eclipse.cdt.core.parser.upc.upc" languageName="UPC" sourceContentType="org.eclipse.cdt.core.parser.upc.upcSource" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
+                                							
+                            </tool>
+                            						
+                        </toolChain>
+                        					
+                    </folderInfo>
+                    				
+                </configuration>
+                			
+            </storageModule>
+            			
+            <storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+            		
+        </cconfiguration>
+        	
+    </storageModule>
+    	
+    <storageModule moduleId="cdtBuildSystem" version="4.0.0">
+        		
+        <project id="RB_MS_MMP2_Git_Exchange_Test_RWS_HKK8KOR.null.715828171" name="RB_MS_MMP2_Git_Exchange_Test_RWS_HKK8KOR"/>
+        	
+    </storageModule>
+    	
+    <storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+    	
+    <storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
+    	
+    <storageModule moduleId="scannerConfiguration">
+        		
+        <autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+        		
+        <scannerConfigBuildInfo instanceId="com.bosch.codenav.cdt.util.buildConfig.disabled">
+            			
+            <autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+            		
+        </scannerConfigBuildInfo>
+        	
+    </storageModule>
+    
+</cproject>

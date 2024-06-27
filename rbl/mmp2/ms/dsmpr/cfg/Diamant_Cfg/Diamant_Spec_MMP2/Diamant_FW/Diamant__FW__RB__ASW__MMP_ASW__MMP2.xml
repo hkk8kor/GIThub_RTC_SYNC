@@ -1,0 +1,4351 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<DIAGNOSIS INFO="DiamantPro Core Library 4.2.257.1692" CHECK="1C04F4F1CB5DACF84181C73BB40E4CEFICAgICAgICAgRGlhbWFudFBybyBDb3JlIExpYnJhcnkgICAgICAgICAgICAgICAgICAgIDQuMi4yNTcuMTY5MiAgICAgICAgICAgIC04NTg0OTM4Nzc3ODg4Nzk3MDYyICAgICAgICAgICAgICAgICAgICAgS09SLUMtMDExS0sgICAgICAgICAgICAgICAgICAgIEFQQUNcVUNIM0tPUiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg">
+  <FAILURE_WORDS>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_ReInitOccured_Smu0</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">Permanent till end of operation cycle</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>EcuInternal</CATEGORY>
+      <FSC_DESC>SMU reports INIT state after Initialisation Phase ended</FSC_DESC>
+      <TASK_REF>Task_1ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\PQL1KOR">30 Aug 2023 14:04</LAST_MODIFIED>
+      <MONITORING>
+        <ADD_RB_DESCRIPTION />
+        <DESCRIPTION>Re-Init-Monitoring starts with the end of the Init-Phase (all SMUs have a cleared INIT flag in their clusterFlags register). At this point in time the monitor shall report the event as passed to the DEM (to heal an existing entry of same type). If at any later time the SMU X (X for 0, 1, 2) reports a set INIT flag in its ClusterFlags register the monitor shall report the event as failed tot he DEM to be entered without any debouncing.</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>Power On/Off or Sleep/Wakeup</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>Correct positive failure: SMU did a reset and is going through its init phase. False positive failure: SPI communication is so heavily disturbed that the SPI message with the read ClusterFlag contents include a set INIT bit and the CRC is correct at random</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>normal operation </DETECTION_SIT>
+          <DETECTION_TIME>1 ms</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>false</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_ReInitOccured_Smu1</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">Permanent till end of operation cycle</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>EcuInternal</CATEGORY>
+      <FSC_DESC>SMU reports INIT state after Initialisation Phase ended</FSC_DESC>
+      <TASK_REF>Task_1ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\PQL1KOR">30 Aug 2023 14:04</LAST_MODIFIED>
+      <MONITORING>
+        <ADD_RB_DESCRIPTION />
+        <DESCRIPTION>Re-Init-Monitoring starts with the end of the Init-Phase (all SMUs have a cleared INIT flag in their clusterFlags register). At this point in time the monitor shall report the event as passed to the DEM (to heal an existing entry of same type). If at any later time the SMU X (X for 0, 1, 2) reports a set INIT flag in its ClusterFlags register the monitor shall report the event as failed tot he DEM to be entered without any debouncing.</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>Power On/Off or Sleep/Wakeup</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>Correct positive failure: SMU did a reset and is going through its init phase. False positive failure: SPI communication is so heavily disturbed that the SPI message with the read ClusterFlag contents include a set INIT bit and the CRC is correct at random</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>normal operation </DETECTION_SIT>
+          <DETECTION_TIME>1 ms</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>false</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_ReInitOccured_Smu2</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">Permanent till end of operation cycle</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>EcuInternal</CATEGORY>
+      <FSC_DESC>SMU reports INIT state after Initialisation Phase ended</FSC_DESC>
+      <TASK_REF>Task_1ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\PQL1KOR">30 Aug 2023 14:04</LAST_MODIFIED>
+      <MONITORING>
+        <ADD_RB_DESCRIPTION />
+        <DESCRIPTION>Re-Init-Monitoring starts with the end of the Init-Phase (all SMUs have a cleared INIT flag in their clusterFlags register). At this point in time the monitor shall report the event as passed to the DEM (to heal an existing entry of same type). If at any later time the SMU X (X for 0, 1, 2) reports a set INIT flag in its ClusterFlags register the monitor shall report the event as failed tot he DEM to be entered without any debouncing.</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>Power On/Off or Sleep/Wakeup</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>Correct positive failure: SMU did a reset and is going through its init phase. False positive failure: SPI communication is so heavily disturbed that the SPI message with the read ClusterFlag contents include a set INIT bit and the CRC is correct at random</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>normal operation </DETECTION_SIT>
+          <DETECTION_TIME>1 ms</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>false</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_Nvm_RefFreq_Content</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">during Initialisation</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>AttachedEcu</CATEGORY>
+      <FSC_DESC>NVM Data of Frequency invalid</FSC_DESC>
+      <TASK_REF>Task_Init</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\PQL1KOR">27 Apr 2023 12:14</LAST_MODIFIED>
+      <MONITORING>
+        <DESCRIPTION>check status from nvm handler</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>Fill this NVM Data with valid or default data from container and restart ECU</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>empty or faulty nvm entry</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>Initialisation</DETECTION_SIT>
+          <DETECTION_TIME>Immediate</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>false</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_SyncOnSmu_Timeout</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">Immediate</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>EcuInternal</CATEGORY>
+      <FSC_DESC>Syncronisation on SpiCounter on SMU was not reached in time</FSC_DESC>
+      <TASK_REF>Task_1ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\PQL1KOR">27 Apr 2023 10:26</LAST_MODIFIED>
+      <MONITORING>
+        <ADD_RB_DESCRIPTION>https://inside-docupedia.bosch.com/confluence/x/S3D-fg</ADD_RB_DESCRIPTION>
+        <DESCRIPTION>The CDD tries to synchronise onto the SpiCounter of the attached SMUs in the startup phase. This typically takes few ms. If it can not be achieved within the defined time limit, this failure is raised</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>Restart. Syncronisation on SpiCounter is reached in time</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>Defect in SMU / SMU communication</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>Startup Phase</DETECTION_SIT>
+          <DETECTION_TIME>100 ms</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>false</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA>
+        <DEBUG_ENTRY>
+          <FORMULA>BAND(D0, 0x01)</FORMULA>
+          <DESC>Syncronisation failure on SpiCounter on SMU A</DESC>
+        </DEBUG_ENTRY>
+        <DEBUG_ENTRY>
+          <FORMULA>BAND(D0, 0x02)</FORMULA>
+          <DESC>Syncronisation failure on SpiCounter on SMU B</DESC>
+        </DEBUG_ENTRY>
+        <DEBUG_ENTRY>
+          <FORMULA>BAND(D0, 0x04)</FORMULA>
+          <DESC>Syncronisation failure on SpiCounter on SMU C</DESC>
+        </DEBUG_ENTRY>
+      </DEBUG_DATA>
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_NET_DynamicCanId</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">during Initialisation</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>AttachedDevice</CATEGORY>
+      <FSC_DESC>NET_DynamicCanId NvM block status</FSC_DESC>
+      <TASK_REF>Task_Init</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="DE\kas6abt">24 Nov 2022 10:20</LAST_MODIFIED>
+      <MONITORING>
+        <DESCRIPTION>check status from nvm handler</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>NET_DynamicCanId NvM block status should be valid
+</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>When NET_DynamicCanId NvM block is corrupted or empty
+</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>When NET_DynamicCanId NvM block status is invalid</DETECTION_SIT>
+          <DETECTION_TIME>Immediate</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>PowerCycle</OPERATION_CYCLE_REF>
+      <GOOD_CHECK>false</GOOD_CHECK>
+      <CURABLE_CURRENT_OC>false</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_Nvm_SigChain_Content</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">during Initialisation</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>AttachedEcu</CATEGORY>
+      <FSC_DESC>NVM Data of signal chain invalid (see debug data)</FSC_DESC>
+      <TASK_REF>Task_Init</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\PQL1KOR">27 Apr 2023 12:14</LAST_MODIFIED>
+      <MONITORING>
+        <DESCRIPTION>check status from nvm handler</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>Fill this NVM Data with valid or default data from container and restart ECU</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>empty or faulty nvm entry</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>Initialisation</DETECTION_SIT>
+          <DETECTION_TIME>Immediate</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>false</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA>
+        <DEBUG_ENTRY>
+          <FORMULA>BAND(SR(D0,3), 0x01)</FORMULA>
+          <DESC>TCOS </DESC>
+        </DEBUG_ENTRY>
+        <DEBUG_ENTRY>
+          <FORMULA>BAND(SR(D0,5), 0x01)</FORMULA>
+          <DESC>alignment</DESC>
+        </DEBUG_ENTRY>
+        <DEBUG_ENTRY>
+          <FORMULA>BAND(SR(D0,9), 0x01)</FORMULA>
+          <DESC>signal filter  </DESC>
+        </DEBUG_ENTRY>
+      </DEBUG_DATA>
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_ChannelInvalid_Smu0_Acc3</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">1 ms (error counter already in SMU with 18 ms clock deviation)</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+        
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>EcuInternal</CATEGORY>
+      <FSC_DESC>Acc3 Signal reported invalid by SMU0</FSC_DESC>
+      <TASK_REF>Task_1ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\UCH3KOR">12 Feb 2024 14:35</LAST_MODIFIED>
+      <MONITORING>
+        <ADD_RB_DESCRIPTION>Channel YYY of SmuX reported as invalid by sensor module via SPI for error reasons different to mechanical overload.
+Either SCON or the CN Flag signaled an error (without an overload condition reported in ClusterFlags)</ADD_RB_DESCRIPTION>
+        <DESCRIPTION>either SCON or the CN Flag of the channel YYY of SmuX signal an error </DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>Signal Status from sensor module is reported as valid again via SPI</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>failure within SMU hardware</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>IMU CDD has reached the normal operation (after sync phase)</DETECTION_SIT>
+          <DETECTION_TIME>1 ms (error counter already in SMU with 18 ms clock deviation)</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>true</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_ChannelInvalid_Smu1_Acc3</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">1 ms (error counter already in SMU with 18 ms clock deviation)</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+        
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>EcuInternal</CATEGORY>
+      <FSC_DESC>Acc3 Signal reported invalid by SMU1</FSC_DESC>
+      <TASK_REF>Task_1ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\UCH3KOR">12 Feb 2024 14:37</LAST_MODIFIED>
+      <MONITORING>
+        <ADD_RB_DESCRIPTION>Channel YYY of SmuX reported as invalid by sensor module via SPI for error reasons different to mechanical overload.
+Either SCON or the CN Flag signaled an error (without an overload condition reported in ClusterFlags)</ADD_RB_DESCRIPTION>
+        <DESCRIPTION>either SCON or the CN Flag of the channel YYY of SmuX signal an error </DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>Signal Status from sensor module is reported as valid again via SPI</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>failure within SMU hardware</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>IMU CDD has reached the normal operation (after sync phase)</DETECTION_SIT>
+          <DETECTION_TIME>1 ms (error counter already in SMU with 18 ms clock deviation)</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>true</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_ChannelInvalid_Smu2_Acc3</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">1 ms (error counter already in SMU with 18 ms clock deviation)</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+        
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>EcuInternal</CATEGORY>
+      <FSC_DESC>Acc3 Signal reported invalid by SMU2</FSC_DESC>
+      <TASK_REF>Task_1ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\UCH3KOR">12 Feb 2024 14:38</LAST_MODIFIED>
+      <MONITORING>
+        <ADD_RB_DESCRIPTION>Channel YYY of SmuX reported as invalid by sensor module via SPI for error reasons different to mechanical overload.
+Either SCON or the CN Flag signaled an error (without an overload condition reported in ClusterFlags)</ADD_RB_DESCRIPTION>
+        <DESCRIPTION>either SCON or the CN Flag of the channel YYY of SmuX signal an error </DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>Signal Status from sensor module is reported as valid again via SPI</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>failure within SMU hardware</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>IMU CDD has reached the normal operation (after sync phase)</DETECTION_SIT>
+          <DETECTION_TIME>1 ms (error counter already in SMU with 18 ms clock deviation)</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>true</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_CommunicationFailure_Smu0</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">18 ms</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>EcuInternal</CATEGORY>
+      <FSC_DESC>transmission error on SPI</FSC_DESC>
+      <TASK_REF>Task_1ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\PQL1KOR">27 Apr 2023 10:26</LAST_MODIFIED>
+      <MONITORING>
+        <DESCRIPTION>transmission error on SPI</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>When CRC is correct and the Message type bits are plausible.</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>CRC of SPI Messages corrupt Or Implausible Message type bits</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>normal operation</DETECTION_SIT>
+          <DETECTION_TIME>18 ms</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>true</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_CommunicationFailure_Smu1</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">18 ms</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>EcuInternal</CATEGORY>
+      <FSC_DESC>transmission error on SPI</FSC_DESC>
+      <TASK_REF>Task_1ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\PQL1KOR">27 Apr 2023 10:27</LAST_MODIFIED>
+      <MONITORING>
+        <DESCRIPTION>transmission error on SPI</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>When CRC is correct and the Message type bits are plausible.</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>CRC of SPI Messages corrupt Or Implausible Message type bits</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>normal operation</DETECTION_SIT>
+          <DETECTION_TIME>18 ms</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>true</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_CommunicationFailure_Smu2</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">18 ms</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>EcuInternal</CATEGORY>
+      <FSC_DESC>transmission error on SPI</FSC_DESC>
+      <TASK_REF>Task_1ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\PQL1KOR">27 Apr 2023 10:27</LAST_MODIFIED>
+      <MONITORING>
+        <DESCRIPTION>transmission error on SPI</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>When CRC is correct and the Message type bits are plausible.</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>CRC of SPI Messages corrupt Or Implausible Message type bits</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>normal operation</DETECTION_SIT>
+          <DETECTION_TIME>18 ms</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>true</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_ChannelInvalid_Smu0_Rate1</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">1 ms (error counter already in SMU with 18 ms clock deviation)</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+       
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>EcuInternal</CATEGORY>
+      <FSC_DESC>Rate1 Signal reported invalid by SMU0</FSC_DESC>
+      <TASK_REF>Task_1ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\UCH3KOR">12 Feb 2024 14:36</LAST_MODIFIED>
+      <MONITORING>
+        <ADD_RB_DESCRIPTION>Channel YYY of SmuX reported as invalid by sensor module via SPI for error reasons different to mechanical overload.
+Either SCON or the CN Flag signaled an error (without an overload condition reported in ClusterFlags)</ADD_RB_DESCRIPTION>
+        <DESCRIPTION>either SCON or the CN Flag of the channel YYY of SmuX signal an error </DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>Signal Status from sensor module is reported as valid again via SPI</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>failure within SMU hardware</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>IMU CDD has reached the normal operation (after sync phase)</DETECTION_SIT>
+          <DETECTION_TIME>1 ms (error counter already in SMU with 18 ms clock deviation)</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>true</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_ChannelInvalid_Smu1_Rate1</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">1 ms (error counter already in SMU with 18 ms clock deviation)</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+        
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>EcuInternal</CATEGORY>
+      <FSC_DESC>Rate1 Signal reported invalid by SMU1</FSC_DESC>
+      <TASK_REF>Task_1ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\UCH3KOR">12 Feb 2024 14:38</LAST_MODIFIED>
+      <MONITORING>
+        <ADD_RB_DESCRIPTION>Channel YYY of SmuX reported as invalid by sensor module via SPI for error reasons different to mechanical overload.
+Either SCON or the CN Flag signaled an error (without an overload condition reported in ClusterFlags)</ADD_RB_DESCRIPTION>
+        <DESCRIPTION>either SCON or the CN Flag of the channel YYY of SmuX signal an error </DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>Signal Status from sensor module is reported as valid again via SPI</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>failure within SMU hardware</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>IMU CDD has reached the normal operation (after sync phase)</DETECTION_SIT>
+          <DETECTION_TIME>1 ms (error counter already in SMU with 18 ms clock deviation)</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>true</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_ChannelInvalid_Smu2_Rate1</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">1 ms (error counter already in SMU with 18 ms clock deviation)</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+        
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>EcuInternal</CATEGORY>
+      <FSC_DESC>Rate1 Signal reported invalid by SMU2</FSC_DESC>
+      <TASK_REF>Task_1ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\UCH3KOR">12 Feb 2024 14:38</LAST_MODIFIED>
+      <MONITORING>
+        <ADD_RB_DESCRIPTION>Channel YYY of SmuX reported as invalid by sensor module via SPI for error reasons different to mechanical overload.
+Either SCON or the CN Flag signaled an error (without an overload condition reported in ClusterFlags)</ADD_RB_DESCRIPTION>
+        <DESCRIPTION>either SCON or the CN Flag of the channel YYY of SmuX signal an error </DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>Signal Status from sensor module is reported as valid again via SPI</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>failure within SMU hardware</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>IMU CDD has reached the normal operation (after sync phase)</DETECTION_SIT>
+          <DETECTION_TIME>1 ms (error counter already in SMU with 18 ms clock deviation)</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>true</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_ChannelInvalid_Smu0_Acc1</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">1 ms (error counter already in SMU with 18 ms clock deviation)</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+        
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>EcuInternal</CATEGORY>
+      <FSC_DESC>Acc1 Signal reported invalid by SMU0</FSC_DESC>
+      <TASK_REF>Task_1ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\UCH3KOR">12 Feb 2024 14:33</LAST_MODIFIED>
+      <MONITORING>
+        <ADD_RB_DESCRIPTION>Channel YYY of SmuX reported as invalid by sensor module via SPI for error reasons different to mechanical overload.
+Either SCON or the CN Flag signaled an error (without an overload condition reported in ClusterFlags)</ADD_RB_DESCRIPTION>
+        <DESCRIPTION>either SCON or the CN Flag of the channel YYY of SmuX signal an error </DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>Signal Status from sensor module is reported as valid again via SPI</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>failure within SMU hardware</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>IMU CDD has reached the normal operation (after sync phase)</DETECTION_SIT>
+          <DETECTION_TIME>1 ms (error counter already in SMU with 18 ms clock deviation)</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>true</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_ChannelInvalid_Smu1_Acc1</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">1 ms (error counter already in SMU with 18 ms clock deviation)</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+        
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>EcuInternal</CATEGORY>
+      <FSC_DESC>Acc1 Signal reported invalid by SMU1</FSC_DESC>
+      <TASK_REF>Task_1ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\UCH3KOR">12 Feb 2024 14:36</LAST_MODIFIED>
+      <MONITORING>
+        <ADD_RB_DESCRIPTION>Channel YYY of SmuX reported as invalid by sensor module via SPI for error reasons different to mechanical overload.
+Either SCON or the CN Flag signaled an error (without an overload condition reported in ClusterFlags)</ADD_RB_DESCRIPTION>
+        <DESCRIPTION>either SCON or the CN Flag of the channel YYY of SmuX signal an error </DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>Signal Status from sensor module is reported as valid again via SPI</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>failure within SMU hardware</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>IMU CDD has reached the normal operation (after sync phase)</DETECTION_SIT>
+          <DETECTION_TIME>1 ms (error counter already in SMU with 18 ms clock deviation)</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>true</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_ChannelInvalid_Smu2_Acc1</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">1 ms (error counter already in SMU with 18 ms clock deviation)</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+        
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>EcuInternal</CATEGORY>
+      <FSC_DESC>Acc1 Signal reported invalid by SMU2</FSC_DESC>
+      <TASK_REF>Task_1ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\UCH3KOR">12 Feb 2024 14:38</LAST_MODIFIED>
+      <MONITORING>
+        <ADD_RB_DESCRIPTION>Channel YYY of SmuX reported as invalid by sensor module via SPI for error reasons different to mechanical overload.
+Either SCON or the CN Flag signaled an error (without an overload condition reported in ClusterFlags)</ADD_RB_DESCRIPTION>
+        <DESCRIPTION>either SCON or the CN Flag of the channel YYY of SmuX signal an error </DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>Signal Status from sensor module is reported as valid again via SPI</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>failure within SMU hardware</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>IMU CDD has reached the normal operation (after sync phase)</DETECTION_SIT>
+          <DETECTION_TIME>1 ms (error counter already in SMU with 18 ms clock deviation)</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>true</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_ChannelInvalid_Smu0_Acc2</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">1 ms (error counter already in SMU with 18 ms clock deviation)</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+        
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>EcuInternal</CATEGORY>
+      <FSC_DESC>Acc2 Signal reported invalid by SMU0</FSC_DESC>
+      <TASK_REF>Task_1ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\UCH3KOR">12 Feb 2024 14:35</LAST_MODIFIED>
+      <MONITORING>
+        <ADD_RB_DESCRIPTION>Channel YYY of SmuX reported as invalid by sensor module via SPI for error reasons different to mechanical overload.
+Either SCON or the CN Flag signaled an error (without an overload condition reported in ClusterFlags)</ADD_RB_DESCRIPTION>
+        <DESCRIPTION>either SCON or the CN Flag of the channel YYY of SmuX signal an error </DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>Signal Status from sensor module is reported as valid again via SPI</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>failure within SMU hardware</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>IMU CDD has reached the normal operation (after sync phase)</DETECTION_SIT>
+          <DETECTION_TIME>1 ms (error counter already in SMU with 18 ms clock deviation)</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>true</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_ChannelInvalid_Smu1_Acc2</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">1 ms (error counter already in SMU with 18 ms clock deviation)</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+        
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>EcuInternal</CATEGORY>
+      <FSC_DESC>Acc2 Signal reported invalid by SMU1</FSC_DESC>
+      <TASK_REF>Task_1ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\UCH3KOR">12 Feb 2024 14:36</LAST_MODIFIED>
+      <MONITORING>
+        <ADD_RB_DESCRIPTION>Channel YYY of SmuX reported as invalid by sensor module via SPI for error reasons different to mechanical overload.
+Either SCON or the CN Flag signaled an error (without an overload condition reported in ClusterFlags)</ADD_RB_DESCRIPTION>
+        <DESCRIPTION>either SCON or the CN Flag of the channel YYY of SmuX signal an error </DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>Signal Status from sensor module is reported as valid again via SPI</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>failure within SMU hardware</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>IMU CDD has reached the normal operation (after sync phase)</DETECTION_SIT>
+          <DETECTION_TIME>1 ms (error counter already in SMU with 18 ms clock deviation)</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>true</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_ChannelInvalid_Smu2_Acc2</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">1 ms (error counter already in SMU with 18 ms clock deviation)</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+      
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>EcuInternal</CATEGORY>
+      <FSC_DESC>Acc2 Signal reported invalid by SMU2</FSC_DESC>
+      <TASK_REF>Task_1ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\UCH3KOR">12 Feb 2024 14:38</LAST_MODIFIED>
+      <MONITORING>
+        <ADD_RB_DESCRIPTION>Channel YYY of SmuX reported as invalid by sensor module via SPI for error reasons different to mechanical overload.
+Either SCON or the CN Flag signaled an error (without an overload condition reported in ClusterFlags)</ADD_RB_DESCRIPTION>
+        <DESCRIPTION>either SCON or the CN Flag of the channel YYY of SmuX signal an error </DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>Signal Status from sensor module is reported as valid again via SPI</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>failure within SMU hardware</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>IMU CDD has reached the normal operation (after sync phase)</DETECTION_SIT>
+          <DETECTION_TIME>1 ms (error counter already in SMU with 18 ms clock deviation)</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>true</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_FrequencyFailure_Smu0</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">18 ms</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>EcuInternal</CATEGORY>
+      <FSC_DESC>Frequency of SMU0 deviated from NVM Data rbl_SigChain_FreqMonRef</FSC_DESC>
+      <TASK_REF>Task_1ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\PQL1KOR">6 Jul 2023 20:13</LAST_MODIFIED>
+      <MONITORING>
+        <DESCRIPTION>Frequency of SMU0 deviated from NVM Data rbl_SigChain_FreqMonRef</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>Frequency of SMU deviated less then 1% from NVM Data rbl_SigChain_FreqMonRef</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>Frequency change of SMU or CCCube</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>normal operation</DETECTION_SIT>
+          <DETECTION_TIME>18 ms</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>true</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA>
+        <DEBUG_ENTRY>
+          <FORMULA>D0*9.53</FORMULA>
+          <UNIT>Hz</UNIT>
+          <DESC>Frequency in Hz</DESC>
+        </DEBUG_ENTRY>
+      </DEBUG_DATA>
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_FrequencyFailure_Smu1</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">18 ms</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>EcuInternal</CATEGORY>
+      <FSC_DESC>Frequency of SMU1 deviated from NVM Data rbl_SigChain_FreqMonRef</FSC_DESC>
+      <TASK_REF>Task_1ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\PQL1KOR">6 Jul 2023 20:13</LAST_MODIFIED>
+      <MONITORING>
+        <DESCRIPTION>Frequency of SMU1 deviated from NVM Data rbl_SigChain_FreqMonRef</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>Frequency of SMU deviated less then 1% from NVM Data rbl_SigChain_FreqMonRef</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>Frequency change of SMU or CCCube</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>normal operation</DETECTION_SIT>
+          <DETECTION_TIME>18 ms</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>true</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA>
+        <DEBUG_ENTRY>
+          <FORMULA>D0*9.53</FORMULA>
+          <UNIT>Hz</UNIT>
+          <DESC>Frequency in Hz</DESC>
+        </DEBUG_ENTRY>
+      </DEBUG_DATA>
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_FrequencyFailure_Smu2</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">18 ms</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>EcuInternal</CATEGORY>
+      <FSC_DESC>Frequency of SMU2 deviated from NVM Data rbl_SigChain_FreqMonRef</FSC_DESC>
+      <TASK_REF>Task_1ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\PQL1KOR">6 Jul 2023 20:13</LAST_MODIFIED>
+      <MONITORING>
+        <DESCRIPTION>Frequency of SMU2 deviated from NVM Data rbl_SigChain_FreqMonRef</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>Frequency of SMU deviated less then 1% from NVM Data rbl_SigChain_FreqMonRef</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>Frequency change of SMU or CCCube</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>normal operation</DETECTION_SIT>
+          <DETECTION_TIME>18 ms</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>true</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA>
+        <DEBUG_ENTRY>
+          <FORMULA>D0*9.53</FORMULA>
+          <UNIT>Hz</UNIT>
+          <DESC>Frequency in Hz</DESC>
+        </DEBUG_ENTRY>
+      </DEBUG_DATA>
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_TemperatureRangeExceeded_Smu0</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">18 ms</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>AttachedEcu</CATEGORY>
+      <FSC_DESC>Temperature of SMU0 exceeded valid range</FSC_DESC>
+      <TASK_REF>Task_1ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\PQL1KOR">6 Jul 2023 20:13</LAST_MODIFIED>
+      <MONITORING>
+        <DESCRIPTION>Temperature of SMU exceeded range specified in NVM Item rbl_SigChain_TempMonLimit</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>Temperature of SMU in valid range</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>Temperature of SMU0 exceeded valid range</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>normal operation</DETECTION_SIT>
+          <DETECTION_TIME>18 ms</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>true</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA>
+        <DEBUG_ENTRY>
+          <FORMULA>(MKSIGNED(D0,16)+10000) /200</FORMULA>
+          <UNIT>degC</UNIT>
+          <DESC>Temperature in degrees Celsius</DESC>
+        </DEBUG_ENTRY>
+      </DEBUG_DATA>
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_TemperatureRangeExceeded_Smu1</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">18 ms</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>AttachedEcu</CATEGORY>
+      <FSC_DESC>Temperature of SMU1 exceeded valid range</FSC_DESC>
+      <TASK_REF>Task_1ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\PQL1KOR">6 Jul 2023 20:13</LAST_MODIFIED>
+      <MONITORING>
+        <DESCRIPTION>Temperature of SMU exceeded range specified in NVM Item rbl_SigChain_TempMonLimit</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>Temperature of SMU in valid range</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>Temperature of SMU1 exceeded valid range</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>normal operation</DETECTION_SIT>
+          <DETECTION_TIME>18 ms</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>true</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA>
+        <DEBUG_ENTRY>
+          <FORMULA>(MKSIGNED(D0,16)+10000) /200</FORMULA>
+          <UNIT>degC</UNIT>
+          <DESC>Temperature in degrees Celsius</DESC>
+        </DEBUG_ENTRY>
+      </DEBUG_DATA>
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_TemperatureRangeExceeded_Smu2</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">18 ms</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>AttachedEcu</CATEGORY>
+      <FSC_DESC>Temperature of SMU2 exceeded valid range</FSC_DESC>
+      <TASK_REF>Task_1ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\PQL1KOR">6 Jul 2023 20:13</LAST_MODIFIED>
+      <MONITORING>
+        <DESCRIPTION>Temperature of SMU exceeded range specified in NVM Item rbl_SigChain_TempMonLimit</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>Temperature of SMU in valid range</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>Temperature of SMU2 exceeded valid range</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>normal operation</DETECTION_SIT>
+          <DETECTION_TIME>18 ms</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>true</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA>
+        <DEBUG_ENTRY>
+          <FORMULA>(MKSIGNED(D0,16)+10000) /200</FORMULA>
+          <UNIT>degC</UNIT>
+          <DESC>Temperature in degrees Celsius</DESC>
+        </DEBUG_ENTRY>
+      </DEBUG_DATA>
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_MechOverload_Smu0_Acc1</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">1 ms</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+        
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>EcuInternal</CATEGORY>
+      <FSC_DESC>overload signal from smu</FSC_DESC>
+      <TASK_REF>Task_1ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\UCH3KOR">12 Feb 2024 14:39</LAST_MODIFIED>
+      <MONITORING>
+        <ADD_RB_DESCRIPTION>Channel YYY of SmuX reported as invalid by sensor module via SPI for error reason mechanical overload.</ADD_RB_DESCRIPTION>
+        <DESCRIPTION>only the overload flag in the clusterflag is set</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION />
+        <ROOTCAUSE>failure within SMU hardware</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>cdd has reached the normal operation (after sync phase)</DETECTION_SIT>
+          <DETECTION_TIME>1 ms</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>true</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_MechOverload_Smu0_Acc2</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">1 ms</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+        
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>EcuInternal</CATEGORY>
+      <FSC_DESC>overload signal from smu</FSC_DESC>
+      <TASK_REF>Task_1ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\UCH3KOR">12 Feb 2024 14:39</LAST_MODIFIED>
+      <MONITORING>
+        <ADD_RB_DESCRIPTION>Channel YYY of SmuX reported as invalid by sensor module via SPI for error reason mechanical overload.</ADD_RB_DESCRIPTION>
+        <DESCRIPTION>only the overload flag in the clusterflag is set</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION />
+        <ROOTCAUSE>failure within SMU hardware</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>cdd has reached the normal operation (after sync phase)</DETECTION_SIT>
+          <DETECTION_TIME>1 ms</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>true</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_MechOverload_Smu0_Acc3</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">1 ms</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+        
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>EcuInternal</CATEGORY>
+      <FSC_DESC>overload signal from smu</FSC_DESC>
+      <TASK_REF>Task_1ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\UCH3KOR">12 Feb 2024 14:39</LAST_MODIFIED>
+      <MONITORING>
+        <ADD_RB_DESCRIPTION>Channel YYY of SmuX reported as invalid by sensor module via SPI for error reason mechanical overload.</ADD_RB_DESCRIPTION>
+        <DESCRIPTION>only the overload flag in the clusterflag is set</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION />
+        <ROOTCAUSE>failure within SMU hardware</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>cdd has reached the normal operation (after sync phase)</DETECTION_SIT>
+          <DETECTION_TIME>1 ms</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>true</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_MechOverload_Smu0_Rate1</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">1 ms</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+       
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>EcuInternal</CATEGORY>
+      <FSC_DESC>overload signal from smu</FSC_DESC>
+      <TASK_REF>Task_1ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\UCH3KOR">12 Feb 2024 14:39</LAST_MODIFIED>
+      <MONITORING>
+        <ADD_RB_DESCRIPTION>Channel YYY of SmuX reported as invalid by sensor module via SPI for error reason mechanical overload.</ADD_RB_DESCRIPTION>
+        <DESCRIPTION>only the overload flag in the clusterflag is set</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION />
+        <ROOTCAUSE>failure within SMU hardware</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>cdd has reached the normal operation (after sync phase)</DETECTION_SIT>
+          <DETECTION_TIME>1 ms</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>true</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_MechOverload_Smu1_Acc1</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">1 ms</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+       
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>EcuInternal</CATEGORY>
+      <FSC_DESC>overload signal from smu</FSC_DESC>
+      <TASK_REF>Task_1ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\UCH3KOR">12 Feb 2024 14:39</LAST_MODIFIED>
+      <MONITORING>
+        <ADD_RB_DESCRIPTION>Channel YYY of SmuX reported as invalid by sensor module via SPI for error reason mechanical overload.</ADD_RB_DESCRIPTION>
+        <DESCRIPTION>only the overload flag in the clusterflag is set</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION />
+        <ROOTCAUSE>failure within SMU hardware</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>cdd has reached the normal operation (after sync phase)</DETECTION_SIT>
+          <DETECTION_TIME>1 ms</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>true</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_MechOverload_Smu1_Acc2</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">1 ms</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+        
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>EcuInternal</CATEGORY>
+      <FSC_DESC>overload signal from smu</FSC_DESC>
+      <TASK_REF>Task_1ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\UCH3KOR">12 Feb 2024 14:40</LAST_MODIFIED>
+      <MONITORING>
+        <ADD_RB_DESCRIPTION>Channel YYY of SmuX reported as invalid by sensor module via SPI for error reason mechanical overload.</ADD_RB_DESCRIPTION>
+        <DESCRIPTION>only the overload flag in the clusterflag is set</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION />
+        <ROOTCAUSE>failure within SMU hardware</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>cdd has reached the normal operation (after sync phase)</DETECTION_SIT>
+          <DETECTION_TIME>1 ms</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>true</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_MechOverload_Smu1_Acc3</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">1 ms</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+        
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>EcuInternal</CATEGORY>
+      <FSC_DESC>overload signal from smu</FSC_DESC>
+      <TASK_REF>Task_1ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\UCH3KOR">12 Feb 2024 14:40</LAST_MODIFIED>
+      <MONITORING>
+        <ADD_RB_DESCRIPTION>Channel YYY of SmuX reported as invalid by sensor module via SPI for error reason mechanical overload.</ADD_RB_DESCRIPTION>
+        <DESCRIPTION>only the overload flag in the clusterflag is set</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION />
+        <ROOTCAUSE>failure within SMU hardware</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>cdd has reached the normal operation (after sync phase)</DETECTION_SIT>
+          <DETECTION_TIME>1 ms</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>true</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_MechOverload_Smu1_Rate1</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">1 ms</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+        
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>EcuInternal</CATEGORY>
+      <FSC_DESC>overload signal from smu</FSC_DESC>
+      <TASK_REF>Task_1ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\UCH3KOR">12 Feb 2024 14:40</LAST_MODIFIED>
+      <MONITORING>
+        <ADD_RB_DESCRIPTION>Channel YYY of SmuX reported as invalid by sensor module via SPI for error reason mechanical overload.</ADD_RB_DESCRIPTION>
+        <DESCRIPTION>only the overload flag in the clusterflag is set</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION />
+        <ROOTCAUSE>failure within SMU hardware</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>cdd has reached the normal operation (after sync phase)</DETECTION_SIT>
+          <DETECTION_TIME>1 ms</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>true</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_MechOverload_Smu2_Acc1</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">1 ms</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+       
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>EcuInternal</CATEGORY>
+      <FSC_DESC>overload signal from smu</FSC_DESC>
+      <TASK_REF>Task_1ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\UCH3KOR">12 Feb 2024 14:40</LAST_MODIFIED>
+      <MONITORING>
+        <ADD_RB_DESCRIPTION>Channel YYY of SmuX reported as invalid by sensor module via SPI for error reason mechanical overload.</ADD_RB_DESCRIPTION>
+        <DESCRIPTION>only the overload flag in the clusterflag is set</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION />
+        <ROOTCAUSE>failure within SMU hardware</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>cdd has reached the normal operation (after sync phase)</DETECTION_SIT>
+          <DETECTION_TIME>1 ms</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>true</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_MechOverload_Smu2_Acc2</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">1 ms</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+      
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>EcuInternal</CATEGORY>
+      <FSC_DESC>overload signal from smu</FSC_DESC>
+      <TASK_REF>Task_1ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\UCH3KOR">12 Feb 2024 14:41</LAST_MODIFIED>
+      <MONITORING>
+        <ADD_RB_DESCRIPTION>Channel YYY of SmuX reported as invalid by sensor module via SPI for error reason mechanical overload.</ADD_RB_DESCRIPTION>
+        <DESCRIPTION>only the overload flag in the clusterflag is set</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION />
+        <ROOTCAUSE>failure within SMU hardware</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>cdd has reached the normal operation (after sync phase)</DETECTION_SIT>
+          <DETECTION_TIME>1 ms</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>true</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_MechOverload_Smu2_Acc3</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">1 ms</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+        
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>EcuInternal</CATEGORY>
+      <FSC_DESC>overload signal from smu</FSC_DESC>
+      <TASK_REF>Task_1ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\UCH3KOR">12 Feb 2024 14:41</LAST_MODIFIED>
+      <MONITORING>
+        <ADD_RB_DESCRIPTION>Channel YYY of SmuX reported as invalid by sensor module via SPI for error reason mechanical overload.</ADD_RB_DESCRIPTION>
+        <DESCRIPTION>only the overload flag in the clusterflag is set</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION />
+        <ROOTCAUSE>failure within SMU hardware</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>cdd has reached the normal operation (after sync phase)</DETECTION_SIT>
+          <DETECTION_TIME>1 ms</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>true</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_MechOverload_Smu2_Rate1</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">1 ms</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+        
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>EcuInternal</CATEGORY>
+      <FSC_DESC>overload signal from smu</FSC_DESC>
+      <TASK_REF>Task_1ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\UCH3KOR">12 Feb 2024 14:41</LAST_MODIFIED>
+      <MONITORING>
+        <ADD_RB_DESCRIPTION>Channel YYY of SmuX reported as invalid by sensor module via SPI for error reason mechanical overload.</ADD_RB_DESCRIPTION>
+        <DESCRIPTION>only the overload flag in the clusterflag is set</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION />
+        <ROOTCAUSE>failure within SMU hardware</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>cdd has reached the normal operation (after sync phase)</DETECTION_SIT>
+          <DETECTION_TIME>1 ms</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>true</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_AmbientTemperatureFault</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">1 s</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+        <ITEM key="IumprEventExecutionConditions">unassigned</ITEM>
+        <ITEM key="IumprEventFilterTimes">unassigned</ITEM>
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>EcuInternal</CATEGORY>
+      <FSC_DESC>Ambient temperature or temperature gradient is too high</FSC_DESC>
+      <TASK_REF>Task_5ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\PZR2KOR">20 Nov 2023 15:54</LAST_MODIFIED>
+      <MONITORING>
+        <ADD_RB_DESCRIPTION>Each second the delta of the current and previous average is calculated and its absolute value compared against a time-dependent gradient limit. If one of both checks fails, the failure becomes active, if both checks pass (incl. a hysteresis) the failure gets healed.</ADD_RB_DESCRIPTION>
+        <DESCRIPTION>The temperature signal of 1 SMU is averaged over 1 second.
+Each second the current average is compared against an sensor individual over-temperature limit.</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>Ambient temperature and temperature gradient are within limits (minus hysteresis)</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>Ambient temperature or temperature gradient is too high.</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>normal operation</DETECTION_SIT>
+          <DETECTION_TIME>1 s</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>true</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA>
+        <DEBUG_ENTRY>
+          <FORMULA>(MKSIGNED(D0,16)+10000) /200</FORMULA>
+          <UNIT>degC</UNIT>
+          <DESC>Average Ambient Temperature from Current second </DESC>
+        </DEBUG_ENTRY>
+        <DEBUG_ENTRY>
+          <FORMULA>(MKSIGNED(D1,16)+10000) /200</FORMULA>
+          <UNIT>degC</UNIT>
+          <DESC>Average Ambient Temperature from Previous second </DESC>
+        </DEBUG_ENTRY>
+      </DEBUG_DATA>
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_Nvm_AmbTempMon_Content</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="RecoveryTime">during Initialisation</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+        <ITEM key="IumprEventExecutionConditions">unassigned</ITEM>
+        <ITEM key="IumprEventFilterTimes">unassigned</ITEM>
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>AttachedEcu</CATEGORY>
+      <FSC_DESC>NVM item for Ambient Temperature Monitor is missing or corrupt.</FSC_DESC>
+      <TASK_REF>Task_Init</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\PZR2KOR">9 Nov 2023 16:22</LAST_MODIFIED>
+      <MONITORING>
+        <DESCRIPTION>The NVM item for Ambient Temperature Monitor is checked regarding CRC correctness on startup.</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>Fill this NVM Data with valid or default data from container and restart ECU.</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>NVM item for Ambient Temperature Monitor is missing or corrupt.</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>Initialization</DETECTION_SIT>
+          <DETECTION_TIME>Immediate</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_MMP_ASW</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>OtherCycle</OPERATION_CYCLE_REF>
+      <CURABLE_CURRENT_OC>false</CURABLE_CURRENT_OC>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+  </FAILURE_WORDS>
+</DIAGNOSIS>

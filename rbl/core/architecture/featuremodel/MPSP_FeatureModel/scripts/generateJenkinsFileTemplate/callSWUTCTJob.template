@@ -1,0 +1,9 @@
+stage("SW-UT/CT") {
+	agent any
+	/*%when%*/
+	steps {
+		script {
+			/*%SWUTCTJobCall%*/
+		}
+	}
+} // stage("SW-UT/CT")

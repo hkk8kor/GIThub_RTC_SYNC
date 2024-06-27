@@ -1,0 +1,1355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DIAGNOSIS INFO="DiamantPro 4.0.257.1670" CHECK="369CED4F6D67B7EA05BB53EE52400E33ICAgICAgICAgICAgICAgICAgICAgIERpYW1hbnRQcm8gICAgICAgICAgICAgICAgICAgIDQuMC4yNTcuMTY3MCAgICAgICAgICAgIC04NTg2Mjc1NDc2NTI5MjQwMjM5ICAgICAgICAgICAgICAgICAgICAgIEJNSDExMDg2MzQgICAgICAgICAgICAgICAgICAgIEFQQUNcS0xJNktPUiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg">
+  <NODE_LINKS>
+    <NODE_LINK key="_UjY_Node_NetworkCAN0_UjY__UjY_Node_RemoteActuation" source="Node_NetworkCAN0" target="Node_RemoteActuation" />
+    <NODE_LINK key="_UjY_Node_Ecu_UjY__UjY_Node_VariantCoding" source="Node_Ecu" target="Node_VariantCoding" />
+    <NODE_LINK key="_UjY_Node_Ecu_UjY__UjY_Node_ObdDummy_Two" source="Node_Ecu" target="Node_ObdDummy_Two" />
+    <NODE_LINK key="_UjY_Node_ValveRelay_UjY__UjY_Node_ValveCoilPath_MV0" source="Node_ValveRelay" target="Node_ValveCoilPath_MV0" />
+    <NODE_LINK key="_UjY_Node_Ecu_UjY__UjY_Node_ObdDummy" source="Node_Ecu" target="Node_ObdDummy" />
+    <NODE_LINK key="_UjY_Node_ApbAsic_UjY__UjY_Node_ApbHWLamp" source="Node_ApbAsic" target="Node_ApbHWLamp" />
+    <NODE_LINK key="_UjY_Node_Ecu_UjY__UjY_Node_EMM" source="Node_Ecu" target="Node_EMM" />
+    <NODE_LINK key="_UjY_Node_Ecu_UjY__UjY_Node_UBExt" source="Node_Ecu" target="Node_UBExt" />
+    <NODE_LINK key="_UjY_Node_NetworkCAN_UjY__UjY_Node_NetworkCAN2" source="Node_NetworkCAN" target="Node_NetworkCAN2" />
+    <NODE_LINK key="_UjY_Node_uC_UjY__UjY_Node_uCMemoryGuard" source="Node_uC" target="Node_uCMemoryGuard" />
+    <NODE_LINK key="_UjY_Node_Ecu_UjY__UjY_Node_EVP" source="Node_Ecu" target="Node_EVP" />
+    <NODE_LINK key="_UjY_Node_Ecu_UjY__UjY_Node_PressureSensor4" source="Node_Ecu" target="Node_PressureSensor4" />
+    <NODE_LINK key="_UjY_Node_GroundLossDetectionHardware_UjY__UjY_Node_GroundLossDetectionFeasibility" source="Node_GroundLossDetectionHardware" target="Node_GroundLossDetectionFeasibility" />
+    <NODE_LINK key="_UjY_Node_PressureSensor3_UjY__UjY_Node_TemperatureSensorPs3" source="Node_PressureSensor3" target="Node_TemperatureSensorPs3" />
+    <NODE_LINK key="_UjY_Node_PressureSensor1_UjY__UjY_Node_TemperatureSensorPs1" source="Node_PressureSensor1" target="Node_TemperatureSensorPs1" />
+    <NODE_LINK key="_UjY_Node_PressureSensor2_UjY__UjY_Node_TemperatureSensorPs2" source="Node_PressureSensor2" target="Node_TemperatureSensorPs2" />
+    <NODE_LINK key="_UjY_Node_PressureSensor4_UjY__UjY_Node_TemperatureSensorPs4" source="Node_PressureSensor4" target="Node_TemperatureSensorPs4" />
+    <NODE_LINK key="_UjY_Node_Ecu_UjY__UjY_Node_Det" source="Node_Ecu" target="Node_Det" />
+    <NODE_LINK key="_UjY_Node_ApbAsic_UjY__UjY_Node_APBAsicDioInfo" source="Node_ApbAsic" target="Node_APBAsicDioInfo" />
+    <NODE_LINK key="_UjY_Node_ValveSupply_UjY__UjY_Node_HydraulicUndervoltage" source="Node_UBVR" target="Node_HydraulicSupply" />
+    <NODE_LINK key="_UjY_Node_B6Asic_UjY__UjY_Node_BrushlessMotor" source="Node_B6Asic" target="Node_BrushlessMotor" />
+    <NODE_LINK key="_UjY_Node_BrushlessMotor_UjY__UjY_Node_OBDCurrent" source="Node_BrushlessMotor" target="Node_BrushlessMotor_Info" />
+    <NODE_LINK key="_UjY_Node_ApbButton_UjY__UjY_Node_ApbButtonRedundancy" source="Node_ApbButton" target="Node_ApbButtonRedundancy" />
+    <NODE_LINK key="_UjY_Node_Ecu_UjY__UjY_Node_BLMTemperature" source="Node_Ecu" target="Node_BLMTemperature" />
+    <NODE_LINK key="_UjY_Node_Ecu_UjY__UjY_Node_DTE" source="Node_Ecu" target="Node_DTE" />
+    <NODE_LINK key="_UjY_Node_UEXS_UjY__UjY_Node_LiPS" source="Node_U5VExt" target="Node_LiPS" />
+    <NODE_LINK key="_UjY_Node_Network_UjY__UjY_Node_NetworkFlexray" source="Node_Network" target="Node_NetworkFlexray" />
+    <NODE_LINK key="_UjY_Node_VacSentSensors_UjY__UjY_Node_VacSent1" source="Node_VacSentSensors" target="Node_VacSent1" />
+    <NODE_LINK key="_UjY_Node_VacSentSensors_UjY__UjY_Node_VacSent2" source="Node_VacSentSensors" target="Node_VacSent2" />
+    <NODE_LINK key="_UjY_Node_Ecu_UjY__UjY_Node_PressureSensor3" source="Node_Ecu" target="Node_PressureSensor3" />
+    <NODE_LINK key="_UjY_Node_APBMotorGeneric_UjY__UjY_Node_APBMotorVoltage" source="Node_APBMotorGeneric" target="Node_APBMotorVoltage" />
+    <NODE_LINK key="_UjY_Node_ApbAsic_UjY__UjY_Node_ApbButton" source="Node_ApbAsic" target="Node_ApbButton" />
+    <NODE_LINK key="_UjY_Node_Ecu_UjY__UjY_Node_BFS" source="Node_Ecu" target="Node_BFS" />
+    <NODE_LINK key="_UjY_Node_UEXS_UjY__UjY_Node_VacSentSensors" source="Node_U5VExt" target="Node_VacSentSensors" />
+    <NODE_LINK key="_UjY_Node_MotorSupply_UjY__UjY_Node_HydraulicUndervoltage" source="Node_UBMR" target="Node_HydraulicSupply" />
+    <NODE_LINK key="_UjY_Node_ValveSupply_UjY__UjY_Node_ValveRelay" source="Node_UBVR" target="Node_ValveRelay" />
+    <NODE_LINK key="_UjY_Node_Ecu_UjY__UjY_Node_IIS_Generic" source="Node_Ecu" target="Node_IIS_Generic" />
+    <NODE_LINK key="_UjY_Node_IIS_Generic_UjY__UjY_Node_IIS_As" source="Node_IIS_Generic" target="Node_IIS_As" />
+    <NODE_LINK key="_UjY_Node_IIS_Generic_UjY__UjY_Node_IIS_Yrs" source="Node_IIS_Generic" target="Node_IIS_Yrs" />
+    <NODE_LINK key="_UjY_Node_IIS_As_UjY__UjY_Node_AxsAys" source="Node_IIS_As" target="Node_AxsAys" />
+    <NODE_LINK key="_UjY_Node_IIS_Yrs_UjY__UjY_Node_Yrs" source="Node_IIS_Yrs" target="Node_Yrs" />
+    <NODE_LINK key="_UjY_Node_UEXS_UjY__UjY_Node_PtsGeneric" source="Node_U5VExt" target="Node_PtsGeneric" />
+    <NODE_LINK key="_UjY_Node_Ecu_UjY__UjY_Node_PressureSensorMC1" source="Node_Ecu" target="Node_PressureSensorMC1" />
+    <NODE_LINK key="_UjY_Node_Ecu_UjY__UjY_Node_PressureSensor1" source="Node_Ecu" target="Node_PressureSensor1" />
+    <NODE_LINK key="_UjY_Node_Ecu_UjY__UjY_Node_SMM_DegradeSystem" source="Node_Ecu" target="Node_SMM_DegradeSystem" />
+    <NODE_LINK key="_UjY_Node_NetworkCAN1_UjY__UjY_Node_MMxAdv_TX_ID7" source="Node_NetworkCAN1" target="Node_MMxAdv_TX_ID7" />
+    <NODE_LINK key="_UjY_Node_uC_UjY__UjY_Node_Ecu" source="Node_uC" target="Node_Ecu" />
+    <NODE_LINK key="_UjY_Node_Ecu_UjY__UjY_Node_Network" source="Node_Ecu" target="Node_Network" />
+    <NODE_LINK key="_UjY_Node_Ecu_UjY__UjY_Node_AswSysPas" source="Node_Ecu" target="Node_AswSysPas" />
+    <NODE_LINK key="_UjY_Node_ValveRelay_UjY__UjY_Node_ValveCoilPath_MV7" source="Node_ValveRelay" target="Node_ValveCoilPath_MV7" />
+    <NODE_LINK key="_UjY_Node_ValveRelay_UjY__UjY_Node_ValveCoilPath_MV5" source="Node_ValveRelay" target="Node_ValveCoilPath_MV5" />
+    <NODE_LINK key="_UjY_Node_ValveRelay_UjY__UjY_Node_ValveCoilPath_MV8" source="Node_ValveRelay" target="Node_ValveCoilPath_MV8" />
+    <NODE_LINK key="_UjY_Node_ValveRelay_UjY__UjY_Node_ValveCoilPath_MV6" source="Node_ValveRelay" target="Node_ValveCoilPath_MV6" />
+    <NODE_LINK key="_UjY_Node_ValveRelay_UjY__UjY_Node_ValveCoilPath_MV4B" source="Node_ValveRelay" target="Node_ValveCoilPath_MV4B" />
+    <NODE_LINK key="_UjY_Node_ValveRelay_UjY__UjY_Node_ValveCoilPath_MV3B" source="Node_ValveRelay" target="Node_ValveCoilPath_MV3B" />
+    <NODE_LINK key="_UjY_Node_ValveRelay_UjY__UjY_Node_ValveCoilPath_MV2B" source="Node_ValveRelay" target="Node_ValveCoilPath_MV2B" />
+    <NODE_LINK key="_UjY_Node_ValveRelay_UjY__UjY_Node_ValveCoilPath_MV1B" source="Node_ValveRelay" target="Node_ValveCoilPath_MV1B" />
+    <NODE_LINK key="_UjY_Node_ValveRelay_UjY__UjY_Node_ValveCoilPath_MV4A" source="Node_ValveRelay" target="Node_ValveCoilPath_MV4A" />
+    <NODE_LINK key="_UjY_Node_ValveRelay_UjY__UjY_Node_ValveCoilPath_MV3A" source="Node_ValveRelay" target="Node_ValveCoilPath_MV3A" />
+    <NODE_LINK key="_UjY_Node_ValveRelay_UjY__UjY_Node_ValveCoilPath_MV2A" source="Node_ValveRelay" target="Node_ValveCoilPath_MV2A" />
+    <NODE_LINK key="_UjY_Node_ValveRelay_UjY__UjY_Node_ValveCoilPath_MV1A" source="Node_ValveRelay" target="Node_ValveCoilPath_MV1A" />
+    <NODE_LINK key="_UjY_Node_Ecu_UjY__UjY_Node_ApbAsic" source="Node_Ecu" target="Node_ApbAsic" />
+    <NODE_LINK key="_UjY_Node_APBGeneric_UjY__UjY_Node_APBMotorLeft" source="Node_APBMotorGeneric" target="Node_APBMotorLeft" />
+    <NODE_LINK key="_UjY_Node_APBGeneric_UjY__UjY_Node_APBMotorRight" source="Node_APBMotorGeneric" target="Node_APBMotorRight" />
+    <NODE_LINK key="_UjY_Node_ValveRelay_UjY__UjY_Node_ValveGeneric" source="Node_ValveRelay" target="Node_ValveGeneric" />
+    <NODE_LINK key="_UjY_Node_APBGeneric_UjY__UjY_Node_APBCMMLeft" source="Node_APBMotorGeneric" target="Node_APBCMMLeft" />
+    <NODE_LINK key="_UjY_Node_APBGeneric_UjY__UjY_Node_APBCMMRight" source="Node_APBMotorGeneric" target="Node_APBCMMRight" />
+    <NODE_LINK key="_UjY_Node_APBMotorLeft_UjY__UjY_Node_APBMotorLeftNoHWShutDown" source="Node_APBMotorLeft" target="Node_APBMotorLeftNoHWShutDown" />
+    <NODE_LINK key="_UjY_Node_APBMotorRight_UjY__UjY_Node_APBMotorRightNoHWShutDown" source="Node_APBMotorRight" target="Node_APBMotorRightNoHWShutDown" />
+    <NODE_LINK key="_UjY_Node_NetworkCAN0_UjY__UjY_Node_Node3" source="Node_NetworkCAN0" target="Node_Node3" />
+    <NODE_LINK key="_UjY_Node_NetworkCAN0_UjY__UjY_Node_Node2" source="Node_NetworkCAN0" target="Node_Node2" />
+    <NODE_LINK key="_UjY_Node_NetworkCAN0_UjY__UjY_Node_EngineNet" source="Node_NetworkCAN0" target="Node_EngineNet" />
+    <NODE_LINK key="_UjY_Node_NetworkCAN1_UjY__UjY_Node_Frame09" source="Node_NetworkCAN1" target="Node_Frame09" />
+    <NODE_LINK key="_UjY_Node_NetworkCAN1_UjY__UjY_Node_Frame13" source="Node_NetworkCAN1" target="Node_Frame13" />
+    <NODE_LINK key="_UjY_Node_NetworkCAN1_UjY__UjY_Node_Frame14" source="Node_NetworkCAN1" target="Node_Frame14" />
+    <NODE_LINK key="_UjY_Node_NetworkCAN1_UjY__UjY_Node_Frame15" source="Node_NetworkCAN1" target="Node_Frame15" />
+    <NODE_LINK key="_UjY_Node_NetworkCAN1_UjY__UjY_Node_Frame12" source="Node_NetworkCAN1" target="Node_Frame12" />
+    <NODE_LINK key="_UjY_Node_NetworkCAN1_UjY__UjY_Node_Frame18" source="Node_NetworkCAN1" target="Node_Frame18" />
+    <NODE_LINK key="_UjY_Node_NetworkCAN1_UjY__UjY_Node_Frame19" source="Node_NetworkCAN1" target="Node_Frame19" />
+    <NODE_LINK key="_UjY_Node_NetworkCAN1_UjY__UjY_Node_Frame10" source="Node_NetworkCAN1" target="Node_Frame10" />
+    <NODE_LINK key="_UjY_Node_MMxAdv_TX_ID7_UjY__UjY_Node_MMxAdv_TX_ID1" source="Node_MMxAdv_TX_ID7" target="Node_MMxAdv_TX_ID1" />
+    <NODE_LINK key="_UjY_Node_WssGeneric_UjY__UjY_Node_WssFA" source="Node_WssGeneric" target="Node_WssFA" />
+    <NODE_LINK key="_UjY_Node_WssGeneric_UjY__UjY_Node_WssRA" source="Node_WssGeneric" target="Node_WssRA" />
+    <NODE_LINK key="_UjY_Node_WssGenericHSW_UjY__UjY_Node_WssGeneric" source="Node_WssGenericHSW" target="Node_WssGeneric" />
+    <NODE_LINK key="_UjY_Node_WssDirGeneric_UjY__UjY_Node_WssDirFr" source="Node_WssDirGeneric" target="Node_WssDirFr" />
+    <NODE_LINK key="_UjY_Node_WssDirGeneric_UjY__UjY_Node_WssDirFl" source="Node_WssDirGeneric" target="Node_WssDirFl" />
+    <NODE_LINK key="_UjY_Node_WssDirGeneric_UjY__UjY_Node_WssDirRl" source="Node_WssDirGeneric" target="Node_WssDirRl" />
+    <NODE_LINK key="_UjY_Node_WssDirGeneric_UjY__UjY_Node_WssDirRr" source="Node_WssDirGeneric" target="Node_WssDirRr" />
+    <NODE_LINK key="_UjY_Node_WssGenericHSW_UjY__UjY_Node_WssDirGeneric" source="Node_WssGenericHSW" target="Node_WssDirGeneric" />
+    <NODE_LINK key="_UjY_Node_Network_UjY__UjY_Node_NetworkLin" source="Node_Network" target="Node_NetworkLin" />
+    <NODE_LINK key="_UjY_Node_ValveRelay_UjY__UjY_Node_ValveCoilPath_MV5B" source="Node_ValveRelay" target="Node_ValveCoilPath_MV5B" />
+    <NODE_LINK key="_UjY_Node_ValveRelay_UjY__UjY_Node_ValveCoilPath_MV9" source="Node_ValveRelay" target="Node_ValveCoilPath_MV9" />
+    <NODE_LINK key="_UjY_Node_Ecu_UjY__UjY_Node_Xpass" source="Node_Ecu" target="Node_Xpass" />
+    <NODE_LINK key="_UjY_Node_WssGenericHSW_UjY__UjY_Node_WssUndervoltage" source="Node_WssGenericHSW" target="Node_WssUndervoltage" />
+    <NODE_LINK key="_UjY_Node_APBMotorInfluencedBySystem_UjY__UjY_Node_APBMotorGeneric" source="Node_APBMotorInfluencedBySystem" target="Node_APBMotorGeneric" />
+    <NODE_LINK key="_UjY_Node_Ecu_UjY__UjY_Node_PressureSensor2" source="Node_Ecu" target="Node_PressureSensor2" />
+    <NODE_LINK key="_UjY_Node_Ecu_UjY__UjY_Node_EcuSupply" source="Node_Ecu" target="Node_EcuSupply" />
+    <NODE_LINK key="_UjY_Node_Ecu_UjY__UjY_Node_RotorPositionSensor" source="Node_Ecu" target="Node_RotorPositionSensor" />
+    <NODE_LINK key="_UjY_Node_PtsGeneric_UjY__UjY_Node_Pts1" source="Node_PtsGeneric" target="Node_Pts1" />
+    <NODE_LINK key="_UjY_Node_PtsGeneric_UjY__UjY_Node_Pts2" source="Node_PtsGeneric" target="Node_Pts2" />
+    <NODE_LINK key="_UjY_Node_Ecu_UjY__UjY_Node_B6Asic" source="Node_Ecu" target="Node_B6Asic" />
+    <NODE_LINK key="_UjY_Node_MMxAdv_TX_ID7_UjY__UjY_Node_AxsNet" source="Node_MMxAdv_TX_ID7" target="Node_AxsNet" />
+    <NODE_LINK key="_UjY_Node_MMxAdv_TX_ID1_UjY__UjY_Node_YrsNet" source="Node_MMxAdv_TX_ID1" target="Node_YrsNet" />
+    <NODE_LINK key="_UjY_Node_MMxAdv_TX_ID1_UjY__UjY_Node_AysNet" source="Node_MMxAdv_TX_ID1" target="Node_AysNet" />
+    <NODE_LINK key="_UjY_Node_YrsNet_UjY__UjY_Node_Yrs" source="Node_YrsNet" target="Node_Yrs" />
+    <NODE_LINK key="_UjY_Node_AysNet_UjY__UjY_Node_Ays" source="Node_AysNet" target="Node_Ays" />
+    <NODE_LINK key="_UjY_Node_AxsNet_UjY__UjY_Node_Axs" source="Node_AxsNet" target="Node_Axs" />
+    <NODE_LINK key="_UjY_Node_Ecu_UjY__UjY_Node_BlsHsw" source="Node_Ecu" target="Node_BlsHsw" />
+    <NODE_LINK key="_UjY_Node_Ecu_UjY__UjY_Node_DHP" source="Node_Ecu" target="Node_DHP" />
+    <NODE_LINK key="_UjY_Node_APBCMMRight_UjY__UjY_Node_APBRCP" source="Node_APBCMMRight" target="Node_APBRCP" />
+    <NODE_LINK key="_UjY_Node_APBMotorGeneric_UjY__UjY_Node_APBEmergApplyInfo" source="Node_APBMotorGeneric" target="Node_APBEmergApplyInfo" />
+    <NODE_LINK key="_UjY_Node_NetworkCAN0_UjY__UjY_Node_VAFS" source="Node_NetworkCAN0" target="Node_VAFS" />
+    <NODE_LINK key="_UjY_Node_NetworkCAN0_UjY__UjY_Node_PowertrainEngine_1" source="Node_NetworkCAN0" target="Node_PowertrainEngine_1" />
+    <NODE_LINK key="_UjY_Node_NetworkCAN0_UjY__UjY_Node_PowertrainEngine_2" source="Node_NetworkCAN0" target="Node_PowertrainEngine_2" />
+    <NODE_LINK key="_UjY_Node_NetworkCAN0_UjY__UjY_Node_PowertrainGearbox" source="Node_NetworkCAN0" target="Node_PowertrainGearbox" />
+    <NODE_LINK key="_UjY_Node_NetworkCAN0_UjY__UjY_Node_BodyDynamics" source="Node_NetworkCAN0" target="Node_BodyDynamics" />
+    <NODE_LINK key="_UjY_Node_NetworkCAN0_UjY__UjY_Node_Variant" source="Node_NetworkCAN0" target="Node_Variant" />
+    <NODE_LINK key="_UjY_Node_NetworkCAN0_UjY__UjY_Node_SasNet" source="Node_NetworkCAN0" target="Node_SasNet" />
+    <NODE_LINK key="_UjY_Node_APBMotorRightNoHWShutDown_UjY__UjY_Node_APBRCP" source="Node_APBMotorRightNoHWShutDown" target="Node_APBRCP" />
+    <NODE_LINK key="_UjY_Node_APBMotorLeftNoHWShutDown_UjY__UjY_Node_APBRCP" source="Node_APBMotorLeftNoHWShutDown" target="Node_APBRCP" />
+    <NODE_LINK key="_UjY_Node_APBCMMLeft_UjY__UjY_Node_APBRCP" source="Node_APBCMMLeft" target="Node_APBRCP" />
+    <NODE_LINK key="_UjY_Node_Ecu_UjY__UjY_Node_UEXS" source="Node_Ecu" target="Node_U5VExt" />
+    <NODE_LINK key="_UjY_Node_UEXS_UjY__UjY_Node_VacuumSensor" source="Node_U5VExt" target="Node_VacuumSensor" />
+    <NODE_LINK key="_UjY_Node_Ecu_UjY__UjY_Node_BrakePadLife_FA" source="Node_Ecu" target="Node_BrakePadLife_FA" />
+    <NODE_LINK key="_UjY_Node_Ecu_UjY__UjY_Node_BrakePadLife_RA" source="Node_Ecu" target="Node_BrakePadLife_RA" />
+    <NODE_LINK key="_UjY_Node_NetworkCAN_UjY__UjY_Node_NetworkCAN0" source="Node_NetworkCAN" target="Node_NetworkCAN0" />
+    <NODE_LINK key="_UjY_Node_NetworkCAN_UjY__UjY_Node_NetworkCAN1" source="Node_NetworkCAN" target="Node_NetworkCAN1" />
+    <NODE_LINK key="_UjY_Node_Network_UjY__UjY_Node_NetworkCAN" source="Node_Network" target="Node_NetworkCAN" />
+    <NODE_LINK key="_UjY_Node_NetworkCAN0_UjY__UjY_Node_PowertrainDiffClutch" source="Node_NetworkCAN0" target="Node_PowertrainDiffClutch" />
+    <NODE_LINK key="_UjY_Node_Ecu_UjY__UjY_Node_Hydraulic" source="Node_Ecu" target="Node_UBVR" />
+    <NODE_LINK key="_UjY_Node_ApbAsic_UjY__UjY_Node_APBMotorInfluencedBySystem" source="Node_ApbAsic" target="Node_APBMotorInfluencedBySystem" />
+    <NODE_LINK key="_UjY_Node_WssFA_UjY__UjY_Node_WssFr_HSW" source="Node_WssFA" target="Node_WssFr_HSW" />
+    <NODE_LINK key="_UjY_Node_WssFl_HSW_UjY__UjY_Node_WssFl" source="Node_WssFl_HSW" target="Node_WssFl" />
+    <NODE_LINK key="_UjY_Node_WssRA_UjY__UjY_Node_WssRl_HSW" source="Node_WssRA" target="Node_WssRl_HSW" />
+    <NODE_LINK key="_UjY_Node_Ecu_UjY__UjY_Node_MotorSupply" source="Node_Ecu" target="Node_UBMR" />
+    <NODE_LINK key="_UjY_Node_ApbAsic_UjY__UjY_Node_APBButtonStuck" source="Node_ApbAsic" target="Node_APBButtonStuck" />
+    <NODE_LINK key="_UjY_Node_B6Asic_UjY__UjY_Node_RfpEc" source="Node_B6Asic" target="Node_RfpEc" />
+    <NODE_LINK key="_UjY_Node_ValveRelay_UjY__UjY_Node_ValveCoilPath_MV51" source="Node_ValveRelay" target="Node_ValveCoilPath_MV51" />
+    <NODE_LINK key="_UjY_Node_ValveRelay_UjY__UjY_Node_ValveCoilPath_MV52" source="Node_ValveRelay" target="Node_ValveCoilPath_MV52" />
+    <NODE_LINK key="_UjY_Node_ValveRelay_UjY__UjY_Node_ValveCoilPath_MV72" source="Node_ValveRelay" target="Node_ValveCoilPath_MV72" />
+    <NODE_LINK key="_UjY_Node_ValveRelay_UjY__UjY_Node_ValveCoilPath_MV71" source="Node_ValveRelay" target="Node_ValveCoilPath_MV71" />
+    <NODE_LINK key="_UjY_Node_Ecu_UjY__UjY_Node_OvercurrentMonitoringOfUnusedDio" source="Node_Ecu" target="Node_OvercurrentMonitoringInfo" />
+    <NODE_LINK key="_UjY_Node_GroundLossDetection_UjY__UjY_Node_APBRCP" source="Node_GroundLossDetection" target="Node_APBRCP" />
+    <NODE_LINK key="_UjY_Node_Ecu_UjY__UjY_Node_GroundLossDetectionHardware" source="Node_Ecu" target="Node_GroundLossDetectionHardware" />
+    <NODE_LINK key="_UjY_Node_GroundLossDetectionFeasibility_UjY__UjY_Node_GroundLossDetection" source="Node_GroundLossDetectionFeasibility" target="Node_GroundLossDetection" />
+    <NODE_LINK key="_UjY_Node_RfpEc_UjY__UjY_Node_GroundLossDetectionFeasibility" source="Node_RfpEc" target="Node_GroundLossDetectionFeasibility" />
+    <NODE_LINK key="_UjY_Node_NetworkFlexrayA_UjY__UjY_Node_FlexrayComSclFrames" source="Node_NetworkFlexrayA" target="Node_FlexrayComSclFrames" />
+    <NODE_LINK key="_UjY_Node_UBVR_UjY__UjY_Node_ChargePump" source="Node_UBVR" target="Node_ChargePump" />
+    <NODE_LINK key="_UjY_Node_ChargePump_UjY__UjY_Node_ValveRelay" source="Node_ChargePump" target="Node_ValveRelay" />
+    <NODE_LINK key="_UjY_Node_ChargePump_UjY__UjY_Node_Rfp" source="Node_ChargePump" target="Node_Rfp" />
+    <NODE_LINK key="_UjY_Node_ChargePump_UjY__UjY_Node_RfpEc" source="Node_ChargePump" target="Node_RfpEc" />
+    <NODE_LINK key="_UjY_Node_HydraulicSupply_UjY__UjY_Node_RfpEc" source="Node_HydraulicSupply" target="Node_RfpEc" />
+    <NODE_LINK key="_UjY_Node_HydraulicSupply_UjY__UjY_Node_Rfp" source="Node_HydraulicSupply" target="Node_Rfp" />
+    <NODE_LINK key="_UjY_Node_Ecu_UjY__UjY_Node_ReplacementFault" source="Node_Ecu" target="Node_ReplacementFault" />
+    <NODE_LINK key="_UjY_Node_Ecu_UjY__UjY_Node_ApbMss" source="Node_Ecu" target="Node_ApbMss" />
+    <NODE_LINK key="_UjY_Node_ApbMss_UjY__UjY_Node_ApbMssLeft" source="Node_ApbMss" target="Node_ApbMssLeft" />
+    <NODE_LINK key="_UjY_Node_ApbMss_UjY__UjY_Node_ApbMssRight" source="Node_ApbMss" target="Node_ApbMssRight" />
+    <NODE_LINK key="_UjY_Node_WssFA_UjY__UjY_Node_WssFl_HSW" source="Node_WssFA" target="Node_WssFl_HSW" />
+    <NODE_LINK key="_UjY_Node_WssFr_HSW_UjY__UjY_Node_WssFr" source="Node_WssFr_HSW" target="Node_WssFr" />
+    <NODE_LINK key="_UjY_Node_WssRl_HSW_UjY__UjY_Node_WssRl" source="Node_WssRl_HSW" target="Node_WssRl" />
+    <NODE_LINK key="_UjY_Node_WssRA_UjY__UjY_Node_WssRr_HSW" source="Node_WssRA" target="Node_WssRr_HSW" />
+    <NODE_LINK key="_UjY_Node_WssRr_HSW_UjY__UjY_Node_WssRr" source="Node_WssRr_HSW" target="Node_WssRr" />
+    <NODE_LINK key="_UjY_Node_WssRr_HSW_UjY__UjY_Node_WssDirRr" source="Node_WssRr_HSW" target="Node_WssDirRr" />
+    <NODE_LINK key="_UjY_Node_WssRl_HSW_UjY__UjY_Node_WssDirRl" source="Node_WssRl_HSW" target="Node_WssDirRl" />
+    <NODE_LINK key="_UjY_Node_WssFl_HSW_UjY__UjY_Node_WssDirFl" source="Node_WssFl_HSW" target="Node_WssDirFl" />
+    <NODE_LINK key="_UjY_Node_WssFr_HSW_UjY__UjY_Node_WssDirFr" source="Node_WssFr_HSW" target="Node_WssDirFr" />
+    <NODE_LINK key="_UjY_Node_Ecu_UjY__UjY_Node_WssGenericHSW" source="Node_Ecu" target="Node_WssGenericHSW" />
+    <NODE_LINK key="_UjY_Node_NetworkFlexray_UjY__UjY_Node_NetworkFlexrayA" source="Node_NetworkFlexray" target="Node_NetworkFlexrayA" />
+    <NODE_LINK key="_UjY_Node_NetworkFlexray_UjY__UjY_Node_NetworkFlexrayB" source="Node_NetworkFlexray" target="Node_NetworkFlexrayB" />
+    <NODE_LINK key="_UjY_Node_BrushlessMotor_UjY__UjY_Node_MotorActuator" source="Node_BrushlessMotor" target="Node_MotorActuator" />
+    <NODE_LINK key="_UjY_Node_RotorPositionSensor_UjY__UjY_Node_RPS_PSC" source="Node_RotorPositionSensor" target="Node_RPS_PSC" />
+    <NODE_LINK key="_UjY_Node_RPS_PSC_UjY__UjY_Node_PSC_Motortest_Undervoltage" source="Node_RPS_PSC" target="Node_PSC_Motortest_Undervoltage" />
+    <NODE_LINK key="_UjY_Node_PSC_Motortest_Undervoltage_UjY__UjY_Node_MotorActuator" source="Node_PSC_Motortest_Undervoltage" target="Node_MotorActuator" />
+    <NODE_LINK key="_UjY_Node_Ecu_UjY__UjY_Node_PSCHardVoltage" source="Node_Ecu" target="Node_PSCHardVoltage" />
+    <NODE_LINK key="_UjY_Node_PSCHardVoltage_UjY__UjY_Node_PSCSoftVoltage" source="Node_PSCHardVoltage" target="Node_PSCSoftVoltage" />
+    <NODE_LINK key="_UjY_Node_MotorActuator_UjY__UjY_Node_SpindlePosition" source="Node_MotorActuator" target="Node_SpindlePosition" />
+    <NODE_LINK key="_UjY_Node_PSCHardVoltage_UjY__UjY_Node_PSCSoftVoltageLevel2" source="Node_PSCHardVoltage" target="Node_PSCSoftVoltageLevel2" />
+    <NODE_LINK key="_UjY_Node_PSCSoftVoltageLevel2_UjY__UjY_Node_PSCSoftVoltageLevel1" source="Node_PSCSoftVoltageLevel2" target="Node_PSCSoftVoltageLevel1" />
+    <NODE_LINK key="_UjY_Node_ApbMssLeft_UjY__UjY_Node_APBRCP" source="Node_ApbMssLeft" target="Node_APBRCP" />
+    <NODE_LINK key="_UjY_Node_ApbMssRight_UjY__UjY_Node_APBRCP" source="Node_ApbMssRight" target="Node_APBRCP" />
+  </NODE_LINKS>
+  <PRJ_NODES>
+    <PRJ_NODE>
+      <COORDS>1256,559</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_RemoteActuation</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>304,543</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_VariantCoding</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>377,505</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_ObdDummy_Two</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>1485,327</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_ValveCoilPath_MV0</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>237,485</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_ObdDummy</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>829,679</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_WssRr_HSW</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>13,952</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_ApbHWLamp</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>162,338</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_UBExt</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_ChargePump</NODE_REF>
+      <COORDS>926,171</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>62,448</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_ReplacementFault</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>1063,645</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_NetworkCAN2</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_uCMemoryGuard</NODE_REF>
+      <COORDS>11,504</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>96,418</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_EMM</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_EVP</NODE_REF>
+      <COORDS>184,458</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_PressureSensor4</NODE_REF>
+      <COORDS>239,151</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_GroundLossDetection</NODE_REF>
+      <COORDS>757,419</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_GroundLossDetectionHardware</NODE_REF>
+      <COORDS>606,300</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_TemperatureSensorPs3</NODE_REF>
+      <COORDS>264,71</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>450,49</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_TemperatureSensorPs1</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>297,26</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_TemperatureSensorPs2</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_TemperatureSensorPs4</NODE_REF>
+      <COORDS>181,105</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_HydraulicSupply</NODE_REF>
+      <COORDS>767,171</COORDS>
+      <FW_REFS />
+      <FW_REF ctl="+" prio="99">FW_RBNET_CAN_TRCV_NO_CONTROL</FW_REF>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_Det</NODE_REF>
+      <COORDS>629,432</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>648,658</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_WssRA</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_WssFA</NODE_REF>
+      <COORDS>767,551</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_APBAsicDioInfo</NODE_REF>
+      <COORDS>164,609</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_RfpEc</NODE_REF>
+      <COORDS>748,125</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_B6Asic</NODE_REF>
+      <COORDS>609,177</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>873,55</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_BrushlessMotor_Info</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_ApbButtonRedundancy</NODE_REF>
+      <COORDS>323,594</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_BlsHsw</NODE_REF>
+      <COORDS>646,371</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_AysNet</NODE_REF>
+      <COORDS>906,756</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_YrsNet</NODE_REF>
+      <COORDS>764,753</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_AxsNet</NODE_REF>
+      <COORDS>1065,779</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>749,83</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_BrushlessMotor</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_DTE</NODE_REF>
+      <COORDS>632,432</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_BLMTemperature</NODE_REF>
+      <COORDS>612,402</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_LiPS</NODE_REF>
+      <COORDS>33,207</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>841,479</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_NetworkFlexray</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_VacSent1</NODE_REF>
+      <COORDS>33,58</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_VacSent2</NODE_REF>
+      <COORDS>0,82</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_PressureSensor1</NODE_REF>
+      <COORDS>499,119</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_PressureSensor2</NODE_REF>
+      <COORDS>415,101</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>503,630</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_WssUndervoltage</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_APBMotorVoltage</NODE_REF>
+      <COORDS>272,660</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_ApbButton</NODE_REF>
+      <COORDS>179,570</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>531,525</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_WssGeneric</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_BFS</NODE_REF>
+      <COORDS>630,434</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_UBVR</NODE_REF>
+      <COORDS>902,269</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_APBMotorLeft</NODE_REF>
+      <COORDS>152,777</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_APBMotorRight</NODE_REF>
+      <COORDS>218,741</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_APBMotorGeneric</NODE_REF>
+      <COORDS>26,705</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_IIS_As</NODE_REF>
+      <COORDS>610,920</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_IIS_Generic</NODE_REF>
+      <COORDS>475,765</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_IIS_Yrs</NODE_REF>
+      <COORDS>634,892</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_AxsAys</NODE_REF>
+      <COORDS>761,962</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_Yrs</NODE_REF>
+      <COORDS>777,923</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_ValveGeneric</NODE_REF>
+      <COORDS>965,27</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_ValveCoilPath_MV2A</NODE_REF>
+      <COORDS>1182,61</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_ValveCoilPath_MV2B</NODE_REF>
+      <COORDS>1234,80</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_ValveCoilPath_MV4B</NODE_REF>
+      <COORDS>1412,163</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_ValveCoilPath_MV4A</NODE_REF>
+      <COORDS>1377,141</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_ValveCoilPath_MV1A</NODE_REF>
+      <COORDS>1079,20</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_ValveCoilPath_MV3B</NODE_REF>
+      <COORDS>1337,121</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_ValveCoilPath_MV3A</NODE_REF>
+      <COORDS>1277,100</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_ValveCoilPath_MV1B</NODE_REF>
+      <COORDS>1124,41</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_VacuumSensor</NODE_REF>
+      <COORDS>0,182</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_PressureSensorMC1</NODE_REF>
+      <COORDS>196,193</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_PressureSensor3</NODE_REF>
+      <COORDS>331,123</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>141,241</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_SMM_DegradeSystem</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_uC</NODE_REF>
+      <COORDS>0,449</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_Network</NODE_REF>
+      <COORDS>606,469</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_Ecu</NODE_REF>
+      <COORDS>296,394</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>129,302</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_AswSysPas</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_ValveCoilPath_MV7</NODE_REF>
+      <COORDS>1448,254</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_ValveCoilPath_MV5</NODE_REF>
+      <COORDS>1422,188</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_ValveCoilPath_MV6</NODE_REF>
+      <COORDS>1438,230</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_ValveCoilPath_MV8</NODE_REF>
+      <COORDS>1458,276</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_ValveRelay</NODE_REF>
+      <COORDS>1074,206</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_APBCMMLeft</NODE_REF>
+      <COORDS>7,842</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_APBCMMRight</NODE_REF>
+      <COORDS>88,810</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_APBMotorLeftNoHWShutDown</NODE_REF>
+      <COORDS>198,874</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_APBMotorRightNoHWShutDown</NODE_REF>
+      <COORDS>301,839</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>1417,382</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_Node2</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_Rfp</NODE_REF>
+      <COORDS>877,110</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>1488,415</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_Node3</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_EngineNet</NODE_REF>
+      <COORDS>1493,454</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_Frame09</NODE_REF>
+      <COORDS>1430,573</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_Frame10</NODE_REF>
+      <COORDS>1464,591</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_Frame12</NODE_REF>
+      <COORDS>1493,615</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_Frame13</NODE_REF>
+      <COORDS>1485,645</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_Frame14</NODE_REF>
+      <COORDS>1479,671</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_Frame15</NODE_REF>
+      <COORDS>1483,700</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_Frame18</NODE_REF>
+      <COORDS>1477,731</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_Frame19</NODE_REF>
+      <COORDS>1463,762</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_MMxAdv_TX_ID1</NODE_REF>
+      <COORDS>980,699</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_MMxAdv_TX_ID7</NODE_REF>
+      <COORDS>1399,791</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>1072,594</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_WssFl</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>1061,641</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_WssFr</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>983,663</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_WssRl</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>776,718</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_WssRr</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>451,562</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_WssDirGeneric</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>715,628</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_WssDirFl</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>622,755</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_WssDirRl</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>748,589</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_WssDirFr</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>637,703</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_WssDirRr</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>824,449</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_NetworkLin</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_ValveCoilPath_MV9</NODE_REF>
+      <COORDS>1449,299</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_Xpass</NODE_REF>
+      <COORDS>591,504</COORDS>
+      <FW_REFS>
+        <FW_REF prio="120">FW_RBAPPLIF_XPASSTimeOut</FW_REF>
+      </FW_REFS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_ValveCoilPath_MV5B</NODE_REF>
+      <COORDS>1422,209</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_ApbAsic</NODE_REF>
+      <COORDS>28,572</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_VacSentSensors</NODE_REF>
+      <COORDS>20,155</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>123,272</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_EcuSupply</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_APBEmergApplyInfo</NODE_REF>
+      <COORDS>320,712</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>564,148</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_RotorPositionSensor</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_Pts1</NODE_REF>
+      <COORDS>142,40</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_Pts2</NODE_REF>
+      <COORDS>210,45</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_PtsGeneric</NODE_REF>
+      <COORDS>83,130</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_Axs</NODE_REF>
+      <COORDS>1066,920</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_Ays</NODE_REF>
+      <COORDS>912,922</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_DHP</NODE_REF>
+      <COORDS>659,338</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>278,1103</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_APBRCP</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>1145,445</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_BodyDynamics</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_PowertrainDiffClutch</NODE_REF>
+      <COORDS>1474,502</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>1236,345</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_PowertrainEngine_1</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>1194,378</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_PowertrainEngine_2</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>1155,412</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_PowertrainGearbox</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>1373,351</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_VAFS</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_Variant</NODE_REF>
+      <COORDS>1488,529</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>1150,481</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_SasNet</NODE_REF>
+      <FW_REFS>
+        <FW_REF ctl="+" prio="100">FW_ComScl_Rx_SAS_Timeout</FW_REF>
+        <FW_REF ctl="+" prio="99">FW_ComScl_Rx_SAS_DlcError</FW_REF>
+        <FW_REF ctl="+" prio="98">FW_ComScl_Rx_SAS_ChksmError</FW_REF>
+        <FW_REF ctl="+" prio="97">FW_ComScl_Rx_SAS_AlvCntError</FW_REF>
+        <FW_REF ctl="+" prio="130">FW_RBNet_ComScl_SAS_Standard_Timeout</FW_REF>
+        <FW_REF ctl="+" prio="140">FW_RBNet_ComScl_SAS_Standard_DataLengthCode</FW_REF>
+        <FW_REF ctl="+" prio="120">FW_RBNet_ComScl_SAS_Standard_Checksum</FW_REF>
+        <FW_REF ctl="+" prio="110">FW_RBNet_ComScl_SAS_Standard_AliveCounter</FW_REF>
+      </FW_REFS>
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_U5VExt</NODE_REF>
+      <COORDS>187,218</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_BrakePadLife_FA</NODE_REF>
+      <COORDS>645,239</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_BrakePadLife_RA</NODE_REF>
+      <COORDS>629,206</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>818,511</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_NetworkCAN</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_NetworkCAN0</NODE_REF>
+      <COORDS>1285,511</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_NetworkCAN1</NODE_REF>
+      <COORDS>1250,599</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_UBMR</NODE_REF>
+      <COORDS>803,237</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_APBMotorInfluencedBySystem</NODE_REF>
+      <COORDS>0,644</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_APBButtonStuck</NODE_REF>
+      <COORDS>166,528</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_ValveCoilPath_MV51</NODE_REF>
+      <COORDS>891,299</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>1030,337</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_ValveCoilPath_MV52</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>1252,288</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_ValveCoilPath_MV71</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>1145,313</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_ValveCoilPath_MV72</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>93,370</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_OvercurrentMonitoringInfo</NODE_REF>
+      <FW_REFS>
+        <FW_REF ctl="+" prio="20">FW_RBMICSYS_OC_WRHS_2ndAsic</FW_REF>
+        <FW_REF ctl="+" prio="10">FW_RBMICSYS_OC_WRHS</FW_REF>
+        <FW_REF ctl="+" prio="100">FW_RBMICSYS_OC_GPIO50_4_2ndAsic</FW_REF>
+        <FW_REF ctl="+" prio="90">FW_RBMICSYS_OC_GPIO50_4</FW_REF>
+        <FW_REF ctl="+" prio="80">FW_RBMICSYS_OC_GPIO50_3_2ndAsic</FW_REF>
+        <FW_REF ctl="+" prio="70">FW_RBMICSYS_OC_GPIO50_3</FW_REF>
+        <FW_REF ctl="+" prio="60">FW_RBMICSYS_OC_GPIO50_2_2ndAsic</FW_REF>
+        <FW_REF ctl="+" prio="50">FW_RBMICSYS_OC_GPIO50_2</FW_REF>
+        <FW_REF ctl="+" prio="40">FW_RBMICSYS_OC_GPIO50_1_2ndAsic</FW_REF>
+        <FW_REF ctl="+" prio="30">FW_RBMICSYS_OC_GPIO50_1</FW_REF>
+        <FW_REF ctl="+" prio="140">FW_RBMICSYS_OC_GPIO250_2_2ndAsic</FW_REF>
+        <FW_REF ctl="+" prio="130">FW_RBMICSYS_OC_GPIO250_2</FW_REF>
+        <FW_REF ctl="+" prio="120">FW_RBMICSYS_OC_GPIO250_1_2ndAsic</FW_REF>
+        <FW_REF ctl="+" prio="110">FW_RBMICSYS_OC_GPIO250_1</FW_REF>
+      </FW_REFS>
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <NODE_REF>Node_GroundLossDetectionFeasibility</NODE_REF>
+      <COORDS>754,356</COORDS>
+      <FW_REFS />
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>1018,371</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_FlexrayComSclFrames</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>477,897</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_ApbMss</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>418,1008</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_ApbMssLeft</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>568,1006</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_ApbMssRight</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>919,555</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_WssFl_HSW</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>927,599</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_WssFr_HSW</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>831,636</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_WssRl_HSW</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>456,477</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_WssGenericHSW</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>950,422</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_NetworkFlexrayA</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>1007,491</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_NetworkFlexrayB</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>683,41</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_MotorActuator</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>619,86</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_RPS_PSC</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>504,6</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_PSC_Motortest_Undervoltage</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>0,278</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_PSCHardVoltage</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>0,238</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_PSCSoftVoltage</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>775,2</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_SpindlePosition</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>0,318</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_PSCSoftVoltageLevel2</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+    <PRJ_NODE>
+      <COORDS>0,393</COORDS>
+      <FUNCTION_ID_REFS />
+      <VARIANT_CODE_REFS />
+      <NODE_REF>Node_PSCSoftVoltageLevel1</NODE_REF>
+      <FW_REFS />
+    </PRJ_NODE>
+  </PRJ_NODES>
+</DIAGNOSIS>

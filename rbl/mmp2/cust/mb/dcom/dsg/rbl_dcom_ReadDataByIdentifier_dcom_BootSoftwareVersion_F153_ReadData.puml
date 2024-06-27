@@ -1,0 +1,15 @@
+start
+group RBFS_OEMBootloader == RBFS_OEMBootloader_Yes
+     :PTR_BootHeaderInfo_tst is set to DCOM_BOOTLOADER_ADDRESS;
+end group
+if (Check if Data is not equal to null pointer) is (yes) then
+if (Check if PTR_BootHeaderInfo_tst is not equal to NULL_PTR AND (uint32)PTR_BootHeaderInfo_tst is less than or equal to (uint32)DCOM_APPLICATION_ENDADDRESS) is (yes) then
+note left:It checks only if condition (PTR_BootHeaderInfo_tst is not equal to NULL_PTR AND (uint32)PTR_BootHeaderInfo_tst is less than or equal to (uint32)DCOM_APPLICATION_ENDADDRESS
+:The array of data is updated with respective Bootloader versions;    
+else (no)
+:The array of data is updated with respective Boot Software Year, Week and Patch level;
+endif
+     :return value is updated to E_OK;
+else (no)
+endif
+stop

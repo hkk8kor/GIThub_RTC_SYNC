@@ -1,0 +1,17 @@
+<workflow>
+
+    <!-- include of properties files with global settings -->
+    <property file="oaw.properties"/>
+    <property file="bct.properties"/>
+    <property file="ComScl_Appl_CfgWorkflow.properties" />
+    <property file="rba_ComScl_${DOMAIN}_generator.properties" />
+
+    <!-- This component is to invoke ComSclGen template -->
+    <component id="PerlRegisterGen" class="${CodeGenerator}">
+        <metaModel id="mm" class="${MetaModel}" />
+        <extensionAdvices value="${RBA_NDS_ASPECT_UTIL_EXT},${ASPECTS_EXT}, ComScl_Appl_Aspects" />
+        <expand value="ComScl_Appl_Generator::Generate FOR model"/>
+        <outlet path="${OutputDir}"/>
+    </component>
+
+</workflow>

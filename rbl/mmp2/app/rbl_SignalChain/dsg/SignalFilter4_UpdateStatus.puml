@@ -1,0 +1,41 @@
+Title Flushing example for sporadic error status bit
+concise "Filter" as C
+binary  "Input Bit"  as I
+binary  "Output Bit" as O
+analog  "Flush Counter"  as CO
+
+scale 10 as 50 pixels
+
+@0
+C is normal
+I is low
+O is low
+CO is 0
+@+20
+CO is 0
+@+1
+C is Flushing
+I is high
+O is high
+CO is 50
+note top of C: flushtime is filter specific
+@+10
+I is low
+O is high
+CO is 50
+I -> CO: \n      bit reset,\n start counting \n    down
+
+@+19
+CO is 31
+
+@+1
+I is high
+CO is 50
+I -> CO: \n reset flushtime
+
+@+50
+C is normal
+O is low
+CO is 0
+
+@+10

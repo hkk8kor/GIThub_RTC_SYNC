@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<DIAGNOSIS INFO="DiamantPro Core Library 4.2.257.1692" CHECK="5391DC897EEDEE225A1873C694AFD9EBICAgICAgICAgRGlhbWFudFBybyBDb3JlIExpYnJhcnkgICAgICAgICAgICAgICAgICAgIDQuMi4yNTcuMTY5MiAgICAgICAgICAgIC04NTg0OTkwNzg0NTkzODI1ODcwICAgICAgICAgICAgICAgICAgICBCQU5JLUMtMDA2OFIgICAgICAgICAgICAgICAgICAgIEFQQUNcUFpSMktPUiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg">
+  <FAILURE_WORDS>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBL_SwcDiag_MemoryViolation</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdDescription" />
+        <ITEM key="ClearEventNotAllowedReason" />
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="RecoveryTime" />
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="StoreEventStatusImmediate">false</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemDebounceBehavior">NOTASSIGNED</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="DemStorageConditionSupport">true</ITEM>
+        <ITEM key="DemEnableConditionSupport">true</ITEM>
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_NON_OBD</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView" />
+        <ITEM key="IumprEventExecutionConditions">unassigned</ITEM>
+        <ITEM key="IumprEventFilterTimes">unassigned</ITEM>
+      </KEYLIST>
+      <UMID />
+      <CATEGORY>EcuInternal</CATEGORY>
+      <FSC_DESC>Monitors SWC Diag application for memory violations</FSC_DESC>
+      <TASK_REF>Task_10ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="APAC\PZR2KOR">14 Dec 2023 10:03</LAST_MODIFIED>
+      <MONITORING>
+        <DESCRIPTION>Monitors SWC Diag application for memory violations</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>Power reset</GOOD_CHECK_DESCRIPTION>
+        <ROOTCAUSE>Memory Violations from SWC Diag</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>Always active</DETECTION_SIT>
+          <DETECTION_TIME>10ms</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS />
+          <FAULT />
+          <SUSPICION />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF>MMP2</PRODUCT_LINE_REF>
+      <SW_GROUP_REF>SwGrp_SWCDiag</SW_GROUP_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <OPERATION_CYCLE_REF>PowerCycle</OPERATION_CYCLE_REF>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA>
+        <DEBUG_ENTRY>
+          <FORMULA>D0</FORMULA>
+          <DESC>Indicates the function address from where the error occurred</DESC>
+        </DEBUG_ENTRY>
+        <DEBUG_ENTRY>
+          <FORMULA>D1</FORMULA>
+          <DESC>Indicates user info entered before the stopping of the Application</DESC>
+        </DEBUG_ENTRY>
+      </DEBUG_DATA>
+    </FAILURE_WORD>
+  </FAILURE_WORDS>
+</DIAGNOSIS>

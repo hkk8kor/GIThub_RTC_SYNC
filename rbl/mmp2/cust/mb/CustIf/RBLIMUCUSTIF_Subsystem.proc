@@ -1,0 +1,50 @@
+/* ************************************************************************** *
+ *
+ *  Copyright (c) 2018 Robert Bosch GmbH, Germany
+ *  All rights reserved.
+ *
+ * ************************************************************************** */
+
+#include "rbl_CustIf_OsPub.h"
+#include "RB_Prj_GlobalSettings.h"
+
+/******************************************************************************/
+/* header includes                                                            */
+/******************************************************************************/
+
+/*PROC_SECTION: RBLIMUCUSTIF_Subsystem */
+rbl_CustIf_OsPub.h
+
+/*PROC_SECTION_END: */
+
+
+
+
+/******************************************************************************/
+/* processes entries                                                          */
+/******************************************************************************/
+/*PROC_SECTION: SPG_RBLIMUCUSTOUT_1ms */
+#if(RBFS_ComBase_COMxRBxPlantxV3 == RBFS_ComBase)
+rbl_CustIf_1ms_Proc
+#endif
+/*PROC_SECTION_END: */
+
+/*PROC_SECTION: SPG_RBLIMUCUSTOUT_Cycx1 */
+#if ((RBFS_ComBase_COMxMB == RBFS_ComBase) || (RBFS_ComBase_COMxRBxPlatfxV2 == RBFS_ComBase))
+rbl_CustIf_5ms_Proc
+#endif
+/*PROC_SECTION_END: */
+
+/*PROC_SECTION: SPG_RBLIMUCUSTOUT_Cycx2 */
+#if ((RBFS_ComBase_COMxMB == RBFS_ComBase) || (RBFS_ComBase_COMxRBxPlatfxV2 == RBFS_ComBase))  
+rbl_CustIf_10ms_Proc
+#endif
+/*PROC_SECTION_END: */
+
+/*PROC_SECTION: SPG_RBLIMUCUSTIF_Cycx4 */
+#if (RBFS_ComBase_COMxMB == RBFS_ComBase)
+rbl_CustIf_20ms_Proc
+rbl_CustIf_Monitoring_20ms_Proc
+#endif
+
+/*PROC_SECTION_END: */

@@ -1,0 +1,645 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<DIAGNOSIS INFO="DiamantPro Core Library 4.2.257.1692" CHECK="214ACD5D799B31F712DE82C93663223BICAgICAgICAgRGlhbWFudFBybyBDb3JlIExpYnJhcnkgICAgICAgICAgICAgICAgICAgIDQuMi4yNTcuMTY5MiAgICAgICAgICAgIC04NTg1MDIzMjA1ODk0MTEyODY0ICAgICAgICAgICAgICAgICAgICAgQUJULUMtMDAzMlEgICAgICAgICAgICAgICAgICAgICAgIERFXFNJUjdCQSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg">
+  <FAILURE_WORDS>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBSYS_TaskJitter</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="AR_Counter_JumpDown">0</ITEM>
+        <ITEM key="AR_Counter_IsJumpUp">false</ITEM>
+        <ITEM key="AR_Counter_IsJumpDown">false</ITEM>
+        <ITEM key="AR_Counter_JumpUp">0</ITEM>
+        <ITEM key="AR_Counter_MinValue">0</ITEM>
+        <ITEM key="AR_Counter_MaxValue">0</ITEM>
+        <ITEM key="AR_Counter_StepUp">0</ITEM>
+        <ITEM key="AR_Counter_StepDown">0</ITEM>
+        <ITEM key="Goodcheck_starts">OnEvent</ITEM>
+        <ITEM key="FAILURE_MAY_BE_DELETED">false</ITEM>
+        <ITEM key="FAILURE_WORD_FAILURE_MAY_BE_DELETED_AFTER_IGNITION_CYCLE">false</ITEM>
+        <ITEM key="FAILURE_WORD_COMPONENT_GOODCHECK_AFTER_IGNITION_CYCLE">true</ITEM>
+        <ITEM key="AR_Counter_Used">false</ITEM>
+        <ITEM key="AR_TimeBase_Used">false</ITEM>
+        <ITEM key="AR_TimeBase_MaxValue">0</ITEM>
+        <ITEM key="AR_TimeBase_MinValue">0</ITEM>
+        <ITEM key="Autosar">true</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="DemDebounceBehavior">DEM_DEBOUNCE_RESET</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="RecoveryTime">&lt; 1ms</ITEM>
+        <ITEM key="StoreEventStatusImmediate">true</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_AFTER_INIT</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdDescription">Fdc threshold is not supported because each malfunction indication is immediately reported as a failure. No failure filter time or repeated evaluations. The system is either fault free or defective.</ITEM>
+        <ITEM key="ClearEventNotAllowedReason">The correct execution of the braking functions and the correct transmission of data cannot be guaranteed with this failure, which leads to an unsafe brake system. Therefore, in addition to the deactivation of the system functionalities, the communication to the ECU is disabled (also for OBD service requests).</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">false</ITEM>
+        <ITEM key="DemEnableConditionSupport">false</ITEM>
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="IumprEventFilterTimes">FailedSlowerPassed</ITEM>
+        <ITEM key="IumprEventExecutionConditions">FailedNotIdenticalPassed</ITEM>
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_ONE_TRIP</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView">Monitoring switches off the communication to the outside and thus can no longer send a MIL request to the MIL-Master ECU.</ITEM>
+        <ITEM key="IgnoringOfEventReportBecauseOfActiveFailureWithHigherPriorityIsSupported">false</ITEM>
+        <ITEM key="GraphInhibitionSupportForEvent">NotInhibitedByHigherPrioEvent</ITEM>
+        <ITEM key="OBDMonitoringCategory">Functionality</ITEM>
+      </KEYLIST>
+      <UMID id="6E0C4F1D5C570C06C342824A1906BD2C">000030C4</UMID>
+      <CATEGORY>EcuInternal</CATEGORY>
+      <FSC_DESC>Runtime overload: x1 task jitter of the IO sensitive part is too high.</FSC_DESC>
+      <TASK_REF>Task_5ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="DE\SIR7BA">6 Nov 2023 16:58</LAST_MODIFIED>
+      <MONITORING>
+        <ADD_RB_DESCRIPTION>In addition to the normal OS task monitoring, which allows 100% task jitter, some signal chains have stricter jitter requirements: VLV and WSS 5%</ADD_RB_DESCRIPTION>
+        <DESCRIPTION>The jitter monitoring works in the way that a monitor process at specific location in the x1 task checks the difference in time between the current and the last point of this process execution against the ideal task cycle time +/- an allowed jitter.</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>No goodcheck maneuver</GOOD_CHECK_DESCRIPTION>
+        <GOOD_CHECK_STARTS>OnEvent</GOOD_CHECK_STARTS>
+        <ROOTCAUSE>The jitter limit of sensitive part (before monitor process) within x1 task is not held (possible cause : higher priority tasks or x1 task itself takes longer time or long running ISRs)</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>Permanently</DETECTION_SIT>
+          <DETECTION_TIME>&lt; 1 ms</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS id="65535" />
+          <FAULT />
+          <SUSPICION id="65535" />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS id="65535" />
+          <FAULT />
+          <SUSPICION id="65535" />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS id="65535" />
+          <FAULT />
+          <SUSPICION id="65535" />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF />
+      <SW_GROUP_REF>SwGrp_RBSYS</SW_GROUP_REF>
+      <OPERATION_CYCLE_REF>PowerCycle</OPERATION_CYCLE_REF>
+      <GOOD_CHECK>true</GOOD_CHECK>
+      <GOOD_CHECK_ENHANCED>true</GOOD_CHECK_ENHANCED>
+      <CURABLE_CURRENT_OC>false</CURABLE_CURRENT_OC>
+      <IMPORT_FROM_ASCET>false</IMPORT_FROM_ASCET>
+      <EXPORT_TO_ASCET>false</EXPORT_TO_ASCET>
+      <FAILURE_CLASS>FAILURE_CLASS_3</FAILURE_CLASS>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBSYS_StackOverUnderFlow</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="AR_Counter_JumpDown">0</ITEM>
+        <ITEM key="AR_Counter_IsJumpUp">false</ITEM>
+        <ITEM key="AR_Counter_IsJumpDown">false</ITEM>
+        <ITEM key="AR_Counter_JumpUp">0</ITEM>
+        <ITEM key="AR_Counter_MinValue">0</ITEM>
+        <ITEM key="AR_Counter_MaxValue">0</ITEM>
+        <ITEM key="AR_Counter_StepUp">0</ITEM>
+        <ITEM key="AR_Counter_StepDown">0</ITEM>
+        <ITEM key="Goodcheck_starts">OnEvent</ITEM>
+        <ITEM key="FAILURE_MAY_BE_DELETED">false</ITEM>
+        <ITEM key="FAILURE_WORD_FAILURE_MAY_BE_DELETED_AFTER_IGNITION_CYCLE">false</ITEM>
+        <ITEM key="FAILURE_WORD_COMPONENT_GOODCHECK_AFTER_IGNITION_CYCLE">true</ITEM>
+        <ITEM key="AR_Counter_Used">false</ITEM>
+        <ITEM key="AR_TimeBase_Used">false</ITEM>
+        <ITEM key="AR_TimeBase_MaxValue">0</ITEM>
+        <ITEM key="AR_TimeBase_MinValue">0</ITEM>
+        <ITEM key="Autosar">true</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="DemDebounceBehavior">DEM_DEBOUNCE_RESET</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="RecoveryTime">&lt; 1ms</ITEM>
+        <ITEM key="StoreEventStatusImmediate">true</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdDescription">Fdc threshold is not supported because each malfunction indication is immediately reported as a failure. No failure filter time or repeated evaluations. The system is either fault free or defective.</ITEM>
+        <ITEM key="ClearEventNotAllowedReason">The correct execution of the braking functions and the correct transmission of data cannot be guaranteed with this failure, which leads to an unsafe brake system. Therefore, in addition to the deactivation of the system functionalities, the communication to the ECU is disabled (also for OBD service requests).</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">false</ITEM>
+        <ITEM key="DemEnableConditionSupport">false</ITEM>
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="IumprEventFilterTimes">FailedSlowerPassed</ITEM>
+        <ITEM key="IumprEventExecutionConditions">FailedNotIdenticalPassed</ITEM>
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_ONE_TRIP</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView">Monitoring switches off the communication to the outside and thus can no longer send a MIL request to the MIL-Master ECU.</ITEM>
+        <ITEM key="IgnoringOfEventReportBecauseOfActiveFailureWithHigherPriorityIsSupported">false</ITEM>
+        <ITEM key="GraphInhibitionSupportForEvent">NotInhibitedByHigherPrioEvent</ITEM>
+        <ITEM key="OBDMonitoringCategory">Functionality</ITEM>
+      </KEYLIST>
+      <UMID id="834E3647833DE6453F5BB1E45B535064">000030C2</UMID>
+      <CATEGORY>EcuInternal</CATEGORY>
+      <FSC_DESC>Stack over- or underflow</FSC_DESC>
+      <TASK_REF>Task_20ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="DE\SIR7BA">6 Nov 2023 16:58</LAST_MODIFIED>
+      <MONITORING>
+        <ADD_RB_DESCRIPTION />
+        <DESCRIPTION>Overflow: The stack is too small for the application. Underflow: Can only occur in case of SW or compiler faults.</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>No goodcheck maneuver</GOOD_CHECK_DESCRIPTION>
+        <GOOD_CHECK_STARTS>OnEvent</GOOD_CHECK_STARTS>
+        <ROOTCAUSE>The stack is too small for the application</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>Permanently</DETECTION_SIT>
+          <DETECTION_TIME>Cyclically every BaseCtrlCycx4 (20ms) Task</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS id="65535" />
+          <FAULT />
+          <SUSPICION id="65535" />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS id="65535" />
+          <FAULT />
+          <SUSPICION id="65535" />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS id="65535" />
+          <FAULT />
+          <SUSPICION id="65535" />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF />
+      <SW_GROUP_REF>SwGrp_RBSYS</SW_GROUP_REF>
+      <OPERATION_CYCLE_REF>PowerCycle</OPERATION_CYCLE_REF>
+      <GOOD_CHECK>true</GOOD_CHECK>
+      <GOOD_CHECK_ENHANCED>true</GOOD_CHECK_ENHANCED>
+      <CURABLE_CURRENT_OC>false</CURABLE_CURRENT_OC>
+      <IMPORT_FROM_ASCET>false</IMPORT_FROM_ASCET>
+      <EXPORT_TO_ASCET>false</EXPORT_TO_ASCET>
+      <FAILURE_CLASS>FAILURE_CLASS_3</FAILURE_CLASS>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBSYS_SYSErrorHook</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="AR_Counter_JumpDown">0</ITEM>
+        <ITEM key="AR_Counter_IsJumpUp">false</ITEM>
+        <ITEM key="AR_Counter_IsJumpDown">false</ITEM>
+        <ITEM key="AR_Counter_JumpUp">0</ITEM>
+        <ITEM key="AR_Counter_MinValue">0</ITEM>
+        <ITEM key="AR_Counter_MaxValue">0</ITEM>
+        <ITEM key="AR_Counter_StepUp">0</ITEM>
+        <ITEM key="AR_Counter_StepDown">0</ITEM>
+        <ITEM key="Goodcheck_starts">OnEvent</ITEM>
+        <ITEM key="FAILURE_MAY_BE_DELETED">false</ITEM>
+        <ITEM key="FAILURE_WORD_FAILURE_MAY_BE_DELETED_AFTER_IGNITION_CYCLE">false</ITEM>
+        <ITEM key="FAILURE_WORD_COMPONENT_GOODCHECK_AFTER_IGNITION_CYCLE">true</ITEM>
+        <ITEM key="AR_Counter_Used">false</ITEM>
+        <ITEM key="AR_TimeBase_Used">false</ITEM>
+        <ITEM key="AR_TimeBase_MaxValue">0</ITEM>
+        <ITEM key="AR_TimeBase_MinValue">0</ITEM>
+        <ITEM key="Autosar">true</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="DemDebounceBehavior">DEM_DEBOUNCE_RESET</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="RecoveryTime">&lt; 1ms</ITEM>
+        <ITEM key="StoreEventStatusImmediate">true</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdDescription">Fdc threshold is not supported because each malfunction indication is immediately reported as a failure. No failure filter time or repeated evaluations. The system is either fault free or defective.</ITEM>
+        <ITEM key="ClearEventNotAllowedReason">The correct execution of the braking functions and the correct transmission of data cannot be guaranteed with this failure, which leads to an unsafe brake system. Therefore, in addition to the deactivation of the system functionalities, the communication to the ECU is disabled (also for OBD service requests).</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">false</ITEM>
+        <ITEM key="DemEnableConditionSupport">false</ITEM>
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="IumprEventFilterTimes">FailedSlowerPassed</ITEM>
+        <ITEM key="IumprEventExecutionConditions">FailedNotIdenticalPassed</ITEM>
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_ONE_TRIP</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView">Monitoring switches off the communication to the outside and thus can no longer send a MIL request to the MIL-Master ECU.</ITEM>
+        <ITEM key="IgnoringOfEventReportBecauseOfActiveFailureWithHigherPriorityIsSupported">false</ITEM>
+        <ITEM key="GraphInhibitionSupportForEvent">NotInhibitedByHigherPrioEvent</ITEM>
+        <ITEM key="OBDMonitoringCategory">Functionality</ITEM>
+      </KEYLIST>
+      <UMID id="09360B5D72BB223A6CB3A5C42A499C4B">000030C3</UMID>
+      <CATEGORY>EcuInternal</CATEGORY>
+      <FSC_DESC>Internal interrupt based system error</FSC_DESC>
+      <TASK_REF>Task_10ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="DE\SIR7BA">6 Nov 2023 16:58</LAST_MODIFIED>
+      <MONITORING>
+        <ADD_RB_DESCRIPTION />
+        <DESCRIPTION>Unsupported interrupts from hardware occurred or interrupt lock API call unbalanced or too long.</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>No goodcheck maneuver</GOOD_CHECK_DESCRIPTION>
+        <GOOD_CHECK_STARTS>OnEvent</GOOD_CHECK_STARTS>
+        <ROOTCAUSE>Invalid interrupt, unbalanced interrupt lock call or too long interrupt lock</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>Permanently</DETECTION_SIT>
+          <DETECTION_TIME>&lt; 1 ms</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS id="65535" />
+          <FAULT />
+          <SUSPICION id="65535" />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS id="65535" />
+          <FAULT />
+          <SUSPICION id="65535" />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS id="65535" />
+          <FAULT />
+          <SUSPICION id="65535" />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF />
+      <SW_GROUP_REF>SwGrp_RBSYS</SW_GROUP_REF>
+      <OPERATION_CYCLE_REF>PowerCycle</OPERATION_CYCLE_REF>
+      <GOOD_CHECK>true</GOOD_CHECK>
+      <GOOD_CHECK_ENHANCED>true</GOOD_CHECK_ENHANCED>
+      <CURABLE_CURRENT_OC>false</CURABLE_CURRENT_OC>
+      <IMPORT_FROM_ASCET>false</IMPORT_FROM_ASCET>
+      <EXPORT_TO_ASCET>false</EXPORT_TO_ASCET>
+      <FAILURE_CLASS>FAILURE_CLASS_3</FAILURE_CLASS>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBSYS_OSErrorHook</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="AR_Counter_JumpDown">0</ITEM>
+        <ITEM key="AR_Counter_IsJumpUp">false</ITEM>
+        <ITEM key="AR_Counter_IsJumpDown">false</ITEM>
+        <ITEM key="AR_Counter_JumpUp">0</ITEM>
+        <ITEM key="AR_Counter_MinValue">0</ITEM>
+        <ITEM key="AR_Counter_MaxValue">0</ITEM>
+        <ITEM key="AR_Counter_StepUp">0</ITEM>
+        <ITEM key="AR_Counter_StepDown">0</ITEM>
+        <ITEM key="Goodcheck_starts">OnEvent</ITEM>
+        <ITEM key="FAILURE_MAY_BE_DELETED">false</ITEM>
+        <ITEM key="FAILURE_WORD_FAILURE_MAY_BE_DELETED_AFTER_IGNITION_CYCLE">false</ITEM>
+        <ITEM key="FAILURE_WORD_COMPONENT_GOODCHECK_AFTER_IGNITION_CYCLE">true</ITEM>
+        <ITEM key="AR_Counter_Used">false</ITEM>
+        <ITEM key="AR_TimeBase_Used">false</ITEM>
+        <ITEM key="AR_TimeBase_MaxValue">0</ITEM>
+        <ITEM key="AR_TimeBase_MinValue">0</ITEM>
+        <ITEM key="Autosar">true</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="DemDebounceBehavior">DEM_DEBOUNCE_RESET</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="RecoveryTime">&lt; 1ms</ITEM>
+        <ITEM key="StoreEventStatusImmediate">true</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdDescription">Fdc threshold is not supported because each malfunction indication is immediately reported as a failure. No failure filter time or repeated evaluations. The system is either fault free or defective.</ITEM>
+        <ITEM key="ClearEventNotAllowedReason">The correct execution of the braking functions and the correct transmission of data cannot be guaranteed with this failure, which leads to an unsafe brake system. Therefore, in addition to the deactivation of the system functionalities, the communication to the ECU is disabled (also for OBD service requests).</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">false</ITEM>
+        <ITEM key="DemEnableConditionSupport">false</ITEM>
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="IumprEventFilterTimes">FailedSlowerPassed</ITEM>
+        <ITEM key="IumprEventExecutionConditions">FailedNotIdenticalPassed</ITEM>
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_ONE_TRIP</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView">Monitoring switches off the communication to the outside and thus can no longer send a MIL request to the MIL-Master ECU.</ITEM>
+        <ITEM key="IgnoringOfEventReportBecauseOfActiveFailureWithHigherPriorityIsSupported">false</ITEM>
+        <ITEM key="GraphInhibitionSupportForEvent">NotInhibitedByHigherPrioEvent</ITEM>
+        <ITEM key="OBDMonitoringCategory">Functionality</ITEM>
+      </KEYLIST>
+      <UMID id="30E7422B24247AD069D60DF9C5B8D0A8">000030C1</UMID>
+      <CATEGORY>EcuInternal</CATEGORY>
+      <FSC_DESC>Operating System error (e.g. task overrun, invalid parameters for OS API)</FSC_DESC>
+      <TASK_REF>Task_10ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="DE\SIR7BA">6 Nov 2023 16:58</LAST_MODIFIED>
+      <MONITORING>
+        <ADD_RB_DESCRIPTION>Callback routine used for trapping errors resulting from incorrect use of the OS API</ADD_RB_DESCRIPTION>
+        <DESCRIPTION>Internal system timing error (system overload detected by operating system)</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>No goodcheck maneuver</GOOD_CHECK_DESCRIPTION>
+        <GOOD_CHECK_STARTS>OnEvent</GOOD_CHECK_STARTS>
+        <ROOTCAUSE>Usually a task did not finish within it's cycle time (overload situation)</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>Permanently</DETECTION_SIT>
+          <DETECTION_TIME>&lt; 1 ms</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS id="65535" />
+          <FAULT />
+          <SUSPICION id="65535" />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS id="65535" />
+          <FAULT />
+          <SUSPICION id="65535" />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS id="65535" />
+          <FAULT />
+          <SUSPICION id="65535" />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF />
+      <SW_GROUP_REF>SwGrp_RBSYS</SW_GROUP_REF>
+      <OPERATION_CYCLE_REF>PowerCycle</OPERATION_CYCLE_REF>
+      <GOOD_CHECK>true</GOOD_CHECK>
+      <GOOD_CHECK_ENHANCED>true</GOOD_CHECK_ENHANCED>
+      <CURABLE_CURRENT_OC>false</CURABLE_CURRENT_OC>
+      <IMPORT_FROM_ASCET>false</IMPORT_FROM_ASCET>
+      <EXPORT_TO_ASCET>false</EXPORT_TO_ASCET>
+      <FAILURE_CLASS>FAILURE_CLASS_3</FAILURE_CLASS>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+    <FAILURE_WORD>
+      <SHORT-NAME>FW_RBSYS_TaskOverRun</SHORT-NAME>
+      <KEYLIST>
+        <ITEM key="AR_Counter_JumpDown">0</ITEM>
+        <ITEM key="AR_Counter_IsJumpUp">false</ITEM>
+        <ITEM key="AR_Counter_IsJumpDown">false</ITEM>
+        <ITEM key="AR_Counter_JumpUp">0</ITEM>
+        <ITEM key="AR_Counter_MinValue">0</ITEM>
+        <ITEM key="AR_Counter_MaxValue">0</ITEM>
+        <ITEM key="AR_Counter_StepUp">0</ITEM>
+        <ITEM key="AR_Counter_StepDown">0</ITEM>
+        <ITEM key="Goodcheck_starts">OnEvent</ITEM>
+        <ITEM key="FAILURE_MAY_BE_DELETED">false</ITEM>
+        <ITEM key="FAILURE_WORD_FAILURE_MAY_BE_DELETED_AFTER_IGNITION_CYCLE">false</ITEM>
+        <ITEM key="FAILURE_WORD_COMPONENT_GOODCHECK_AFTER_IGNITION_CYCLE">true</ITEM>
+        <ITEM key="AR_Counter_Used">false</ITEM>
+        <ITEM key="AR_TimeBase_Used">false</ITEM>
+        <ITEM key="AR_TimeBase_MaxValue">0</ITEM>
+        <ITEM key="AR_TimeBase_MinValue">0</ITEM>
+        <ITEM key="Autosar">true</ITEM>
+        <ITEM key="AR_GenFaultDetectCntUsed">true</ITEM>
+        <ITEM key="ASW_MONITORING_SUPPORTS_DEBUGDATA">false</ITEM>
+        <ITEM key="DemDebounceBehavior">DEM_DEBOUNCE_RESET</ITEM>
+        <ITEM key="DemEventMemoryEntryFdcThresholdStorageValue" />
+        <ITEM key="DemCallbackInitMForEFnc_Type">NotUsed</ITEM>
+        <ITEM key="FaultDetectCntCbkViaRTE">false</ITEM>
+        <ITEM key="DemDebounceTimeSuspiciousThreshold" />
+        <ITEM key="DemDebounceCounterSuspiciousThreshold" />
+        <ITEM key="DemCallbackClearEventAllowedFnc_Type">NotUsed</ITEM>
+        <ITEM key="DemCallbackEventDataChanged" />
+        <ITEM key="DemCallbackEventDataChangedFnc_Type">NotUsed</ITEM>
+        <ITEM key="ComponentGoodCheck">false</ITEM>
+        <ITEM key="RecoveryTime">&lt; 1ms</ITEM>
+        <ITEM key="StoreEventStatusImmediate">true</ITEM>
+        <ITEM key="DemReportBehavior">REPORT_BEFORE_INIT</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdDescription">Fdc threshold is not supported because each malfunction indication is immediately reported as a failure. No failure filter time or repeated evaluations. The system is either fault free or defective.</ITEM>
+        <ITEM key="ClearEventNotAllowedReason">The correct execution of the braking functions and the correct transmission of data cannot be guaranteed with this failure, which leads to an unsafe brake system. Therefore, in addition to the deactivation of the system functionalities, the communication to the ECU is disabled (also for OBD service requests).</ITEM>
+        <ITEM key="DemEventAvailable">true</ITEM>
+        <ITEM key="DemClearEventAllowedBehavior">DEM_NO_STATUS_BYTE_CHANGE</ITEM>
+        <ITEM key="DemStorageConditionSupport">false</ITEM>
+        <ITEM key="DemEnableConditionSupport">false</ITEM>
+        <ITEM key="DemIUMPRDenGroup">DEM_IUMPR_DEN_NONE</ITEM>
+        <ITEM key="MonitoringInternalFdcThresholdValue" />
+        <ITEM key="IumprEventFilterTimes">FailedSlowerPassed</ITEM>
+        <ITEM key="IumprEventExecutionConditions">FailedNotIdenticalPassed</ITEM>
+        <ITEM key="AlternateErasureProcedure" />
+        <ITEM key="ObdRestrictionFunctionView">RESTRICTION_ONE_TRIP</ITEM>
+        <ITEM key="ReasonObdRestrictionFunctionView">Monitoring switches off the communication to the outside and thus can no longer send a MIL request to the MIL-Master ECU.</ITEM>
+        <ITEM key="IgnoringOfEventReportBecauseOfActiveFailureWithHigherPriorityIsSupported">false</ITEM>
+        <ITEM key="GraphInhibitionSupportForEvent">NotInhibitedByHigherPrioEvent</ITEM>
+        <ITEM key="OBDMonitoringCategory">Functionality</ITEM>
+      </KEYLIST>
+      <UMID id="77D762A62B9857B0308C4093C19FF71C">000030C5</UMID>
+      <CATEGORY>EcuInternal</CATEGORY>
+      <FSC_DESC>Runtime overload</FSC_DESC>
+      <TASK_REF>Task_5ms</TASK_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <LAST_MODIFIED tool="4.2.257.1692" user="DE\SIR7BA">6 Nov 2023 16:57</LAST_MODIFIED>
+      <MONITORING>
+        <ADD_RB_DESCRIPTION>Manual deadline check: Tasks with lower priorities must be finished with next x1 trigger of same activation cycle (CC-AS MultiCore approach)</ADD_RB_DESCRIPTION>
+        <DESCRIPTION>Internal system timing error (system overload)</DESCRIPTION>
+        <GOOD_CHECK_DESCRIPTION>No goodcheck maneuver</GOOD_CHECK_DESCRIPTION>
+        <GOOD_CHECK_STARTS>OnEvent</GOOD_CHECK_STARTS>
+        <ROOTCAUSE>Usually a task did not finish within it's cycle time (overload situation)</ROOTCAUSE>
+        <DETECTION>
+          <DETECTION_SIT>Permanently</DETECTION_SIT>
+          <DETECTION_TIME>&lt; 1 ms</DETECTION_TIME>
+        </DETECTION>
+        <SENSOR_TYPE_REFS />
+      </MONITORING>
+      <TEST_COMPLETE>
+        <TC_MANEUVER_REF>TCMAN_PowerOn_Wait5s</TC_MANEUVER_REF>
+      </TEST_COMPLETE>
+      <CENTRAL_DEBOUNCER>
+        <TYPE>Local</TYPE>
+        <FF_THRESHOLDS>
+          <ROBUSTNESS id="65535" />
+          <FAULT />
+          <SUSPICION id="65535" />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </FF_THRESHOLDS>
+        <ER_THRESHOLDS>
+          <ROBUSTNESS id="65535" />
+          <FAULT />
+          <SUSPICION id="65535" />
+        </ER_THRESHOLDS>
+        <TB_THRESHOLDS>
+          <ROBUSTNESS id="65535" />
+          <FAULT />
+          <SUSPICION id="65535" />
+          <STEPS_UP />
+          <STEPS_DOWN />
+        </TB_THRESHOLDS>
+      </CENTRAL_DEBOUNCER>
+      <SEQUENTIAL_FAILURE_BUFFER />
+      <AUTOSAR>
+        <EventPriority>255</EventPriority>
+        <DebouncerAlgorithm>
+          <DebouncerType>MonitoringInternal</DebouncerType>
+          <DebouncerTimebased>
+            <DebouncetimeFailedthreshold />
+            <DebouncetimePassedthreshold />
+          </DebouncerTimebased>
+          <DebouncerCounterbased>
+            <DebouncecounterIncrementstepsize />
+            <DebouncecounterDecrementstepsize />
+            <DebouncecounterFailedthreshold />
+            <DebouncecounterPassedthreshold />
+            <DebouncecounterJumpup />
+            <DebouncecounterJumpdown />
+            <DebouncecounterJumpdownvalue />
+            <DebouncecounterJumpupvalue />
+          </DebouncerCounterbased>
+        </DebouncerAlgorithm>
+      </AUTOSAR>
+      <PRODUCT_LINE_REF />
+      <SW_GROUP_REF>SwGrp_RBSYS</SW_GROUP_REF>
+      <OPERATION_CYCLE_REF>PowerCycle</OPERATION_CYCLE_REF>
+      <GOOD_CHECK>true</GOOD_CHECK>
+      <GOOD_CHECK_ENHANCED>true</GOOD_CHECK_ENHANCED>
+      <CURABLE_CURRENT_OC>false</CURABLE_CURRENT_OC>
+      <IMPORT_FROM_ASCET>false</IMPORT_FROM_ASCET>
+      <EXPORT_TO_ASCET>false</EXPORT_TO_ASCET>
+      <FAILURE_CLASS>FAILURE_CLASS_3</FAILURE_CLASS>
+      <IUMPRSUPPORT>IUMPRNotSupp</IUMPRSUPPORT>
+      <DEBUG_DATA />
+    </FAILURE_WORD>
+  </FAILURE_WORDS>
+</DIAGNOSIS>

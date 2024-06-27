@@ -1,0 +1,31 @@
+#
+# Cantata Test-Level Options
+#
+# Any options set in this file will override the options set in the
+# project-level options file.
+#
+# WARNING: Do not alter this file manually.
+#
+#tool.testid=35131131-8a52-4f5e-a4d5-d012be0a6296
+"--ci:--instr:stmt;func;decn;log;"
+"--sa:--calc:*#*"
+"--sm:--access_function:"dcom_MB_GTS_RDBI.c":dcom_MB_GTS_Measurement_Fill_TimeRecordBlock_Type1(const StbM_SyncRecordTableBlockType *)"
+"--sm:--access_function:"dcom_MB_GTS_RDBI.c":dcom_MB_GTS_Measurement_Fill_TimeRecordBlock_Type2(const StbM_SyncRecordTableBlockType *)"
+"--sm:--access_function:"dcom_MB_GTS_RDBI.c":dcom_MB_GTS_Measurement_Fill_TimeRecordHeader()"
+"--sm:--access_variable:"dcom_MB_GTS_RDBI.c":dcom_MB_GTS_Measurement_Received"
+"--sm:--access_variable:"dcom_MB_GTS_RDBI.c":dcom_MB_GTS_Measurement_st"
+"--sm:--access_variable:"dcom_MB_GTS_RDBI.c":dcom_MB_MeasurementDataIndex"
+"--sm:--wrap:dcom_MB_GTS_Measurement_Fill_TimeRecordBlock_Type1(const StbM_SyncRecordTableBlockType *)#dcom_MB_SyncTimeRecordBlockCallBack_SyncTimeBase(const StbM_SyncRecordTableBlockType *)"
+"--sm:--wrap:dcom_MB_GTS_Measurement_Fill_TimeRecordBlock_Type2(const StbM_SyncRecordTableBlockType *)#dcom_MB_SyncTimeRecordBlockCallBack_SyncTimeBase(const StbM_SyncRecordTableBlockType *)"
+"--sm:--wrap:dcom_MB_GTS_Measurement_Fill_TimeRecordHeader()#dcom_MB_SyncTimeRecordBlockCallBack_SyncTimeBase(const StbM_SyncRecordTableBlockType *)"
+
+#User Section
+"--dont_ci:*"
+"--do_ci:dcom_MB_GTS_RDBI.c"
+"--ci:--no_instr:all"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_MB_GTS_Measurement_Fill_TimeRecordHeader"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_MB_GTS_Measurement_Fill_TimeRecordBlock_Type1"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_MB_GTS_Measurement_Fill_TimeRecordBlock_Type2"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_MB_SyncTimeRecordBlockCallBack_SyncTimeBase"
+"--ci:--instr:stmt;func;call;decn;log;#dcom_Global_Time_Sync_Measured_Values_0107_ReadData"
+

@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<DIAGNOSIS INFO="DiamantPro Core Library 4.2.257.1692" CHECK="F1A6F3DA0D98A8B7AD5BE294305B812FICAgICAgICAgRGlhbWFudFBybyBDb3JlIExpYnJhcnkgICAgICAgICAgICAgICAgICAgIDQuMi4yNTcuMTY5MiAgICAgICAgICAgIC04NTg0OTY4MDM2NzU4NzYwNjU2ICAgICAgICAgICAgICAgICAgICAgQUJULUMtMDAzQ0MgICAgICAgICAgICAgICAgICAgICAgREVcTkRFMkFCVCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg">
+  <STM_COMPONENTS>
+    <STM_COMPONENT name="ESPBase" vaf="false" root="true">
+      <KEYLIST>
+        <ITEM key="INFOSTATEEXPORT2ASCET">false</ITEM>
+        <ITEM key="Description" />
+        <ITEM key="PROVIDESCURRENTSTATE">false</ITEM>
+        <ITEM key="USED_INASCET">false</ITEM>
+        <ITEM key="MultipleFailure">false</ITEM>
+        <ITEM key="ExportComponentGoodcheckToASCET">false</ITEM>
+      </KEYLIST>
+      <DESC>Master Component</DESC>
+      <USED_INASCET>false</USED_INASCET>
+      <PROVIDESCURRENTSTATE>true</PROVIDESCURRENTSTATE>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <STM_STATES>
+        <STM_STATE name="Off">
+          <DESC />
+          <ABBREVIATION />
+        </STM_STATE>
+        <STM_STATE name="DiagnosisExtended" />
+        <STM_STATE name="RollerBenchMode" />
+        <STM_STATE name="FunctionSet1" breakpoint="true">
+          <DESC />
+          <ABBREVIATION />
+        </STM_STATE>
+        <STM_STATE name="FunctionSet2">
+          <DESC />
+          <ABBREVIATION />
+        </STM_STATE>
+        <STM_STATE name="FunctionSet3" breakpoint="true">
+          <DESC />
+          <ABBREVIATION />
+        </STM_STATE>
+        <STM_STATE name="FunctionSet4">
+          <DESC />
+          <ABBREVIATION />
+        </STM_STATE>
+        <STM_STATE name="On">
+          <DESC />
+          <ABBREVIATION />
+        </STM_STATE>
+      </STM_STATES>
+      <STM_VAR_FUNCTIONAL_HASH_CODE>D83E200162C8CF7BD869791084A7E876</STM_VAR_FUNCTIONAL_HASH_CODE>
+      <STM_SIGNALS />
+      <STM_SUBCOMPONENTS>
+        <STM_REF>ESPHardware</STM_REF>
+      </STM_SUBCOMPONENTS>
+      <STM_DEPCOMPONENTS />
+      <STM_VAR>
+        <STM_DRIVER_INFO_STATE state_ref="On" />
+        <STM_VAR_STATES>
+          <STM_VAR_STATE state_ref="Off">
+            <STM_SUBSTATES>
+              <STM_SUBSTATE substm_ref="ESPHardware">Off</STM_SUBSTATE>
+            </STM_SUBSTATES>
+            <STM_DEPSTATES />
+          </STM_VAR_STATE>
+          <STM_VAR_STATE state_ref="On">
+            <STM_SUBSTATES>
+              <STM_SUBSTATE substm_ref="ESPHardware">Normal</STM_SUBSTATE>
+            </STM_SUBSTATES>
+            <STM_DEPSTATES />
+          </STM_VAR_STATE>
+          <STM_VAR_STATE state_ref="FunctionSet1">
+            <STM_SUBSTATES>
+              <STM_SUBSTATE substm_ref="ESPHardware">Normal</STM_SUBSTATE>
+            </STM_SUBSTATES>
+            <STM_DEPSTATES />
+          </STM_VAR_STATE>
+          <STM_VAR_STATE state_ref="FunctionSet2">
+            <STM_SUBSTATES>
+              <STM_SUBSTATE substm_ref="ESPHardware">Normal</STM_SUBSTATE>
+            </STM_SUBSTATES>
+            <STM_DEPSTATES />
+          </STM_VAR_STATE>
+          <STM_VAR_STATE state_ref="FunctionSet3">
+            <STM_SUBSTATES>
+              <STM_SUBSTATE substm_ref="ESPHardware">Normal</STM_SUBSTATE>
+            </STM_SUBSTATES>
+            <STM_DEPSTATES />
+          </STM_VAR_STATE>
+          <STM_VAR_STATE state_ref="FunctionSet4">
+            <STM_SUBSTATES>
+              <STM_SUBSTATE substm_ref="ESPHardware">Normal</STM_SUBSTATE>
+            </STM_SUBSTATES>
+            <STM_DEPSTATES />
+          </STM_VAR_STATE>
+          <STM_VAR_STATE state_ref="RollerBenchMode">
+            <STM_SUBSTATES>
+              <STM_SUBSTATE substm_ref="ESPHardware">Normal</STM_SUBSTATE>
+            </STM_SUBSTATES>
+            <STM_DEPSTATES />
+          </STM_VAR_STATE>
+          <STM_VAR_STATE state_ref="DiagnosisExtended">
+            <STM_SUBSTATES>
+              <STM_SUBSTATE substm_ref="ESPHardware">ExtendedDiag</STM_SUBSTATE>
+            </STM_SUBSTATES>
+            <STM_DEPSTATES />
+          </STM_VAR_STATE>
+        </STM_VAR_STATES>
+        <STM_NODES>
+          <STM_NODE state_ref="FunctionSet1" delay_degradation="false" node_ref="Node_SMM_DegradeSystem" />
+          <STM_NODE state_ref="Off" delay_degradation="false" node_ref="Node_uC" />
+          <STM_NODE state_ref="FunctionSet1" delay_degradation="false" node_ref="Node_Ecu" />
+          <STM_NODE state_ref="On" delay_degradation="false" node_ref="Node_Network" />
+          <STM_NODE state_ref="On" delay_degradation="false" node_ref="Node_EcuSupply" />
+          <STM_NODE state_ref="On" delay_degradation="false" node_ref="Node_NetworkCAN" />
+          <STM_NODE state_ref="On" delay_degradation="false" node_ref="Node_NetworkCAN1" />
+          <STM_NODE state_ref="On" delay_degradation="false" node_ref="Node_NetworkCAN0" />
+          <STM_NODE state_ref="FunctionSet1" delay_degradation="false" node_ref="Node_Det" />
+        </STM_NODES>
+        <STM_VIRTUALNODES />
+        <STM_FWS />
+      </STM_VAR>
+      <STM_ILLEGAL_STATE_COMBINATIONS />
+    </STM_COMPONENT>
+  </STM_COMPONENTS>
+  <STM_STATELIMITERS>
+    <STM_STATELIMITER>
+      <ID>SMMLimit2OFF</ID>
+      <STM_REF>ESPBase</STM_REF>
+      <SYSTEMSTATE>Off</SYSTEMSTATE>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <KEYLIST>
+        <ITEM key="USED_IN_ASCET">false</ITEM>
+        <ITEM key="USE_GENERIC_NAME">true</ITEM>
+      </KEYLIST>
+    </STM_STATELIMITER>
+    <STM_STATELIMITER>
+      <ID>SMMLimit2ABS</ID>
+      <STM_REF>ESPBase</STM_REF>
+      <SYSTEMSTATE>On</SYSTEMSTATE>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <KEYLIST>
+        <ITEM key="USE_GENERIC_NAME">true</ITEM>
+        <ITEM key="USED_IN_ASCET">false</ITEM>
+      </KEYLIST>
+    </STM_STATELIMITER>
+    <STM_STATELIMITER>
+      <ID>DiagnosisExtended</ID>
+      <STM_REF>ESPBase</STM_REF>
+      <SYSTEMSTATE>DiagnosisExtended</SYSTEMSTATE>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <KEYLIST>
+        <ITEM key="USE_GENERIC_NAME">true</ITEM>
+        <ITEM key="USED_IN_ASCET">false</ITEM>
+      </KEYLIST>
+    </STM_STATELIMITER>
+    <STM_STATELIMITER>
+      <ID>DiagnosisRollerbench</ID>
+      <STM_REF>ESPBase</STM_REF>
+      <SYSTEMSTATE>RollerBenchMode</SYSTEMSTATE>
+      <CUSTOMER_REF>Cus_RB</CUSTOMER_REF>
+      <PROJECT_REF>Prj_Default</PROJECT_REF>
+      <KEYLIST>
+        <ITEM key="USED_IN_ASCET">false</ITEM>
+        <ITEM key="USE_GENERIC_NAME">true</ITEM>
+      </KEYLIST>
+    </STM_STATELIMITER>
+  </STM_STATELIMITERS>
+</DIAGNOSIS>

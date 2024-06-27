@@ -1,0 +1,26 @@
+@startuml
+start
+:check recieved raw x,y,z acc signal status;
+if (any Raw acc signal status is in INIT ?) then (Yes)
+  :update the acc X,Y,Z signal with init values \n ie, Zero;
+else (No)
+  :update the acc X,Y,Z signal with converted values;
+endif
+stop
+start
+:check recieved x,y,z raw rate signal status;
+if (any Raw rate signal status is in INIT ?) then (Yes)
+  :update the other (except acc) X,Y,Z signal with init values \n ie, Zero;
+else (No)
+  :update the other signals  (except acc) X,Y,Z signal with converted values;
+endif
+stop
+group conversion
+:calculate the float value by dividing input signal chain values by sensitivity factor ;
+note left
+:sensitivity factor for acceleration ** RBL_IMUSTDTYPES_SENSITIVITY_ACC_LSB_PER_G / RBL_CUSTIF_G_TO_MS2 ** 
+:sensitivity factor for rate ** RBL_IMUSTDTYPES_SENSITIVITY_ROT_LSB_PER_DEG ** 
+:sensitivity factor for angular acceleration ** RBL_IMUSTDTYPES_SENSITIVITY_ROT_LSB_PER_DEG ** 
+end note
+: convert the value using a conversion service **rbl_CustIf_Calc_Convert** \n with the help of compute methode values (scale ,offset, upper limit, and lovwer limit) \n ;
+@enduml
